@@ -40,5 +40,40 @@
   "targ_picks": 0.1276,
   "orac_picks": 0.0022,
   "eval_al": 0.5927
+ },
+ "fullnodt_ADT_s1": {
+  "scored_on": "own training",
+  "rand_picks": 0.883,
+  "targ_picks": 0.711,
+  "orac_picks": 0.6555,
+  "eval_al": 0.8383
+ },
+ "fullnodt_ADT_s2": {
+  "scored_on": "own training",
+  "rand_picks": 0.8818,
+  "targ_picks": 0.7159,
+  "orac_picks": 0.6778,
+  "eval_al": 0.8437
+ },
+ "fullnodt_IgDT_s1": {
+  "scored_on": "own training",
+  "rand_picks": 0.8557,
+  "targ_picks": 0.7198,
+  "orac_picks": 0.5662,
+  "eval_al": 0.8528
+ },
+ "few_ADT_s1": {
+  "scored_on": "held-out",
+  "rand_picks": 0.5503,
+  "targ_picks": 0.3015,
+  "orac_picks": 0.1793,
+  "eval_al": 0.5939
+ },
+ "few_ADT_s2": {
+  "scored_on": "held-out",
+  "rand_picks": 0.5409,
+  "targ_picks": 0.3026,
+  "orac_picks": 0.2051,
+  "eval_al": 0.5893
  }
 }

@@ -26,8 +26,8 @@ never saw (details and numbers in the sections below):
    against 15.9 px per winding). A finer deformation lattice, a softer regulariser, no winding
    inference or no human point collections do not change that. Starting `fit_spiral.py`'s patch
    snap at step 10,000 instead of 25,000 lets a sparsely annotated fit satisfy both sets, but costs
-   held-out arcs and fibres between the patches; with every patch the gap stays (65.5 % of the
-   failing patches satisfied against 88.3 % of random ones).
+   held-out arcs and fibres between the patches; with every patch the gap stays (65.5–67.8 % of
+   the failing patches satisfied against 88.2–88.3 % of random ones).
 
 ## Why this problem
 
@@ -567,40 +567,40 @@ them, putting neighbouring patches half a winding apart. Raw numbers:
 
 Can a fit that follows the tighter packing satisfy both sets? The patch snap (the loss that pulls
 every patch onto its nearest whole winding) is the largest loss term at the end of these fits and
-by default only starts at step 25,000 of 30,000. Starting it at step 10,000 (few_ADT / few_oracDT,
-one seed each):
+by default only starts at step 25,000 of 30,000. Starting it at step 10,000 (few_ADT two seeds,
+few_oracDT one):
 
 | fit | base patches (942, trained) | oracle picks | held-out area (eval_al) |
 | --- | --- | --- | --- |
-| few_A (default snap) | 84.9 | 0.2 (held out) | 59.3 / 58.2 |
-| few_ADT (early snap) | 90.0 | 17.9 (held out) | 59.4 |
+| few_A (default snap) | 84.9 / 85.8 | 0.2 / 26.7 (held out; seed 1 chose them) | 59.3 / 58.2 |
+| few_ADT (early snap) | 90.0 / 89.9 | 17.9 / 20.5 (held out) | 59.4 / 58.9 |
 | few_orac (default snap, + oracle picks) | 76.9 | 81.6 (trained) | 53.8 |
 | few_oracDT (early snap, + oracle picks) | 84.7 | 84.8 (trained) | 57.9 |
 
 With the early snap the fit satisfies both sets at once (84.7 % and 84.8 %, against 76.9 % and
-81.6 %), and adding the oracle patches costs 1.5 points of held-out area instead of 5.5. The fit
-without them also satisfies more of its own patches (90.0 % against 84.9 %) and some of the
-oracle picks it never saw (17.9 % against 0.2 %), at the same held-out area. With a tenth of the
-patches, much of the conflict was the late snap. The training logs agree: with the default start
-the oracle fit ends with a patch-snap loss of 23.0 that 5,000 steps did not bring down (10.0
-without the picks); started at step 10,000 it ends at 11.4 (5.9), and the deformation regulariser
-ends higher (16.5–16.7 against 11.0–13.1), so the deformation bends further to put neighbouring
-patches on their windings. A softer deformation regulariser alone (a quarter of its weight,
-few_ASD / few_oracSD) does not do this: base patches 85.3 / 76.4 %, oracle picks 7.6 / 81.1 %,
-held-out area 58.4 / 53.4 %, the same as the default. It is the timing of the snap, not the
-stiffness of the deformation.
+81.6 %), and adding the oracle patches costs 1.0–1.5 points of held-out area instead of 4.4–5.5.
+Without them the early snap satisfies more of its own patches (90.0 / 89.9 % against 84.9 /
+85.8 %) at the same held-out area, but not the oracle picks it never saw: 17.9 / 20.5 %, against
+26.7 % for the independent default seed. With a tenth of the patches, much of the conflict was the
+late snap. The training logs agree: with the default start the oracle fit ends with a patch-snap
+loss of 23.0 that 5,000 steps did not bring down (10.0 without the picks); started at step 10,000
+it ends at 11.4 (5.9), and the deformation regulariser ends higher (16.5–16.7 against 11.0–13.1),
+so the deformation bends further to put neighbouring patches on their windings. A softer
+deformation regulariser alone (a quarter of its weight, few_ASD / few_oracSD) does not do this:
+base patches 85.3 / 76.4 %, oracle picks 7.6 / 81.1 %, held-out area 58.4 / 53.4 %, the same as
+the default. It is the timing of the snap, not the stiffness of the deformation.
 
-The bending costs accuracy between the patches. The few-family early-snap fit loses held-out arcs
-(43.9 % against 46.7–46.9) and fibres (14.8 against 15.9–16.2). With every patch (fullnodt_ADT,
-one seed, against three seeds of fullnodt_A) the early snap satisfies more of every training set
-(random picks 88.3 % against 82.0–83.6, oracle picks 65.5 against 59.8–62.2, the eval_al patches
-83.8 against 78.2–79.5), but the held-out arcs away from patches fall to 24.0 % (36.5–47.1) and
-the fibres away from patches to 22.7 % (24.6–25.9), while arcs over patches hold at 91.3
-(91.2–92.9). The oracle picks stay 23 points behind the random ones, so with dense patches the
-snap timing explains little of the conflict. The early snap fits the patches at the expense of the
-surface between them; the default start generalises better. Chains do not rescue it: added to the
-early-snap fit (fullnodt_IgDT) they cost arcs (67.0 % against 69.0) and relative windings (83.1
-against 91.0).
+The bending costs accuracy between the patches. The few-family early-snap fits lose held-out arcs
+(43.9 / 42.3 % against 46.9 / 46.7) and fibres (14.8 / 14.1 against 16.2 / 15.9). With every
+patch (fullnodt_ADT, two seeds, against three seeds of fullnodt_A) the early snap satisfies more
+of every training set (random picks 88.2–88.3 % against 82.0–83.6, oracle picks 65.5–67.8 against
+59.8–62.2, the eval_al patches 83.8–84.4 against 78.2–79.5), but held-out arcs away from patches
+fall to 24.0–24.5 % (36.5–47.1) and fibres away from patches to 22.7–23.2 % (24.6–25.9), while
+arcs over patches hold at 89.2–91.3 (91.2–92.9). The oracle picks stay 20–23 points behind the
+random ones, so with dense patches the snap timing explains little of the conflict. The early
+snap fits the patches at the expense of the surface between them; the default start generalises
+better. Chains do not rescue it: added to the early-snap fit (fullnodt_IgDT) they cost arcs
+(67.0 % against 67.7–69.0) and relative windings (83.1 against 89.2–91.0).
 
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
@@ -655,12 +655,17 @@ uv run python $S/select_patches.py --dataset $P/data/PHercParis4 \
   --satisfied $P/runs/few_A_s1/eval_patches/satisfied_fitted.json --count 471
 python3 $S/setup_ab.py --postel $P
 bash $S/run_queue.sh few_rand_s1 few_targ_s1 few_orac_s1 few_A_s2
-# The fit-setting tests (finer lattice, fine-lattice rate, no winding inference, patches only).
+# The fit-setting tests (finer lattice, fine-lattice rate, no winding inference, patches only,
+# patch snap from step 10,000, softer regulariser).
 bash $S/run_queue.sh few_AR10_s1 few_ALR_s1 few_oracR10_s1 few_oracLR_s1 \
   few_ANW_s1 few_oracNW_s1 few_AP_s1 few_oracP_s1
+bash $S/run_queue.sh few_ADT_s1 few_oracDT_s1 few_ASD_s1 few_oracSD_s1 \
+  fullnodt_ADT_s1 fullnodt_IgDT_s1 few_ADT_s2 fullnodt_ADT_s2
 uv run python $S/targeting_summary.py $P/runs/few_*_s? --dataset $P/data/PHercParis4
 uv run python $S/picks_in_fits.py $P/runs/fullnodt_A_s? $P/runs/full_A_s? $P/runs/few_A_s1 \
-  --dataset $P/data/PHercParis4
+  $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? --dataset $P/data/PHercParis4
+uv run python $S/coverage_split.py $P/runs/sparse_*_s? $P/runs/full*_*_s? $P/runs/few_*_s? \
+  --dataset $P/data/PHercParis4 --heldout $P/pcls/heldout_same.json --fibers $P/fiber_points.json
 uv run python $S/patch_check.py --chains-dir $P/pcls --dataset $P/data/PHercParis4 \
   --minus verified_patches_few10 --sets verified_patches_few10_{rand,targ,orac}471
 # Phase vs whole-winding failures (spiral-fitting environment, needs CUDA).

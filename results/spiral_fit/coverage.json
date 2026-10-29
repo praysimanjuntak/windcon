@@ -178,6 +178,18 @@
    "fibers_covered": 0.4335,
    "fibers_uncovered": 0.2637
   },
+  "fullnodt_ADT_s1": {
+   "arcs_covered": 0.9135,
+   "arcs_uncovered": 0.2402,
+   "fibers_covered": 0.3763,
+   "fibers_uncovered": 0.2266
+  },
+  "fullnodt_ADT_s2": {
+   "arcs_covered": 0.8916,
+   "arcs_uncovered": 0.2451,
+   "fibers_covered": 0.3657,
+   "fibers_uncovered": 0.2315
+  },
   "fullnodt_A_s1": {
    "arcs_covered": 0.9294,
    "arcs_uncovered": 0.4706,
@@ -262,11 +274,143 @@
    "fibers_covered": 0.413,
    "fibers_uncovered": 0.2656
   },
+  "fullnodt_IgDT_s1": {
+   "arcs_covered": 0.8624,
+   "arcs_uncovered": 0.2819,
+   "fibers_covered": 0.3668,
+   "fibers_uncovered": 0.2279
+  },
   "fullnodt_I_s1": {
    "arcs_covered": 0.8977,
    "arcs_uncovered": 0.4975,
    "fibers_covered": 0.4196,
    "fibers_uncovered": 0.28
+  },
+  "few_ADT_s1": {
+   "arcs_covered": 0.6041,
+   "arcs_uncovered": 0.1054,
+   "fibers_covered": 0.176,
+   "fibers_uncovered": 0.138
+  },
+  "few_ADT_s2": {
+   "arcs_covered": 0.5749,
+   "arcs_uncovered": 0.1176,
+   "fibers_covered": 0.1724,
+   "fibers_uncovered": 0.1295
+  },
+  "few_ALR_s1": {
+   "arcs_covered": 0.4738,
+   "arcs_uncovered": 0.1348,
+   "fibers_covered": 0.136,
+   "fibers_uncovered": 0.1071
+  },
+  "few_ANW_s1": {
+   "arcs_covered": 0.5786,
+   "arcs_uncovered": 0.1127,
+   "fibers_covered": 0.1607,
+   "fibers_uncovered": 0.1183
+  },
+  "few_AP_s1": {
+   "arcs_covered": 0.5993,
+   "arcs_uncovered": 0.1348,
+   "fibers_covered": 0.1916,
+   "fibers_uncovered": 0.1582
+  },
+  "few_AR10_s1": {
+   "arcs_covered": 0.4982,
+   "arcs_uncovered": 0.1225,
+   "fibers_covered": 0.1746,
+   "fibers_uncovered": 0.119
+  },
+  "few_A_s1": {
+   "arcs_covered": 0.6078,
+   "arcs_uncovered": 0.1912,
+   "fibers_covered": 0.1977,
+   "fibers_uncovered": 0.1487
+  },
+  "few_A_s2": {
+   "arcs_covered": 0.6188,
+   "arcs_uncovered": 0.1618,
+   "fibers_covered": 0.1872,
+   "fibers_uncovered": 0.1491
+  },
+  "few_ASD_s1": {
+   "arcs_covered": 0.6041,
+   "arcs_uncovered": 0.2206,
+   "fibers_covered": 0.21,
+   "fibers_uncovered": 0.1445
+  },
+  "few_Ig_s1": {
+   "arcs_covered": 0.6212,
+   "arcs_uncovered": 0.152,
+   "fibers_covered": 0.2069,
+   "fibers_uncovered": 0.1512
+  },
+  "few_Ig_s2": {
+   "arcs_covered": 0.6175,
+   "arcs_uncovered": 0.1446,
+   "fibers_covered": 0.2072,
+   "fibers_uncovered": 0.1512
+  },
+  "few_oracDT_s1": {
+   "arcs_covered": 0.6175,
+   "arcs_uncovered": 0.1152,
+   "fibers_covered": 0.2013,
+   "fibers_uncovered": 0.1473
+  },
+  "few_oracLR_s1": {
+   "arcs_covered": 0.4665,
+   "arcs_uncovered": 0.1103,
+   "fibers_covered": 0.1435,
+   "fibers_uncovered": 0.113
+  },
+  "few_oracNW_s1": {
+   "arcs_covered": 0.5432,
+   "arcs_uncovered": 0.1029,
+   "fibers_covered": 0.2011,
+   "fibers_uncovered": 0.1126
+  },
+  "few_oracP_s1": {
+   "arcs_covered": 0.6431,
+   "arcs_uncovered": 0.2525,
+   "fibers_covered": 0.2556,
+   "fibers_uncovered": 0.1711
+  },
+  "few_oracR10_s1": {
+   "arcs_covered": 0.4811,
+   "arcs_uncovered": 0.1422,
+   "fibers_covered": 0.1571,
+   "fibers_uncovered": 0.1278
+  },
+  "few_orac_s1": {
+   "arcs_covered": 0.5944,
+   "arcs_uncovered": 0.2598,
+   "fibers_covered": 0.2278,
+   "fibers_uncovered": 0.1704
+  },
+  "few_oracSD_s1": {
+   "arcs_covered": 0.6139,
+   "arcs_uncovered": 0.2206,
+   "fibers_covered": 0.2414,
+   "fibers_uncovered": 0.1745
+  },
+  "few_rand_s1": {
+   "arcs_covered": 0.7162,
+   "arcs_uncovered": 0.174,
+   "fibers_covered": 0.2617,
+   "fibers_uncovered": 0.1719
+  },
+  "few_targ_s1": {
+   "arcs_covered": 0.6541,
+   "arcs_uncovered": 0.1985,
+   "fibers_covered": 0.2269,
+   "fibers_uncovered": 0.1559
+  },
+  "few_targ_s2": {
+   "arcs_covered": 0.6626,
+   "arcs_uncovered": 0.1985,
+   "fibers_covered": 0.2119,
+   "fibers_uncovered": 0.1679
   }
  }
 }

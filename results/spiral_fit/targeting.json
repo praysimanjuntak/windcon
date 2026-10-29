@@ -1,6 +1,30 @@
 {
  "eval_patches": 7203,
  "runs": {
+  "few_ADT_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5939
+  },
+  "few_ADT_s2": {
+   "patches": 6970,
+   "area_satisfied": 0.5893
+  },
+  "few_ALR_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.3757
+  },
+  "few_ANW_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.542
+  },
+  "few_AP_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.576
+  },
+  "few_AR10_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5337
+  },
   "few_A_s1": {
    "patches": 6970,
    "area_satisfied": 0.5927
@@ -9,6 +33,10 @@
    "patches": 6970,
    "area_satisfied": 0.5822
   },
+  "few_ASD_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5837
+  },
   "few_Ig_s1": {
    "patches": 6970,
    "area_satisfied": 0.5862
@@ -16,6 +44,34 @@
   "few_Ig_s2": {
    "patches": 6970,
    "area_satisfied": 0.5818
+  },
+  "few_oracDT_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5786
+  },
+  "few_oracLR_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.3581
+  },
+  "few_oracNW_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.483
+  },
+  "few_oracP_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5177
+  },
+  "few_oracR10_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.4561
+  },
+  "few_orac_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5376
+  },
+  "few_oracSD_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.5341
   },
   "few_rand_s1": {
    "patches": 6970,
@@ -28,42 +84,6 @@
   "few_targ_s2": {
    "patches": 6970,
    "area_satisfied": 0.5617
-  },
-  "few_orac_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.5376
-  },
-  "few_AR10_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.5337
-  },
-  "few_oracR10_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.4561
-  },
-  "few_ALR_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.3757
-  },
-  "few_oracLR_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.3581
-  },
-  "few_ANW_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.542
-  },
-  "few_oracNW_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.483
-  },
-  "few_AP_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.576
-  },
-  "few_oracP_s1": {
-   "patches": 6970,
-   "area_satisfied": 0.5177
   }
  }
 }
