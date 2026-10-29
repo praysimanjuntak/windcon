@@ -1,0 +1,31 @@
+[project]
+name = "windcon"
+version = "0.1.0"
+description = "Automatic same-winding constraints (drawn paths) for the Vesuvius Challenge spiral fit"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "praysimanjuntak", email = "simanjuntakpray@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numcodecs>=0.17.0",
+    "numpy>=2.5.3",
+    "scipy>=1.18.1",
+]
+
+[project.scripts]
+windcon = "windcon:main"
+
+[build-system]
+requires = ["uv_build>=0.11.28,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

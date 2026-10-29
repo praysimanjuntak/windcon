@@ -1,0 +1,17 @@
+{
+ "paths": 469912,
+ "points_on_patch_fraction": 0.3984,
+ "paths_with_majority_patch": 110138,
+ "path_switch_fraction": 0.0301,
+ "path_off_length_fraction": 0.0204,
+ "path_switch_fraction_unlinked": 0.0393,
+ "paths_unlinked_with_majority_patch": 42160,
+ "path_switch_fraction_linked": 0.0244,
+ "paths_linked_with_majority_patch": 67978,
+ "links_checked": 30000,
+ "links_confirmed": 7627,
+ "links_contradicted": 85,
+ "links_ambiguous": 612,
+ "links_unverifiable": 21676,
+ "link_contradicted_fraction": 0.0102
+}

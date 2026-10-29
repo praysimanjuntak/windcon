@@ -1,0 +1,15 @@
+{
+ "base": 942,
+ "pool": 8482,
+ "candidates": 6712,
+ "count": 471,
+ "overlap_targ_orac": 80,
+ "overlap_targ_rand": 29,
+ "eval_patches": 7203,
+ "fit_satisfaction_of_picks": {
+  "rand": 0.5244,
+  "targ": 0.1276,
+  "orac": 0.0022
+ },
+ "fit_satisfaction_of_eval_set": 0.5927
+}

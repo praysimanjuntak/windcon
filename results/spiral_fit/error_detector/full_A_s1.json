@@ -1,0 +1,51 @@
+{
+ "run": "full_A_s1",
+ "patches": "train",
+ "scored_patches": 7464,
+ "scored_area_fraction_satisfied": 0.7862,
+ "auc_area_weighted": 0.822,
+ "baseline_auc_chain_coverage": 0.528,
+ "baseline_auc_distance_from_axis": 0.674,
+ "bins": [
+  {
+   "check_score": [
+    0.171,
+    0.914
+   ],
+   "patches": 1493,
+   "area_satisfied": 0.3127
+  },
+  {
+   "check_score": [
+    0.914,
+    0.975
+   ],
+   "patches": 1493,
+   "area_satisfied": 0.7479
+  },
+  {
+   "check_score": [
+    0.975,
+    0.992
+   ],
+   "patches": 1492,
+   "area_satisfied": 0.8685
+  },
+  {
+   "check_score": [
+    0.992,
+    1.0
+   ],
+   "patches": 1325,
+   "area_satisfied": 0.9033
+  },
+  {
+   "check_score": [
+    1.0,
+    1.0
+   ],
+   "patches": 1661,
+   "area_satisfied": 0.938
+  }
+ ]
+}

@@ -1,0 +1,245 @@
+{
+ "fullnodt_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.8551,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6328
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8505,
+     "collections_fully_satisfied_fraction": 0.6618
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8591,
+     "collections_fully_satisfied_fraction": 0.6812
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8704,
+     "collections_fully_satisfied_fraction": 0.6938
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8818,
+     "collections_fully_satisfied_fraction": 0.7098
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8769,
+     "collections_fully_satisfied_fraction": 0.6847
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8491,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6328
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8481,
+     "collections_fully_satisfied_fraction": 0.6027
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8535,
+     "collections_fully_satisfied_fraction": 0.5691
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8597,
+     "collections_fully_satisfied_fraction": 0.5055
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8663,
+     "collections_fully_satisfied_fraction": 0.4365
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.853,
+     "collections_fully_satisfied_fraction": 0.297
+    }
+   }
+  },
+  "relwind": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.5907,
+   "points_satisfied_fraction": 0.7733
+  },
+  "relwind_same_winding_control": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.1859
+  }
+ },
+ "full_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.856,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8408,
+     "collections_fully_satisfied_fraction": 0.6346
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8508,
+     "collections_fully_satisfied_fraction": 0.663
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8588,
+     "collections_fully_satisfied_fraction": 0.6789
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8694,
+     "collections_fully_satisfied_fraction": 0.6948
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8849,
+     "collections_fully_satisfied_fraction": 0.7157
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8949,
+     "collections_fully_satisfied_fraction": 0.7101
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8501,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8408,
+     "collections_fully_satisfied_fraction": 0.6346
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8484,
+     "collections_fully_satisfied_fraction": 0.6049
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.853,
+     "collections_fully_satisfied_fraction": 0.5665
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8588,
+     "collections_fully_satisfied_fraction": 0.508
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8687,
+     "collections_fully_satisfied_fraction": 0.4426
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8749,
+     "collections_fully_satisfied_fraction": 0.3188
+    }
+   }
+  },
+  "relwind": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.5964,
+   "points_satisfied_fraction": 0.7765
+  },
+  "relwind_same_winding_control": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.1847
+  }
+ },
+ "sparse_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.7353,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7589,
+     "collections_fully_satisfied_fraction": 0.4553
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.7567,
+     "collections_fully_satisfied_fraction": 0.4599
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.7454,
+     "collections_fully_satisfied_fraction": 0.4419
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.7134,
+     "collections_fully_satisfied_fraction": 0.3994
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.671,
+     "collections_fully_satisfied_fraction": 0.3372
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.6306,
+     "collections_fully_satisfied_fraction": 0.2734
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.7204,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7589,
+     "collections_fully_satisfied_fraction": 0.4553
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.7509,
+     "collections_fully_satisfied_fraction": 0.38
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.7303,
+     "collections_fully_satisfied_fraction": 0.2884
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.6804,
+     "collections_fully_satisfied_fraction": 0.1747
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.6149,
+     "collections_fully_satisfied_fraction": 0.0692
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.5454,
+     "collections_fully_satisfied_fraction": 0.03
+    }
+   }
+  },
+  "relwind": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.5599,
+   "points_satisfied_fraction": 0.7522
+  },
+  "relwind_same_winding_control": {
+   "pairs": 515043,
+   "pairs_fully_satisfied_fraction": 0.1769
+  }
+ }
+}

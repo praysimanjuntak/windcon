@@ -1,0 +1,34 @@
+{
+ "params": {
+  "on": 3.0,
+  "off": 7.0,
+  "run": 3,
+  "min_paths": 3
+ },
+ "all": {
+  "patches_scored": 4968,
+  "paths": 107804,
+  "paths_leaving_fraction": 0.0308,
+  "patches_left_by_20pct_or_more": 0.0022
+ },
+ "sets": {
+  "verified_patches_few10_rand471": {
+   "patches_scored": 290,
+   "paths": 6000,
+   "paths_leaving_fraction": 0.0027,
+   "patches_left_by_20pct_or_more": 0.0
+  },
+  "verified_patches_few10_targ471": {
+   "patches_scored": 336,
+   "paths": 6872,
+   "paths_leaving_fraction": 0.0029,
+   "patches_left_by_20pct_or_more": 0.0
+  },
+  "verified_patches_few10_orac471": {
+   "patches_scored": 250,
+   "paths": 4382,
+   "paths_leaving_fraction": 0.0014,
+   "patches_left_by_20pct_or_more": 0.0
+  }
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "run": "sparse_A_s1",
+ "patches": "eval_patches",
+ "scored_patches": 13163,
+ "scored_area_fraction_satisfied": 0.257,
+ "auc_area_weighted": 0.793,
+ "baseline_auc_chain_coverage": 0.514,
+ "baseline_auc_distance_from_axis": 0.536,
+ "bins": [
+  {
+   "check_score": [
+    0.094,
+    0.673
+   ],
+   "patches": 2633,
+   "area_satisfied": 0.1136
+  },
+  {
+   "check_score": [
+    0.673,
+    0.758
+   ],
+   "patches": 2632,
+   "area_satisfied": 0.1675
+  },
+  {
+   "check_score": [
+    0.758,
+    0.813
+   ],
+   "patches": 2633,
+   "area_satisfied": 0.2474
+  },
+  {
+   "check_score": [
+    0.813,
+    0.871
+   ],
+   "patches": 2632,
+   "area_satisfied": 0.2855
+  },
+  {
+   "check_score": [
+    0.871,
+    1.0
+   ],
+   "patches": 2633,
+   "area_satisfied": 0.4271
+  }
+ ]
+}

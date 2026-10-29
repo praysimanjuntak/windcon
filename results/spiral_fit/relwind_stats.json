@@ -1,0 +1,28 @@
+{
+ "params": {
+  "min_votes": 3,
+  "rays_per_pair": 3
+ },
+ "rays": 3745784,
+ "clean rays": 2171269,
+ "accepted pairs": 171681,
+ "pairs inside one chain": 0,
+ "pairs contradicting the forest": 1636,
+ "contradiction rate": 0.0095,
+ "components": 31674,
+ "chains in components": 149818,
+ "largest components (chains)": [
+  8398,
+  7901,
+  4322,
+  3715,
+  3655
+ ],
+ "largest winding spans": [
+  94,
+  91,
+  75,
+  70,
+  57
+ ]
+}

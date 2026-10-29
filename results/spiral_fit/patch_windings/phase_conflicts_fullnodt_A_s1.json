@@ -1,0 +1,99 @@
+{
+ "patches": {
+  "on": 6679,
+  "mid": 1435,
+  "between": 1006
+ },
+ "params": {
+  "radius": 40.0,
+  "per_patch": 30
+ },
+ "classes": {
+  "between": {
+   "sampled_quads": 28626,
+   "quads_with_radial_neighbour": 23977,
+   "neighbour_patch_on_sheet": 0.7114,
+   "neighbour_patch_between": 0.1548,
+   "fit_dw_fraction_near_half": 0.5899,
+   "fit_abs_dw_p25_50_75": [
+    0.41,
+    0.54,
+    0.68
+   ],
+   "radial_gap_px_p25_50_75": [
+    10.2,
+    13.4,
+    19.0
+   ],
+   "ct_pairs": 791,
+   "scan_windings_0_1_2plus": [
+    0.379,
+    0.496,
+    0.125
+   ],
+   "fit_minus_scan_windings_p10_25_50_75_90": [
+    -0.66,
+    -0.52,
+    -0.35,
+    0.52,
+    0.64
+   ],
+   "fit_agrees_with_scan_within_0.35": 0.0973,
+   "fit_fewer_windings_than_scan_by_0.35_or_more": 0.4981,
+   "fit_more_windings_than_scan_by_0.35_or_more": 0.4046,
+   "scan_px_per_winding_p25_50_75": [
+    10.7,
+    13.2,
+    17.2
+   ],
+   "fit_px_per_winding_p25_50_75": [
+    19.8,
+    24.1,
+    33.6
+   ]
+  },
+  "on": {
+   "sampled_quads": 195278,
+   "quads_with_radial_neighbour": 148204,
+   "neighbour_patch_on_sheet": 0.7502,
+   "neighbour_patch_between": 0.1183,
+   "fit_dw_fraction_near_half": 0.1449,
+   "fit_abs_dw_p25_50_75": [
+    0.15,
+    0.85,
+    1.05
+   ],
+   "radial_gap_px_p25_50_75": [
+    9.6,
+    15.5,
+    22.4
+   ],
+   "ct_pairs": 677,
+   "scan_windings_0_1_2plus": [
+    0.393,
+    0.473,
+    0.134
+   ],
+   "fit_minus_scan_windings_p10_25_50_75_90": [
+    -0.69,
+    -0.17,
+    0.03,
+    0.8,
+    1.05
+   ],
+   "fit_agrees_with_scan_within_0.35": 0.4269,
+   "fit_fewer_windings_than_scan_by_0.35_or_more": 0.195,
+   "fit_more_windings_than_scan_by_0.35_or_more": 0.3781,
+   "scan_px_per_winding_p25_50_75": [
+    12.4,
+    15.9,
+    21.4
+   ],
+   "fit_px_per_winding_p25_50_75": [
+    14.0,
+    18.0,
+    25.6
+   ]
+  }
+ }
+}

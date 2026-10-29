@@ -1,0 +1,650 @@
+{
+ "fullnodt_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.8551,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6328
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8505,
+     "collections_fully_satisfied_fraction": 0.6618
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8591,
+     "collections_fully_satisfied_fraction": 0.6812
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8704,
+     "collections_fully_satisfied_fraction": 0.6938
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8818,
+     "collections_fully_satisfied_fraction": 0.7098
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8769,
+     "collections_fully_satisfied_fraction": 0.6847
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8491,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6328
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8481,
+     "collections_fully_satisfied_fraction": 0.6027
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8535,
+     "collections_fully_satisfied_fraction": 0.5691
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8597,
+     "collections_fully_satisfied_fraction": 0.5055
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8663,
+     "collections_fully_satisfied_fraction": 0.4365
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.853,
+     "collections_fully_satisfied_fraction": 0.297
+    }
+   }
+  }
+ },
+ "fullnodt_A_s2": {
+  "singles": {
+   "points_satisfied_fraction": 0.8543,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8403,
+     "collections_fully_satisfied_fraction": 0.634
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8491,
+     "collections_fully_satisfied_fraction": 0.6594
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.859,
+     "collections_fully_satisfied_fraction": 0.6818
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8678,
+     "collections_fully_satisfied_fraction": 0.6911
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8815,
+     "collections_fully_satisfied_fraction": 0.7086
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8754,
+     "collections_fully_satisfied_fraction": 0.68
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8482,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8403,
+     "collections_fully_satisfied_fraction": 0.634
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8469,
+     "collections_fully_satisfied_fraction": 0.6013
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8525,
+     "collections_fully_satisfied_fraction": 0.5684
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8563,
+     "collections_fully_satisfied_fraction": 0.5014
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8661,
+     "collections_fully_satisfied_fraction": 0.4422
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8521,
+     "collections_fully_satisfied_fraction": 0.297
+    }
+   }
+  }
+ },
+ "fullnodt_A_s3": {
+  "singles": {
+   "points_satisfied_fraction": 0.8544,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8394,
+     "collections_fully_satisfied_fraction": 0.631
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8489,
+     "collections_fully_satisfied_fraction": 0.6604
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8591,
+     "collections_fully_satisfied_fraction": 0.6802
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8689,
+     "collections_fully_satisfied_fraction": 0.6925
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.883,
+     "collections_fully_satisfied_fraction": 0.7111
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8793,
+     "collections_fully_satisfied_fraction": 0.6815
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8485,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8394,
+     "collections_fully_satisfied_fraction": 0.631
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.847,
+     "collections_fully_satisfied_fraction": 0.6026
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8528,
+     "collections_fully_satisfied_fraction": 0.5665
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8583,
+     "collections_fully_satisfied_fraction": 0.5001
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8685,
+     "collections_fully_satisfied_fraction": 0.4415
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8567,
+     "collections_fully_satisfied_fraction": 0.2997
+    }
+   }
+  }
+ },
+ "full_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.856,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8408,
+     "collections_fully_satisfied_fraction": 0.6346
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8508,
+     "collections_fully_satisfied_fraction": 0.663
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8588,
+     "collections_fully_satisfied_fraction": 0.6789
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.8694,
+     "collections_fully_satisfied_fraction": 0.6948
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8849,
+     "collections_fully_satisfied_fraction": 0.7157
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8949,
+     "collections_fully_satisfied_fraction": 0.7101
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8501,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8408,
+     "collections_fully_satisfied_fraction": 0.6346
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8484,
+     "collections_fully_satisfied_fraction": 0.6049
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.853,
+     "collections_fully_satisfied_fraction": 0.5665
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8588,
+     "collections_fully_satisfied_fraction": 0.508
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8687,
+     "collections_fully_satisfied_fraction": 0.4426
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8749,
+     "collections_fully_satisfied_fraction": 0.3188
+    }
+   }
+  }
+ },
+ "full_A_s2": {
+  "singles": {
+   "points_satisfied_fraction": 0.854,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6318
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8487,
+     "collections_fully_satisfied_fraction": 0.6585
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8584,
+     "collections_fully_satisfied_fraction": 0.6805
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.865,
+     "collections_fully_satisfied_fraction": 0.6866
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8815,
+     "collections_fully_satisfied_fraction": 0.7098
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8818,
+     "collections_fully_satisfied_fraction": 0.6862
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8479,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8404,
+     "collections_fully_satisfied_fraction": 0.6318
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8469,
+     "collections_fully_satisfied_fraction": 0.5995
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8526,
+     "collections_fully_satisfied_fraction": 0.5661
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8536,
+     "collections_fully_satisfied_fraction": 0.5018
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.8659,
+     "collections_fully_satisfied_fraction": 0.4419
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8565,
+     "collections_fully_satisfied_fraction": 0.3025
+    }
+   }
+  }
+ },
+ "sparse_A_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.7353,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7589,
+     "collections_fully_satisfied_fraction": 0.4553
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.7567,
+     "collections_fully_satisfied_fraction": 0.4599
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.7454,
+     "collections_fully_satisfied_fraction": 0.4419
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.7134,
+     "collections_fully_satisfied_fraction": 0.3994
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.671,
+     "collections_fully_satisfied_fraction": 0.3372
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.6306,
+     "collections_fully_satisfied_fraction": 0.2734
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.7204,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7589,
+     "collections_fully_satisfied_fraction": 0.4553
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.7509,
+     "collections_fully_satisfied_fraction": 0.38
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.7303,
+     "collections_fully_satisfied_fraction": 0.2884
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.6804,
+     "collections_fully_satisfied_fraction": 0.1747
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.6149,
+     "collections_fully_satisfied_fraction": 0.0692
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.5454,
+     "collections_fully_satisfied_fraction": 0.03
+    }
+   }
+  }
+ },
+ "sparse_A_s2": {
+  "singles": {
+   "points_satisfied_fraction": 0.7339,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7572,
+     "collections_fully_satisfied_fraction": 0.4522
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.7554,
+     "collections_fully_satisfied_fraction": 0.4569
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.7425,
+     "collections_fully_satisfied_fraction": 0.4365
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.7138,
+     "collections_fully_satisfied_fraction": 0.3957
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.6722,
+     "collections_fully_satisfied_fraction": 0.3364
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.6209,
+     "collections_fully_satisfied_fraction": 0.2612
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.7189,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.7572,
+     "collections_fully_satisfied_fraction": 0.4522
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.7495,
+     "collections_fully_satisfied_fraction": 0.3801
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.7266,
+     "collections_fully_satisfied_fraction": 0.2864
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.6806,
+     "collections_fully_satisfied_fraction": 0.1714
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.6175,
+     "collections_fully_satisfied_fraction": 0.0678
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.5333,
+     "collections_fully_satisfied_fraction": 0.0163
+    }
+   }
+  }
+ },
+ "sparse_E_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.8333,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8449,
+     "collections_fully_satisfied_fraction": 0.6542
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8367,
+     "collections_fully_satisfied_fraction": 0.6368
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.837,
+     "collections_fully_satisfied_fraction": 0.6312
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.831,
+     "collections_fully_satisfied_fraction": 0.6148
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8037,
+     "collections_fully_satisfied_fraction": 0.5446
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.7623,
+     "collections_fully_satisfied_fraction": 0.4498
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8261,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8449,
+     "collections_fully_satisfied_fraction": 0.6542
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8359,
+     "collections_fully_satisfied_fraction": 0.5732
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8308,
+     "collections_fully_satisfied_fraction": 0.4966
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8168,
+     "collections_fully_satisfied_fraction": 0.3811
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.7733,
+     "collections_fully_satisfied_fraction": 0.2008
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.7117,
+     "collections_fully_satisfied_fraction": 0.079
+    }
+   }
+  }
+ },
+ "fullnodt_E_s1": {
+  "singles": {
+   "points_satisfied_fraction": 0.8655,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8546,
+     "collections_fully_satisfied_fraction": 0.6697
+    },
+    "2": {
+     "points": 225194,
+     "points_satisfied_fraction": 0.8597,
+     "collections_fully_satisfied_fraction": 0.6849
+    },
+    "3-4": {
+     "points": 267420,
+     "points_satisfied_fraction": 0.8669,
+     "collections_fully_satisfied_fraction": 0.7022
+    },
+    "5-9": {
+     "points": 320114,
+     "points_satisfied_fraction": 0.878,
+     "collections_fully_satisfied_fraction": 0.7174
+    },
+    "10-19": {
+     "points": 195439,
+     "points_satisfied_fraction": 0.8881,
+     "collections_fully_satisfied_fraction": 0.7272
+    },
+    ">=20": {
+     "points": 62481,
+     "points_satisfied_fraction": 0.8825,
+     "collections_fully_satisfied_fraction": 0.7012
+    }
+   }
+  },
+  "chains": {
+   "points_satisfied_fraction": 0.8607,
+   "by_chain_paths": {
+    "1": {
+     "points": 785230,
+     "points_satisfied_fraction": 0.8546,
+     "collections_fully_satisfied_fraction": 0.6697
+    },
+    "2": {
+     "points": 197123,
+     "points_satisfied_fraction": 0.8579,
+     "collections_fully_satisfied_fraction": 0.6275
+    },
+    "3-4": {
+     "points": 226270,
+     "points_satisfied_fraction": 0.8625,
+     "collections_fully_satisfied_fraction": 0.5934
+    },
+    "5-9": {
+     "points": 271646,
+     "points_satisfied_fraction": 0.8704,
+     "collections_fully_satisfied_fraction": 0.5344
+    },
+    "10-19": {
+     "points": 170126,
+     "points_satisfied_fraction": 0.874,
+     "collections_fully_satisfied_fraction": 0.4654
+    },
+    ">=20": {
+     "points": 55468,
+     "points_satisfied_fraction": 0.8609,
+     "collections_fully_satisfied_fraction": 0.3351
+    }
+   }
+  }
+ }
+}

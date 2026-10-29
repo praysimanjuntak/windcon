@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Downloaded data and scratch output
+data/cache/
+data/scratch/
+external/
+
+# Annotations fetched from the public spiral-input dataset (their terms apply) and example output
+data/paris4/
+out/

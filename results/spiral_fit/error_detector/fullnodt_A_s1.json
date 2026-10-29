@@ -1,0 +1,51 @@
+{
+ "run": "fullnodt_A_s1",
+ "patches": "train",
+ "scored_patches": 7464,
+ "scored_area_fraction_satisfied": 0.7757,
+ "auc_area_weighted": 0.83,
+ "baseline_auc_chain_coverage": 0.511,
+ "baseline_auc_distance_from_axis": 0.688,
+ "bins": [
+  {
+   "check_score": [
+    0.124,
+    0.914
+   ],
+   "patches": 1493,
+   "area_satisfied": 0.3127
+  },
+  {
+   "check_score": [
+    0.914,
+    0.973
+   ],
+   "patches": 1493,
+   "area_satisfied": 0.7084
+  },
+  {
+   "check_score": [
+    0.973,
+    0.992
+   ],
+   "patches": 1492,
+   "area_satisfied": 0.8424
+  },
+  {
+   "check_score": [
+    0.992,
+    1.0
+   ],
+   "patches": 1287,
+   "area_satisfied": 0.9108
+  },
+  {
+   "check_score": [
+    1.0,
+    1.0
+   ],
+   "patches": 1699,
+   "area_satisfied": 0.9441
+  }
+ ]
+}
