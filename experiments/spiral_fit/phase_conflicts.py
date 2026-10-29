@@ -8,13 +8,12 @@ patches, quads of other patches in the same slice (|dz| <= 2) within --radius vo
 mostly along the scroll radius, are neighbours. Per neighbour pair:
 
 * the fit's winding difference dw (raw coordinates, unwrapped across theta = 0 like villa);
-* the bright bands the CT shows strictly between the two quads (profile along the segment,
-  averaged across it; peaks with a real dark gap on both sides), so the scan's winding
-  difference is that count + 1 when the two quads lie on different sheets.
+* the dark inter-sheet gaps the CT shows between the two quads (count_gaps: profile along the
+  segment, averaged across it), which is the scan's winding difference between their sheets.
 
 On-sheet patches' quads give the control. The question is whether the fit's |dw| for between-sheet
-pairs lies half a winding above or below the scan's count, and whether those pairs differ from the
-control in spacing.
+pairs lies half a winding above or below the scan's gap count, and whether those pairs differ from
+the control in sheet spacing.
 
     uv run python phase_conflicts.py --quads quads.npz --phase pw_all.json \
         --umbilicus data/PHercParis4/umbilicus.json --out phase_conflicts.json

@@ -30,8 +30,13 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
-     ADT, oracDT (patch snap from step 10,000); ASD, oracSD (regulariser at a quarter)
+     ADT, oracDT (patch snap from step 10,000); ASD, oracSD (regulariser at a quarter);
+     ARW, oracRW (automatic relative windings as drawn_control_points.json)
   fullnodt_ADT, fullnodt_IgDT  the early patch snap with every patch (no snap without patches)
+  fullnodt_ARW  the automatic relative windings with every patch
+RW variants keep the human relative windings in their slot; the automatic pairs go in the drawn slot,
+a sampling stratum of their own (pairs on two patches feed the patch relative-winding loss, the
+rest the unattached-strip loss with their winding difference).
 Full-family E, G, Eg and Gg give the paths a budget of their own (sample_shares.py --emit): run this
 script, then sample_shares.py with configs/<run>_base.json, then this script again.
 Evaluation root `datasets/eval` holds only what no fit trains on (held-out same-winding arcs,
@@ -125,8 +130,11 @@ REGIMES = {
     "fullnodt_Ig": (True, "chains_g", D_SETTINGS, False),
     "fullnodt_ADT": (True, None, D_SETTINGS | EARLY_SNAP, False),
     "fullnodt_IgDT": (True, "chains_g", D_SETTINGS | EARLY_SNAP, False),
+    "fullnodt_ARW": (True, "relwind", D_SETTINGS, False),
     "few_A": (True, None, D_SETTINGS, False, FEW_LINKS),
     "few_Ig": (True, "chains_g", D_SETTINGS, False, FEW_LINKS),
+    "few_ARW": (True, "relwind", D_SETTINGS, False, FEW_LINKS),
+    "few_oracRW": (True, "relwind", D_SETTINGS, False, {"verified_patches": "patches_orac"}),
     # Annotation targeting (select_patches.py): the few patches plus 471 more, chosen at random,
     # where the chains disagree with few_A_s1, or where few_A_s1 fails (oracle); scored on eval_al.
     "few_rand": (True, None, D_SETTINGS, False, {"verified_patches": "patches_rand"}),

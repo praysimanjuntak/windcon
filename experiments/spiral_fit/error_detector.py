@@ -8,8 +8,13 @@ points lying on it (within --radius voxels), weighting every point by its chain'
 The patches are independent ground truth for the fit (held out, or at least not the chains), so
 the question is how well the check score predicts each patch's satisfaction in that fit.
 
+With --flag-out the chains the fit disagrees with (agreement below --flag-below) are also written,
+worst first, as a point-collection document of auto_chains.json's points: the places to inspect,
+for VC3D or any reader of the spiral-fit point-collection format. This needs no verified patches;
+without the run's satisfied_fitted.json the patch scoring is skipped.
+
     uv run python error_detector.py --run runs/sparse_A_s1 --chains-dir pcls --dataset data/PHercParis4 \
-        [--patches eval_patches|train] [--out error_detector.json]
+        [--patches eval_patches|train] [--out error_detector.json] [--flag-out flagged.json]
 """
 
 from __future__ import annotations
@@ -23,6 +28,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from windcon.annotations import load_collections, write_same_winding  # noqa: E402
 from patch_surfaces import patch_vertices, umbilicus_xy  # noqa: E402
 
 
@@ -57,6 +63,8 @@ def main() -> None:
     ap.add_argument("--min-points", type=int, default=20, help="patches with fewer chain points are unscored")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--per-patch", type=Path, help="also write every scored patch's check score (JSON)")
+    ap.add_argument("--flag-out", type=Path, help="write the chains the fit disagrees with (point collections)")
+    ap.add_argument("--flag-below", type=float, default=0.5, help="agreement below which a chain is flagged")
     args = ap.parse_args()
 
     with np.load(args.chains_dir / "chains_paths.npz") as d:
@@ -71,8 +79,18 @@ def main() -> None:
     tree = cKDTree(pts[keep])
     vertex_agree = vertex_agree[keep]
 
+    if args.flag_out:
+        flagged = sorted((agree[int(c.name.removeprefix("chain_"))], c.name, c.xyz)
+                         for c in load_collections(args.chains_dir / "auto_chains.json")
+                         if agree[int(c.name.removeprefix("chain_"))] < args.flag_below)
+        write_same_winding(args.flag_out, [(f"{name}_agree{a:.3f}", xyz) for a, name, xyz in flagged])
+        print(f"flagged {len(flagged)} of {int(np.isfinite(agree).sum())} scored chains -> {args.flag_out}")
+
     axis = umbilicus_xy(args.dataset / "umbilicus.json")
     sat_file = (args.run / "eval_patches" if args.patches == "eval_patches" else args.run) / "satisfied_fitted.json"
+    if not sat_file.exists():
+        print(f"{sat_file} not found: patch scoring skipped")
+        return
     sat = {e["id"]: (e["satisfied_area"], e["total_area"]) for e in json.loads(sat_file.read_text())["patches"]}
     rows = []
     for name, (s, t) in sat.items():

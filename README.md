@@ -28,6 +28,17 @@ never saw (details and numbers in the sections below):
    snap at step 10,000 instead of 25,000 lets a sparsely annotated fit satisfy both sets, but costs
    held-out arcs and fibres between the patches; with every patch the gap stays (65.5–67.8 % of
    the failing patches satisfied against 88.2–88.3 % of random ones).
+5. **Automatic relative windings may resolve the conflict (one seed).** Pairs of points on adjacent
+   sheets, one winding apart, give the fit the scan's local winding spacing. Added to a sparsely
+   annotated fit they keep the failing patches from hurting it (held-out area 60.3 % with them
+   against 53.8 % without) and raise held-out area by 1–2 points on their own, at a cost of 1–2
+   points of eval fibres.
+
+![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
+
+*Slice z 10425 at quarter scale, every traced path in its own colour. Per-arc comparisons on the
+held-out slices: [`results/panels_test.png`](results/panels_test.png) (human arc yellow, traced
+path green, vertices after a departure red).*
 
 ## Why this problem
 
@@ -455,7 +466,10 @@ The signal is the agreement itself: where the chains are (coverage) predicts alm
 depth in the scroll (distance from the axis, either direction) much less. Even the human-informed
 fits fail a fifth of their own training patches where the chains disagree with them (31 %
 satisfied there against 71–94 % elsewhere). The automatic paths, computed without any human
-input, find those places. Raw numbers: `results/spiral_fit/error_detector/`.
+input, find those places. `error_detector.py --flag-out` writes the chains a fit disagrees with,
+worst first, as a point-collection document in the human annotations' format (36,753 of the
+288,074 chains scored against few_A_s1); it needs no verified patches, so it works on a scroll
+without any. Raw numbers: `results/spiral_fit/error_detector/`.
 
 Does that help annotators? `select_patches.py` adds 471 more patches (5 % of the window's) to the
 few family's 942, chosen three ways from the 6,712 held-out patches the check can score: at random,
@@ -602,6 +616,29 @@ snap fits the patches at the expense of the surface between them; the default st
 better. Chains do not rescue it: added to the early-snap fit (fullnodt_IgDT) they cost arcs
 (67.0 % against 67.7–69.0) and relative windings (83.1 against 89.2–91.0).
 
+What the fit lacks at these sites is the scan's local winding spacing. The automatic relative
+windings of round 3 carry it (pairs of points on adjacent sheets, one winding apart), reach the
+conflict sites as often as anywhere (an automatic pair within 20 px of 22 % of the between-sheet
+patches' quads, 21 % of the on-sheet ones') and had only been tested without human patches. Fed
+to the few family through the otherwise unused drawn-points slot, a sampling stratum of their own
+(few_ARW / few_oracRW, `setup_ab.py`; one seed each), about 12,600 of the 515,043 pairs touch the
+patches (the fitter's cross-patch collections, scored by the patch relative-winding loss where they
+join two patches) and the rest act as two-point strips with their winding difference:
+
+| fit | held-out area (eval_al) | base patches (trained) | oracle picks | held-out arcs | fibres |
+| --- | --- | --- | --- | --- | --- |
+| few_A | 59.3 / 58.2 | 84.9 / 85.8 | 0.2 / 26.7 (held out) | 46.9 / 46.7 | 16.2 / 15.9 |
+| few_ARW (+ automatic relative windings) | 60.4 | 91.4 | 40.5 (held out) | 44.8 | 14.9 |
+| few_orac (+ oracle picks) | 53.8 | 76.9 | 81.6 (trained) | 48.3 | 18.6 |
+| few_oracRW (+ both) | 60.3 | 88.6 | 85.5 (trained) | 40.9 | 16.4 |
+
+With them the oracle patches stop hurting: the fit satisfies both sets (88.6 % and 85.5 %) and the
+held-out area stays at 60.3 % instead of falling to 53.8 %, a 6.5-point difference against a seed
+spread of 1.1. Without the oracle patches they raise held-out area by 1.1–2.2 points, inside what
+one more seed could change, and satisfy 40.5 % of the hard picks unseen (26.7 % for the
+independent default seed). The cost is again between the patches: arcs fall 2–7 points and fibres
+1–2. A second seed and the full family (few_ARW_s2, fullnodt_ARW_s1) are defined but not yet run.
+
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
 Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `coverage.json`, `agree.json`,
@@ -649,7 +686,8 @@ bash $S/run_window2.sh sparse_A_s1 sparse_Eg_s1 sparse_A_s2 sparse_Eg_s2
 # Round 5: the fit check, then the annotation-targeting arms.
 AGREE_KEYS=chains bash $S/agree_eval.sh sparse_A_s1 fullnodt_A_s1 few_A_s1
 uv run python $S/error_detector.py --run $P/runs/few_A_s1 --chains-dir $P/pcls \
-  --dataset $P/data/PHercParis4 --per-patch $P/runs/few_A_s1/per_patch.json
+  --dataset $P/data/PHercParis4 --per-patch $P/runs/few_A_s1/per_patch.json \
+  --flag-out $P/runs/few_A_s1/flagged_chains.json
 uv run python $S/select_patches.py --dataset $P/data/PHercParis4 \
   --per-patch $P/runs/few_A_s1/per_patch.json \
   --satisfied $P/runs/few_A_s1/eval_patches/satisfied_fitted.json --count 471
@@ -661,6 +699,7 @@ bash $S/run_queue.sh few_AR10_s1 few_ALR_s1 few_oracR10_s1 few_oracLR_s1 \
   few_ANW_s1 few_oracNW_s1 few_AP_s1 few_oracP_s1
 bash $S/run_queue.sh few_ADT_s1 few_oracDT_s1 few_ASD_s1 few_oracSD_s1 \
   fullnodt_ADT_s1 fullnodt_IgDT_s1 few_ADT_s2 fullnodt_ADT_s2
+bash $S/run_queue.sh few_ARW_s1 few_oracRW_s1 fullnodt_ARW_s1 few_ARW_s2
 uv run python $S/targeting_summary.py $P/runs/few_*_s? --dataset $P/data/PHercParis4
 uv run python $S/picks_in_fits.py $P/runs/fullnodt_A_s? $P/runs/full_A_s? $P/runs/few_A_s1 \
   $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? --dataset $P/data/PHercParis4
@@ -707,15 +746,34 @@ uv run pytest
 contrast and bridged fraction, for downstream filtering. The document loads through the upstream
 `load_point_collection` + `normalise_pcl_winding_annotations` exactly like the human
 `same_windings.json` (every collection classified as same-winding). To use it in a fit, save it as
-the dataset's `drawn_control_points.json` and set `loss_weight_unattached_pcl_dt` to 0. For many
-slices, `experiments/spiral_fit/build_chains.py` smooths, shifts and links the per-slice paths of
-`trace_window.py` into multi-slice chains first (round 2 of the A/B test above).
+the dataset's `drawn_control_points.json` and set `loss_weight_unattached_pcl_dt` to 0.
+
+A whole window as fit input (round 2 onward; `--volume` takes any scroll's OME-Zarr level with
+voxels near 9.6 µm, the scale the tracer's thresholds were set at):
+
+```bash
+S=experiments/spiral_fit
+# Trace every 5th slice of the window (CPU; crops stream from the open-data bucket).
+uv run python $S/trace_window.py --out auto_paths --bbox X0 X1 Y0 Y1 --z $(seq 9905 5 10895) \
+  --workers 16 [--volume <zarr level URL>]
+# Smooth, shift onto the sheet face and link through z into chains.
+uv run python $S/build_chains.py --raw-dir auto_paths --umbilicus <dataset>/umbilicus.json \
+  --out pcls --delta 1.9
+cp pcls/auto_chains.json <dataset>/drawn_control_points.json
+```
+
+Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
+`sample_count_unattached_pcls_per_step` 840 (10× the default; the fitter scales it to the window).
 
 ## Limitations and next steps
 
 1. **Two windows, one scroll, few seeds.** The sparse-family gain and the fit check replicate in a
-   second window (z 13400–14400), but both windows are PHerc. Paris 4, most variants have 1–3
-   seeds, and the annotation-targeting arms have one seed each.
+   second window (z 13400–14400), but both windows are PHerc. Paris 4, the scroll with the human
+   annotations used for scoring; most variants have 1–3 seeds, and the annotation-targeting arms
+   have one seed each. The tracer runs unchanged on other scans but was tuned on this one: on
+   PHerc. 125's 9.36 µm scan (1.2 m propagation, one of the Grand Prize volumes) it finds 90 paths
+   with a median length of 47 px in a 1,400 × 1,400 crop, mostly abstaining
+   (`results/other_scrolls/`).
 2. **Evaluation noise.** 35 held-out arcs in two slices: seeds of the same variant differ by up to
    4.5 points, enough to hide the full-family effects. The arcs also fail in clusters: one regional
    winding miscount fails several neighbouring arcs at once (in sparse_Eg_s1, arcs 40, 42, 44, 45,
@@ -730,9 +788,10 @@ slices, `experiments/spiral_fit/build_chains.py` smooths, shifts and links the p
    tightly than around them (round 5). The chains find these regions without human input, but
    neither paths, more human patches, a finer or softer deformation, nor dropping the winding
    inference or the human point collections fix them; an earlier patch snap fixes them only with
-   sparse patches, and at the cost of the surface between patches. Next: give the fit the scan's
-   local winding spacing at these sites, e.g. the automatic relative windings of round 3 (adjacent
-   sheets one winding apart), so far tested only without human patches. The chain check can
+   sparse patches, and at the cost of the surface between patches. The automatic relative
+   windings, which carry the scan's local winding spacing, remove the harm of the conflicting
+   patches with a tenth of the patches (one seed, round 5), again at some cost in arcs and fibres.
+   Next: a second seed, the full family, and a lower weight for the pairs. The chain check can
    score any such change without human data.
 4. **Cross-sheet noise.** The shift fixed the median offset but not the spread, which stays about
    3× the human arcs'; neither shifting nor smoothing moved the fits measurably. Refining each
