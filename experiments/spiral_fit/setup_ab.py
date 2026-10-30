@@ -31,7 +31,8 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
      ADT, oracDT (patch snap from step 10,000); ASD, oracSD (regulariser at a quarter);
-     ARW, oracRW (automatic relative windings as drawn_control_points.json)
+     ARW, oracRW (automatic relative windings as drawn_control_points.json);
+     ARWh, oracRWh (the same at half the sampling share of every other point-collection group)
   fullnodt_ADT, fullnodt_IgDT  the early patch snap with every patch (no snap without patches)
   fullnodt_ARW  the automatic relative windings with every patch
 RW variants keep the human relative windings in their slot; the automatic pairs go in the drawn slot,
@@ -94,6 +95,10 @@ TWO_STRIP_FILES = NO_STRIP_DT | {"sample_count_unattached_pcls_per_step": 1680}
 FINE_LATTICE = {"model_flow_voxel_resolution": 10}  # default 16 voxels, about one winding pitch
 FAST_FINE = {"model_flow_field_high_res_lr_scale_initial": 1.0,  # default 0.2
              "model_flow_field_high_res_lr_scale_final": 1.0}
+# Half a share for the drawn slot (the automatic relative windings); once set, villa needs a weight
+# for every sampling group present (keys: source file stems, plus 'fibers').
+RW_HALF = {"pcl_sampling_weights": {"same_windings": 1.0, "relative_windings": 1.0, "abs_winding": 1.0,
+                                    "drawn_control_points": 0.5, "fibers": 1.0}}
 # Patches as the only human input: no human point collections (relative, absolute, same-winding).
 NO_HUMAN_PCLS = {"input_use_pcl_absolute": False, "input_use_pcl_relative": False,
                  "input_use_pcl_same_winding": False}
@@ -135,6 +140,8 @@ REGIMES = {
     "few_Ig": (True, "chains_g", D_SETTINGS, False, FEW_LINKS),
     "few_ARW": (True, "relwind", D_SETTINGS, False, FEW_LINKS),
     "few_oracRW": (True, "relwind", D_SETTINGS, False, {"verified_patches": "patches_orac"}),
+    "few_ARWh": (True, "relwind", D_SETTINGS | RW_HALF, False, FEW_LINKS),
+    "few_oracRWh": (True, "relwind", D_SETTINGS | RW_HALF, False, {"verified_patches": "patches_orac"}),
     # Annotation targeting (select_patches.py): the few patches plus 471 more, chosen at random,
     # where the chains disagree with few_A_s1, or where few_A_s1 fails (oracle); scored on eval_al.
     "few_rand": (True, None, D_SETTINGS, False, {"verified_patches": "patches_rand"}),

@@ -23,8 +23,8 @@ def get(row: dict, *path: str):
 
 HUMAN_FAMILIES = {"full", "fullnodt"}  # families that train on all verified patches
 HUMAN_PCL_FAMILIES = HUMAN_FAMILIES | {"few"}  # families that train on the human point collections
-AUTO_VARIANTS = {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "M", "N", "O", "P", "Q",
-                 "Eg", "Gg", "Ig", "IgDT", "ARW", "oracRW"}  # variants that train on automatic inputs
+AUTO_VARIANTS = {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "M", "N", "O", "P", "Q", "Eg", "Gg",
+                 "Ig", "IgDT", "ARW", "oracRW", "ARWh", "oracRWh"}  # variants that train on automatic inputs
 METRICS = [
     # label, path in a collect_metrics row, families/variants whose fits trained on the inputs
     ("held-out patch area", ("patches", "satisfied_area_fraction"), HUMAN_FAMILIES),
@@ -41,9 +41,10 @@ ORDER = ("sparse_A", "sparse_L", "sparse_B", "sparse_C", "sparse_D", "sparse_E",
          "sparse_F", "sparse_H", "sparse_J", "sparse_K", "sparse_M", "sparse_N", "sparse_O",
          "sparse_P", "sparse_Q", "few_A", "few_Ig", "few_rand", "few_targ", "few_orac", "few_AR10",
          "few_oracR10", "few_ALR", "few_oracLR", "few_ANW", "few_oracNW", "few_AP", "few_oracP",
-         "few_ADT", "few_oracDT", "few_ASD", "few_oracSD", "few_ARW", "few_oracRW", "full_A",
-         "full_B", "fullnodt_A", "fullnodt_ADT", "fullnodt_ARW", "fullnodt_D", "fullnodt_E",
-         "fullnodt_Eg", "fullnodt_G", "fullnodt_Gg", "fullnodt_I", "fullnodt_Ig", "fullnodt_IgDT")
+         "few_ADT", "few_oracDT", "few_ASD", "few_oracSD", "few_ARW", "few_oracRW", "few_ARWh",
+         "few_oracRWh", "full_A", "full_B", "fullnodt_A", "fullnodt_ADT", "fullnodt_ARW", "fullnodt_D",
+         "fullnodt_E", "fullnodt_Eg", "fullnodt_G", "fullnodt_Gg", "fullnodt_I", "fullnodt_Ig",
+         "fullnodt_IgDT")
 
 
 def main() -> None:

@@ -28,11 +28,11 @@ never saw (details and numbers in the sections below):
    snap at step 10,000 instead of 25,000 lets a sparsely annotated fit satisfy both sets, but costs
    held-out arcs and fibres between the patches; with every patch the gap stays (65.5–67.8 % of
    the failing patches satisfied against 88.2–88.3 % of random ones).
-5. **Automatic relative windings may resolve the conflict (one seed).** Pairs of points on adjacent
-   sheets, one winding apart, give the fit the scan's local winding spacing. Added to a sparsely
-   annotated fit they keep the failing patches from hurting it (held-out area 60.3 % with them
-   against 53.8 % without) and raise held-out area by 1–2 points on their own, at a cost of 1–2
-   points of eval fibres.
+5. **Automatic relative windings resolve that conflict in a sparsely annotated fit (two seeds).**
+   Pairs of points on adjacent sheets, one winding apart, give the fit the scan's local winding
+   spacing. Added to a fit trained on a tenth of the patches they keep the failing patches from
+   hurting it (held-out area 60.3 / 60.6 % with them against 53.8 % without) and raise held-out
+   area by 1.7 points on their own, at a cost of about 2 points of held-out arcs and 1.3 of fibres.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -462,6 +462,11 @@ score is compared with the fit's satisfaction of that patch, which the chains ne
 | few_A_s1 (10 % of patches; the other 90 % held out) | 6,712 | 0.86 | 0.56 / 0.51 | 19.1 % | 87.8 % |
 | window 2 sparse_A_s1 (no human data; patches held out) | 13,163 | 0.79 | 0.51 / 0.54 | 11.4 % | 42.7 % |
 
+![Satisfied patch area by fifth of check score, four fits](results/spiral_fit/fit_check_quintiles.png)
+
+*Each fit's scored patches split into fifths by check score; bars are the share of each fifth's
+patch area the fit satisfies (`plot_fit_check.py`).*
+
 The signal is the agreement itself: where the chains are (coverage) predicts almost nothing, and
 depth in the scroll (distance from the axis, either direction) much less. Even the human-informed
 fits fail a fifth of their own training patches where the chains disagree with them (31 %
@@ -621,23 +626,23 @@ windings of round 3 carry it (pairs of points on adjacent sheets, one winding ap
 conflict sites as often as anywhere (an automatic pair within 20 px of 22 % of the between-sheet
 patches' quads, 21 % of the on-sheet ones') and had only been tested without human patches. Fed
 to the few family through the otherwise unused drawn-points slot, a sampling stratum of their own
-(few_ARW / few_oracRW, `setup_ab.py`; one seed each), about 12,600 of the 515,043 pairs touch the
+(few_ARW / few_oracRW, `setup_ab.py`; two seeds each), about 12,600 of the 515,043 pairs touch the
 patches (the fitter's cross-patch collections, scored by the patch relative-winding loss where they
 join two patches) and the rest act as two-point strips with their winding difference:
 
 | fit | held-out area (eval_al) | base patches (trained) | oracle picks | held-out arcs | fibres |
 | --- | --- | --- | --- | --- | --- |
 | few_A | 59.3 / 58.2 | 84.9 / 85.8 | 0.2 / 26.7 (held out) | 46.9 / 46.7 | 16.2 / 15.9 |
-| few_ARW (+ automatic relative windings) | 60.4 | 91.4 | 40.5 (held out) | 44.8 | 14.9 |
+| few_ARW (+ automatic relative windings) | 60.4 / 60.5 | 91.4 / 91.5 | 40.5 / 49.6 (held out) | 44.8 / 44.7 | 14.9 / 14.6 |
 | few_orac (+ oracle picks) | 53.8 | 76.9 | 81.6 (trained) | 48.3 | 18.6 |
-| few_oracRW (+ both) | 60.3 | 88.6 | 85.5 (trained) | 40.9 | 16.4 |
+| few_oracRW (+ both) | 60.3 / 60.6 | 88.6 / 89.4 | 85.5 / 87.3 (trained) | 40.9 / 44.8 | 16.4 / 16.2 |
 
-With them the oracle patches stop hurting: the fit satisfies both sets (88.6 % and 85.5 %) and the
-held-out area stays at 60.3 % instead of falling to 53.8 %, a 6.5-point difference against a seed
-spread of 1.1. Without the oracle patches they raise held-out area by 1.1–2.2 points, inside what
-one more seed could change, and satisfy 40.5 % of the hard picks unseen (26.7 % for the
-independent default seed). The cost is again between the patches: arcs fall 2–7 points and fibres
-1–2. A second seed and the full family (few_ARW_s2, fullnodt_ARW_s1) are defined but not yet run.
+With them the oracle patches stop hurting: the fit satisfies both sets (88.6–89.4 % and
+85.5–87.3 %) and the held-out area stays at 60.3 / 60.6 % instead of falling to 53.8 %. Without
+the oracle patches they raise held-out area to 60.4 / 60.5 %, above both default seeds (59.3 /
+58.2; 1.7 points on the means), and satisfy 40.5 / 49.6 % of the hard picks unseen (26.7 % for
+the independent default seed). The cost is again between the patches: held-out arcs fall about 2
+points (44.7–44.8 % against 46.7–46.9) and fibres about 1.3 (14.6–14.9 against 15.9–16.2).
 
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
@@ -688,6 +693,9 @@ AGREE_KEYS=chains bash $S/agree_eval.sh sparse_A_s1 fullnodt_A_s1 few_A_s1
 uv run python $S/error_detector.py --run $P/runs/few_A_s1 --chains-dir $P/pcls \
   --dataset $P/data/PHercParis4 --per-patch $P/runs/few_A_s1/per_patch.json \
   --flag-out $P/runs/few_A_s1/flagged_chains.json
+E=results/spiral_fit/error_detector  # the reports above, copied into this repository
+uv run python $S/plot_fit_check.py "$E/sparse_A_s1.json:no human data" "$E/w2_sparse_A_s1.json:window 2" \
+  "$E/few_A_s1.json:10 % of patches" "$E/fullnodt_A_s1.json:every patch" --out fit_check_quintiles.png
 uv run python $S/select_patches.py --dataset $P/data/PHercParis4 \
   --per-patch $P/runs/few_A_s1/per_patch.json \
   --satisfied $P/runs/few_A_s1/eval_patches/satisfied_fitted.json --count 471
@@ -770,10 +778,11 @@ Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
 1. **Two windows, one scroll, few seeds.** The sparse-family gain and the fit check replicate in a
    second window (z 13400–14400), but both windows are PHerc. Paris 4, the scroll with the human
    annotations used for scoring; most variants have 1–3 seeds, and the annotation-targeting arms
-   have one seed each. The tracer runs unchanged on other scans but was tuned on this one: on
-   PHerc. 125's 9.36 µm scan (1.2 m propagation, one of the Grand Prize volumes) it finds 90 paths
-   with a median length of 47 px in a 1,400 × 1,400 crop, mostly abstaining
-   (`results/other_scrolls/`).
+   have one seed each. The tracer runs unchanged on other scans. In 1,400 × 1,400 crops placed
+   halfway between the axis and the edge (`results/other_scrolls/`) it traces 231 paths (13,352 px)
+   in Paris 4, 343 (21,960 px) in PHerc. 139's 2.4 µm scan, where they follow the sheets by eye,
+   and 90 (4,665 px) in PHerc. 125's 9.36 µm scan (1.2 m propagation, one of the Grand Prize
+   volumes), where it mostly abstains. Neither scroll has human annotations to measure precision.
 2. **Evaluation noise.** 35 held-out arcs in two slices: seeds of the same variant differ by up to
    4.5 points, enough to hide the full-family effects. The arcs also fail in clusters: one regional
    winding miscount fails several neighbouring arcs at once (in sparse_Eg_s1, arcs 40, 42, 44, 45,
@@ -790,9 +799,9 @@ Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
    inference or the human point collections fix them; an earlier patch snap fixes them only with
    sparse patches, and at the cost of the surface between patches. The automatic relative
    windings, which carry the scan's local winding spacing, remove the harm of the conflicting
-   patches with a tenth of the patches (one seed, round 5), again at some cost in arcs and fibres.
-   Next: a second seed, the full family, and a lower weight for the pairs. The chain check can
-   score any such change without human data.
+   patches with a tenth of the patches (two seeds, round 5), again at some cost in arcs and fibres.
+   Next: the full family (fullnodt_ARW) and a lower weight for the pairs (few_ARWh), both defined in
+   `setup_ab.py`. The chain check can score any such change without human data.
 4. **Cross-sheet noise.** The shift fixed the median offset but not the spread, which stays about
    3× the human arcs'; neither shifting nor smoothing moved the fits measurably. Refining each
    point to the sheet face from the intensity profile is the next step if the offset matters.
