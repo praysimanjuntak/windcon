@@ -42,9 +42,9 @@ ORDER = ("sparse_A", "sparse_L", "sparse_B", "sparse_C", "sparse_D", "sparse_E",
          "sparse_P", "sparse_Q", "few_A", "few_Ig", "few_rand", "few_targ", "few_orac", "few_AR10",
          "few_oracR10", "few_ALR", "few_oracLR", "few_ANW", "few_oracNW", "few_AP", "few_oracP",
          "few_ADT", "few_oracDT", "few_ASD", "few_oracSD", "few_ARW", "few_oracRW", "few_ARWh",
-         "few_oracRWh", "full_A", "full_B", "fullnodt_A", "fullnodt_ADT", "fullnodt_ARW", "fullnodt_D",
-         "fullnodt_E", "fullnodt_Eg", "fullnodt_G", "fullnodt_Gg", "fullnodt_I", "fullnodt_Ig",
-         "fullnodt_IgDT")
+         "few_oracRWh", "full_A", "full_B", "fullnodt_A", "fullnodt_ADT", "fullnodt_ARW",
+         "fullnodt_ARWh", "fullnodt_D", "fullnodt_E", "fullnodt_Eg", "fullnodt_G", "fullnodt_Gg",
+         "fullnodt_I", "fullnodt_Ig", "fullnodt_IgDT")
 
 
 def main() -> None:

@@ -34,7 +34,7 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
      ARW, oracRW (automatic relative windings as drawn_control_points.json);
      ARWh, oracRWh (the same at half the sampling share of every other point-collection group)
   fullnodt_ADT, fullnodt_IgDT  the early patch snap with every patch (no snap without patches)
-  fullnodt_ARW  the automatic relative windings with every patch
+  fullnodt_ARW, fullnodt_ARWh  the automatic relative windings with every patch (full, half share)
 RW variants keep the human relative windings in their slot; the automatic pairs go in the drawn slot,
 a sampling stratum of their own (pairs on two patches feed the patch relative-winding loss, the
 rest the unattached-strip loss with their winding difference).
@@ -136,6 +136,7 @@ REGIMES = {
     "fullnodt_ADT": (True, None, D_SETTINGS | EARLY_SNAP, False),
     "fullnodt_IgDT": (True, "chains_g", D_SETTINGS | EARLY_SNAP, False),
     "fullnodt_ARW": (True, "relwind", D_SETTINGS, False),
+    "fullnodt_ARWh": (True, "relwind", D_SETTINGS | RW_HALF, False),
     "few_A": (True, None, D_SETTINGS, False, FEW_LINKS),
     "few_Ig": (True, "chains_g", D_SETTINGS, False, FEW_LINKS),
     "few_ARW": (True, "relwind", D_SETTINGS, False, FEW_LINKS),

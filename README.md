@@ -638,6 +638,8 @@ join two patches) and the rest act as two-point strips with their winding differ
 | few_ARW (+ automatic relative windings) | 60.4 / 60.5 / 60.3 | 91.4 / 91.5 / 90.6 | 40.5 / 49.6 / 38.9 (held out) | 44.8 / 44.7 / 43.0 | 14.9 / 14.6 / 15.2 |
 | few_orac (+ oracle picks) | 53.8 | 76.9 | 81.6 (trained) | 48.3 | 18.6 |
 | few_oracRW (+ both) | 60.3 / 60.6 | 88.6 / 89.4 | 85.5 / 87.3 (trained) | 40.9 / 44.8 | 16.4 / 16.2 |
+| few_ARWh (pairs at half share) | 60.0 | 89.8 | 36.5 (held out) | 47.4 | 15.1 |
+| few_oracRWh (half share, + oracle picks) | 61.7 | 89.2 | 89.1 (trained) | 43.4 | 17.2 |
 
 With them the oracle patches stop hurting: the fit satisfies both sets (88.6–89.4 % and
 85.5–87.3 %) and the held-out area stays at 60.3 / 60.6 % instead of falling to 53.8 %. Without
@@ -645,7 +647,9 @@ the oracle patches they raise held-out area to 60.3–60.5 % in three seeds, abo
 seeds (59.3 / 58.2; 1.7 points on the means), and satisfy 38.9–49.6 % of the hard picks unseen
 (26.7 % for the independent default seed). The cost is again between the patches: held-out arcs
 fall about 2–3 points (43.0–44.8 % against 46.7–46.9) and fibres about 1 (14.6–15.2 against
-15.9–16.2).
+15.9–16.2). At half the sampling share (few_ARWh / few_oracRWh, `pcl_sampling_weights`; one seed
+each) the arcs cost disappears without the oracle patches (47.4 %) while held-out area stays at
+60.0 %, and with them held-out area reaches 61.7 % (471 random extra human patches reach 65.8 %).
 
 With every patch (fullnodt_ARW_s1, one seed, against three seeds of fullnodt_A) 87,550 collections
 touch the patches, and the conflict largely goes away (the early snap moved it only to 66–68 %):
