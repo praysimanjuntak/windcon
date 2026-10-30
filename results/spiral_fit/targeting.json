@@ -25,6 +25,18 @@
    "patches": 6970,
    "area_satisfied": 0.5337
   },
+  "few_ARW_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.604
+  },
+  "few_ARW_s2": {
+   "patches": 6970,
+   "area_satisfied": 0.6051
+  },
+  "few_ARW_s3": {
+   "patches": 6970,
+   "area_satisfied": 0.6034
+  },
   "few_A_s1": {
    "patches": 6970,
    "area_satisfied": 0.5927
@@ -64,6 +76,14 @@
   "few_oracR10_s1": {
    "patches": 6970,
    "area_satisfied": 0.4561
+  },
+  "few_oracRW_s1": {
+   "patches": 6970,
+   "area_satisfied": 0.6027
+  },
+  "few_oracRW_s2": {
+   "patches": 6970,
+   "area_satisfied": 0.606
   },
   "few_orac_s1": {
    "patches": 6970,

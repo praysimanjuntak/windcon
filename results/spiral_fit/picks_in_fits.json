@@ -75,5 +75,33 @@
   "targ_picks": 0.3026,
   "orac_picks": 0.2051,
   "eval_al": 0.5893
+ },
+ "fullnodt_ARW_s1": {
+  "scored_on": "own training",
+  "rand_picks": 0.8854,
+  "targ_picks": 0.7907,
+  "orac_picks": 0.8332,
+  "eval_al": 0.8721
+ },
+ "few_ARW_s1": {
+  "scored_on": "held-out",
+  "rand_picks": 0.5477,
+  "targ_picks": 0.3298,
+  "orac_picks": 0.4048,
+  "eval_al": 0.604
+ },
+ "few_ARW_s2": {
+  "scored_on": "held-out",
+  "rand_picks": 0.5595,
+  "targ_picks": 0.3951,
+  "orac_picks": 0.4959,
+  "eval_al": 0.6051
+ },
+ "few_ARW_s3": {
+  "scored_on": "held-out",
+  "rand_picks": 0.5602,
+  "targ_picks": 0.3871,
+  "orac_picks": 0.3885,
+  "eval_al": 0.6034
  }
 }

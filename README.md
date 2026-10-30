@@ -12,10 +12,10 @@ never saw (details and numbers in the sections below):
 1. **The tracer is precise.** 97.6 % of traced length lies on the human arc it claims (held-out
    slices); paths cover 39 % of the arcs' length. Paths link across slices into chains with 1.0 %
    wrong links where verified patches can check them.
-2. **As fit input, the paths help only without human annotations.** Chains traced every 5th slice
+2. **As fit input, the chains help only without human annotations.** Chains traced every 5th slice
    raise held-out verified-patch area from 19.4 % to 28.6 % and from 25.6 % to 34.5 % in a second
    window. With a tenth or all of the human patches they add nothing or trade one held-out measure
-   against another.
+   against another; relative windings derived from the same paths do help there (point 5).
 3. **As a check of a finished fit, they find its errors without human input.** Where a fit
    disagrees with the chains on a verified patch, the fit has likely failed that patch (AUC
    0.79–0.86 for fits with no, some or all human data, in both windows).
@@ -28,11 +28,13 @@ never saw (details and numbers in the sections below):
    snap at step 10,000 instead of 25,000 lets a sparsely annotated fit satisfy both sets, but costs
    held-out arcs and fibres between the patches; with every patch the gap stays (65.5–67.8 % of
    the failing patches satisfied against 88.2–88.3 % of random ones).
-5. **Automatic relative windings resolve that conflict in a sparsely annotated fit (two seeds).**
-   Pairs of points on adjacent sheets, one winding apart, give the fit the scan's local winding
-   spacing. Added to a fit trained on a tenth of the patches they keep the failing patches from
-   hurting it (held-out area 60.3 / 60.6 % with them against 53.8 % without) and raise held-out
-   area by 1.7 points on their own, at a cost of about 2 points of held-out arcs and 1.3 of fibres.
+5. **Automatic relative windings resolve that conflict.** Pairs of traced points on adjacent sheets,
+   one winding apart, give the fit the scan's local winding spacing. With a tenth of the patches
+   (two to three seeds) they keep the failing patches from hurting the fit (held-out area 60.3 /
+   60.6 % with them against 53.8 % without) and raise held-out area by 1.7 points on their own, at
+   a cost of 2–3 points of held-out arcs and 1 of fibres. With every patch (one seed) the fit
+   satisfies 83 % of the failing patches instead of 60–62 % and the held-out fibres rise from
+   27–30 % to 34 %.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -626,23 +628,39 @@ windings of round 3 carry it (pairs of points on adjacent sheets, one winding ap
 conflict sites as often as anywhere (an automatic pair within 20 px of 22 % of the between-sheet
 patches' quads, 21 % of the on-sheet ones') and had only been tested without human patches. Fed
 to the few family through the otherwise unused drawn-points slot, a sampling stratum of their own
-(few_ARW / few_oracRW, `setup_ab.py`; two seeds each), about 12,600 of the 515,043 pairs touch the
+(few_ARW three seeds, few_oracRW two, `setup_ab.py`), about 12,600 of the 515,043 pairs touch the
 patches (the fitter's cross-patch collections, scored by the patch relative-winding loss where they
 join two patches) and the rest act as two-point strips with their winding difference:
 
 | fit | held-out area (eval_al) | base patches (trained) | oracle picks | held-out arcs | fibres |
 | --- | --- | --- | --- | --- | --- |
 | few_A | 59.3 / 58.2 | 84.9 / 85.8 | 0.2 / 26.7 (held out) | 46.9 / 46.7 | 16.2 / 15.9 |
-| few_ARW (+ automatic relative windings) | 60.4 / 60.5 | 91.4 / 91.5 | 40.5 / 49.6 (held out) | 44.8 / 44.7 | 14.9 / 14.6 |
+| few_ARW (+ automatic relative windings) | 60.4 / 60.5 / 60.3 | 91.4 / 91.5 / 90.6 | 40.5 / 49.6 / 38.9 (held out) | 44.8 / 44.7 / 43.0 | 14.9 / 14.6 / 15.2 |
 | few_orac (+ oracle picks) | 53.8 | 76.9 | 81.6 (trained) | 48.3 | 18.6 |
 | few_oracRW (+ both) | 60.3 / 60.6 | 88.6 / 89.4 | 85.5 / 87.3 (trained) | 40.9 / 44.8 | 16.4 / 16.2 |
 
 With them the oracle patches stop hurting: the fit satisfies both sets (88.6–89.4 % and
 85.5–87.3 %) and the held-out area stays at 60.3 / 60.6 % instead of falling to 53.8 %. Without
-the oracle patches they raise held-out area to 60.4 / 60.5 %, above both default seeds (59.3 /
-58.2; 1.7 points on the means), and satisfy 40.5 / 49.6 % of the hard picks unseen (26.7 % for
-the independent default seed). The cost is again between the patches: held-out arcs fall about 2
-points (44.7–44.8 % against 46.7–46.9) and fibres about 1.3 (14.6–14.9 against 15.9–16.2).
+the oracle patches they raise held-out area to 60.3–60.5 % in three seeds, above both default
+seeds (59.3 / 58.2; 1.7 points on the means), and satisfy 38.9–49.6 % of the hard picks unseen
+(26.7 % for the independent default seed). The cost is again between the patches: held-out arcs
+fall about 2–3 points (43.0–44.8 % against 46.7–46.9) and fibres about 1 (14.6–15.2 against
+15.9–16.2).
+
+With every patch (fullnodt_ARW_s1, one seed, against three seeds of fullnodt_A) 87,550 collections
+touch the patches, and the conflict largely goes away (the early snap moved it only to 66–68 %):
+
+| | fullnodt_A (3 seeds) | fullnodt_ARW_s1 |
+| --- | --- | --- |
+| oracle picks satisfied (trained) | 59.8–62.2 | 83.3 |
+| random picks satisfied (trained) | 82.0–83.6 | 88.5 |
+| all training patches | 77.3–78.4 | 86.9 |
+| held-out fibres: all / over patches / away from patches | 27.4–30.3 / 35.1–42.7 / 24.6–25.9 | 33.6 / 49.2 / 28.0 |
+| held-out arcs: all / over patches / away from patches | 73.2–77.7 / 91.2–92.9 / 36.5–47.1 | 72.7 / 86.5 / 45.1 |
+
+The fit satisfies 83 % of the oracle picks instead of 60–62 % and 87 % of all its patches, and the
+held-out fibres rise 3–6 points, over patches and away from them. The arcs over patches lose
+5 points, and all arcs end 0.5 points below the lowest default seed (72.7 % against 73.2–77.7).
 
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
@@ -707,10 +725,12 @@ bash $S/run_queue.sh few_AR10_s1 few_ALR_s1 few_oracR10_s1 few_oracLR_s1 \
   few_ANW_s1 few_oracNW_s1 few_AP_s1 few_oracP_s1
 bash $S/run_queue.sh few_ADT_s1 few_oracDT_s1 few_ASD_s1 few_oracSD_s1 \
   fullnodt_ADT_s1 fullnodt_IgDT_s1 few_ADT_s2 fullnodt_ADT_s2
-bash $S/run_queue.sh few_ARW_s1 few_oracRW_s1 fullnodt_ARW_s1 few_ARW_s2
+bash $S/run_queue.sh few_ARW_s1 few_oracRW_s1 fullnodt_ARW_s1 few_ARW_s2 few_oracRW_s2 few_ARW_s3 \
+  few_ARWh_s1 few_oracRWh_s1 fullnodt_ARW_s2 few_oracRW_s3
 uv run python $S/targeting_summary.py $P/runs/few_*_s? --dataset $P/data/PHercParis4
 uv run python $S/picks_in_fits.py $P/runs/fullnodt_A_s? $P/runs/full_A_s? $P/runs/few_A_s1 \
-  $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? --dataset $P/data/PHercParis4
+  $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? $P/runs/fullnodt_ARW_s? \
+  $P/runs/few_ARW_s? --dataset $P/data/PHercParis4
 uv run python $S/coverage_split.py $P/runs/sparse_*_s? $P/runs/full*_*_s? $P/runs/few_*_s? \
   --dataset $P/data/PHercParis4 --heldout $P/pcls/heldout_same.json --fibers $P/fiber_points.json
 uv run python $S/patch_check.py --chains-dir $P/pcls --dataset $P/data/PHercParis4 \
@@ -789,19 +809,21 @@ Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
    48 and 51 at z 10604 drop together from 41–100 % to 11–55 %), so the arcs are a handful of
    independent samples. Held-out patch area and the eval fibres are the robust measures; more
    held-out arcs, spread over more slices, would make the arcs one too.
-3. **Human data.** With a tenth of the human patches the paths add nothing as fit inputs. With all
+3. **Human data.** With a tenth of the human patches the chains add nothing as fit inputs. With all
    of them the chains raise the held-out fibres by about 3 points but cost arcs over patch-covered
    ground; dropping the chain points on patches (Gg) reverses both. What the human-informed fits
    still get wrong are consistent human patches that conflict with the other patches under the
    spiral model: neighbouring patches end up half a winding apart where the sheets pack more
    tightly than around them (round 5). The chains find these regions without human input, but
-   neither paths, more human patches, a finer or softer deformation, nor dropping the winding
+   neither chains, more human patches, a finer or softer deformation, nor dropping the winding
    inference or the human point collections fix them; an earlier patch snap fixes them only with
    sparse patches, and at the cost of the surface between patches. The automatic relative
    windings, which carry the scan's local winding spacing, remove the harm of the conflicting
-   patches with a tenth of the patches (two seeds, round 5), again at some cost in arcs and fibres.
-   Next: the full family (fullnodt_ARW) and a lower weight for the pairs (few_ARWh), both defined in
-   `setup_ab.py`. The chain check can score any such change without human data.
+   patches with a tenth of the patches (two to three seeds, round 5), again at some cost in arcs
+   and fibres, and with every patch (one seed) they lift the failing patches from 60–62 % to 83 %
+   satisfied and the held-out fibres by 3–6 points. Next: more seeds, a lower weight for the pairs
+   (few_ARWh in `setup_ab.py`), and a second window. The chain check can score any such change
+   without human data.
 4. **Cross-sheet noise.** The shift fixed the median offset but not the spread, which stays about
    3× the human arcs'; neither shifting nor smoothing moved the fits measurably. Refining each
    point to the sheet face from the intensity profile is the next step if the offset matters.
