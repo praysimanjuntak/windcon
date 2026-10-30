@@ -787,10 +787,16 @@ uv run python $S/trace_window.py --out auto_paths --bbox X0 X1 Y0 Y1 --z $(seq 9
 # Smooth, shift onto the sheet face and link through z into chains.
 uv run python $S/build_chains.py --raw-dir auto_paths --umbilicus <dataset>/umbilicus.json \
   --out pcls --delta 1.9
-cp pcls/auto_chains.json <dataset>/drawn_control_points.json
+# Rays between neighbouring paths -> relative-winding pairs (adjacent sheets, one winding apart).
+uv run python $S/find_adjacency.py --raw-dir auto_paths --out adjacency \
+  --umbilicus <dataset>/umbilicus.json --bbox X0 X1 Y0 Y1 --workers 16 [--volume <zarr level URL>]
+uv run python $S/build_relwind.py --chains-dir pcls --adj-dir adjacency --out pcls
 ```
 
-Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
+The fitter reads one extra point-collection file, `<dataset>/drawn_control_points.json`. Without
+human annotations, put the chains there (`cp pcls/auto_chains.json`); with verified patches, the
+relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the chains do not
+(round 5). Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
 `sample_count_unattached_pcls_per_step` 840 (10× the default; the fitter scales it to the window).
 
 ## Limitations and next steps
