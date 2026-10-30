@@ -1,8 +1,9 @@
-# windcon — automatic same-winding constraints for the Vesuvius Challenge spiral fit
+# windcon — automatic winding constraints for the Vesuvius Challenge spiral fit
 
 Automatic **"drawn paths"**: long, precision-first same-winding point strips traced in single XY
-slices of the CT volume and written as a `same_windings.json` point-collection document that
-`villa/spiral-fitting/fit_spiral.py` already consumes.
+slices of the CT volume, linked through z into chains, and **relative windings** between
+neighbouring paths (pairs of points on adjacent sheets, one winding apart). Both are written as
+point-collection documents that `villa/spiral-fitting/fit_spiral.py` already consumes.
 
 ## Findings in brief
 
