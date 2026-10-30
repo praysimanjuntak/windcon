@@ -369,7 +369,8 @@ redundant or wrong. Fits without WI (one seed each):
 
 Without WI the pairs raise the held-out human relative windings by 9.6 points (scan test dropped:
 56.6 → 71.1), above what WI alone gives (39.8 for A): the pairs are right where human annotators
-drew neighbouring windings. With WI present they add nothing (N, O), so they are redundant with it.
+drew neighbouring windings. With WI present they add nothing (N, O), so without human patches they
+are redundant with it; with human patches they are not (round 6).
 Neither kind of cross-layer constraint makes up for the along-sheet chains: the pairs alone lower
 the arcs (13.9 against 18.3), while WI raises them by 10 points and the chains by 6–8. Raw numbers
 of this round: `results/spiral_fit/relwind_stats.json`, `agree_relwind.json` (fit agreement, with
