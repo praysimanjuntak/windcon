@@ -29,13 +29,15 @@ never saw (details and numbers in the sections below):
    snap at step 10,000 instead of 25,000 lets a sparsely annotated fit satisfy both sets, but costs
    held-out arcs and fibres between the patches; with every patch the gap stays (65.5–67.8 % of
    the failing patches satisfied against 88.2–88.3 % of random ones).
-5. **Automatic relative windings resolve that conflict.** Pairs of traced points on adjacent sheets,
+5. **Automatic relative windings reduce that conflict.** Pairs of traced points on adjacent sheets,
    one winding apart, give the fit the scan's local winding spacing. With every patch (two seeds)
    the fit satisfies 76–83 % of the failing patches instead of 60–62 %, 87 % of all its patches
    instead of 77–78 %, and 34 % of the held-out eval fibres instead of 27–30 %; held-out arcs end
-   at the low end of the default range. With a tenth of the patches (three seeds) they keep the
-   failing patches from hurting the fit (held-out area 60.3–60.6 % with them against 53.8 %
-   without) and raise held-out area by 1.7 points on their own, at a cost of 2–3 points of arcs.
+   at the low end of the default range. In the second window (one seed) every measure moves the
+   same way but less: training patches 80.1 → 81.8 %, fibres 45.3 → 46.6 %. With a tenth of the
+   patches (three seeds) they keep the failing patches from hurting the fit (held-out area
+   60.3–60.6 % with them against 53.8 % without) and raise held-out area by 1.7 points on their
+   own, at a cost of 2–3 points of arcs.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -665,6 +667,7 @@ touch the patches, and the conflict largely goes away (the early snap moved it o
 | oracle picks satisfied (trained) | 59.8–62.2 | 83.3 / 76.3 |
 | random picks satisfied (trained) | 82.0–83.6 | 88.5 / 88.1 |
 | all training patches | 77.3–78.4 | 86.9 / 86.9 |
+| area in patches under half satisfied | 20.1–21.0 | 11.1 / 10.8 |
 | held-out fibres: all | 27.4–30.3 | 33.6 / 34.1 |
 | held-out fibres: over patches / away from patches | 35.1–42.7 / 24.6–25.9 | 49.2 / 28.0, 50.2 / 28.4 |
 | held-out arcs: all | 73.2–77.7 | 72.7 / 73.6 |
@@ -674,6 +677,21 @@ The fit satisfies 76–83 % of the oracle picks instead of 60–62 % and 87 % of
 the held-out fibres rise 4–6 points, over patches and away from them. The arcs over patches lose
 about 5 points (means; 3.4–6.4 between individual seeds), so all arcs end at the low end of the
 default seeds' range (72.7 / 73.6 % against 73.2–77.7).
+
+In window 2 (z 13400–14400; its own 339,548 pairs, 1.4 % contradicting the pair graph; one seed
+each) the direction holds on every measure but most gains are smaller:
+
+| window 2, every patch | fullnodt_A_s1 | fullnodt_ARW_s1 |
+| --- | --- | --- |
+| all training patches | 80.1 | 81.8 |
+| area in patches under half satisfied | 19.6 | 16.6 |
+| held-out fibres: all / over patches / away from patches | 45.3 / 51.3 / 38.2 | 46.6 / 52.4 / 39.6 |
+| held-out arcs (8 arcs, all over patches) | 75.1 | 86.8 |
+
+Window 1 halves the area in failing patches; window 2 removes about a sixth of it. Window 2's pairs
+give 2.8 times as many collections on patches (247,041 against 87,550) and 1.5 times as many
+others, while the fitter draws the same number per step from the pair stratum in both 1,000-slice
+windows, so each pair is used a third to two thirds as often; whether that is why is untested.
 
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
@@ -841,8 +859,10 @@ relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the c
    windings, which carry the scan's local winding spacing, remove the harm of the conflicting
    patches with a tenth of the patches (three seeds, round 6), again at some cost in arcs, and with
    every patch (two seeds) they lift the failing patches from 60–62 % to 76–83 % satisfied and the
-   held-out fibres by 4–6 points. Next: a lower weight for the pairs (few_ARWh in `setup_ab.py`)
-   and a second window. The chain check can score any such change without human data.
+   held-out fibres by 4–6 points; in the second window (one seed) the same measures move a fifth
+   to a third as far. Next: more window-2 seeds, the pairs' sampling budget (window 2 has 1.5–2.8
+   times window 1's pairs for the same draws per step), and a lower weight for the pairs
+   (few_ARWh in `setup_ab.py`). The chain check can score any such change without human data.
 4. **Cross-sheet noise.** The shift fixed the median offset but not the spread, which stays about
    3× the human arcs'; neither shifting nor smoothing moved the fits measurably. Refining each
    point to the sheet face from the intensity profile is the next step if the offset matters.
