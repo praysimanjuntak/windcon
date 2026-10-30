@@ -1,0 +1,24 @@
+{
+ "checkpoint": "runs/fullnodt_A_s2/checkpoint_fitted.ckpt",
+ "dr_per_winding": 15.93528938293457,
+ "sets": {
+  "all": {
+   "patches": 9120,
+   "quads": 4178567,
+   "quads_off_own_median_fraction": 0.011,
+   "quads_off_fitted_sheet_fraction": 0.0421,
+   "patch_phase_abs_p25_50_75": [
+    0.02,
+    0.058,
+    0.212
+   ],
+   "patches_between_sheets": 0.1101,
+   "patches_spanning_a_winding": 0.025,
+   "median_spread_windings": 0.259,
+   "off_quads_near_whole_winding": 0.2118,
+   "villa_satisfied_mean": 0.7409,
+   "villa_satisfied_mean_phase_under_0.2": 0.9116,
+   "villa_satisfied_mean_phase_over_0.35": 0.083
+  }
+ }
+}

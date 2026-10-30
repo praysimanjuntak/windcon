@@ -696,6 +696,19 @@ give 2.8 times as many collections on patches (247,041 against 87,550) and 1.5 t
 others, while the fitter draws the same number per step from the pair stratum in both 1,000-slice
 windows, so each pair is used a third to two thirds as often; whether that is why is untested.
 
+The mechanism checks out. `patch_windings.py` (round 5) on every patch of each fit:
+
+| every patch | patches between sheets | patch phase, 75th percentile | mean patch satisfied |
+| --- | --- | --- | --- |
+| window 1, fullnodt_A (3 seeds) | 11.0 / 11.0 / 11.6 % | 0.21–0.22 | 73.8–74.4 % |
+| window 1, fullnodt_ARW (2 seeds) | 7.5 / 8.7 % | 0.14–0.15 | 80.2–80.7 % |
+| window 1, fullnodt_ARWh (half share) | 9.4 % | 0.18 | 77.3 % |
+| window 2, fullnodt_A → fullnodt_ARW | 12.9 → 11.1 % | 0.22 → 0.19 | 77.4 → 79.7 % |
+
+The pairs move patches from between sheets onto them, in proportion to their share and less in
+window 2; patches on a sheet stay 91–95 % satisfied and those left between sheets 8–13 %
+(`results/spiral_fit/patch_windings/pw_*`).
+
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
 Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `coverage.json`, `agree.json`,
@@ -783,6 +796,14 @@ uv run python $S/patch_check.py --chains-dir $P/pcls --dataset $P/data/PHercPari
   --set all=verified_patches --out $P/pw_all.json --dump-quads $P/quads.npz)
 uv run python $S/phase_conflicts.py --quads $P/quads.npz --phase $P/pw_all.json \
   --umbilicus $P/data/PHercParis4/umbilicus.json --ct-pairs 800
+# Round 6 mechanism: the same phase report for each all-patches fit (window 2: --z 13400 14400 and
+# the w2 root's dataset and runs).
+for run in fullnodt_A_s1 fullnodt_A_s2 fullnodt_A_s3 fullnodt_ARW_s1 fullnodt_ARW_s2 fullnodt_ARWh_s1; do
+  (cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$S/patch_windings.py \
+    --checkpoint $P/runs/$run/checkpoint_fitted.ckpt --dataset $P/data/PHercParis4 \
+    --umbilicus $P/data/PHercParis4/umbilicus.json --outer-shell $P/data/PHercParis4/outer_shell \
+    --set all=verified_patches --satisfied $P/runs/$run/satisfied_fitted.json --out $P/pw_all_$run.json)
+done
 uv run python $S/summarize_ab.py $P/results_ab.json
 ```
 
