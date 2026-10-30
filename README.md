@@ -670,8 +670,8 @@ touch the patches, and the conflict largely goes away (the early snap moved it o
 
 The fit satisfies 76–83 % of the oracle picks instead of 60–62 % and 87 % of all its patches, and
 the held-out fibres rise 4–6 points, over patches and away from them. The arcs over patches lose
-3–5 points, so all arcs end at the low end of the default seeds' range (72.7 / 73.6 % against
-73.2–77.7).
+about 5 points (means; 3.4–6.4 between individual seeds), so all arcs end at the low end of the
+default seeds' range (72.7 / 73.6 % against 73.2–77.7).
 
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
