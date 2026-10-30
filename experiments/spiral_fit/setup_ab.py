@@ -34,7 +34,8 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
      ARW, oracRW (automatic relative windings as drawn_control_points.json);
      ARWh, oracRWh (the same at half the sampling share of every other point-collection group)
   fullnodt_ADT, fullnodt_IgDT  the early patch snap with every patch (no snap without patches)
-  fullnodt_ARW, fullnodt_ARWh  the automatic relative windings with every patch (full, half share)
+  fullnodt_ARW, fullnodt_ARWh, fullnodt_ARWd  the automatic relative windings with every patch
+     (full, half and double sampling share)
 RW variants keep the human relative windings in their slot; the automatic pairs go in the drawn slot,
 a sampling stratum of their own (pairs on two patches feed the patch relative-winding loss, the
 rest the unattached-strip loss with their winding difference).
@@ -95,10 +96,12 @@ TWO_STRIP_FILES = NO_STRIP_DT | {"sample_count_unattached_pcls_per_step": 1680}
 FINE_LATTICE = {"model_flow_voxel_resolution": 10}  # default 16 voxels, about one winding pitch
 FAST_FINE = {"model_flow_field_high_res_lr_scale_initial": 1.0,  # default 0.2
              "model_flow_field_high_res_lr_scale_final": 1.0}
-# Half a share for the drawn slot (the automatic relative windings); once set, villa needs a weight
-# for every sampling group present (keys: source file stems, plus 'fibers').
+# Half or double a share for the drawn slot (the automatic relative windings); once set, villa needs
+# a weight for every sampling group present (keys: source file stems, plus 'fibers').
 RW_HALF = {"pcl_sampling_weights": {"same_windings": 1.0, "relative_windings": 1.0, "abs_winding": 1.0,
                                     "drawn_control_points": 0.5, "fibers": 1.0}}
+RW_DOUBLE = {"pcl_sampling_weights": {"same_windings": 1.0, "relative_windings": 1.0, "abs_winding": 1.0,
+                                      "drawn_control_points": 2.0, "fibers": 1.0}}
 # Patches as the only human input: no human point collections (relative, absolute, same-winding).
 NO_HUMAN_PCLS = {"input_use_pcl_absolute": False, "input_use_pcl_relative": False,
                  "input_use_pcl_same_winding": False}
@@ -137,6 +140,7 @@ REGIMES = {
     "fullnodt_IgDT": (True, "chains_g", D_SETTINGS | EARLY_SNAP, False),
     "fullnodt_ARW": (True, "relwind", D_SETTINGS, False),
     "fullnodt_ARWh": (True, "relwind", D_SETTINGS | RW_HALF, False),
+    "fullnodt_ARWd": (True, "relwind", D_SETTINGS | RW_DOUBLE, False),
     "few_A": (True, None, D_SETTINGS, False, FEW_LINKS),
     "few_Ig": (True, "chains_g", D_SETTINGS, False, FEW_LINKS),
     "few_ARW": (True, "relwind", D_SETTINGS, False, FEW_LINKS),
