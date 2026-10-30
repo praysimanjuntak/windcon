@@ -446,9 +446,9 @@ fibres with 13,047 points in the window, 144 relative-winding points):
 The sparse-family gain replicates in both seeds: +8.9 points of held-out patch area (window 1:
 +9.2) and +3.7 on the fibres (window 1: +1.1).
 
-### Round 5: the paths as a check of a finished fit
+### Round 5: the paths as a check of a finished fit, and why fits fail consistent patches
 
-As fit inputs the paths help only where there is no human data. They can still say where a fit is
+As fit inputs the chains help only where there is no human data. They can still say where a fit is
 wrong, which is the "easy to verify" part of the brief and might tell annotators where to work next
 (`error_detector.py`). For a fit that never trained on the chains, `agree_eval.sh` scores every
 chain against it (winding test only); each verified patch gets the mean agreement of the chain
@@ -623,14 +623,18 @@ snap fits the patches at the expense of the surface between them; the default st
 better. Chains do not rescue it: added to the early-snap fit (fullnodt_IgDT) they cost arcs
 (67.0 % against 67.7–69.0) and relative windings (83.1 against 89.2–91.0).
 
-What the fit lacks at these sites is the scan's local winding spacing. The automatic relative
-windings of round 3 carry it (pairs of points on adjacent sheets, one winding apart), reach the
-conflict sites as often as anywhere (an automatic pair within 20 px of 22 % of the between-sheet
-patches' quads, 21 % of the on-sheet ones') and had only been tested without human patches. Fed
-to the few family through the otherwise unused drawn-points slot, a sampling stratum of their own
-(few_ARW three seeds, few_oracRW two, `setup_ab.py`), about 12,600 of the 515,043 pairs touch the
-patches (the fitter's cross-patch collections, scored by the patch relative-winding loss where they
-join two patches) and the rest act as two-point strips with their winding difference:
+### Round 6: automatic relative windings with human patches
+
+Round 5 traced what patch-trained fits still get wrong to consistent patches placed half a winding
+from their neighbours where sheets pack tightly. What the fit lacks there is the scan's local
+winding spacing. The automatic relative windings of round 3 carry it (pairs of points on adjacent
+sheets, one winding apart), reach the conflict sites as often as anywhere (an automatic pair within
+20 px of 22 % of the between-sheet patches' quads, 21 % of the on-sheet ones') and had only been
+tested without human patches. Fed to the few family through the otherwise unused drawn-points
+slot, a sampling stratum of their own (few_ARW three seeds, few_oracRW two, `setup_ab.py`), about
+12,600 of the 515,043 pairs touch the patches (the fitter's cross-patch collections, scored by the
+patch relative-winding loss where they join two patches) and the rest act as two-point strips with
+their winding difference:
 
 | fit | held-out area (eval_al) | base patches (trained) | oracle picks | held-out arcs | fibres |
 | --- | --- | --- | --- | --- | --- |
@@ -729,8 +733,9 @@ bash $S/run_queue.sh few_AR10_s1 few_ALR_s1 few_oracR10_s1 few_oracLR_s1 \
   few_ANW_s1 few_oracNW_s1 few_AP_s1 few_oracP_s1
 bash $S/run_queue.sh few_ADT_s1 few_oracDT_s1 few_ASD_s1 few_oracSD_s1 \
   fullnodt_ADT_s1 fullnodt_IgDT_s1 few_ADT_s2 fullnodt_ADT_s2
+# Round 6: automatic relative windings with a tenth / all of the patches, full and half share.
 bash $S/run_queue.sh few_ARW_s1 few_oracRW_s1 fullnodt_ARW_s1 few_ARW_s2 few_oracRW_s2 few_ARW_s3 \
-  few_ARWh_s1 few_oracRWh_s1 fullnodt_ARW_s2 few_oracRW_s3
+  few_ARWh_s1 few_oracRWh_s1 fullnodt_ARW_s2 few_oracRW_s3 few_ARWh_s2 fullnodt_ARWh_s1
 uv run python $S/targeting_summary.py $P/runs/few_*_s? --dataset $P/data/PHercParis4
 uv run python $S/picks_in_fits.py $P/runs/fullnodt_A_s? $P/runs/full_A_s? $P/runs/few_A_s1 \
   $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? $P/runs/fullnodt_ARW_s? \
@@ -800,7 +805,7 @@ uv run python $S/build_relwind.py --chains-dir pcls --adj-dir adjacency --out pc
 The fitter reads one extra point-collection file, `<dataset>/drawn_control_points.json`. Without
 human annotations, put the chains there (`cp pcls/auto_chains.json`); with verified patches, the
 relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the chains do not
-(round 5). Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
+(round 6). Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
 `sample_count_unattached_pcls_per_step` 840 (10× the default; the fitter scales it to the window).
 
 ## Limitations and next steps
@@ -829,7 +834,7 @@ relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the c
    inference or the human point collections fix them; an earlier patch snap fixes them only with
    sparse patches, and at the cost of the surface between patches. The automatic relative
    windings, which carry the scan's local winding spacing, remove the harm of the conflicting
-   patches with a tenth of the patches (two to three seeds, round 5), again at some cost in arcs
+   patches with a tenth of the patches (two to three seeds, round 6), again at some cost in arcs
    and fibres, and with every patch (one seed) they lift the failing patches from 60–62 % to 83 %
    satisfied and the held-out fibres by 3–6 points. Next: more seeds, a lower weight for the pairs
    (few_ARWh in `setup_ab.py`), and a second window. The chain check can score any such change
