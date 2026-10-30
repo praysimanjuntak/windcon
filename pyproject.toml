@@ -1,7 +1,7 @@
 [project]
 name = "windcon"
 version = "0.1.0"
-description = "Automatic same-winding constraints (drawn paths) for the Vesuvius Challenge spiral fit"
+description = "Automatic winding constraints (drawn paths and relative windings) for the Vesuvius Challenge spiral fit"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
