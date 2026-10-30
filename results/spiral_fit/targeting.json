@@ -29,6 +29,10 @@
    "patches": 6970,
    "area_satisfied": 0.6002
   },
+  "few_ARWh_s2": {
+   "patches": 6970,
+   "area_satisfied": 0.6075
+  },
   "few_ARW_s1": {
    "patches": 6970,
    "area_satisfied": 0.604
