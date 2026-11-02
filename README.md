@@ -709,6 +709,17 @@ The pairs move patches from between sheets onto them, in proportion to their sha
 window 2; patches on a sheet stay 91–95 % satisfied and those left between sheets 8–13 %
 (`results/spiral_fit/patch_windings/pw_*`).
 
+![Each fit's sheets and the verified patches in one CT slice](results/spiral_fit/fit_sheets_z10800.png)
+
+*Slice z 10800 of window 1: fullnodt_A_s1's sheets in red, fullnodt_ARW_s1's in blue (whole-number
+levels of each fit's winding coordinate; `plot_fit_sheets.py`), and the verified patches cut by the
+slice as dots, orange where the default fit puts the patch between sheets. The crop is the 240 px
+square crossed by the most patches that the default fit puts between sheets and the
+relative-winding fit puts on one, so it shows the effect where it is clearest, not a typical crop
+(window-wide, 11 % against 7.5–8.7 % of patches lie between sheets). Both fits space their sheets
+about equally here (24 and 22 px); with the pairs the sheets lie on the traced patches instead of
+between them (6 of the 13 patches between sheets, then 0).*
+
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
 Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `coverage.json`, `agree.json`,
@@ -804,6 +815,11 @@ for run in fullnodt_A_s1 fullnodt_A_s2 fullnodt_A_s3 fullnodt_ARW_s1 fullnodt_AR
     --umbilicus $P/data/PHercParis4/umbilicus.json --outer-shell $P/data/PHercParis4/outer_shell \
     --set all=verified_patches --satisfied $P/runs/$run/satisfied_fitted.json --out $P/pw_all_$run.json)
 done
+# Round 6 figure: both fits' sheets over the patches in one slice (crop chosen automatically).
+(cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$S/plot_fit_sheets.py \
+  --fit default $P/runs/fullnodt_A_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_A_s1.json \
+  --fit "relative windings" $P/runs/fullnodt_ARW_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_ARW_s1.json \
+  --dataset $P/data/PHercParis4 --out $P/fit_sheets_z10800.png)
 uv run python $S/summarize_ab.py $P/results_ab.json
 ```
 
