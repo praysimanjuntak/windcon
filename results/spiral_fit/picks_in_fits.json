@@ -97,6 +97,13 @@
   "orac_picks": 0.7425,
   "eval_al": 0.8372
  },
+ "fullnodt_ARWd_s1": {
+  "scored_on": "own training",
+  "rand_picks": 0.875,
+  "targ_picks": 0.7621,
+  "orac_picks": 0.8463,
+  "eval_al": 0.8709
+ },
  "few_ARW_s1": {
   "scored_on": "held-out",
   "rand_picks": 0.5477,

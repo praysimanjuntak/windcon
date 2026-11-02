@@ -33,12 +33,13 @@ never saw (details and numbers in the sections below):
    one winding apart, give the fit the scan's local winding spacing. With every patch (two seeds)
    the fit satisfies 76–83 % of the failing patches instead of 60–62 %, 87 % of all its patches
    instead of 77–78 %, and 34 % of the held-out eval fibres instead of 27–30 %; held-out arcs end
-   at the low end of the default range. In the second window (one seed) every measure moves the
-   same way but less: training patches 80.1 → 81.8 %, fibres 45.3 → 46.6 %. With a tenth of the
-   patches (three seeds) they keep the failing patches from hurting the fit (held-out area
-   60.3–60.6 % with them against 53.8 % without) and raise held-out area by 1.7 points on their
-   own, at a cost of 2–3 points of arcs. Round 6 shows the effect in one slice and on one patch's
-   surface.
+   at the low end of the default range. In the second window (two seeds) every measure moves the
+   same way but less: training patches 77.0–80.1 → 80.4–81.8 %, failing area 21.1 → 17.4 %. A
+   double sampling share for the pairs (one seed per window) adds to the gains in window 2 and
+   removes the arcs cost in window 1. With a tenth of the patches (three seeds) they keep the
+   failing patches from hurting the fit (held-out area 60.3–60.6 % with them against 53.8 %
+   without) and raise held-out area by 1.7 points on their own, at a cost of 2–3 points of arcs.
+   Round 6 shows the effect in one slice and on one patch's surface.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -664,38 +665,43 @@ reaches 61.7 % (471 random extra human patches reach 65.8 %).
 With every patch (fullnodt_ARW, two seeds, against three seeds of fullnodt_A) 87,550 collections
 touch the patches, and the conflict largely goes away (the early snap moved it only to 66–68 %):
 
-| | fullnodt_A (3 seeds) | fullnodt_ARW (2 seeds) | fullnodt_ARWh, half share (1 seed) |
+| | fullnodt_A (3 seeds) | fullnodt_ARW (2 seeds) | fullnodt_ARWh, half share (1 seed) | fullnodt_ARWd, double share (1 seed) |
+| --- | --- | --- | --- | --- |
+| oracle picks satisfied (trained) | 59.8–62.2 | 83.3 / 76.3 | 74.2 | 84.6 |
+| random picks satisfied (trained) | 82.0–83.6 | 88.5 / 88.1 | 86.4 | 87.5 |
+| all training patches | 77.3–78.4 | 86.9 / 86.9 | 83.2 | 86.7 |
+| area in patches under half satisfied | 20.1–21.0 | 11.1 / 10.8 | 14.5 | 11.2 |
+| held-out fibres: all | 27.4–30.3 | 33.6 / 34.1 | 29.6 | 34.0 |
+| held-out fibres: over patches / away from patches | 35.1–42.7 / 24.6–25.9 | 49.2 / 28.0, 50.2 / 28.4 | 40.4 / 25.8 | 48.4 / 28.8 |
+| held-out arcs: all | 73.2–77.7 | 72.7 / 73.6 | 71.1 | 79.5 |
+| held-out arcs: over patches / away from patches | 91.2–92.9 / 36.5–47.1 | 86.5 / 45.1, 87.8 / 45.1 | 85.1 / 42.9 | 93.4 / 51.5 |
+
+The fit satisfies 76–85 % of the oracle picks instead of 60–62 % and 87 % of all its patches, and
+the held-out fibres rise 4–6 points, over patches and away from them. At the full share the arcs
+over patches lose about 5 points (means; 3.4–6.4 between individual seeds), so all arcs end at the
+low end of the default seeds' range (72.7 / 73.6 % against 73.2–77.7). At half the share the patch
+gains are about two thirds as large, the fibres gain disappears and the arcs do not recover. At
+double the share (`RW_DOUBLE` in `setup_ab.py`, one seed) the patch and fibre gains stay and the
+arcs cost is gone: all arcs 79.5 %, above every default seed, and 93.4 % over patches.
+
+In window 2 (z 13400–14400; its own 339,548 pairs, 1.4 % contradicting the pair graph; two seeds
+each, the double share one) the direction holds on every measure but the gains are smaller:
+
+| window 2, every patch | fullnodt_A (2 seeds) | fullnodt_ARW (2 seeds) | fullnodt_ARWd, double share (1 seed) |
 | --- | --- | --- | --- |
-| oracle picks satisfied (trained) | 59.8–62.2 | 83.3 / 76.3 | 74.2 |
-| random picks satisfied (trained) | 82.0–83.6 | 88.5 / 88.1 | 86.4 |
-| all training patches | 77.3–78.4 | 86.9 / 86.9 | 83.2 |
-| area in patches under half satisfied | 20.1–21.0 | 11.1 / 10.8 | 14.5 |
-| held-out fibres: all | 27.4–30.3 | 33.6 / 34.1 | 29.6 |
-| held-out fibres: over patches / away from patches | 35.1–42.7 / 24.6–25.9 | 49.2 / 28.0, 50.2 / 28.4 | 40.4 / 25.8 |
-| held-out arcs: all | 73.2–77.7 | 72.7 / 73.6 | 71.1 |
-| held-out arcs: over patches / away from patches | 91.2–92.9 / 36.5–47.1 | 86.5 / 45.1, 87.8 / 45.1 | 85.1 / 42.9 |
+| all training patches | 80.1 / 77.0 | 81.8 / 80.4 | 83.0 |
+| area in patches under half satisfied | 19.6 / 22.5 | 16.6 / 18.1 | 16.8 |
+| held-out fibres: all | 45.3 / 45.8 | 46.6 / 46.0 | 47.7 |
+| held-out fibres: over patches / away from patches | 51.3 / 38.2, 52.6 / 37.8 | 52.4 / 39.6, 51.8 / 39.1 | 53.4 / 41.0 |
+| held-out arcs (8 arcs, all over patches) | 75.1 / 78.4 | 86.8 / 83.5 | 88.6 |
 
-The fit satisfies 76–83 % of the oracle picks instead of 60–62 % and 87 % of all its patches, and
-the held-out fibres rise 4–6 points, over patches and away from them. The arcs over patches lose
-about 5 points (means; 3.4–6.4 between individual seeds), so all arcs end at the low end of the
-default seeds' range (72.7 / 73.6 % against 73.2–77.7). At half the share the patch gains are
-about two thirds as large, the fibres gain disappears and the arcs do not recover, so the full
-share is the better setting with every patch.
-
-In window 2 (z 13400–14400; its own 339,548 pairs, 1.4 % contradicting the pair graph; one seed
-each) the direction holds on every measure but most gains are smaller:
-
-| window 2, every patch | fullnodt_A_s1 | fullnodt_ARW_s1 |
-| --- | --- | --- |
-| all training patches | 80.1 | 81.8 |
-| area in patches under half satisfied | 19.6 | 16.6 |
-| held-out fibres: all / over patches / away from patches | 45.3 / 51.3 / 38.2 | 46.6 / 52.4 / 39.6 |
-| held-out arcs (8 arcs, all over patches) | 75.1 | 86.8 |
-
-Window 1 halves the area in failing patches; window 2 removes about a sixth of it. Window 2's pairs
-give 2.8 times as many collections on patches (247,041 against 87,550) and 1.5 times as many
-others, while the fitter draws the same number per step from the pair stratum in both 1,000-slice
-windows, so each pair is used a third to two thirds as often; whether that is why is untested.
+Window 1 halves the area in failing patches (20.4 → 11.0 % on the means); window 2 cuts it by
+about a sixth (21.1 → 17.4 %). Window 2's pairs give 2.8 times as many collections on patches
+(247,041 against 87,550) and 1.5 times as many others, while the fitter draws the same number per
+step from the pair stratum in both 1,000-slice windows, so each pair is used a third to two thirds
+as often. Doubling the share moves window 2 further on training patches, fibres and arcs (83.0,
+47.7 and 88.6 %, each above both full-share seeds) but not on the failing area (16.8 %): the
+per-pair budget explains part of the gap (one seed).
 
 The mechanism checks out. `patch_windings.py` (round 5) on every patch of each fit:
 
@@ -704,10 +710,13 @@ The mechanism checks out. `patch_windings.py` (round 5) on every patch of each f
 | window 1, fullnodt_A (3 seeds) | 11.0 / 11.0 / 11.6 % | 0.21–0.22 | 73.8–74.4 % |
 | window 1, fullnodt_ARW (2 seeds) | 7.5 / 8.7 % | 0.14–0.15 | 80.2–80.7 % |
 | window 1, fullnodt_ARWh (half share) | 9.4 % | 0.18 | 77.3 % |
-| window 2, fullnodt_A → fullnodt_ARW | 12.9 → 11.1 % | 0.22 → 0.19 | 77.4 → 79.7 % |
+| window 1, fullnodt_ARWd (double share) | 7.8 % | 0.14 | 80.2 % |
+| window 2, fullnodt_A (2 seeds) | 12.9 / 13.2 % | 0.22–0.23 | 76.2–77.4 % |
+| window 2, fullnodt_ARW (2 seeds) | 11.1 / 10.3 % | 0.19–0.20 | 78.7–79.7 % |
+| window 2, fullnodt_ARWd (double share) | 9.4 % | 0.17 | 80.7 % |
 
-The pairs move patches from between sheets onto them, in proportion to their share and less in
-window 2; patches on a sheet stay 91–95 % satisfied and those left between sheets 8–13 %
+The pairs move patches from between sheets onto them, more with a larger share and less in window
+2; patches on a sheet stay 91–95 % satisfied and those left between sheets 8–13 %
 (`results/spiral_fit/patch_windings/pw_*`).
 
 ![Each fit's sheets and the verified patches in one CT slice](results/spiral_fit/fit_sheets_z10800.png)
@@ -795,7 +804,13 @@ bash $S/run_queue.sh few_ADT_s1 few_oracDT_s1 few_ASD_s1 few_oracSD_s1 \
   fullnodt_ADT_s1 fullnodt_IgDT_s1 few_ADT_s2 fullnodt_ADT_s2
 # Round 6: automatic relative windings with a tenth / all of the patches, full and half share.
 bash $S/run_queue.sh few_ARW_s1 few_oracRW_s1 fullnodt_ARW_s1 few_ARW_s2 few_oracRW_s2 few_ARW_s3 \
-  few_ARWh_s1 few_oracRWh_s1 fullnodt_ARW_s2 few_oracRW_s3 few_ARWh_s2 fullnodt_ARWh_s1
+  few_ARWh_s1 few_oracRWh_s1 fullnodt_ARW_s2 few_oracRW_s3 few_ARWh_s2 fullnodt_ARWh_s1 fullnodt_ARWd_s1
+# Window 2: its own pairs, then default / relative windings (two seeds) and the double share.
+uv run python $S/find_adjacency.py --raw-dir $P/w2/auto_paths_z5 --out $P/w2/adjacency \
+  --umbilicus $P/w2/data/PHercParis4/umbilicus.json --bbox 800 7660 1260 7800 --workers 10
+uv run python $S/build_relwind.py --chains-dir $P/w2/pcls_g --adj-dir $P/w2/adjacency --out $P/w2/pcls
+python3 $S/setup_ab.py --postel $P/w2 --z-begin 13400 --z-end 14400
+ROOT=$P/w2 bash $S/run_queue.sh fullnodt_A_s1 fullnodt_ARW_s1 fullnodt_A_s2 fullnodt_ARW_s2 fullnodt_ARWd_s1
 uv run python $S/targeting_summary.py $P/runs/few_*_s? --dataset $P/data/PHercParis4
 uv run python $S/picks_in_fits.py $P/runs/fullnodt_A_s? $P/runs/full_A_s? $P/runs/few_A_s1 \
   $P/runs/fullnodt_ADT_s? $P/runs/fullnodt_IgDT_s1 $P/runs/few_ADT_s? $P/runs/fullnodt_ARW_s? \
@@ -884,6 +899,8 @@ human annotations, put the chains there (`cp pcls/auto_chains.json`); with verif
 relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the chains do not
 (round 6). Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
 `sample_count_unattached_pcls_per_step` 840 (10× the default; the fitter scales it to the window).
+With the pairs, `pcl_sampling_weights` giving `drawn_control_points` a weight of 2 and every other
+group 1 (`RW_DOUBLE` in `setup_ab.py`) gave the best fits in both windows (one seed each).
 
 ## Limitations and next steps
 
@@ -913,11 +930,11 @@ relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the c
    windings, which carry the scan's local winding spacing, remove the harm of the conflicting
    patches with a tenth of the patches (three seeds, round 6), again at some cost in arcs, and with
    every patch (two seeds) they lift the failing patches from 60–62 % to 76–83 % satisfied and the
-   held-out fibres by 4–6 points; in the second window (one seed) the same measures move a fifth
-   to a third as far. Next: more window-2 seeds and a larger sampling share for the pairs
-   (fullnodt_ARWd in `setup_ab.py`, defined but not run: window 2 has 1.5–2.8 times window 1's
-   pairs for the same draws per step, and a half share gave smaller gains). The chain check can
-   score any such change without human data.
+   held-out fibres by 4–6 points; in the second window (two seeds) the same measures move a sixth
+   to two fifths as far. A double sampling share for the pairs gave the best fit in both windows
+   (one seed each). Next: more seeds of the double share, and the share tuned per window, since the
+   fitter draws the same number of pairs per step whatever their count. The chain check can score
+   any such change without human data.
 4. **Cross-sheet noise.** The shift fixed the median offset but not the spread, which stays about
    3× the human arcs'; neither shifting nor smoothing moved the fits measurably. Refining each
    point to the sheet face from the intensity profile is the next step if the offset matters.
