@@ -82,24 +82,34 @@ def slice_traces(dataset: Path, z: int, box: tuple[int, int, int, int]) -> dict[
     return traces
 
 
-def winding_grid(checkpoint: Path, dataset: Path, umbilicus: Path, shell: Path, patch: str, z: int,
-                 box: tuple[int, int, int, int], step: int):
-    """The fit's winding coordinate s on a grid over the box in slice z (zero-step evaluation)."""
+def load_fit(checkpoint: Path, dataset: Path, patch: str):
+    """A fit's checkpoint as villa's spiral transform (zyx -> spiral space) and its winding pitch."""
     ckpt = pw.load_checkpoint_cpu(str(checkpoint))
     z0, z1 = int(ckpt["z_begin"]), int(ckpt["z_end"])
     with tempfile.TemporaryDirectory() as tmp:  # build_transform needs a loaded context; one patch will do
         (Path(tmp) / patch).symlink_to((dataset / "verified_patches" / patch).resolve())
-        cfg, context = pw.load_patches(ckpt, Path(tmp), umbilicus, shell, z0, z1)
-        transform, dr = pw.build_transform(ckpt, cfg, context, z0, z1)
+        cfg, context = pw.load_patches(ckpt, Path(tmp), dataset / "umbilicus.json", dataset / "outer_shell", z0, z1)
+        return pw.build_transform(ckpt, cfg, context, z0, z1)
+
+
+def winding_at(transform, dr, zyx: np.ndarray) -> np.ndarray:
+    """The fit's winding coordinate s at (N, 3) zyx points (whole numbers lie on its sheets)."""
+    out = []
+    with torch.no_grad():
+        for k in range(0, len(zyx), 65536):
+            pts = torch.tensor(np.ascontiguousarray(zyx[k:k + 65536]), dtype=torch.float32, device=dr.device)
+            _, _, shifted = pw.get_theta_and_radii(transform(pts)[..., 1:], dr)
+            out.append((shifted / dr).detach().double().cpu().numpy())
+    return np.concatenate(out)
+
+
+def winding_grid(checkpoint: Path, dataset: Path, patch: str, z: int, box: tuple[int, int, int, int], step: int):
+    """The fit's winding coordinate s on a grid over the box in slice z (zero-step evaluation)."""
+    transform, dr = load_fit(checkpoint, dataset, patch)
     x0, x1, y0, y1 = box
     ys, xs = np.mgrid[y0:y1:step, x0:x1:step]
-    zyx = torch.tensor(np.stack([np.full(xs.size, z), ys.ravel(), xs.ravel()], axis=1),
-                       dtype=torch.float32, device=dr.device)
-    with torch.no_grad():
-        spiral = torch.cat([transform(zyx[k:k + 65536]) for k in range(0, len(zyx), 65536)])
-        _, _, shifted = pw.get_theta_and_radii(spiral[..., 1:], dr)
-    s = (shifted / dr).detach().double().cpu().numpy().reshape(xs.shape)
-    del transform, context, spiral
+    s = winding_at(transform, dr, np.stack([np.full(xs.size, z), ys.ravel(), xs.ravel()], axis=1)).reshape(xs.shape)
+    del transform
     torch.cuda.empty_cache()
     return xs, ys, s
 
@@ -133,7 +143,7 @@ def main() -> None:
     if not traces:
         raise SystemExit("no verified patch crosses the crop")
     patch = max(traces, key=lambda n: len(traces[n]))
-    grids = [(label, *winding_grid(Path(ckpt), D, D / "umbilicus.json", D / "outer_shell", patch, z, box, args.step), ph)
+    grids = [(label, *winding_grid(Path(ckpt), D, patch, z, box, args.step), ph)
              for (label, ckpt, _), ph in zip(args.fit, (phase_a, phase_b))]
 
     x0, x1, y0, y1 = box

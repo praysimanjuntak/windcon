@@ -37,7 +37,8 @@ never saw (details and numbers in the sections below):
    same way but less: training patches 80.1 → 81.8 %, fibres 45.3 → 46.6 %. With a tenth of the
    patches (three seeds) they keep the failing patches from hurting the fit (held-out area
    60.3–60.6 % with them against 53.8 % without) and raise held-out area by 1.7 points on their
-   own, at a cost of 2–3 points of arcs.
+   own, at a cost of 2–3 points of arcs. Round 6 shows the effect in one slice and on one patch's
+   surface.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -720,6 +721,15 @@ relative-winding fit puts on one, so it shows the effect where it is clearest, n
 about equally here (24 and 22 px); with the pairs the sheets lie on the traced patches instead of
 between them (6 of the 13 patches between sheets, then 0).*
 
+![The CT on a verified patch's surface and on each fit's nearest sheet](results/spiral_fit/fit_surface_z10800.png)
+
+*One of the orange patches above, rendered on its own surface grid (`plot_fit_surface.py`): the CT
+on the human surface, then on each fit's nearest sheet, found along the surface normal within 16
+voxels. The default fit's sheets lie a median 11.3 voxels from the patch, half their spacing, so
+its nearest sheet switches between the layers on either side and the image is stitched from both,
+with seams. The relative-winding fit's sheet lies a median 0.9 voxels from the patch and its image
+matches the human surface. One patch from the crop above, not a sample.*
+
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
 lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
 Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `coverage.json`, `agree.json`,
@@ -820,6 +830,10 @@ done
   --fit default $P/runs/fullnodt_A_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_A_s1.json \
   --fit "relative windings" $P/runs/fullnodt_ARW_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_ARW_s1.json \
   --dataset $P/data/PHercParis4 --out $P/fit_sheets_z10800.png)
+(cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$S/plot_fit_surface.py \
+  --fit default $P/runs/fullnodt_A_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_A_s1.json \
+  --fit "relative windings" $P/runs/fullnodt_ARW_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_ARW_s1.json \
+  --dataset $P/data/PHercParis4 --out $P/fit_surface_z10800.png)
 uv run python $S/summarize_ab.py $P/results_ab.json
 ```
 
