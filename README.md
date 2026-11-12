@@ -1140,6 +1140,100 @@ uv run python $E/agree_maps.py $I/segments/PHerc1447/w058.npy $D/predictions/v8i
   $O/w058_hecate_rev.png $O/w058_ink9um_s42_reverse.tif $O/w058_hecate_fwd.png $O/w058_ink9um_s42.tif
 ```
 
+## Winding-inference rays from any fit (`experiments/winding_inference/`)
+
+Tooling for the next experiment. No fit has been trained on its output yet.
+
+In Round 7, taking the winding-inference rays and the outer shell away from the fit with tracks
+costs 3–6 points of the human-curated patch area and 18 points of the human relative windings
+(regime `TX` against `T`, both windows). The only published rays are Paris 4's, and they start
+from a fit with 4,610 patches.
+villa can make rays from any fit with the public model
+[`winding_model_9um`](https://huggingface.co/scrollprize/winding_model_9um), but two things stand
+in the way on a small machine. `infer_winding_volume.py` reads the scan through `vc`, the Python
+module that is compiled with volume-cartographer. And with this model its intermediate cache holds
+a phase for all 128 × 128 columns of every slab, 25 MB per slab, of which
+`export_spiral_supervision.py` keeps one ray.
+
+- `vc_shim/vc` stands in for the `vc` calls of the model's slab extractor, on top of windcon's
+  chunk cache. On an oblique 128 × 384 plane it differs from `scipy.ndimage.map_coordinates` by one
+  grey level on 0.004 % of the pixels.
+- `build_store.py` runs the same model on the same slabs, decodes rays with villa's own
+  `decode_center_ray` and writes the store `fit_spiral.py` loads. `--columns 3` keeps a 3 × 3 grid
+  of rays per slab instead of the centre one. `--step` sets the sampling step for a scan that is
+  not at 9.6 µm. A ray that reads four zero voxels in a row leaves the masked scan and is dropped;
+  the published store dropped rays that cross the exterior of a CT mask.
+- `subset_store.py` writes a store with part of the rays: the centre ray of each slab, or every
+  Nth slab.
+
+**Check against the published store.** Its manifest names the public checkpoint
+(`winding_model_3d_large_11/ckpt_final.pth`). 300 of its rays with midpoints in z 10300–10500 were
+made again from the public masked volume:
+
+| | |
+| --- | --- |
+| rays found again at the published origin | 299 of 300 |
+| crossings per ray, here / published | 22.98 / 23.08 (same count on 90 % of the rays) |
+| distance to the nearest published crossing, samples | median 0.31, 90th percentile 0.65, 99th 0.90 |
+| same relative level as that crossing | 100 % |
+| mean signed difference; least-squares offset between the two volumes | +0.01 samples; under 0.02 voxel on every axis |
+
+`fit_spiral.py`'s loader accepts the result. Crossings are about 14 samples apart on these rays
+(23 kept on 368 samples after two are trimmed at each end), so the scatter is about 2 % of the
+sheet spacing. It has no preferred direction and its cause is not established; the published run
+read another copy of the volume (`s1_2um_ds2.zarr`).
+
+**Cost.** On an RTX 4070 SUPER, 1.7–2.7 slabs per second at batch 1 and 2.5 GiB of GPU memory,
+measured while two fits shared the card; alone it has not been timed. The published store took
+1,557,627 slabs. Seeding the 1,000-slice window at every 8th winding and 96 voxels gives 12,043
+slabs; with 3 × 3 rays each, the first 3,584 slabs gave 4,604–4,608 rays per 512 slabs and 20–24
+crossings per ray.
+
+**Not measured yet.** Whether the off-centre rays of a slab are as accurate as the centre ray,
+and whether a fit trained on rays seeded from the fit without annotations (regime `TW`) reaches
+the fit trained on the published rays (regime `T`). Regime `TS` (tracks and shell, no rays)
+separates the shell's share.
+
+villa at `5a4388f`: `build_seed_rays` fails on a checkpoint written by `fit_spiral.py` of the same
+commit (`KeyError: 'num_flow_integration_steps'`), because it reads the model settings without
+their `model_` prefix. `build_store.py` adds the old names before calling it.
+
+**Other scrolls.** Three helpers for a scroll that has no spiral-input dataset, staged for
+PHerc. 343, whose fit has not run:
+
+- `experiments/spiral_fit/fetch_lasagna.py` mirrors the rows of the lasagna stores (normals,
+  gradient magnitude) that a z-window needs from the open-data bucket, for villa's
+  `pack_resident_pools.py`.
+- `experiments/spiral_fit/make_outer_shell.py` reads an outer shell off the scan's mask.
+  `fit_spiral.py` uses rays only together with an outer shell, and only Paris 4 has one. On
+  Paris 4 the mask shell lies outside the published one by a median 34 voxels (5th–95th
+  percentile 14–52) at 28,516 points of z 9740–11060.
+- `experiments/ink_probe/render_mesh.py` renders the layer stack around a tifxyz mesh from the
+  scan. On the mesh of the PHerc. 343 First Letters submission
+  ([Nieuwlaar/pherc343-first-letters](https://github.com/Nieuwlaar/pherc343-first-letters)) the
+  1st and 99.5th percentile of layers 18–48 are 26 and 164, the values its record gives for the
+  VC3D render; the pixels are not bit-identical (the SHA-256 of layer 34 differs).
+
+```bash
+P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference
+hf download scrollprize/winding_model_9um --local-dir $P/wi/model
+# The volume is the chunk cache folder whose SOURCE file names the level the fit was made in.
+bash $W/run_build_store.sh --checkpoint $P/runs/sparse_TX_s1/checkpoint_fitted.ckpt \
+  --umbilicus $P/data/PHercParis4/umbilicus.json --volume data/cache/<folder> \
+  --model $P/wi/model/ckpt_final.pth --out $P/wi/stores/TX_s1_ws8 \
+  --winding-range 10 130 --winding-step 8 --seed-spacing 96 --columns 3 --batch-size 1
+python3 experiments/spiral_fit/setup_ab.py --postel $P && bash experiments/spiral_fit/run_queue.sh sparse_TW_s1 sparse_TS_s1
+# Other scrolls.
+uv run python experiments/spiral_fit/make_outer_shell.py --volume <URL of the masked zarr> --mask-level 5 \
+  --fit-level 2 --umbilicus $P/data/PHercParis4/umbilicus.json --z-begin 9900 --z-end 10900 \
+  --out $P/wi/shell_paris4_mask --compare $P/data/PHercParis4/outer_shell
+python3 experiments/spiral_fit/fetch_lasagna.py --name PHerc0343 --group 2 --z-begin 9500 --z-end 11000 \
+  --lasagna PHerc0343/representations/predictions/lasagna/20250521140437-lasagna-20260419180421 \
+  --out $P/data/PHerc0343/lasagna_inputs
+uv run python experiments/ink_probe/render_mesh.py <mesh>.tifxyz --volume <URL of the scan's level 0> \
+  --layers 66 --out <folder>/<name>_layers
+```
+
 ## Usage
 
 ```bash
