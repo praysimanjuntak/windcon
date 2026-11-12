@@ -20,10 +20,13 @@ import numcodecs
 import numpy as np
 
 S3_OPEN_DATA = "https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com"
+# CloudFront serves the same keys under /samples. From outside the US it is several times faster
+# than the bucket and does not stall, so the bucket's chunks are read from it.
+OPEN_DATA_MIRROR = "https://data.aws.ash2txt.org/samples"
 DEFAULT_CACHE = Path(__file__).resolve().parents[2] / "data" / "cache"
 
 
-def _http_get(url: str, timeout: float = 120.0, retries: int = 4) -> bytes | None:
+def _http_get(url: str, timeout: float = 30.0, retries: int = 6) -> bytes | None:
     """Return the body, or None when the object does not exist."""
     for attempt in range(retries):
         try:
@@ -44,16 +47,17 @@ class ZarrArray:
     """One resolution level of a Zarr v2 array served over HTTP."""
 
     def __init__(self, url: str, cache_dir: Path = DEFAULT_CACHE, workers: int = 16):
-        self.url = url.rstrip("/")
+        self.url = url.rstrip("/")  # names the array and its cache
+        self.source = self.url.replace(S3_OPEN_DATA, OPEN_DATA_MIRROR, 1)  # where its bytes are read
         self.workers = workers
         key = hashlib.sha1(self.url.encode()).hexdigest()[:16]
         self.cache = Path(cache_dir) / key
         self.cache.mkdir(parents=True, exist_ok=True)
         meta_path = self.cache / ".zarray"
         if not meta_path.exists():
-            body = _http_get(f"{self.url}/.zarray")
+            body = _http_get(f"{self.source}/.zarray")
             if body is None:
-                raise FileNotFoundError(f"{self.url}/.zarray")
+                raise FileNotFoundError(f"{self.source}/.zarray")
             meta_path.write_bytes(body)
             (self.cache / "SOURCE").write_text(self.url + "\n")
         meta = json.loads(meta_path.read_text())
@@ -76,7 +80,7 @@ class ZarrArray:
         missing = self._chunk_path(idx, ".missing")
         if path.exists() or missing.exists():
             return
-        body = _http_get(f"{self.url}/{self.separator.join(map(str, idx))}")
+        body = _http_get(f"{self.source}/{self.separator.join(map(str, idx))}")
         if body is None:
             missing.touch()
             return
