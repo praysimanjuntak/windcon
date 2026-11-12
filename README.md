@@ -8,15 +8,18 @@ point-collection documents that `villa/spiral-fitting/fit_spiral.py` already con
 ## Findings in brief
 
 Measured on PHerc. Paris 4 with the published `fit_spiral.py`, scored on human annotations the fits
-never saw (details and numbers in the sections below):
+never saw (details and numbers in the sections below). Round 7 corrects two things about points
+2–5: their fits ran without villa's surface tracks, the fitter's default, and 92 % of the verified
+patches they call human were grown automatically. Point 6 is the result with the tracks on.
 
 1. **The tracer is precise.** 97.6 % of traced length lies on the human arc it claims (held-out
    slices); paths cover 39 % of the arcs' length. Paths link across slices into chains with 1.0 %
    wrong links where verified patches can check them.
-2. **As fit input, the chains help only without human annotations.** Chains traced every 5th slice
-   raise held-out verified-patch area from 19.4 % to 28.6 % and from 25.6 % to 34.5 % in a second
-   window. With a tenth or all of the human patches they add nothing or trade one held-out measure
-   against another; relative windings derived from the same paths do help there (point 5).
+2. **As fit input, the chains help only without human annotations and without the surface tracks
+   (point 6).** Chains traced every 5th slice raise held-out verified-patch area from 19.4 % to
+   28.6 % and from 25.6 % to 34.5 % in a second window. With a tenth or all of the human patches
+   they add nothing or trade one held-out measure against another; relative windings derived from
+   the same paths do help there (point 5).
 3. **As a check of a finished fit, they find its errors without human input.** Where a fit
    disagrees with the chains on a verified patch, the fit has likely failed that patch (AUC
    0.79–0.86 for fits with no, some or all human data, in both windows).
@@ -40,6 +43,20 @@ never saw (details and numbers in the sections below):
    failing patches from hurting the fit (held-out area 60.3–60.6 % with them against 53.8 %
    without) and raise held-out area by 1.7 points on their own, at a cost of 2–3 points of arcs.
    Round 6 shows the effect in one slice and on one patch's surface.
+6. **With villa's surface tracks on, most of the fit comes from them (round 7, window 1, one seed
+   per fit).** The tracks are an automatic input that the fitter leaves off by default. With them
+   and no annotation the fit keeps 60 % of the human-curated patch area (16 % without them, 20 %
+   with the chains), 71 % of the held-out arcs (27 %, 36 %) and 39 % of the eval fibres (16 %,
+   17 %). That is more than a tenth of the verified patches with the human point collections
+   gives, and close to the all-patches fit on arcs. On top of the tracks the chains hurt (curated
+   area 60 → 43 %): as a fit input the tracks replace them. The relative windings help in one
+   place, where automatic patches are fitted. Band-seed patches alone lower the tracks-only fit
+   (curated area 51 %, arcs 61 %); with the pairs it comes back (62 %, 71 %) and the patches
+   themselves go from 77 % to 87 % satisfied. On the tracks alone the pairs do not help, and
+   without the winding-inference rays, which no other scroll has, they cost 6 points of curated
+   area. The chains keep their second use: they flag the patches a tracks-based fit fails (AUC
+   0.84), and the share of traced paths a fit keeps on one winding ranks fits as the held-out
+   truth does (Spearman +0.9 over 35 fits that trained on no path).
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -74,7 +91,9 @@ Level 2 is the coordinate frame of the `spiral-input` annotations: points are `p
 9.6 µm voxels (checked by overlaying `relative_windings.json` collections on CT slices; the dataset
 README's `(z, y, x)` note does not apply to the point-collection files). Chunks are 128³ raw `uint8`
 (2 MiB, uncompressed); `windcon.zarr_io` fetches only the chunks a crop touches and caches them
-under `data/cache/`.
+under `data/cache/`. It reads the bucket's keys through the CloudFront mirror
+`data.aws.ash2txt.org/samples`, which serves the same bytes: from Indonesia the mirror gave a
+steady 23 MiB/s where the bucket gave 2–20 MiB/s with stalled and reset connections.
 
 ## Method (`src/windcon/tracer.py`)
 
@@ -142,7 +161,9 @@ level-4 normals sidecar, winding inference, outer shell).
   slice). Fed as `drawn_control_points.json`, which the fitter samples as its own group of
   same-winding strips.
 - **Families:** *sparse* = no human annotations (umbilicus, outer shell, normals, winding
-  inference only); *full* = every human input in the window except the held-out arcs.
+  inference only); *full* = every human input in the window except the held-out arcs. Round 7
+  adds two facts about both: the fitter's surface tracks were off in every fit of rounds 1–6, and
+  92 % of the verified patches that *full* trains on were grown automatically.
 - **Variants:** A = without paths; B = with paths, fitter defaults; C = B without the strip snap
   (`loss_weight_unattached_pcl_dt = 0`); D = C with 10× unattached strips per step
   (`sample_count_unattached_pcls_per_step = 840`). The full *no-snap* pair applies the D settings
@@ -739,11 +760,162 @@ its nearest sheet switches between the layers on either side and the image is st
 with seams. The relative-winding fit's sheet lies a median 0.9 voxels from the patch and its image
 matches the human surface. One patch from the crop above, not a sample.*
 
+### Round 7: most verified patches are automatic, and villa's surface tracks do most of the work
+
+Rounds 1–6 treated every folder of the dataset's `verified_patches/` as human data. Most are not.
+8,706 of the 9,424 patch folders of window 1, and 14,058 of the 14,775 of window 2, are named
+`band-seed<row>-<time>`: sheets grown from the surface tracks by villa's `grow_track_graph.py`.
+Each one's `meta.json` names the tool (`"source": "band grower prototype"`), its seed track and the
+tracks store, and the window-1 set was written in one ten-hour batch (2026-07-29 15:00 to
+2026-07-30 01:00). The other 718 (717) folders were grown or traced in VC3D and selected by a
+person (`auto_grown_*_sel_*`, `same_wrap*_lasagna`, `*_fill_sel_*`). So the *full* family trains on
+automatic patches plus about 700 human-curated ones, and the *few* family's "tenth of the human
+patches" is 873 automatic patches and 69 curated ones.
+
+`patch_origin.py` splits the satisfied patch area of any fit by origin (%, one value per seed):
+
+| fit | scored as | band-seed patches | human-curated patches |
+| --- | --- | --- | --- |
+| sparse_A: no annotations | held out | 20.1 / 20.1 | 16.0 / 16.0 |
+| sparse_E: + chains | held out | 31.0 / 30.2 | 19.9 / 19.9 |
+| few_A: a tenth of the patches | held out | 57.1 / 57.7 | 43.0 / 44.4 |
+| few_ARW: + relative windings | held out | 61.5 / 62.3 / 61.4 | 43.3 / 43.7 / 43.1 |
+| fullnodt_A: every patch | training | 75.4 / 76.7 / 76.1 | 86.2 / 86.4 / 85.7 |
+| fullnodt_ARW: + relative windings | training | 86.3 / 86.0 | 89.8 / 90.8 |
+| window 2, sparse_A | held out | 26.4 / 26.1 | 18.6 / 18.7 |
+| window 2, sparse_Eg: + chains | held out | 35.2 / 34.7 | 30.4 / 29.7 |
+| window 2, fullnodt_A | training | 79.4 / 76.2 | 86.8 / 84.3 |
+| window 2, fullnodt_ARW | training | 81.0 / 79.7 | 89.0 / 87.5 |
+
+What this changes in the rounds above:
+
+- The chains' gain without annotations holds on the human-curated patches. In window 1 it is 4
+  points there (16.0 → 19.9) against 10 on the band-seed patches; in window 2 it is 11 points
+  against 9.
+- With a tenth of the patches, the relative windings' gain in held-out area is on band-seed patches
+  only: 57.4 → 61.7 % over the few family's whole held-out set, against 43.7 → 43.4 % on its
+  human-curated patches. (Round 6 reported +1.7 points on the smaller set common to all arms.)
+- With every patch, the relative windings raise both kinds as training patches: human-curated
+  86 → 90 % (window 2: 86 → 88 %), band-seed 76 → 86 % (78 → 80 %).
+- Round 5's 471 oracle picks, the patches the fits fail, are 462 band-seed patches and 9 curated
+  ones. They are automatic patches, which the traced paths confirm as single sheets (round 5,
+  `patch_check.py`); "human patches" in rounds 5 and 6 should read "verified patches".
+- The held-out arcs, eval fibres and human relative windings are human-made and unaffected.
+
+**Villa's surface tracks.** Rounds 1–6 also left one automatic input of the fitter at its default,
+off: the surface tracks (`input_use_tracks`). They are skeleton curves that villa's
+`extract_surface_tracks.py` cuts from thin slabs of a surface-prediction volume, published with
+the dataset as `tracks/2um_ds2_ps256_surf_v2.dbm` (27 GiB with its caches). 1.52 million of them
+lie in window 1. `sparse_T` is `sparse_A` with the tracks on and nothing else changed. Window 1,
+one seed each, % of area or points on inputs the fit never saw (italics: the fit trained on them):
+
+| fit | human-curated patches | band-seed patches | arcs | eval fibres | human relative windings | automatic paths |
+| --- | --- | --- | --- | --- | --- | --- |
+| sparse_A: no annotations | 16.0 | 20.1 | 26.7 | 15.8 | 41.0 | 72.3 |
+| sparse_E: + chains | 19.9 | 31.0 | 35.8 | 16.7 | 45.8 | *82.3* |
+| sparse_T: + tracks | 60.1 | 62.8 | 70.9 | 38.8 | 71.7 | 86.2 |
+| sparse_TE: sparse_T + chains | 43.0 | 46.7 | 76.3 | 33.9 | 47.0 | *81.8* |
+| sparse_TR: sparse_T + automatic relative windings | 56.8 | 61.9 | 76.2 | 39.2 | 63.9 | *82.5* |
+| sparse_TX: sparse_T without winding inference and outer shell | 54.4 | 62.5 | 61.1 | 39.6 | 54.2 | 85.1 |
+| sparse_TXR: sparse_TX + automatic relative windings | 48.0 | 56.6 | 63.1 | 36.6 | 42.8 | *80.8* |
+| sparse_TB: + tracks and the band-seed patches | 51.3 | *76.6* | 61.4 | 32.5 | 60.2 | 84.8 |
+| sparse_TG: + tracks and patches grown here | 53.0 | 72.9 | 71.0 | 34.6 | 62.6 | 84.9 |
+| sparse_TBR: sparse_TB + automatic relative windings | 62.1 | *87.2* | 71.0 | 32.3 | 63.2 | *84.4* |
+| few_A: a tenth of the patches and the human point collections | 43.0 | 57.1 | 46.9 | 16.2 | *86.1* | 77.9 |
+| fullnodt_A: every patch and the human point collections | *86.2* | *75.4* | 77.7 | 30.3 | *91.0* | 84.4 |
+
+"Automatic paths" is the share of the raw traced path points that the fit keeps on one winding,
+without the scan test: the score of the next paragraph.
+
+Window 2 (z 13400–14400; one value per seed; `sparse_Eg` is its chains arm):
+
+| fit | human-curated patches | band-seed patches | arcs | eval fibres | human relative windings | automatic paths |
+| --- | --- | --- | --- | --- | --- | --- |
+| sparse_A: no annotations | 18.6 / 18.7 | 26.4 / 26.1 | 31.5 / 31.5 | 25.2 / 24.7 | 35.4 / 37.5 | 78.2 / 78.1 |
+| sparse_Eg: + chains | 30.4 / 29.7 | 35.2 / 34.7 | 30.0 / 34.4 | 28.0 / 29.2 | 38.2 / 40.3 | *84.0 / 83.9* |
+| sparse_T: + tracks | 63.8 | 59.1 | 66.3 | 48.3 | 48.6 | 87.0 |
+| sparse_TX: sparse_T without winding inference and outer shell | 61.1 | 61.4 | 86.8 | 49.1 | 30.6 | 86.3 |
+| fullnodt_A: every patch and the human point collections | *86.8 / 84.3* | *79.4 / 76.2* | 75.1 / 78.4 | 45.3 / 45.8 | *100.0 / 95.8* | 87.5 / 87.6 |
+
+![The fit without annotations, without and with the surface tracks, in one CT slice](results/spiral_fit/fit_sheets_tracks_z10840.png)
+
+*Slice z 10840, a 240 px crop: the sheets of `sparse_A` (red) and of `sparse_T` (blue) over the CT,
+verified patches as dots (`plot_fit_sheets.py`; the crop is the one it picks, not a sample).*
+
+- **The tracks alone do more than anything in rounds 1–6.** They take the fit without annotations
+  from 16 % to 60 % of the human-curated patch area and from 27 % to 71 % of the held-out arcs. A
+  tenth of the verified patches with the human point collections gives 43 % and 47 %. On the two
+  measures no fit trains on, the tracks-only fit is close to the all-patches fits on arcs (73–78 %)
+  and above them on eval fibres (39 % against 27–30 %, or 34 % with the relative windings). Window
+  2 repeats it: curated area 19 → 64 %, arcs 32 → 66 %, eval fibres 25 → 48 % (all-patches fits
+  45–46 %).
+- **Why.** Without the tracks the fit's sheets cut across the scan's sheets (figure): 93 % of the
+  verified patches span more than one fitted winding, with a median spread of 3.4 windings
+  (`patch_windings.py`). With the tracks 18 % do (0.5 windings), and in the all-patches fit 2.6 %
+  (0.26).
+- **What a scroll without a `spiral-input` dataset has** is tracks, the lasagna fields and an
+  umbilicus: no winding-inference rays and no outer shell. With only those (`sparse_TX`, spacing
+  from the gradient magnitude) the fit keeps 54 % of the curated area, 61 % of the arcs and 40 % of
+  the eval fibres (window 2: 61 %, 87 % of its 8 held-out arcs, 49 %). It loses most on the human
+  relative windings, 72 → 54 % (window 2: 49 → 31 %): the measure of how many windings lie between
+  two points.
+- **On top of the tracks the chains hurt.** The chains' gain in rounds 2–4 (16 → 20 % of the
+  curated area, 27 → 36 % of the arcs) was against a baseline without tracks. Added to the tracks
+  (`sparse_TE`) they raise the arcs by 5 points and cost 17 points of curated area, 16 of band-seed
+  area, 5 of eval fibres and 25 of the human relative windings. As a fit input the tracks replace
+  them.
+- **On the tracks alone the relative windings do not help.** With the winding inference
+  (`sparse_TR`) they gain the same 5 points of arcs and lose 3 of curated area and 8 of the human
+  relative windings (one seed; seeds of one variant differ by up to 4.5 points on the arcs).
+  Without it (`sparse_TXR`) they cost 6 points of curated area and 11 of the human relative
+  windings: the pairs do not stand in for the winding-inference rays.
+- **Automatic patches on top of the tracks do not help** when no human point collection comes
+  with them. The published band-seed patches lower every held-out measure: curated area
+  60 → 51 %, arcs 71 → 61 %, eval fibres 39 → 33 %; the fit satisfies the patches it trains on
+  better (63 → 77 %) and everything else worse. Patches grown here from the same tracks
+  (`grow_patches.sh`: 100,000 seed tracks of the window gave 10,814 patches, 3,256 cm², against
+  the 8,706 published ones' 3,662 cm²; nobody checked them) keep the arcs and lower the curated
+  area to 53 % and the eval fibres to 35 %.
+- **The automatic relative windings undo most of that harm.** Added to the tracks and band-seed
+  patches (`sparse_TBR`), the pairs of round 6 bring the curated area back from 51 % to 62 % and
+  the arcs from 61 % to 71 %, and lift the band-seed patches the fit trains on from 77 % to 87 %,
+  the same ten points as with every patch in round 6. Eval fibres stay at 32 %, below the
+  tracks-only fit's 39 %.
+- **The fit check of round 5 still works.** Chains the fit disagrees with mark the patches it
+  fails: AUC 0.84 for `sparse_T` and 0.85 for `sparse_TB` (0.79–0.86 in round 5).
+- **Caveat.** We do not know whether the surface model behind the tracks was trained on this
+  window's human surfaces. If it was, another scroll's tracks may carry less than these do.
+
+**A score that needs no annotation.** A scroll without labels needs some way to compare fits. One
+candidate is the share of the raw automatic paths that a fit keeps on one winding (the `auto` group
+of `datasets/diag`). `rank_scores.py` compares how it ranks the 86 fits of rounds 1–7 with how each
+held-out truth ranks them (Spearman rank correlation, whole paths):
+
+| fits | arcs | eval fibres | relative windings | held-out patch area |
+| --- | --- | --- | --- | --- |
+| 35 fits trained on no automatic path | +0.94 | +0.90 | +0.55 | +0.84 (28 fits) |
+| of these, the 19 of the few family | +0.92 | +0.96 | +0.32 | +0.64 |
+| of these, the 9 without annotations | +0.80 | +0.93 | +0.74 | +0.67 |
+| 21 fits without annotations trained on paths, chains or pairs | +0.16 | +0.19 | −0.05 | −0.02 |
+| 17 all-patches fits trained on paths, chains or pairs | −0.07 | +0.25 | −0.56 | – |
+
+The score ranks fits that did not train on the paths: across families, across the settings and
+patch picks inside the few family, and across the fits without annotations with and without
+tracks and patches. Fits that trained on paths, chains or pairs are not ranked by it within their
+family (last two rows), so a selection score for a scroll without labels has to use paths held
+out of the fit. The relative-winding pairs give no such score. Fits as different as `sparse_A`,
+`sparse_T` and `fullnodt_A` keep 75.2 %, 76.4 % and 77.3 % of the pair points
+(`AGREE_KEYS=relwind agree_eval.sh`).
+
 Cost on the RTX 4070 SUPER: 31–50 min per fit with two fits sharing the card (59 min for a 10-voxel
-lattice fit), whole-card peak 9.8 GiB; tracing 200 slices takes 40–60 min on 16–20 CPU workers.
-Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `coverage.json`, `agree.json`,
-`chains_stats.json`, `check_links.json`, `targeting.json`, `select_patches.json`, `patch_check.json`,
-`error_detector/`, `window2/`).
+lattice fit, 66 min for tracks, patches and pairs together), whole-card peak 9.8 GiB without the
+tracks and 10.2–11.1 GiB with them. One fit alone takes 2.8 GiB with the tracks, 3.4 GiB with
+tracks and 8,706 patches, and 23 min (21.6 steps per second). The fit is partly CPU-bound: with a
+10-worker patch grower and an ink model beside two fits, each took 64–70 min. Tracing 200 slices
+takes 40–60 min on 16–20 CPU workers; growing patches from 100,000 seed tracks took 59 min on 10.
+Raw numbers: `results/spiral_fit/` (`results_ab.json` per run, `patch_origin.json`,
+`coverage.json`, `agree.json`, `chains_stats.json`, `check_links.json`, `targeting.json`,
+`select_patches.json`, `patch_check.json`, `error_detector/`, `patch_windings/`, `window2/`).
 
 Reproduce on a CUDA machine (the scripts expect `~/Documents/postel/vesuvius_challenge`), from a
 copy of this repository there:
@@ -849,7 +1021,123 @@ done
   --fit default $P/runs/fullnodt_A_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_A_s1.json \
   --fit "relative windings" $P/runs/fullnodt_ARW_s1/checkpoint_fitted.ckpt $P/pw_all_fullnodt_ARW_s1.json \
   --dataset $P/data/PHercParis4 --out $P/fit_surface_z10800.png)
+# Round 7: where the verified patches come from, and the score that needs no annotation.
+python3 $S/patch_origin.py $P/runs/sparse_A_s? $P/runs/sparse_E_s? $P/runs/few_A_s? $P/runs/few_ARW_s? \
+  $P/runs/fullnodt_A_s? $P/runs/fullnodt_ARW_s?
+python3 $S/rank_scores.py $P/results_ab.json
+# Round 7: villa's surface tracks (27 GiB), the gradient magnitude for the fits without winding
+# inference, patches grown here from the tracks, then the fits.
+python3 $S/fetch_dataset.py --out $P/data/PHercParis4 --z-begin 9900 --z-end 10900 --parts grad_mag tracks
+bash $S/grow_patches.sh 9900 10900 100000 $P/data/PHercParis4/grown_patches
+python3 $S/setup_ab.py --postel $P
+bash $S/run_queue.sh sparse_T_s1 sparse_TB_s1 sparse_TG_s1 sparse_TBR_s1 sparse_TX_s1 sparse_TXR_s1 \
+  sparse_TE_s1 sparse_TR_s1
+python3 $S/patch_origin.py $P/runs/sparse_A_s1 $P/runs/sparse_T*_s1
+AGREE_KEYS=chains bash $S/agree_eval.sh sparse_T_s1 sparse_TB_s1
+AGREE_KEYS=relwind bash $S/agree_eval.sh sparse_T_s1 sparse_TX_s1
+for run in sparse_T_s1 sparse_TB_s1; do
+  uv run python $S/error_detector.py --run $P/runs/$run --chains-dir $P/pcls --dataset $P/data/PHercParis4
+done
+for run in sparse_A_s1 sparse_T_s1; do
+  (cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$S/patch_windings.py \
+    --checkpoint $P/runs/$run/checkpoint_fitted.ckpt --dataset $P/data/PHercParis4 \
+    --umbilicus $P/data/PHercParis4/umbilicus.json --outer-shell $P/data/PHercParis4/outer_shell \
+    --set all=verified_patches --satisfied $P/runs/$run/eval_patches/satisfied_fitted.json \
+    --out $P/pw_all_$run.json)
+done
+(cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$S/plot_fit_sheets.py \
+  --fit "no annotations" $P/runs/sparse_A_s1/checkpoint_fitted.ckpt $P/pw_all_sparse_A_s1.json \
+  --fit "with surface tracks" $P/runs/sparse_T_s1/checkpoint_fitted.ckpt $P/pw_all_sparse_T_s1.json \
+  --dataset $P/data/PHercParis4 --out $P/fit_sheets_tracks.png)
+# Round 7 in window 2: its root reads the same tracks.
+ln -s $P/data/PHercParis4/tracks $P/w2/data/PHercParis4/tracks
+python3 $S/fetch_dataset.py --out $P/w2/data/PHercParis4 --z-begin 13400 --z-end 14400 --parts grad_mag
+python3 $S/setup_ab.py --postel $P/w2 --z-begin 13400 --z-end 14400
+ROOT=$P/w2 bash $S/run_queue.sh sparse_T_s1 sparse_TX_s1
 uv run python $S/summarize_ab.py $P/results_ab.json
+```
+
+## Ink models on published surfaces (`experiments/ink_probe/`)
+
+A side check for planning, not part of windcon: how the public 8–9 µm ink models respond on scans
+of the May 2025 campaign where a surface already exists. `fetch_layers.py` writes a published
+surface volume as a layer stack. `run_hecate.sh`, `run_ink9um.sh` and `run_v8in.sh` run
+[Hecate](https://huggingface.co/scrollprize/hecate),
+[`ink_9um`](https://huggingface.co/scrollprize/ink_9um) and
+[v8-in](https://huggingface.co/YoussefMoNader/ink-8um-v8in) on it in both depth directions, since
+the orientation of a published render is not recorded (`run_all.sh` runs everything below).
+`score_labels.py` scores maps against a human ink label, `agree_maps.py` correlates maps with
+each other, and `sheet.py` tiles them beside the CT.
+
+**PHerc. 1447, where the ink is known.** The dataset
+[`ink-8um-pherc1447-surfaces`](https://huggingface.co/datasets/YoussefMoNader/ink-8um-pherc1447-surfaces)
+holds three windings of the scroll (22–24 cm² each, 24 layers at 8.64 µm), human ink labels on
+windings 58 and 60, and the predictions of the team's v8-in model. Pixel agreement with the labels
+inside their certainty mask, ROC AUC / average precision:
+
+| map | winding 58 | winding 60 |
+| --- | --- | --- |
+| v8-in, the dataset's prediction (the model never saw this scroll) | 0.862 / 0.696 | 0.810 / 0.680 |
+| v8-in fine-tune with the winding left out, the dataset's prediction | 0.846 / 0.660 | 0.803 / 0.664 |
+| Hecate, layers reversed | 0.783 / 0.590 | – |
+| `ink_9um` seed 42, layers reversed | 0.748 / 0.539 | 0.646 / 0.431 |
+| `ink_9um` seed 43, layers reversed | 0.761 / 0.557 | 0.633 / 0.404 |
+| Hecate, layers as stored | 0.474 / 0.217 | – |
+| `ink_9um` seeds 42 and 43, layers as stored | 0.516 / 0.242, 0.478 / 0.223 | 0.503 / 0.260, 0.498 / 0.253 |
+
+The first two rows reproduce the dataset's own figures. Our own run of v8-in on a labelled
+1,200 × 2,400 px crop of winding 58 reproduces the dataset's map as well (correlation +0.96, AUC
+0.866 against 0.868 for the dataset's map on that crop), and with the layers as stored it is at
+chance (AUC 0.499). Every model that reads the layers in the right order responds to the labelled
+ink, v8-in most. The labels are traced letters about 4 mm high; in the maps the same places are
+blobs, and rows of blobs on the unlabelled winding 62. We could not read a letter from any map
+without the label beside it.
+
+Agreement between models is no evidence of ink. On winding 58 the maps of two models read in the
+right order correlate at +0.23 to +0.39 inside the surface (`agree_maps.py`). Hecate and `ink_9um`
+read in the wrong order, where both score at chance against the labels, correlate at +0.40.
+
+**PHerc. 0800, unread.** Its six published segments (`auto_grown_*`, each at most 2.2 × 2.2 cm,
+31 layers at 8.64 µm, about 9 cm² of surface together) went through the three models in both
+layer orders. Every map is a texture of blobs. We found no row and no letter-like stroke that two
+models share, in either order. Hecate and v8-in correlate at +0.02 to +0.42 with the layers as
+stored and +0.02 to +0.35 reversed, the range the wrong-order control above reaches. So these six
+segments show nothing, which says little about the scroll: they are small, and nothing measures
+how well they sit on their sheets.
+
+```bash
+P=~/Documents/postel/vesuvius_challenge; E=experiments/ink_probe; I=$P/ink
+uv venv $I/.venv && uv pip install --python $I/.venv/bin/python torch zarr scipy tifffile imagecodecs \
+  timm dynamic-network-architectures pynrrd aiohttp s3fs requests safetensors opencv-python-headless \
+  huggingface_hub
+(cd $P/villa && git sparse-checkout set spiral-fitting vesuvius)  # ink_9um runs villa's vesuvius package
+hf download scrollprize/hecate --local-dir $I/models/hecate        # used: hecate.py, hecate_9.6um.pth
+hf download scrollprize/ink_9um --local-dir $I/models/ink_9um      # used: both seeds' step-075000.pth
+hf download YoussefMoNader/ink-8um-v8in --local-dir $I/models/v8in --exclude "training/*"
+hf download YoussefMoNader/ink-8um-pherc1447-surfaces --repo-type dataset --local-dir $I/pherc1447
+# PHerc. 1447: the labelled windings as stacks, a labelled crop for v8-in, then ink_9um.
+for w in w058 w060; do
+  uv run python $E/fetch_layers.py $I/pherc1447/$w/layers --name $w --native-spacing 8.64 \
+    --out $I/segments/PHerc1447 --spacing 9.6 --zarr
+done
+mkdir -p $I/segments/PHerc1447_lab && ln -s ../PHerc1447/w058_9.6um.npy $I/segments/PHerc1447_lab/
+uv run python $E/fetch_layers.py $I/pherc1447/w058/layers --name w058c --native-spacing 8.64 \
+  --out $I/segments/PHerc1447_crop --crop 3100 4300 800 3200 --tifs
+bash $E/run_ink9um.sh $I/out/PHerc1447 $I/segments/PHerc1447/w058.zarr $I/segments/PHerc1447/w060.zarr
+# PHerc. 0800: its six segments as stacks, zarrs and layer folders, then every model.
+for S in 20251028213516-auto_grown_20251028213516907 20251028220042-auto_grown_20251028220042762 \
+    20251028220955-auto_grown_20251028220955262 20251028222030-auto_grown_20251028222030940 \
+    20251028225813-auto_grown_20251028225813045 20251029010146-auto_grown_20251029010146642; do
+  uv run python $E/fetch_layers.py \
+    PHerc0800/segments/$S/surface-volumes/8.64um-1.2m-116keV-volume-20250521135224.zarr \
+    --out $I/segments/PHerc0800 --spacing 9.6 --zarr --tifs
+done
+bash $E/run_all.sh
+D=$I/pherc1447/w058; O=$I/out/PHerc1447
+uv run python $E/score_labels.py --label $D/labels/inklabels.png --mask $D/labels/mask.png \
+  $D/predictions/v8in.png $O/w058_hecate_rev.png $O/w058_ink9um_s42_reverse.tif $O/w058_hecate_fwd.png
+uv run python $E/agree_maps.py $I/segments/PHerc1447/w058.npy $D/predictions/v8in.png \
+  $O/w058_hecate_rev.png $O/w058_ink9um_s42_reverse.tif $O/w058_hecate_fwd.png $O/w058_ink9um_s42.tif
 ```
 
 ## Usage
@@ -894,15 +1182,26 @@ uv run python $S/find_adjacency.py --raw-dir auto_paths --out adjacency \
 uv run python $S/build_relwind.py --chains-dir pcls --adj-dir adjacency --out pcls
 ```
 
-The fitter reads one extra point-collection file, `<dataset>/drawn_control_points.json`. Without
-human annotations, put the chains there (`cp pcls/auto_chains.json`); with verified patches, the
-relative-winding pairs (`cp pcls/auto_relwind.json`), which help there and the chains do not
-(round 6). Then run `fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
+The fitter reads one extra point-collection file, `<dataset>/drawn_control_points.json`. Turn the
+fitter's surface tracks on first (`input_use_tracks: true`) if the scroll has them: they do more
+than either file, and on top of them the chains hurt (round 7). With tracks and patches, put the
+relative-winding pairs there (`cp pcls/auto_relwind.json`; rounds 6 and 7). Without tracks and
+without annotations the chains help (`cp pcls/auto_chains.json`; rounds 2–4). Then run
+`fit_spiral.py` with `loss_weight_unattached_pcl_dt` 0 and
 `sample_count_unattached_pcls_per_step` 840 (10× the default; the fitter scales it to the window).
-With the pairs, `pcl_sampling_weights` giving `drawn_control_points` a weight of 2 and every other
-group 1 (`RW_DOUBLE` in `setup_ab.py`) gave the best fits in both windows (one seed each).
+With the pairs and every patch, `pcl_sampling_weights` giving `drawn_control_points` a weight of 2
+and every other group 1 (`RW_DOUBLE` in `setup_ab.py`) gave the best fits in both windows (one
+seed each, without tracks).
 
 ## Limitations and next steps
+
+Round 7 changes what this list rests on. Rounds 1–6 ran without villa's surface tracks. With them
+the fit without annotations is at 60 % of the human-curated patch area, and the chains no longer
+help as a fit input. Not yet run with the tracks on: any fit with human point collections or
+curated patches, so round 6's gain with every patch is untested there. The round-7 fits have one
+seed each. The tracer's remaining uses are the relative windings where automatic patches are
+fitted, and the check and score of a fit. Both still have to be shown on a scan at 8.64–9.36 µm,
+where the tracer mostly abstains (item 1).
 
 1. **Two windows, one scroll, few seeds.** The sparse-family gain and the fit check replicate in a
    second window (z 13400–14400), but both windows are PHerc. Paris 4, the scroll with the human
