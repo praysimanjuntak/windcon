@@ -35,6 +35,10 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
   TX  T with what a scroll without a spiral-input dataset offers: gradient-magnitude spacing
      instead of the winding-inference rays, and no outer shell
   TXR  TX plus the automatic relative windings in the drawn slot (D settings)
+  TS  TX with the published outer shell: tracks and shell, no winding-inference rays
+  TW  T with winding-inference rays made here from the TX fit instead of the published ones
+     (experiments/winding_inference/build_store.py; the published rays start from a fit with
+     4,610 patches)
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -90,6 +94,7 @@ AUTO_FILES = {  # relative to --postel
     "tracks": "data/PHercParis4/tracks",
     "patches_all": "data/PHercParis4/verified_patches",
     "patches_grown": "data/PHercParis4/grown_patches",
+    "rays_tx": "wi/stores/TX_s1_ws8",
 }
 FEW_FRACTION, FEW_SEED = 0.10, 0
 FEW_LINKS = {"verified_patches": "patches_few"}
@@ -126,8 +131,10 @@ PATCHES_ONLY = {"input_use_verified_patches": True}
 BAND_SEED_ONLY = PATCHES_ONLY | {"patch_uuid_filter_regex": "^band-seed"}
 BAND_SEED_LINKS = TRACK_LINKS | {"verified_patches": "patches_all"}
 GROWN_LINKS = TRACK_LINKS | {"verified_patches": "patches_grown"}
-NO_SHELL_NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
-                  "input_use_winding_inference": False, "input_use_outer_shell": False}
+NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
+         "input_use_winding_inference": False}
+NO_SHELL_NO_WI = NO_WI | {"input_use_outer_shell": False}
+OWN_RAYS_LINKS = TRACK_LINKS | {"winding_inference": "rays_tx"}
 # regime -> (human inputs, automatic path file key or None, extra overrides, own budget,
 #            [other automatic files: dataset file name -> AUTO_FILES key])
 REGIMES = {
@@ -152,6 +159,8 @@ REGIMES = {
     "sparse_TR": (False, "relwind", TRACKS | D_SETTINGS, False, TRACK_LINKS),
     "sparse_TX": (False, None, TRACKS | NO_SHELL_NO_WI, False, TRACK_LINKS),
     "sparse_TXR": (False, "relwind", TRACKS | NO_SHELL_NO_WI | D_SETTINGS, False, TRACK_LINKS),
+    "sparse_TS": (False, None, TRACKS | NO_WI, False, TRACK_LINKS),
+    "sparse_TW": (False, None, TRACKS, False, OWN_RAYS_LINKS),
     "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
     "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
     "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),
