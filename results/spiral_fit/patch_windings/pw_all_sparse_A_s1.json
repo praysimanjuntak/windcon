@@ -1,0 +1,24 @@
+{
+ "checkpoint": "runs/sparse_A_s1/checkpoint_fitted.ckpt",
+ "dr_per_winding": 16.947975158691406,
+ "sets": {
+  "all": {
+   "patches": 9120,
+   "quads": 4178567,
+   "quads_off_own_median_fraction": 0.6572,
+   "quads_off_fitted_sheet_fraction": 0.6905,
+   "patch_phase_abs_p25_50_75": [
+    0.129,
+    0.252,
+    0.376
+   ],
+   "patches_between_sheets": 0.3015,
+   "patches_spanning_a_winding": 0.9333,
+   "median_spread_windings": 3.426,
+   "off_quads_near_whole_winding": 0.2308,
+   "villa_satisfied_mean": 0.2634,
+   "villa_satisfied_mean_phase_under_0.2": 0.3053,
+   "villa_satisfied_mean_phase_over_0.35": 0.2084
+  }
+ }
+}

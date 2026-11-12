@@ -4,14 +4,18 @@
 Stdlib only. Source: https://dl.ash2txt.org/datasets/spiral_datasets/PHercParis4/
 
 * small files and directories: umbilicus, winding JSONs, outer_shell/, winding_inference/
-* lasagna normals sidecar (`las_008_nx.ome.zarr.respool_g4_pair`): only the brick rows whose
-  z-layer intersects the window are fetched, written into full-size sparse files. The fitter
-  memory-maps the channel files and reads exactly those rows (sparse_cuda_cache.ResidentBrickPool),
-  so the untouched rows can stay holes.
+* lasagna sidecars (the normals `las_008_nx.ome.zarr.respool_g4_pair`; with `--parts grad_mag` the
+  gradient magnitude `las_008_grad_mag.ome.zarr.respool_g4`): only the brick rows whose z-layer
+  intersects the window are fetched, written into full-size sparse files. The fitter memory-maps
+  the channel files and reads exactly those rows (sparse_cuda_cache.ResidentBrickPool), so the
+  untouched rows can stay holes.
 * verified_patches/: every meta.json is fetched, patches whose bbox can intersect the window are
   kept, and their folders are mirrored completely.
+* with `--parts tracks`: the surface tracks of the whole scroll (27 GiB): the DBM, its packed store
+  and its crossings cache. villa 5a4388f accepts the two caches only while the DBM file's size and
+  modification time equal the fingerprint stored with them, so the DBM's time is set from it.
 
-Re-running resumes: finished files are skipped, fetched sidecar row runs are recorded.
+Re-running resumes: finished files are skipped, fetched sidecar row runs and file parts are recorded.
 """
 
 from __future__ import annotations
@@ -37,7 +41,9 @@ BASE = "https://dl.ash2txt.org/datasets/spiral_datasets/PHercParis4"
 SMALL_FILES = ["umbilicus.json", "abs_winding.json", "relative_windings.json", "same_windings.json"]
 SMALL_DIRS = ["outer_shell", "winding_inference", "eval_fibers"]
 NORMALS = "lasagna_inputs/las_008_nx.ome.zarr.respool_g4_pair"
+GRAD_MAG = "lasagna_inputs/las_008_grad_mag.ome.zarr.respool_g4"
 LASAGNA_SCALE = 4  # sidecar array_shape is ceil(fit frame / 4); see the sidecar meta.json
+TRACKS = "tracks/2um_ds2_ps256_surf_v2.dbm"  # logical DBM path: <this>.db, .vctracks/, .crossings.npz
 
 _print_lock = threading.Lock()
 
@@ -140,10 +146,23 @@ def read_npy_int32(path: Path) -> array.array:
     return values
 
 
-def fetch_normals(out_root: Path, z_begin: int, z_end: int, pool: ThreadPoolExecutor) -> None:
-    side = out_root / NORMALS
+def fetch_piece(path: Path, rel: str, a: int, b: int) -> int:
+    """Fetch bytes [a, b) of BASE/rel into the same offsets of the existing file ``path``."""
+    body = http(f"{BASE}/{quote(rel)}", (a, b))
+    assert body is not None and len(body) == b - a, (rel, a, b)
+    fd = os.open(path, os.O_WRONLY)
+    try:
+        os.pwrite(fd, body, a)
+    finally:
+        os.close(fd)
+    return b - a
+
+
+def fetch_sidecar(out_root: Path, rel: str, label: str, z_begin: int, z_end: int,
+                  pool: ThreadPoolExecutor) -> None:
+    side = out_root / rel
     for name in ("meta.json", "table.npy", "brick_coords.npy"):
-        fetch_file(f"{NORMALS}/{name}", out_root)
+        fetch_file(f"{rel}/{name}", out_root)
     meta = json.loads((side / "meta.json").read_text())
     bz = int(meta["brick_shape"][0])
     brick_bytes = math.prod(int(v) for v in meta["brick_shape"])  # one uint8 channel
@@ -173,25 +192,58 @@ def fetch_normals(out_root: Path, z_begin: int, z_end: int, pool: ThreadPoolExec
             a, b = lo * brick_bytes, hi * brick_bytes
             jobs.append((ch, lo, hi, path, [(s, min(s + part, b)) for s in range(a, b, part)]))
     total = sum(b - a for *_, pieces in jobs for a, b in pieces)
-    log(f"normals: {len(keep)}/{rows} brick rows in {len(row_runs)} runs, "
+    log(f"{label}: {len(keep)}/{rows} brick rows in {len(row_runs)} runs, "
         f"{total / 2**30:.2f} GiB to fetch over {len(channels)} channels")
-
-    def piece(path: Path, rel: str, a: int, b: int) -> int:
-        body = http(f"{BASE}/{quote(rel)}", (a, b))
-        assert body is not None and len(body) == b - a, (rel, a, b)
-        fd = os.open(path, os.O_WRONLY)
-        try:
-            os.pwrite(fd, body, a)
-        finally:
-            os.close(fd)
-        return b - a
-
-    futs = [pool.submit(piece, path, f"{NORMALS}/{ch}", a, b)
+    futs = [pool.submit(fetch_piece, path, f"{rel}/{ch}", a, b)
             for ch, lo, hi, path, pieces in jobs for a, b in pieces]
     fetched = sum(f.result() for f in futs)
     done.update((ch, lo, hi) for ch, lo, hi, *_ in jobs)
     done_path.write_text(json.dumps(sorted(done)))
-    log(f"normals: fetched {fetched / 2**30:.2f} GiB")
+    log(f"{label}: fetched {fetched / 2**30:.2f} GiB")
+
+
+def fetch_whole(rel: str, out_root: Path, pool: ThreadPoolExecutor, part: int = 32 << 20) -> int:
+    """Download one large file in parallel byte ranges. An interrupted download keeps its finished
+    parts in ``<file>.part`` and lists them in ``<file>.part.json``."""
+    dest = out_root / rel
+    if dest.exists():
+        return 0
+    req = urllib.request.Request(f"{BASE}/{quote(rel)}", method="HEAD")
+    with urllib.request.urlopen(req, timeout=120) as resp:
+        size = int(resp.headers["Content-Length"])
+    tmp = dest.with_name(dest.name + ".part")
+    done_path = dest.with_name(dest.name + ".part.json")
+    done = set(json.loads(done_path.read_text())) if tmp.exists() and done_path.exists() else set()
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if not tmp.exists():
+        with open(tmp, "wb") as f:
+            f.truncate(size)
+    futs = {pool.submit(fetch_piece, tmp, rel, s, min(s + part, size)): s
+            for s in range(0, size, part) if s not in done}
+    fetched, t0 = 0, time.time()
+    for i, fut in enumerate(as_completed(futs), 1):
+        fetched += fut.result()
+        done.add(futs[fut])
+        if i % 32 == 0:
+            done_path.write_text(json.dumps(sorted(done)))
+            log(f"{rel}: {len(done) * part / 2**30:.1f}/{size / 2**30:.1f} GiB "
+                f"({fetched / 2**20 / (time.time() - t0):.0f} MiB/s)")
+    tmp.rename(dest)
+    done_path.unlink(missing_ok=True)
+    return fetched
+
+
+def fetch_tracks(out_root: Path, pool: ThreadPoolExecutor) -> None:
+    store = f"{TRACKS}.vctracks"
+    rels = [f"{store}/{n}" for n in listing(store) if not n.endswith("/")]
+    rels += [f"{TRACKS}.crossings.npz", f"{TRACKS}.db"]
+    fetched = sum(fetch_whole(r, out_root, pool) for r in rels)
+    signature = json.loads((out_root / store / "metadata.json").read_text())["source_db_signature"]
+    for name, size, mtime_ns in signature:
+        path = (out_root / TRACKS).parent / name
+        assert path.stat().st_size == size, (path, path.stat().st_size, size)
+        os.utime(path, ns=(mtime_ns, mtime_ns))
+    log(f"tracks: {len(rels)} files, {fetched / 2**30:.2f} GiB fetched, DBM time set from the packed store")
 
 
 def bbox_hits_window(bbox, z_begin: int, z_end: int) -> bool:
@@ -271,16 +323,20 @@ def main() -> None:
     ap.add_argument("--z-end", type=int, required=True)
     ap.add_argument("--workers", type=int, default=64)
     ap.add_argument("--parts", nargs="+", default=["small", "normals", "patches"],
-                    choices=["small", "normals", "patches"])
+                    choices=["small", "normals", "grad_mag", "patches", "tracks"])
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     with ThreadPoolExecutor(args.workers) as pool:
         if "small" in args.parts:
             fetch_small(args.out, pool)
         if "normals" in args.parts:
-            fetch_normals(args.out, args.z_begin, args.z_end, pool)
+            fetch_sidecar(args.out, NORMALS, "normals", args.z_begin, args.z_end, pool)
+        if "grad_mag" in args.parts:
+            fetch_sidecar(args.out, GRAD_MAG, "grad_mag", args.z_begin, args.z_end, pool)
         if "patches" in args.parts:
             fetch_patches(args.out, args.z_begin, args.z_end, pool)
+        if "tracks" in args.parts:
+            fetch_tracks(args.out, pool)
     log("done")
 
 

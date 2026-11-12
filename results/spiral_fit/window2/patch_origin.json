@@ -1,0 +1,98 @@
+{
+ "sparse_A_s1": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.2641,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.1855,
+   "trained_on": false
+  }
+ },
+ "sparse_A_s2": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.2606,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.1867,
+   "trained_on": false
+  }
+ },
+ "sparse_Eg_s1": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.3517,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.3038,
+   "trained_on": false
+  }
+ },
+ "sparse_Eg_s2": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.3469,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.2974,
+   "trained_on": false
+  }
+ },
+ "sparse_T_s1": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.5906,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.6384,
+   "trained_on": false
+  }
+ },
+ "sparse_TX_s1": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.6144,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.6108,
+   "trained_on": false
+  }
+ },
+ "fullnodt_A_s1": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.7938,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.8677,
+   "trained_on": true
+  }
+ },
+ "fullnodt_A_s2": {
+  "band_seed": {
+   "patches": 13772,
+   "area_satisfied": 0.7625,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 699,
+   "area_satisfied": 0.8431,
+   "trained_on": true
+  }
+ }
+}

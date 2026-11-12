@@ -27,6 +27,14 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
   Q  O without the winding-inference rays
   Eg, Gg, Ig  E, G and I with the gap-filled path set (pcls_g/: every 5th slice, including the
      20 slices within 25 of the held-out arcs that rounds 2-3 left out)
+  T  A with villa's surface tracks (skeleton curves of the surface prediction; off by default)
+  TE, TR  T plus the chains, or plus the automatic relative windings, in the drawn slot (D settings)
+  TB  T plus the published `band-seed*` patches, which villa's grow_track_graph.py grew from the
+     tracks, and no human point collection;  TG  T plus patches grown here the same way
+  TBR  TB plus the automatic relative windings in the drawn slot (D settings)
+  TX  T with what a scroll without a spiral-input dataset offers: gradient-magnitude spacing
+     instead of the winding-inference rays, and no outer shell
+  TXR  TX plus the automatic relative windings in the drawn slot (D settings)
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -79,6 +87,9 @@ AUTO_FILES = {  # relative to --postel
     "patches_rand": "data/PHercParis4/verified_patches_few10_rand471",
     "patches_targ": "data/PHercParis4/verified_patches_few10_targ471",
     "patches_orac": "data/PHercParis4/verified_patches_few10_orac471",
+    "tracks": "data/PHercParis4/tracks",
+    "patches_all": "data/PHercParis4/verified_patches",
+    "patches_grown": "data/PHercParis4/grown_patches",
 }
 FEW_FRACTION, FEW_SEED = 0.10, 0
 FEW_LINKS = {"verified_patches": "patches_few"}
@@ -107,6 +118,16 @@ NO_HUMAN_PCLS = {"input_use_pcl_absolute": False, "input_use_pcl_relative": Fals
                  "input_use_pcl_same_winding": False}
 EARLY_SNAP = {"loss_start_patch_dt": 10000}  # patch snap onto whole windings from step 10,000 (default 25,000)
 SOFT_DEFORM = {"loss_weight_sym_dirichlet": 2.5}  # deformation regulariser at a quarter (default 10)
+TRACKS = {"input_use_tracks": True}
+TRACK_LINKS = {"tracks": "tracks"}
+# Patches without any human point collection. Most folders of the published verified_patches are
+# `band-seed*` patches; the regex keeps only those.
+PATCHES_ONLY = {"input_use_verified_patches": True}
+BAND_SEED_ONLY = PATCHES_ONLY | {"patch_uuid_filter_regex": "^band-seed"}
+BAND_SEED_LINKS = TRACK_LINKS | {"verified_patches": "patches_all"}
+GROWN_LINKS = TRACK_LINKS | {"verified_patches": "patches_grown"}
+NO_SHELL_NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
+                  "input_use_winding_inference": False, "input_use_outer_shell": False}
 # regime -> (human inputs, automatic path file key or None, extra overrides, own budget,
 #            [other automatic files: dataset file name -> AUTO_FILES key])
 REGIMES = {
@@ -126,6 +147,14 @@ REGIMES = {
     "sparse_P": (False, "chains", TWO_STRIP_FILES | RELWIND | NO_WINDING_INFERENCE, False, RELWIND_LINKS),
     "sparse_Q": (False, None, D_SETTINGS | RELWIND | NO_WINDING_INFERENCE, False, RELWIND_LINKS),
     "sparse_Eg": (False, "chains_g", D_SETTINGS, False),
+    "sparse_T": (False, None, TRACKS, False, TRACK_LINKS),
+    "sparse_TE": (False, "chains", TRACKS | D_SETTINGS, False, TRACK_LINKS),
+    "sparse_TR": (False, "relwind", TRACKS | D_SETTINGS, False, TRACK_LINKS),
+    "sparse_TX": (False, None, TRACKS | NO_SHELL_NO_WI, False, TRACK_LINKS),
+    "sparse_TXR": (False, "relwind", TRACKS | NO_SHELL_NO_WI | D_SETTINGS, False, TRACK_LINKS),
+    "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
+    "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
+    "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),
     "full_A": (True, None, {}, False),
     "full_B": (True, "auto", {}, False),
     "fullnodt_A": (True, None, D_SETTINGS, False),

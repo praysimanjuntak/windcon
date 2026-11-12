@@ -1,0 +1,266 @@
+{
+ "sparse_A_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.201,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.16,
+   "trained_on": false
+  }
+ },
+ "sparse_A_s2": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.2012,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 694,
+   "area_satisfied": 0.16,
+   "trained_on": false
+  }
+ },
+ "sparse_E_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.3096,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 694,
+   "area_satisfied": 0.1992,
+   "trained_on": false
+  }
+ },
+ "sparse_E_s2": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.3017,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.1985,
+   "trained_on": false
+  }
+ },
+ "sparse_T_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.6278,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.6012,
+   "trained_on": false
+  }
+ },
+ "sparse_TE_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.4673,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.4303,
+   "trained_on": false
+  }
+ },
+ "sparse_TR_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.6187,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.568,
+   "trained_on": false
+  }
+ },
+ "sparse_TX_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.6248,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.5445,
+   "trained_on": false
+  }
+ },
+ "sparse_TXR_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.5665,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.4796,
+   "trained_on": false
+  }
+ },
+ "sparse_TB_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.7658,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.5129,
+   "trained_on": false
+  }
+ },
+ "sparse_TG_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.729,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.5305,
+   "trained_on": false
+  }
+ },
+ "sparse_TBR_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.8725,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.6213,
+   "trained_on": false
+  }
+ },
+ "few_A_s1": {
+  "band_seed": {
+   "patches": 7623,
+   "area_satisfied": 0.571,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 626,
+   "area_satisfied": 0.4304,
+   "trained_on": false
+  }
+ },
+ "few_A_s2": {
+  "band_seed": {
+   "patches": 7623,
+   "area_satisfied": 0.5766,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 626,
+   "area_satisfied": 0.4441,
+   "trained_on": false
+  }
+ },
+ "few_ARW_s1": {
+  "band_seed": {
+   "patches": 7623,
+   "area_satisfied": 0.6148,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 626,
+   "area_satisfied": 0.4334,
+   "trained_on": false
+  }
+ },
+ "few_ARW_s2": {
+  "band_seed": {
+   "patches": 7623,
+   "area_satisfied": 0.6227,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 626,
+   "area_satisfied": 0.437,
+   "trained_on": false
+  }
+ },
+ "few_ARW_s3": {
+  "band_seed": {
+   "patches": 7623,
+   "area_satisfied": 0.6143,
+   "trained_on": false
+  },
+  "curated": {
+   "patches": 626,
+   "area_satisfied": 0.4312,
+   "trained_on": false
+  }
+ },
+ "fullnodt_A_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.7541,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.8618,
+   "trained_on": true
+  }
+ },
+ "fullnodt_A_s2": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.7667,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.8635,
+   "trained_on": true
+  }
+ },
+ "fullnodt_A_s3": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.7609,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.8565,
+   "trained_on": true
+  }
+ },
+ "fullnodt_ARW_s1": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.8628,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.8982,
+   "trained_on": true
+  }
+ },
+ "fullnodt_ARW_s2": {
+  "band_seed": {
+   "patches": 8471,
+   "area_satisfied": 0.8603,
+   "trained_on": true
+  },
+  "curated": {
+   "patches": 695,
+   "area_satisfied": 0.9078,
+   "trained_on": true
+  }
+ }
+}

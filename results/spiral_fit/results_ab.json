@@ -1296,336 +1296,6 @@
   }
  },
  {
-  "run": "sparse_Eg_s1",
-  "train": "exit=0 elapsed=2303s peak_gpu_MiB=6419",
-  "final_step": "step 29800: loss = 13.0, umbilicus = 0.0, sym_dirichlet = 6.4, dense_normals = 2.2, dense_spacing_winding_model_relative = 1.3, dense_spacing_winding_model_density = 0.2, min_spacing = 0.0, unattached_pcl_radius = 2.7, unattached_pcl_dt = 0.0, shell_outer = 0.2",
-  "train_inputs": {
-   "total_patches": 0,
-   "satisfied_patches_fraction": 0.0,
-   "satisfied_patches_area_weighted_fraction": 0.0,
-   "boundary_satisfied_patches_fraction": 0.0,
-   "total_area": 0.0,
-   "satisfied_area_fraction": 0.0,
-   "total_unattached_pcls": 318614,
-   "satisfied_unattached_pcls_fraction": 0.2904,
-   "total_unattached_pcl_points": 1895183,
-   "satisfied_unattached_pcl_points_fraction": 0.5128
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 318614,
-    "fully_satisfied": 92538,
-    "fully_satisfied_fraction": 0.2904,
-    "points": 1895183,
-    "points_satisfied_fraction": 0.5128
-   }
-  },
-  "patches": {
-   "satisfied_patches": 74,
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.0081,
-   "satisfied_patches_area": 1462800.0,
-   "all_patches_area": 1611468225.0,
-   "satisfied_patches_area_weighted_fraction": 0.0009,
-   "boundary_satisfied_patches": 113,
-   "boundary_total_patches": 9174,
-   "boundary_satisfied_patches_fraction": 0.0123,
-   "satisfied_area": 462053987.5,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.2867
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1662
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.2059,
-    "points": 166,
-    "points_satisfied_fraction": 0.4277
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 1229,
-    "points_satisfied_fraction": 0.2832
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2079
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 517,
-    "points_satisfied_fraction": 0.3868
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 13149,
-    "fully_satisfied_fraction": 0.2784,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5155
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1662
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.2059,
-    "points": 166,
-    "points_satisfied_fraction": 0.4277
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 1229,
-    "points_satisfied_fraction": 0.2832
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2079
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 517,
-    "points_satisfied_fraction": 0.3868
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 27845,
-    "fully_satisfied_fraction": 0.5896,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8226
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2264
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 13,
-    "fully_satisfied_fraction": 0.3824,
-    "points": 166,
-    "points_satisfied_fraction": 0.6627
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.428
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3455
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0556,
-    "points": 517,
-    "points_satisfied_fraction": 0.5416
-   }
-  }
- },
- {
-  "run": "sparse_Eg_s2",
-  "train": "exit=0 elapsed=1893s peak_gpu_MiB=6714",
-  "final_step": "step 29800: loss = 12.8, umbilicus = 0.0, sym_dirichlet = 6.1, dense_normals = 2.2, dense_spacing_winding_model_relative = 1.4, dense_spacing_winding_model_density = 0.2, min_spacing = 0.0, unattached_pcl_radius = 2.4, unattached_pcl_dt = 0.0, shell_outer = 0.5",
-  "train_inputs": {
-   "total_patches": 0,
-   "satisfied_patches_fraction": 0.0,
-   "satisfied_patches_area_weighted_fraction": 0.0,
-   "boundary_satisfied_patches_fraction": 0.0,
-   "total_area": 0.0,
-   "satisfied_area_fraction": 0.0,
-   "total_unattached_pcls": 318614,
-   "satisfied_unattached_pcls_fraction": 0.2909,
-   "total_unattached_pcl_points": 1895183,
-   "satisfied_unattached_pcl_points_fraction": 0.5121
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 318614,
-    "fully_satisfied": 92675,
-    "fully_satisfied_fraction": 0.2909,
-    "points": 1895183,
-    "points_satisfied_fraction": 0.5121
-   }
-  },
-  "patches": {
-   "satisfied_patches": 76,
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.0083,
-   "satisfied_patches_area": 1109600.0,
-   "all_patches_area": 1611468225.0,
-   "satisfied_patches_area_weighted_fraction": 0.0007,
-   "boundary_satisfied_patches": 113,
-   "boundary_total_patches": 9174,
-   "boundary_satisfied_patches_fraction": 0.0123,
-   "satisfied_area": 462131581.25,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.2868
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1702
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 166,
-    "points_satisfied_fraction": 0.4518
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.3539
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.25
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0556,
-    "points": 517,
-    "points_satisfied_fraction": 0.4971
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 13187,
-    "fully_satisfied_fraction": 0.2792,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5146
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1702
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 166,
-    "points_satisfied_fraction": 0.4518
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.3539
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.25
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0556,
-    "points": 517,
-    "points_satisfied_fraction": 0.4971
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 27893,
-    "fully_satisfied_fraction": 0.5906,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8234
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0111,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2314
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.2353,
-    "points": 166,
-    "points_satisfied_fraction": 0.6988
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0857,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4825
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3947
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1667,
-    "points": 517,
-    "points_satisfied_fraction": 0.6035
-   }
-  }
- },
- {
   "run": "sparse_E_s1",
   "train": "exit=0 elapsed=2057s peak_gpu_MiB=7727",
   "final_step": "step 29800: loss = 13.6, umbilicus = 0.0, sym_dirichlet = 6.9, dense_normals = 2.2, dense_spacing_winding_model_relative = 1.3, dense_spacing_winding_model_density = 0.2, min_spacing = 0.0, unattached_pcl_radius = 2.9, unattached_pcl_dt = 0.0, shell_outer = 0.2",
@@ -1952,6 +1622,336 @@
     "fully_satisfied_fraction": 0.1111,
     "points": 517,
     "points_satisfied_fraction": 0.5977
+   }
+  }
+ },
+ {
+  "run": "sparse_Eg_s1",
+  "train": "exit=0 elapsed=2303s peak_gpu_MiB=6419",
+  "final_step": "step 29800: loss = 13.0, umbilicus = 0.0, sym_dirichlet = 6.4, dense_normals = 2.2, dense_spacing_winding_model_relative = 1.3, dense_spacing_winding_model_density = 0.2, min_spacing = 0.0, unattached_pcl_radius = 2.7, unattached_pcl_dt = 0.0, shell_outer = 0.2",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_unattached_pcls": 318614,
+   "satisfied_unattached_pcls_fraction": 0.2904,
+   "total_unattached_pcl_points": 1895183,
+   "satisfied_unattached_pcl_points_fraction": 0.5128
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 318614,
+    "fully_satisfied": 92538,
+    "fully_satisfied_fraction": 0.2904,
+    "points": 1895183,
+    "points_satisfied_fraction": 0.5128
+   }
+  },
+  "patches": {
+   "satisfied_patches": 74,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.0081,
+   "satisfied_patches_area": 1462800.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.0009,
+   "boundary_satisfied_patches": 113,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.0123,
+   "satisfied_area": 462053987.5,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.2867
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1662
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2059,
+    "points": 166,
+    "points_satisfied_fraction": 0.4277
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 1229,
+    "points_satisfied_fraction": 0.2832
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.2079
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 517,
+    "points_satisfied_fraction": 0.3868
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 13149,
+    "fully_satisfied_fraction": 0.2784,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5155
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1662
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2059,
+    "points": 166,
+    "points_satisfied_fraction": 0.4277
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 1229,
+    "points_satisfied_fraction": 0.2832
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.2079
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 517,
+    "points_satisfied_fraction": 0.3868
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 27845,
+    "fully_satisfied_fraction": 0.5896,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8226
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2264
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.3824,
+    "points": 166,
+    "points_satisfied_fraction": 0.6627
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.428
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3455
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0556,
+    "points": 517,
+    "points_satisfied_fraction": 0.5416
+   }
+  }
+ },
+ {
+  "run": "sparse_Eg_s2",
+  "train": "exit=0 elapsed=1893s peak_gpu_MiB=6714",
+  "final_step": "step 29800: loss = 12.8, umbilicus = 0.0, sym_dirichlet = 6.1, dense_normals = 2.2, dense_spacing_winding_model_relative = 1.4, dense_spacing_winding_model_density = 0.2, min_spacing = 0.0, unattached_pcl_radius = 2.4, unattached_pcl_dt = 0.0, shell_outer = 0.5",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_unattached_pcls": 318614,
+   "satisfied_unattached_pcls_fraction": 0.2909,
+   "total_unattached_pcl_points": 1895183,
+   "satisfied_unattached_pcl_points_fraction": 0.5121
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 318614,
+    "fully_satisfied": 92675,
+    "fully_satisfied_fraction": 0.2909,
+    "points": 1895183,
+    "points_satisfied_fraction": 0.5121
+   }
+  },
+  "patches": {
+   "satisfied_patches": 76,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.0083,
+   "satisfied_patches_area": 1109600.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.0007,
+   "boundary_satisfied_patches": 113,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.0123,
+   "satisfied_area": 462131581.25,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.2868
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1702
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 166,
+    "points_satisfied_fraction": 0.4518
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.3539
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.25
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0556,
+    "points": 517,
+    "points_satisfied_fraction": 0.4971
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 13187,
+    "fully_satisfied_fraction": 0.2792,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5146
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1702
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 166,
+    "points_satisfied_fraction": 0.4518
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.3539
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.25
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0556,
+    "points": 517,
+    "points_satisfied_fraction": 0.4971
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 27893,
+    "fully_satisfied_fraction": 0.5906,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8234
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2314
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.2353,
+    "points": 166,
+    "points_satisfied_fraction": 0.6988
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4825
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3947
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
+    "points": 517,
+    "points_satisfied_fraction": 0.6035
    }
   }
  },
@@ -3608,6 +3608,1310 @@
   }
  },
  {
+  "run": "sparse_TBR_s1",
+  "train": "exit=0 elapsed=3939s peak_gpu_MiB=10965",
+  "final_step": "step 29800: loss = 226.9, umbilicus = 0.0, patch_radius = 9.8, patch_dt = 14.0, sym_dirichlet = 25.7, rel_winding = 4.2, abs_winding = 0.0, dense_normals = 4.1, dense_spacing_winding_model_relative = 3.7, dense_spacing_winding_model_density = 0.8, min_spacing = 0.0, unattached_pcl_radius = 5.4, unattached_pcl_dt = 0.0, track_radius = 89.9, track_dt = 68.8, shell_outer = 0.4",
+  "train_inputs": {
+   "total_patches": 8479,
+   "satisfied_patches_fraction": 0.5838,
+   "satisfied_patches_area_weighted_fraction": 0.7233,
+   "boundary_satisfied_patches_fraction": 0.5968,
+   "total_area": 1322893200.0,
+   "satisfied_area_fraction": 0.8721,
+   "total_unattached_pcls": 445758,
+   "satisfied_unattached_pcls_fraction": 0.3585,
+   "total_unattached_pcl_points": 891516,
+   "satisfied_unattached_pcl_points_fraction": 0.527,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.2062,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5848
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 445758,
+    "fully_satisfied": 159804,
+    "fully_satisfied_fraction": 0.3585,
+    "points": 891516,
+    "points_satisfied_fraction": 0.527
+   }
+  },
+  "patches": {
+   "satisfied_patches": 5054,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.5509,
+   "satisfied_patches_area": 989246481.25,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.6139,
+   "boundary_satisfied_patches": 5177,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.5643,
+   "satisfied_area": 1333528268.75,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.8275
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3227
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2647,
+    "points": 166,
+    "points_satisfied_fraction": 0.6325
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7095
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6742
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.3889,
+    "points": 517,
+    "points_satisfied_fraction": 0.7582
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 12539,
+    "fully_satisfied_fraction": 0.2655,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5373
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3227
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2647,
+    "points": 166,
+    "points_satisfied_fraction": 0.6325
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7095
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6742
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.3889,
+    "points": 517,
+    "points_satisfied_fraction": 0.7582
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 28284,
+    "fully_satisfied_fraction": 0.5989,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8442
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.0258,
+    "points": 13628,
+    "points_satisfied_fraction": 0.4915
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 19,
+    "fully_satisfied_fraction": 0.5588,
+    "points": 166,
+    "points_satisfied_fraction": 0.759
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 15,
+    "fully_satisfied_fraction": 0.4286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8706
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3529,
+    "points": 712,
+    "points_satisfied_fraction": 0.9045
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
+    "points": 517,
+    "points_satisfied_fraction": 0.824
+   }
+  }
+ },
+ {
+  "run": "sparse_TB_s1",
+  "train": "exit=0 elapsed=4212s peak_gpu_MiB=11628",
+  "final_step": "step 29800: loss = 236.9, umbilicus = 0.0, patch_radius = 10.7, patch_dt = 28.4, sym_dirichlet = 26.5, dense_normals = 3.6, dense_spacing_winding_model_relative = 4.0, dense_spacing_winding_model_density = 0.8, min_spacing = 0.0, track_radius = 91.3, track_dt = 70.6, shell_outer = 1.0",
+  "train_inputs": {
+   "total_patches": 8479,
+   "satisfied_patches_fraction": 0.4543,
+   "satisfied_patches_area_weighted_fraction": 0.5549,
+   "boundary_satisfied_patches_fraction": 0.4718,
+   "total_area": 1322893200.0,
+   "satisfied_area_fraction": 0.7657,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.2048,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5589
+  },
+  "train_pcls": {},
+  "patches": {
+   "satisfied_patches": 3926,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.4279,
+   "satisfied_patches_area": 756251862.5,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.4693,
+   "boundary_satisfied_patches": 4067,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.4433,
+   "satisfied_area": 1161071762.5,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.7205
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3246
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 166,
+    "points_satisfied_fraction": 0.6024
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6143
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.5815
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.6596
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 11476,
+    "fully_satisfied_fraction": 0.243,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4977
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3246
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 166,
+    "points_satisfied_fraction": 0.6024
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6143
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.5815
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.6596
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 29166,
+    "fully_satisfied_fraction": 0.6176,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8482
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.0221,
+    "points": 13628,
+    "points_satisfied_fraction": 0.5005
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3529,
+    "points": 166,
+    "points_satisfied_fraction": 0.741
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.4,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8242
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.8385
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.3889,
+    "points": 517,
+    "points_satisfied_fraction": 0.8046
+   }
+  }
+ },
+ {
+  "run": "sparse_TE_s1",
+  "train": "exit=0 elapsed=2840s peak_gpu_MiB=10265",
+  "final_step": "step 29800: loss = 160.7, umbilicus = 0.0, sym_dirichlet = 25.4, dense_normals = 4.7, dense_spacing_winding_model_relative = 3.5, dense_spacing_winding_model_density = 0.7, min_spacing = 0.0, unattached_pcl_radius = 2.5, unattached_pcl_dt = 0.0, track_radius = 67.8, track_dt = 55.4, shell_outer = 0.6",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_unattached_pcls": 288074,
+   "satisfied_unattached_pcls_fraction": 0.2127,
+   "total_unattached_pcl_points": 1705863,
+   "satisfied_unattached_pcl_points_fraction": 0.4426,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.1691,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5299
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 288074,
+    "fully_satisfied": 61273,
+    "fully_satisfied_fraction": 0.2127,
+    "points": 1705863,
+    "points_satisfied_fraction": 0.4426
+   }
+  },
+  "patches": {
+   "satisfied_patches": 274,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.0299,
+   "satisfied_patches_area": 20493200.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.0127,
+   "boundary_satisfied_patches": 482,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.0525,
+   "satisfied_area": 742347468.75,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.4607
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3386
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.1471,
+    "points": 166,
+    "points_satisfied_fraction": 0.4699
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7632
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.684
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
+    "points": 517,
+    "points_satisfied_fraction": 0.8723
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 9235,
+    "fully_satisfied_fraction": 0.1955,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4434
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3386
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.1471,
+    "points": 166,
+    "points_satisfied_fraction": 0.4699
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7632
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.684
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
+    "points": 517,
+    "points_satisfied_fraction": 0.8723
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 26599,
+    "fully_satisfied_fraction": 0.5632,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8178
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.0258,
+    "points": 13628,
+    "points_satisfied_fraction": 0.522
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2059,
+    "points": 166,
+    "points_satisfied_fraction": 0.6205
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 17,
+    "fully_satisfied_fraction": 0.4857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.9333
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.9115
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.5556,
+    "points": 517,
+    "points_satisfied_fraction": 0.9632
+   }
+  }
+ },
+ {
+  "run": "sparse_TG_s1",
+  "train": "exit=0 elapsed=2674s peak_gpu_MiB=11090",
+  "final_step": "step 29800: loss = 237.5, umbilicus = 0.0, patch_radius = 8.6, patch_dt = 10.7, sym_dirichlet = 24.7, dense_normals = 3.7, dense_spacing_winding_model_relative = 3.9, dense_spacing_winding_model_density = 0.8, min_spacing = 0.0, track_radius = 112.3, track_dt = 72.6, shell_outer = 0.2",
+  "train_inputs": {
+   "total_patches": 10800,
+   "satisfied_patches_fraction": 0.5477,
+   "satisfied_patches_area_weighted_fraction": 0.6641,
+   "boundary_satisfied_patches_fraction": 0.5588,
+   "total_area": 2095335600.0,
+   "satisfied_area_fraction": 0.8068,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.207,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5595
+  },
+  "train_pcls": {},
+  "patches": {
+   "satisfied_patches": 2221,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.2421,
+   "satisfied_patches_area": 571452375.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.3546,
+   "boundary_satisfied_patches": 1982,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.216,
+   "satisfied_area": 1117467062.5,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.6934
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3462
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 166,
+    "points_satisfied_fraction": 0.6265
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7103
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.6615
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.4444,
+    "points": 517,
+    "points_satisfied_fraction": 0.7776
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 11581,
+    "fully_satisfied_fraction": 0.2452,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4992
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3462
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 166,
+    "points_satisfied_fraction": 0.6265
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7103
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.6615
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.4444,
+    "points": 517,
+    "points_satisfied_fraction": 0.7776
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 29377,
+    "fully_satisfied_fraction": 0.622,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8489
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.0221,
+    "points": 13628,
+    "points_satisfied_fraction": 0.5401
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.2941,
+    "points": 166,
+    "points_satisfied_fraction": 0.7349
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.3714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8861
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2353,
+    "points": 712,
+    "points_satisfied_fraction": 0.8848
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
+    "points": 517,
+    "points_satisfied_fraction": 0.8878
+   }
+  }
+ },
+ {
+  "run": "sparse_TR_s1",
+  "train": "exit=0 elapsed=2870s peak_gpu_MiB=10178",
+  "final_step": "step 29800: loss = 179.3, umbilicus = 0.0, sym_dirichlet = 24.1, dense_normals = 3.6, dense_spacing_winding_model_relative = 3.7, dense_spacing_winding_model_density = 0.6, min_spacing = 0.0, unattached_pcl_radius = 2.9, unattached_pcl_dt = 0.0, track_radius = 81.9, track_dt = 61.6, shell_outer = 0.9",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_unattached_pcls": 515043,
+   "satisfied_unattached_pcls_fraction": 0.3128,
+   "total_unattached_pcl_points": 1030086,
+   "satisfied_unattached_pcl_points_fraction": 0.4874,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.2096,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5855
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 515043,
+    "fully_satisfied": 161127,
+    "fully_satisfied_fraction": 0.3128,
+    "points": 1030086,
+    "points_satisfied_fraction": 0.4874
+   }
+  },
+  "patches": {
+   "satisfied_patches": 763,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.0832,
+   "satisfied_patches_area": 128730531.25,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.0799,
+   "boundary_satisfied_patches": 1207,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.1316,
+   "satisfied_area": 982342112.5,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.6096
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3924
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.2941,
+    "points": 166,
+    "points_satisfied_fraction": 0.6386
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7616
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6671
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0556,
+    "points": 517,
+    "points_satisfied_fraction": 0.8917
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 9848,
+    "fully_satisfied_fraction": 0.2085,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4892
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3924
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.2941,
+    "points": 166,
+    "points_satisfied_fraction": 0.6386
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7616
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6671
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0556,
+    "points": 517,
+    "points_satisfied_fraction": 0.8917
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 26559,
+    "fully_satisfied_fraction": 0.5624,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8251
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.0258,
+    "points": 13628,
+    "points_satisfied_fraction": 0.5875
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 17,
+    "fully_satisfied_fraction": 0.5,
+    "points": 166,
+    "points_satisfied_fraction": 0.7892
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 18,
+    "fully_satisfied_fraction": 0.5143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.943
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5294,
+    "points": 712,
+    "points_satisfied_fraction": 0.9213
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
+    "points": 517,
+    "points_satisfied_fraction": 0.9729
+   }
+  }
+ },
+ {
+  "run": "sparse_TXR_s1",
+  "train": "exit=0 elapsed=2729s peak_gpu_MiB=10277",
+  "final_step": "step 29800: loss = 188.1, umbilicus = 0.0, sym_dirichlet = 25.7, dense_spacing = 14.1, dense_normals = 3.5, min_spacing = 0.0, unattached_pcl_radius = 2.9, unattached_pcl_dt = 0.0, track_radius = 86.3, track_dt = 55.5",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_unattached_pcls": 515043,
+   "satisfied_unattached_pcls_fraction": 0.3686,
+   "total_unattached_pcl_points": 1030086,
+   "satisfied_unattached_pcl_points_fraction": 0.5312,
+   "total_tracks": 1590710,
+   "satisfied_tracks_fraction": 0.2132,
+   "total_track_points": 70575829,
+   "satisfied_track_points_fraction": 0.6042
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 515043,
+    "fully_satisfied": 189827,
+    "fully_satisfied_fraction": 0.3686,
+    "points": 1030086,
+    "points_satisfied_fraction": 0.5312
+   }
+  },
+  "patches": {
+   "satisfied_patches": 625,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.0681,
+   "satisfied_patches_area": 61244956.25,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.038,
+   "boundary_satisfied_patches": 989,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.1078,
+   "satisfied_area": 887849618.75,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.551
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3665
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.1471,
+    "points": 166,
+    "points_satisfied_fraction": 0.4277
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6314
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.5646
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
+    "points": 517,
+    "points_satisfied_fraction": 0.7234
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 9957,
+    "fully_satisfied_fraction": 0.2108,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5135
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3665
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.1471,
+    "points": 166,
+    "points_satisfied_fraction": 0.4277
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6314
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.5646
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
+    "points": 517,
+    "points_satisfied_fraction": 0.7234
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 24404,
+    "fully_satisfied_fraction": 0.5167,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8084
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.0221,
+    "points": 13628,
+    "points_satisfied_fraction": 0.5244
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.2647,
+    "points": 166,
+    "points_satisfied_fraction": 0.5843
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.3143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8389
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2941,
+    "points": 712,
+    "points_satisfied_fraction": 0.8188
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
+    "points": 517,
+    "points_satisfied_fraction": 0.8665
+   }
+  }
+ },
+ {
+  "run": "sparse_TX_s1",
+  "train": "exit=0 elapsed=2131s peak_gpu_MiB=10535",
+  "final_step": "step 29800: loss = 197.0, umbilicus = 0.0, sym_dirichlet = 23.3, dense_spacing = 14.6, dense_normals = 2.8, min_spacing = 0.0, track_radius = 95.7, track_dt = 60.6",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_tracks": 1590710,
+   "satisfied_tracks_fraction": 0.2401,
+   "total_track_points": 70575829,
+   "satisfied_track_points_fraction": 0.6127
+  },
+  "train_pcls": {},
+  "patches": {
+   "satisfied_patches": 1510,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.1646,
+   "satisfied_patches_area": 218642825.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.1357,
+   "boundary_satisfied_patches": 1870,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.2038,
+   "satisfied_area": 983616506.25,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.6104
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3959
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 166,
+    "points_satisfied_fraction": 0.5422
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6111
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.5421
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1111,
+    "points": 517,
+    "points_satisfied_fraction": 0.706
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 12951,
+    "fully_satisfied_fraction": 0.2742,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5412
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3959
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 166,
+    "points_satisfied_fraction": 0.5422
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6111
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.5421
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1111,
+    "points": 517,
+    "points_satisfied_fraction": 0.706
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 29243,
+    "fully_satisfied_fraction": 0.6192,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8511
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.0148,
+    "points": 13628,
+    "points_satisfied_fraction": 0.5779
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2059,
+    "points": 166,
+    "points_satisfied_fraction": 0.6205
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.3143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8527
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2941,
+    "points": 712,
+    "points_satisfied_fraction": 0.8511
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
+    "points": 517,
+    "points_satisfied_fraction": 0.8549
+   }
+  }
+ },
+ {
+  "run": "sparse_T_s1",
+  "train": "exit=0 elapsed=3841s peak_gpu_MiB=11628",
+  "final_step": "step 29800: loss = 186.8, umbilicus = 0.0, sym_dirichlet = 23.9, dense_normals = 2.9, dense_spacing_winding_model_relative = 3.8, dense_spacing_winding_model_density = 0.6, min_spacing = 0.0, track_radius = 91.1, track_dt = 63.5, shell_outer = 0.9",
+  "train_inputs": {
+   "total_patches": 0,
+   "satisfied_patches_fraction": 0.0,
+   "satisfied_patches_area_weighted_fraction": 0.0,
+   "boundary_satisfied_patches_fraction": 0.0,
+   "total_area": 0.0,
+   "satisfied_area_fraction": 0.0,
+   "total_tracks": 1518981,
+   "satisfied_tracks_fraction": 0.2319,
+   "total_track_points": 68611830,
+   "satisfied_track_points_fraction": 0.5878
+  },
+  "train_pcls": {},
+  "patches": {
+   "satisfied_patches": 1615,
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.176,
+   "satisfied_patches_area": 306844325.0,
+   "all_patches_area": 1611468225.0,
+   "satisfied_patches_area_weighted_fraction": 0.1904,
+   "boundary_satisfied_patches": 1945,
+   "boundary_total_patches": 9174,
+   "boundary_satisfied_patches_fraction": 0.212,
+   "satisfied_area": 1003985012.5,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.623
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3879
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3529,
+    "points": 166,
+    "points_satisfied_fraction": 0.7169
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7087
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.5913
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.8704
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 12652,
+    "fully_satisfied_fraction": 0.2679,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5156
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3879
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3529,
+    "points": 166,
+    "points_satisfied_fraction": 0.7169
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7087
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.5913
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.8704
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 31004,
+    "fully_satisfied_fraction": 0.6565,
+    "points": 196944,
+    "points_satisfied_fraction": 0.862
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.599
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 19,
+    "fully_satisfied_fraction": 0.5588,
+    "points": 166,
+    "points_satisfied_fraction": 0.8614
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 17,
+    "fully_satisfied_fraction": 0.4857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8812
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.8329
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.5556,
+    "points": 517,
+    "points_satisfied_fraction": 0.9478
+   }
+  }
+ },
+ {
   "run": "full_A_s1",
   "train": "exit=0 elapsed=2347s peak_gpu_MiB=9334",
   "final_step": "step 29800: loss = 57.3, umbilicus = 0.0, patch_radius = 12.4, patch_dt = 25.4, sym_dirichlet = 12.2, rel_winding = 2.3, abs_winding = 0.0, dense_normals = 1.7, dense_spacing_winding_model_relative = 2.4, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.1, shell_outer = 0.5",
@@ -4570,336 +5874,6 @@
   }
  },
  {
-  "run": "fullnodt_ARWd_s1",
-  "train": "exit=0 elapsed=2953s peak_gpu_MiB=8580",
-  "final_step": "step 29800: loss = 60.9, umbilicus = 0.0, patch_radius = 10.2, patch_dt = 23.5, sym_dirichlet = 13.4, rel_winding = 5.6, abs_winding = 2.7, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.4, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.5, unattached_pcl_dt = 0.0, shell_outer = 0.5",
-  "train_inputs": {
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.5921,
-   "satisfied_patches_area_weighted_fraction": 0.686,
-   "boundary_satisfied_patches_fraction": 0.6165,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.8666,
-   "total_unattached_pcls": 427680,
-   "satisfied_unattached_pcls_fraction": 0.3412,
-   "total_unattached_pcl_points": 855586,
-   "satisfied_unattached_pcl_points_fraction": 0.5294
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 427658,
-    "fully_satisfied": 145901,
-    "fully_satisfied_fraction": 0.3412,
-    "points": 855316,
-    "points_satisfied_fraction": 0.5294
-   },
-   "relative": {
-    "collections": 17,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 95,
-    "points_satisfied_fraction": 0.8632
-   },
-   "same_winding": {
-    "collections": 5,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.6,
-    "points": 175,
-    "points_satisfied_fraction": 0.5314
-   }
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.34
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.4,
-    "points": 1229,
-    "points_satisfied_fraction": 0.795
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
-    "points": 712,
-    "points_satisfied_fraction": 0.6671
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.6111,
-    "points": 517,
-    "points_satisfied_fraction": 0.971
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 15243,
-    "fully_satisfied_fraction": 0.3228,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5697
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.34
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.4,
-    "points": 1229,
-    "points_satisfied_fraction": 0.795
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
-    "points": 712,
-    "points_satisfied_fraction": 0.6671
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.6111,
-    "points": 517,
-    "points_satisfied_fraction": 0.971
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 30285,
-    "fully_satisfied_fraction": 0.6413,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8548
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0111,
-    "points": 13628,
-    "points_satisfied_fraction": 0.4782
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 30,
-    "fully_satisfied_fraction": 0.8824,
-    "points": 166,
-    "points_satisfied_fraction": 0.9096
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 24,
-    "fully_satisfied_fraction": 0.6857,
-    "points": 1229,
-    "points_satisfied_fraction": 0.904
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.4118,
-    "points": 712,
-    "points_satisfied_fraction": 0.8385
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 17,
-    "fully_satisfied_fraction": 0.9444,
-    "points": 517,
-    "points_satisfied_fraction": 0.9942
-   }
-  }
- },
- {
-  "run": "fullnodt_ARWh_s1",
-  "train": "exit=0 elapsed=3083s peak_gpu_MiB=7042",
-  "final_step": "step 29800: loss = 58.1, umbilicus = 0.0, patch_radius = 12.1, patch_dt = 24.8, sym_dirichlet = 13.5, rel_winding = 0.0, abs_winding = 2.6, dense_normals = 1.7, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.1, unattached_pcl_dt = 0.0, shell_outer = 0.4",
-  "train_inputs": {
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.5613,
-   "satisfied_patches_area_weighted_fraction": 0.6475,
-   "boundary_satisfied_patches_fraction": 0.5835,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.8324,
-   "total_unattached_pcls": 427680,
-   "satisfied_unattached_pcls_fraction": 0.3012,
-   "total_unattached_pcl_points": 855586,
-   "satisfied_unattached_pcl_points_fraction": 0.5027
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 427658,
-    "fully_satisfied": 128813,
-    "fully_satisfied_fraction": 0.3012,
-    "points": 855316,
-    "points_satisfied_fraction": 0.5027
-   },
-   "relative": {
-    "collections": 17,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 95,
-    "points_satisfied_fraction": 0.8
-   },
-   "same_winding": {
-    "collections": 5,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.6,
-    "points": 175,
-    "points_satisfied_fraction": 0.5543
-   }
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2961
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 29,
-    "fully_satisfied_fraction": 0.8529,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 12,
-    "fully_satisfied_fraction": 0.3429,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7111
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
-    "points": 712,
-    "points_satisfied_fraction": 0.552
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 9,
-    "fully_satisfied_fraction": 0.5,
-    "points": 517,
-    "points_satisfied_fraction": 0.9304
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 14771,
-    "fully_satisfied_fraction": 0.3128,
-    "points": 196944,
-    "points_satisfied_fraction": 0.558
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2961
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 29,
-    "fully_satisfied_fraction": 0.8529,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 12,
-    "fully_satisfied_fraction": 0.3429,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7111
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
-    "points": 712,
-    "points_satisfied_fraction": 0.552
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 9,
-    "fully_satisfied_fraction": 0.5,
-    "points": 517,
-    "points_satisfied_fraction": 0.9304
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 29997,
-    "fully_satisfied_fraction": 0.6352,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8507
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.4207
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 33,
-    "fully_satisfied_fraction": 0.9706,
-    "points": 166,
-    "points_satisfied_fraction": 0.994
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 22,
-    "fully_satisfied_fraction": 0.6286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.8592
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.4118,
-    "points": 712,
-    "points_satisfied_fraction": 0.7654
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 15,
-    "fully_satisfied_fraction": 0.8333,
-    "points": 517,
-    "points_satisfied_fraction": 0.9884
-   }
-  }
- },
- {
   "run": "fullnodt_ARW_s1",
   "train": "exit=0 elapsed=3035s peak_gpu_MiB=6964",
   "final_step": "step 29800: loss = 55.0, umbilicus = 0.0, patch_radius = 10.7, patch_dt = 16.3, sym_dirichlet = 14.7, rel_winding = 5.5, abs_winding = 2.8, dense_normals = 1.7, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.3, unattached_pcl_dt = 0.0, shell_outer = 0.2",
@@ -5226,6 +6200,336 @@
     "fully_satisfied_fraction": 0.9444,
     "points": 517,
     "points_satisfied_fraction": 0.9923
+   }
+  }
+ },
+ {
+  "run": "fullnodt_ARWd_s1",
+  "train": "exit=0 elapsed=2953s peak_gpu_MiB=8580",
+  "final_step": "step 29800: loss = 60.9, umbilicus = 0.0, patch_radius = 10.2, patch_dt = 23.5, sym_dirichlet = 13.4, rel_winding = 5.6, abs_winding = 2.7, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.4, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.5, unattached_pcl_dt = 0.0, shell_outer = 0.5",
+  "train_inputs": {
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.5921,
+   "satisfied_patches_area_weighted_fraction": 0.686,
+   "boundary_satisfied_patches_fraction": 0.6165,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.8666,
+   "total_unattached_pcls": 427680,
+   "satisfied_unattached_pcls_fraction": 0.3412,
+   "total_unattached_pcl_points": 855586,
+   "satisfied_unattached_pcl_points_fraction": 0.5294
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 427658,
+    "fully_satisfied": 145901,
+    "fully_satisfied_fraction": 0.3412,
+    "points": 855316,
+    "points_satisfied_fraction": 0.5294
+   },
+   "relative": {
+    "collections": 17,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 95,
+    "points_satisfied_fraction": 0.8632
+   },
+   "same_winding": {
+    "collections": 5,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.6,
+    "points": 175,
+    "points_satisfied_fraction": 0.5314
+   }
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.34
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.4,
+    "points": 1229,
+    "points_satisfied_fraction": 0.795
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.6671
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.6111,
+    "points": 517,
+    "points_satisfied_fraction": 0.971
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 15243,
+    "fully_satisfied_fraction": 0.3228,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5697
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.34
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.4,
+    "points": 1229,
+    "points_satisfied_fraction": 0.795
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.6671
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.6111,
+    "points": 517,
+    "points_satisfied_fraction": 0.971
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 30285,
+    "fully_satisfied_fraction": 0.6413,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8548
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.4782
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 30,
+    "fully_satisfied_fraction": 0.8824,
+    "points": 166,
+    "points_satisfied_fraction": 0.9096
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 24,
+    "fully_satisfied_fraction": 0.6857,
+    "points": 1229,
+    "points_satisfied_fraction": 0.904
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.8385
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 17,
+    "fully_satisfied_fraction": 0.9444,
+    "points": 517,
+    "points_satisfied_fraction": 0.9942
+   }
+  }
+ },
+ {
+  "run": "fullnodt_ARWh_s1",
+  "train": "exit=0 elapsed=3083s peak_gpu_MiB=7042",
+  "final_step": "step 29800: loss = 58.1, umbilicus = 0.0, patch_radius = 12.1, patch_dt = 24.8, sym_dirichlet = 13.5, rel_winding = 0.0, abs_winding = 2.6, dense_normals = 1.7, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.1, unattached_pcl_dt = 0.0, shell_outer = 0.4",
+  "train_inputs": {
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.5613,
+   "satisfied_patches_area_weighted_fraction": 0.6475,
+   "boundary_satisfied_patches_fraction": 0.5835,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.8324,
+   "total_unattached_pcls": 427680,
+   "satisfied_unattached_pcls_fraction": 0.3012,
+   "total_unattached_pcl_points": 855586,
+   "satisfied_unattached_pcl_points_fraction": 0.5027
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 427658,
+    "fully_satisfied": 128813,
+    "fully_satisfied_fraction": 0.3012,
+    "points": 855316,
+    "points_satisfied_fraction": 0.5027
+   },
+   "relative": {
+    "collections": 17,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 95,
+    "points_satisfied_fraction": 0.8
+   },
+   "same_winding": {
+    "collections": 5,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.6,
+    "points": 175,
+    "points_satisfied_fraction": 0.5543
+   }
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2961
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 29,
+    "fully_satisfied_fraction": 0.8529,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3429,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7111
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.552
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
+    "points": 517,
+    "points_satisfied_fraction": 0.9304
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 14771,
+    "fully_satisfied_fraction": 0.3128,
+    "points": 196944,
+    "points_satisfied_fraction": 0.558
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2961
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 29,
+    "fully_satisfied_fraction": 0.8529,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3429,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7111
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.552
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
+    "points": 517,
+    "points_satisfied_fraction": 0.9304
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 29997,
+    "fully_satisfied_fraction": 0.6352,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8507
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.4207
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 33,
+    "fully_satisfied_fraction": 0.9706,
+    "points": 166,
+    "points_satisfied_fraction": 0.994
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 22,
+    "fully_satisfied_fraction": 0.6286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8592
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.7654
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 15,
+    "fully_satisfied_fraction": 0.8333,
+    "points": 517,
+    "points_satisfied_fraction": 0.9884
    }
   }
  },
@@ -6034,336 +7338,6 @@
   }
  },
  {
-  "run": "fullnodt_Eg_s1",
-  "train": "exit=0 elapsed=4386s peak_gpu_MiB=6419",
-  "final_step": "step 29800: loss = 52.7, umbilicus = 0.0, patch_radius = 9.8, patch_dt = 21.4, sym_dirichlet = 12.6, rel_winding = 0.0, abs_winding = 2.7, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.6, unattached_pcl_dt = 0.0, shell_outer = 1.1",
-  "train_inputs": {
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.5275,
-   "satisfied_patches_area_weighted_fraction": 0.6301,
-   "boundary_satisfied_patches_fraction": 0.5463,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.7914,
-   "total_unattached_pcls": 276562,
-   "satisfied_unattached_pcls_fraction": 0.2596,
-   "total_unattached_pcl_points": 1685829,
-   "satisfied_unattached_pcl_points_fraction": 0.5228
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 276540,
-    "fully_satisfied": 71787,
-    "fully_satisfied_fraction": 0.2596,
-    "points": 1685559,
-    "points_satisfied_fraction": 0.5228
-   },
-   "relative": {
-    "collections": 17,
-    "fully_satisfied": 13,
-    "fully_satisfied_fraction": 0.7647,
-    "points": 95,
-    "points_satisfied_fraction": 0.7789
-   },
-   "same_winding": {
-    "collections": 5,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.8,
-    "points": 175,
-    "points_satisfied_fraction": 0.7943
-   }
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.3202
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 12,
-    "fully_satisfied_fraction": 0.3429,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7234
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 712,
-    "points_satisfied_fraction": 0.5534
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 10,
-    "fully_satisfied_fraction": 0.5556,
-    "points": 517,
-    "points_satisfied_fraction": 0.9574
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 14778,
-    "fully_satisfied_fraction": 0.3129,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5389
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.3202
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 12,
-    "fully_satisfied_fraction": 0.3429,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7234
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 712,
-    "points_satisfied_fraction": 0.5534
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 10,
-    "fully_satisfied_fraction": 0.5556,
-    "points": 517,
-    "points_satisfied_fraction": 0.9574
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 31120,
-    "fully_satisfied_fraction": 0.6589,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8578
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0111,
-    "points": 13628,
-    "points_satisfied_fraction": 0.4529
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 32,
-    "fully_satisfied_fraction": 0.9412,
-    "points": 166,
-    "points_satisfied_fraction": 0.9398
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 22,
-    "fully_satisfied_fraction": 0.6286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.8421
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3529,
-    "points": 712,
-    "points_satisfied_fraction": 0.736
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 16,
-    "fully_satisfied_fraction": 0.8889,
-    "points": 517,
-    "points_satisfied_fraction": 0.9884
-   }
-  }
- },
- {
-  "run": "fullnodt_Eg_s2",
-  "train": "exit=0 elapsed=2911s peak_gpu_MiB=6714",
-  "final_step": "step 29800: loss = 64.7, umbilicus = 0.0, patch_radius = 11.7, patch_dt = 28.2, sym_dirichlet = 10.5, rel_winding = 5.8, abs_winding = 2.8, dense_normals = 1.8, dense_spacing_winding_model_relative = 2.6, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.6",
-  "train_inputs": {
-   "total_patches": 9174,
-   "satisfied_patches_fraction": 0.525,
-   "satisfied_patches_area_weighted_fraction": 0.5988,
-   "boundary_satisfied_patches_fraction": 0.5528,
-   "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.7941,
-   "total_unattached_pcls": 276562,
-   "satisfied_unattached_pcls_fraction": 0.2583,
-   "total_unattached_pcl_points": 1685829,
-   "satisfied_unattached_pcl_points_fraction": 0.522
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 276540,
-    "fully_satisfied": 71417,
-    "fully_satisfied_fraction": 0.2583,
-    "points": 1685559,
-    "points_satisfied_fraction": 0.522
-   },
-   "relative": {
-    "collections": 17,
-    "fully_satisfied": 13,
-    "fully_satisfied_fraction": 0.7647,
-    "points": 95,
-    "points_satisfied_fraction": 0.8105
-   },
-   "same_winding": {
-    "collections": 5,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.6,
-    "points": 175,
-    "points_satisfied_fraction": 0.5314
-   }
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.3219
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8855
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.2286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7152
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 712,
-    "points_satisfied_fraction": 0.5899
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3333,
-    "points": 517,
-    "points_satisfied_fraction": 0.8878
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 14715,
-    "fully_satisfied_fraction": 0.3116,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5396
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.3219
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8855
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.2286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.7152
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1176,
-    "points": 712,
-    "points_satisfied_fraction": 0.5899
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3333,
-    "points": 517,
-    "points_satisfied_fraction": 0.8878
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 30948,
-    "fully_satisfied_fraction": 0.6553,
-    "points": 196944,
-    "points_satisfied_fraction": 0.8571
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.4478
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 33,
-    "fully_satisfied_fraction": 0.9706,
-    "points": 166,
-    "points_satisfied_fraction": 0.994
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 22,
-    "fully_satisfied_fraction": 0.6286,
-    "points": 1229,
-    "points_satisfied_fraction": 0.8576
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3529,
-    "points": 712,
-    "points_satisfied_fraction": 0.7823
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 16,
-    "fully_satisfied_fraction": 0.8889,
-    "points": 517,
-    "points_satisfied_fraction": 0.9613
-   }
-  }
- },
- {
   "run": "fullnodt_E_s1",
   "train": "exit=0 elapsed=3015s peak_gpu_MiB=7293",
   "final_step": "step 29800: loss = 94.9, umbilicus = 0.0, patch_radius = 9.8, patch_dt = 15.9, sym_dirichlet = 14.5, rel_winding = 46.6, abs_winding = 2.5, dense_normals = 1.5, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.5, unattached_pcl_dt = 0.0, shell_outer = 0.8",
@@ -6859,42 +7833,42 @@
   }
  },
  {
-  "run": "fullnodt_Gg_s1",
-  "train": "exit=0 elapsed=2637s peak_gpu_MiB=7710",
-  "final_step": "step 29800: loss = 60.9, umbilicus = 0.1, patch_radius = 14.0, patch_dt = 23.4, sym_dirichlet = 12.4, rel_winding = 2.7, abs_winding = 2.4, dense_normals = 1.5, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.5, unattached_pcl_dt = 0.0, shell_outer = 1.0",
+  "run": "fullnodt_Eg_s1",
+  "train": "exit=0 elapsed=4386s peak_gpu_MiB=6419",
+  "final_step": "step 29800: loss = 52.7, umbilicus = 0.0, patch_radius = 9.8, patch_dt = 21.4, sym_dirichlet = 12.6, rel_winding = 0.0, abs_winding = 2.7, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.6, unattached_pcl_dt = 0.0, shell_outer = 1.1",
   "train_inputs": {
    "total_patches": 9174,
-   "satisfied_patches_fraction": 0.5529,
-   "satisfied_patches_area_weighted_fraction": 0.6315,
-   "boundary_satisfied_patches_fraction": 0.5689,
+   "satisfied_patches_fraction": 0.5275,
+   "satisfied_patches_area_weighted_fraction": 0.6301,
+   "boundary_satisfied_patches_fraction": 0.5463,
    "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.7822,
-   "total_unattached_pcls": 221553,
-   "satisfied_unattached_pcls_fraction": 0.24,
-   "total_unattached_pcl_points": 1076739,
-   "satisfied_unattached_pcl_points_fraction": 0.4534
+   "satisfied_area_fraction": 0.7914,
+   "total_unattached_pcls": 276562,
+   "satisfied_unattached_pcls_fraction": 0.2596,
+   "total_unattached_pcl_points": 1685829,
+   "satisfied_unattached_pcl_points_fraction": 0.5228
   },
   "train_pcls": {
    "auto": {
-    "collections": 221531,
-    "fully_satisfied": 53166,
-    "fully_satisfied_fraction": 0.24,
-    "points": 1076469,
-    "points_satisfied_fraction": 0.4533
+    "collections": 276540,
+    "fully_satisfied": 71787,
+    "fully_satisfied_fraction": 0.2596,
+    "points": 1685559,
+    "points_satisfied_fraction": 0.5228
    },
    "relative": {
     "collections": 17,
     "fully_satisfied": 13,
     "fully_satisfied_fraction": 0.7647,
     "points": 95,
-    "points_satisfied_fraction": 0.8842
+    "points_satisfied_fraction": 0.7789
    },
    "same_winding": {
     "collections": 5,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.6,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.8,
     "points": 175,
-    "points_satisfied_fraction": 0.5829
+    "points_satisfied_fraction": 0.7943
    }
   },
   "pcls": {
@@ -6903,163 +7877,163 @@
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.2819
+    "points_satisfied_fraction": 0.3202
    },
    "relative": {
     "collections": 34,
     "fully_satisfied": 28,
     "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.9217
+    "points_satisfied_fraction": 0.8614
    },
    "same_winding": {
     "collections": 35,
     "fully_satisfied": 12,
     "fully_satisfied_fraction": 0.3429,
     "points": 1229,
-    "points_satisfied_fraction": 0.7884
+    "points_satisfied_fraction": 0.7234
    },
    "same_winding_z10343": {
     "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
     "points": 712,
-    "points_satisfied_fraction": 0.684
+    "points_satisfied_fraction": 0.5534
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 9,
-    "fully_satisfied_fraction": 0.5,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.5556,
     "points": 517,
-    "points_satisfied_fraction": 0.9323
+    "points_satisfied_fraction": 0.9574
    }
   },
   "diag_default": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 14631,
-    "fully_satisfied_fraction": 0.3098,
+    "fully_satisfied": 14778,
+    "fully_satisfied_fraction": 0.3129,
     "points": 196944,
-    "points_satisfied_fraction": 0.5391
+    "points_satisfied_fraction": 0.5389
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.2819
+    "points_satisfied_fraction": 0.3202
    },
    "relative": {
     "collections": 34,
     "fully_satisfied": 28,
     "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.9217
+    "points_satisfied_fraction": 0.8614
    },
    "same_winding": {
     "collections": 35,
     "fully_satisfied": 12,
     "fully_satisfied_fraction": 0.3429,
     "points": 1229,
-    "points_satisfied_fraction": 0.7884
+    "points_satisfied_fraction": 0.7234
    },
    "same_winding_z10343": {
     "collections": 17,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1765,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
     "points": 712,
-    "points_satisfied_fraction": 0.684
+    "points_satisfied_fraction": 0.5534
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 9,
-    "fully_satisfied_fraction": 0.5,
+    "fully_satisfied": 10,
+    "fully_satisfied_fraction": 0.5556,
     "points": 517,
-    "points_satisfied_fraction": 0.9323
+    "points_satisfied_fraction": 0.9574
    }
   },
   "diag_scanfree": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 30852,
-    "fully_satisfied_fraction": 0.6533,
+    "fully_satisfied": 31120,
+    "fully_satisfied_fraction": 0.6589,
     "points": 196944,
-    "points_satisfied_fraction": 0.8562
+    "points_satisfied_fraction": 0.8578
    },
    "fibers": {
     "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
     "points": 13628,
-    "points_satisfied_fraction": 0.4013
+    "points_satisfied_fraction": 0.4529
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 33,
-    "fully_satisfied_fraction": 0.9706,
+    "fully_satisfied": 32,
+    "fully_satisfied_fraction": 0.9412,
     "points": 166,
-    "points_satisfied_fraction": 0.994
+    "points_satisfied_fraction": 0.9398
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 20,
-    "fully_satisfied_fraction": 0.5714,
+    "fully_satisfied": 22,
+    "fully_satisfied_fraction": 0.6286,
     "points": 1229,
-    "points_satisfied_fraction": 0.8861
+    "points_satisfied_fraction": 0.8421
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 6,
     "fully_satisfied_fraction": 0.3529,
     "points": 712,
-    "points_satisfied_fraction": 0.8146
+    "points_satisfied_fraction": 0.736
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.7778,
+    "fully_satisfied": 16,
+    "fully_satisfied_fraction": 0.8889,
     "points": 517,
-    "points_satisfied_fraction": 0.9845
+    "points_satisfied_fraction": 0.9884
    }
   }
  },
  {
-  "run": "fullnodt_Gg_s2",
-  "train": "exit=0 elapsed=2637s peak_gpu_MiB=7722",
-  "final_step": "step 29800: loss = 61.6, umbilicus = 0.0, patch_radius = 8.4, patch_dt = 28.3, sym_dirichlet = 14.0, rel_winding = 3.0, abs_winding = 2.5, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.6",
+  "run": "fullnodt_Eg_s2",
+  "train": "exit=0 elapsed=2911s peak_gpu_MiB=6714",
+  "final_step": "step 29800: loss = 64.7, umbilicus = 0.0, patch_radius = 11.7, patch_dt = 28.2, sym_dirichlet = 10.5, rel_winding = 5.8, abs_winding = 2.8, dense_normals = 1.8, dense_spacing_winding_model_relative = 2.6, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.6",
   "train_inputs": {
    "total_patches": 9174,
-   "satisfied_patches_fraction": 0.5383,
-   "satisfied_patches_area_weighted_fraction": 0.6093,
-   "boundary_satisfied_patches_fraction": 0.5559,
+   "satisfied_patches_fraction": 0.525,
+   "satisfied_patches_area_weighted_fraction": 0.5988,
+   "boundary_satisfied_patches_fraction": 0.5528,
    "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.7803,
-   "total_unattached_pcls": 221553,
-   "satisfied_unattached_pcls_fraction": 0.2405,
-   "total_unattached_pcl_points": 1076739,
-   "satisfied_unattached_pcl_points_fraction": 0.4532
+   "satisfied_area_fraction": 0.7941,
+   "total_unattached_pcls": 276562,
+   "satisfied_unattached_pcls_fraction": 0.2583,
+   "total_unattached_pcl_points": 1685829,
+   "satisfied_unattached_pcl_points_fraction": 0.522
   },
   "train_pcls": {
    "auto": {
-    "collections": 221531,
-    "fully_satisfied": 53264,
-    "fully_satisfied_fraction": 0.2404,
-    "points": 1076469,
-    "points_satisfied_fraction": 0.4531
+    "collections": 276540,
+    "fully_satisfied": 71417,
+    "fully_satisfied_fraction": 0.2583,
+    "points": 1685559,
+    "points_satisfied_fraction": 0.522
    },
    "relative": {
     "collections": 17,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.8235,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.7647,
     "points": 95,
-    "points_satisfied_fraction": 0.8947
+    "points_satisfied_fraction": 0.8105
    },
    "same_winding": {
     "collections": 5,
     "fully_satisfied": 3,
     "fully_satisfied_fraction": 0.6,
     "points": 175,
-    "points_satisfied_fraction": 0.6514
+    "points_satisfied_fraction": 0.5314
    }
   },
   "pcls": {
@@ -7068,95 +8042,95 @@
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.281
+    "points_satisfied_fraction": 0.3219
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 30,
-    "fully_satisfied_fraction": 0.8824,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.9337
+    "points_satisfied_fraction": 0.8855
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 13,
-    "fully_satisfied_fraction": 0.3714,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.2286,
     "points": 1229,
-    "points_satisfied_fraction": 0.751
+    "points_satisfied_fraction": 0.7152
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 2,
     "fully_satisfied_fraction": 0.1176,
     "points": 712,
-    "points_satisfied_fraction": 0.6039
+    "points_satisfied_fraction": 0.5899
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.6111,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
     "points": 517,
-    "points_satisfied_fraction": 0.9536
+    "points_satisfied_fraction": 0.8878
    }
   },
   "diag_default": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 14830,
-    "fully_satisfied_fraction": 0.314,
+    "fully_satisfied": 14715,
+    "fully_satisfied_fraction": 0.3116,
     "points": 196944,
-    "points_satisfied_fraction": 0.5398
+    "points_satisfied_fraction": 0.5396
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.281
+    "points_satisfied_fraction": 0.3219
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 30,
-    "fully_satisfied_fraction": 0.8824,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.9337
+    "points_satisfied_fraction": 0.8855
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 13,
-    "fully_satisfied_fraction": 0.3714,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.2286,
     "points": 1229,
-    "points_satisfied_fraction": 0.751
+    "points_satisfied_fraction": 0.7152
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 2,
     "fully_satisfied_fraction": 0.1176,
     "points": 712,
-    "points_satisfied_fraction": 0.6039
+    "points_satisfied_fraction": 0.5899
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.6111,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
     "points": 517,
-    "points_satisfied_fraction": 0.9536
+    "points_satisfied_fraction": 0.8878
    }
   },
   "diag_scanfree": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 30735,
-    "fully_satisfied_fraction": 0.6508,
+    "fully_satisfied": 30948,
+    "fully_satisfied_fraction": 0.6553,
     "points": 196944,
-    "points_satisfied_fraction": 0.8548
+    "points_satisfied_fraction": 0.8571
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 2,
     "fully_satisfied_fraction": 0.0074,
     "points": 13628,
-    "points_satisfied_fraction": 0.4002
+    "points_satisfied_fraction": 0.4478
    },
    "relative": {
     "collections": 34,
@@ -7167,24 +8141,24 @@
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 21,
-    "fully_satisfied_fraction": 0.6,
+    "fully_satisfied": 22,
+    "fully_satisfied_fraction": 0.6286,
     "points": 1229,
-    "points_satisfied_fraction": 0.8755
+    "points_satisfied_fraction": 0.8576
    },
    "same_winding_z10343": {
     "collections": 17,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.4118,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3529,
     "points": 712,
-    "points_satisfied_fraction": 0.7963
+    "points_satisfied_fraction": 0.7823
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 14,
-    "fully_satisfied_fraction": 0.7778,
+    "fully_satisfied": 16,
+    "fully_satisfied_fraction": 0.8889,
     "points": 517,
-    "points_satisfied_fraction": 0.9845
+    "points_satisfied_fraction": 0.9613
    }
   }
  },
@@ -7523,42 +8497,42 @@
   "final_step": "step 200: loss = 743.0, umbilicus = 0.2, patch_radius = 238.6, patch_dt = 0.0, sym_dirichlet = 4.7, rel_winding = 0.0, abs_winding = 222.6, dense_normals = 19.3, dense_spacing_winding_model_relative = 18.7, dense_spacing_winding_model_density = 1.4, min_spacing = 0.0, unattached_pcl_radius = 2.3, unattached_pcl_dt = 0.0, shell_outer = 235.2"
  },
  {
-  "run": "fullnodt_IgDT_s1",
-  "train": "exit=0 elapsed=3227s peak_gpu_MiB=7679",
-  "final_step": "step 29800: loss = 55.2, umbilicus = 0.0, patch_radius = 10.5, patch_dt = 13.9, sym_dirichlet = 18.0, rel_winding = 3.5, abs_winding = 2.5, dense_normals = 1.9, dense_spacing_winding_model_relative = 3.4, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.7",
+  "run": "fullnodt_Gg_s1",
+  "train": "exit=0 elapsed=2637s peak_gpu_MiB=7710",
+  "final_step": "step 29800: loss = 60.9, umbilicus = 0.1, patch_radius = 14.0, patch_dt = 23.4, sym_dirichlet = 12.4, rel_winding = 2.7, abs_winding = 2.4, dense_normals = 1.5, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.5, unattached_pcl_dt = 0.0, shell_outer = 1.0",
   "train_inputs": {
    "total_patches": 9174,
-   "satisfied_patches_fraction": 0.6365,
-   "satisfied_patches_area_weighted_fraction": 0.6956,
-   "boundary_satisfied_patches_fraction": 0.6548,
+   "satisfied_patches_fraction": 0.5529,
+   "satisfied_patches_area_weighted_fraction": 0.6315,
+   "boundary_satisfied_patches_fraction": 0.5689,
    "total_area": 1611468225.0,
-   "satisfied_area_fraction": 0.8375,
-   "total_unattached_pcls": 276562,
-   "satisfied_unattached_pcls_fraction": 0.2546,
-   "total_unattached_pcl_points": 1685829,
-   "satisfied_unattached_pcl_points_fraction": 0.535
+   "satisfied_area_fraction": 0.7822,
+   "total_unattached_pcls": 221553,
+   "satisfied_unattached_pcls_fraction": 0.24,
+   "total_unattached_pcl_points": 1076739,
+   "satisfied_unattached_pcl_points_fraction": 0.4534
   },
   "train_pcls": {
    "auto": {
-    "collections": 276540,
-    "fully_satisfied": 70387,
-    "fully_satisfied_fraction": 0.2545,
-    "points": 1685559,
-    "points_satisfied_fraction": 0.535
+    "collections": 221531,
+    "fully_satisfied": 53166,
+    "fully_satisfied_fraction": 0.24,
+    "points": 1076469,
+    "points_satisfied_fraction": 0.4533
    },
    "relative": {
     "collections": 17,
-    "fully_satisfied": 12,
-    "fully_satisfied_fraction": 0.7059,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.7647,
     "points": 95,
-    "points_satisfied_fraction": 0.7368
+    "points_satisfied_fraction": 0.8842
    },
    "same_winding": {
     "collections": 5,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.8,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.6,
     "points": 175,
-    "points_satisfied_fraction": 0.7886
+    "points_satisfied_fraction": 0.5829
    }
   },
   "pcls": {
@@ -7567,123 +8541,288 @@
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.2645
+    "points_satisfied_fraction": 0.2819
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 26,
-    "fully_satisfied_fraction": 0.7647,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.8313
+    "points_satisfied_fraction": 0.9217
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.3143,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3429,
     "points": 1229,
-    "points_satisfied_fraction": 0.6697
+    "points_satisfied_fraction": 0.7884
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 3,
     "fully_satisfied_fraction": 0.1765,
     "points": 712,
-    "points_satisfied_fraction": 0.4972
+    "points_satisfied_fraction": 0.684
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.4444,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
     "points": 517,
-    "points_satisfied_fraction": 0.9072
+    "points_satisfied_fraction": 0.9323
    }
   },
   "diag_default": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 15091,
-    "fully_satisfied_fraction": 0.3195,
+    "fully_satisfied": 14631,
+    "fully_satisfied_fraction": 0.3098,
     "points": 196944,
-    "points_satisfied_fraction": 0.5541
+    "points_satisfied_fraction": 0.5391
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 1,
     "fully_satisfied_fraction": 0.0037,
     "points": 13628,
-    "points_satisfied_fraction": 0.2645
+    "points_satisfied_fraction": 0.2819
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 26,
-    "fully_satisfied_fraction": 0.7647,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
     "points": 166,
-    "points_satisfied_fraction": 0.8313
+    "points_satisfied_fraction": 0.9217
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 11,
-    "fully_satisfied_fraction": 0.3143,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.3429,
     "points": 1229,
-    "points_satisfied_fraction": 0.6697
+    "points_satisfied_fraction": 0.7884
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 3,
     "fully_satisfied_fraction": 0.1765,
     "points": 712,
-    "points_satisfied_fraction": 0.4972
+    "points_satisfied_fraction": 0.684
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.4444,
+    "fully_satisfied": 9,
+    "fully_satisfied_fraction": 0.5,
     "points": 517,
-    "points_satisfied_fraction": 0.9072
+    "points_satisfied_fraction": 0.9323
    }
   },
   "diag_scanfree": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 30673,
-    "fully_satisfied_fraction": 0.6495,
+    "fully_satisfied": 30852,
+    "fully_satisfied_fraction": 0.6533,
     "points": 196944,
-    "points_satisfied_fraction": 0.8558
+    "points_satisfied_fraction": 0.8562
    },
    "fibers": {
     "collections": 271,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0111,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
     "points": 13628,
-    "points_satisfied_fraction": 0.3854
+    "points_satisfied_fraction": 0.4013
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 32,
-    "fully_satisfied_fraction": 0.9412,
+    "fully_satisfied": 33,
+    "fully_satisfied_fraction": 0.9706,
     "points": 166,
-    "points_satisfied_fraction": 0.9458
+    "points_satisfied_fraction": 0.994
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 22,
-    "fully_satisfied_fraction": 0.6286,
+    "fully_satisfied": 20,
+    "fully_satisfied_fraction": 0.5714,
     "points": 1229,
-    "points_satisfied_fraction": 0.7998
+    "points_satisfied_fraction": 0.8861
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3529,
+    "points": 712,
+    "points_satisfied_fraction": 0.8146
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.7778,
+    "points": 517,
+    "points_satisfied_fraction": 0.9845
+   }
+  }
+ },
+ {
+  "run": "fullnodt_Gg_s2",
+  "train": "exit=0 elapsed=2637s peak_gpu_MiB=7722",
+  "final_step": "step 29800: loss = 61.6, umbilicus = 0.0, patch_radius = 8.4, patch_dt = 28.3, sym_dirichlet = 14.0, rel_winding = 3.0, abs_winding = 2.5, dense_normals = 1.6, dense_spacing_winding_model_relative = 2.5, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.6",
+  "train_inputs": {
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.5383,
+   "satisfied_patches_area_weighted_fraction": 0.6093,
+   "boundary_satisfied_patches_fraction": 0.5559,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.7803,
+   "total_unattached_pcls": 221553,
+   "satisfied_unattached_pcls_fraction": 0.2405,
+   "total_unattached_pcl_points": 1076739,
+   "satisfied_unattached_pcl_points_fraction": 0.4532
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 221531,
+    "fully_satisfied": 53264,
+    "fully_satisfied_fraction": 0.2404,
+    "points": 1076469,
+    "points_satisfied_fraction": 0.4531
+   },
+   "relative": {
+    "collections": 17,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 95,
+    "points_satisfied_fraction": 0.8947
+   },
+   "same_winding": {
+    "collections": 5,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.6,
+    "points": 175,
+    "points_satisfied_fraction": 0.6514
+   }
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.281
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 30,
+    "fully_satisfied_fraction": 0.8824,
+    "points": 166,
+    "points_satisfied_fraction": 0.9337
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.3714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.751
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6039
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.6111,
+    "points": 517,
+    "points_satisfied_fraction": 0.9536
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 14830,
+    "fully_satisfied_fraction": 0.314,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5398
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.281
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 30,
+    "fully_satisfied_fraction": 0.8824,
+    "points": 166,
+    "points_satisfied_fraction": 0.9337
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 13,
+    "fully_satisfied_fraction": 0.3714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.751
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.6039
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.6111,
+    "points": 517,
+    "points_satisfied_fraction": 0.9536
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 30735,
+    "fully_satisfied_fraction": 0.6508,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8548
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.4002
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 33,
+    "fully_satisfied_fraction": 0.9706,
+    "points": 166,
+    "points_satisfied_fraction": 0.994
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 21,
+    "fully_satisfied_fraction": 0.6,
+    "points": 1229,
+    "points_satisfied_fraction": 0.8755
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 7,
     "fully_satisfied_fraction": 0.4118,
     "points": 712,
-    "points_satisfied_fraction": 0.6629
+    "points_satisfied_fraction": 0.7963
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 15,
-    "fully_satisfied_fraction": 0.8333,
+    "fully_satisfied": 14,
+    "fully_satisfied_fraction": 0.7778,
     "points": 517,
-    "points_satisfied_fraction": 0.9884
+    "points_satisfied_fraction": 0.9845
    }
   }
  },
@@ -7855,6 +8994,171 @@
  {
   "run": "fullnodt_I_s2",
   "final_step": ""
+ },
+ {
+  "run": "fullnodt_IgDT_s1",
+  "train": "exit=0 elapsed=3227s peak_gpu_MiB=7679",
+  "final_step": "step 29800: loss = 55.2, umbilicus = 0.0, patch_radius = 10.5, patch_dt = 13.9, sym_dirichlet = 18.0, rel_winding = 3.5, abs_winding = 2.5, dense_normals = 1.9, dense_spacing_winding_model_relative = 3.4, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 0.7",
+  "train_inputs": {
+   "total_patches": 9174,
+   "satisfied_patches_fraction": 0.6365,
+   "satisfied_patches_area_weighted_fraction": 0.6956,
+   "boundary_satisfied_patches_fraction": 0.6548,
+   "total_area": 1611468225.0,
+   "satisfied_area_fraction": 0.8375,
+   "total_unattached_pcls": 276562,
+   "satisfied_unattached_pcls_fraction": 0.2546,
+   "total_unattached_pcl_points": 1685829,
+   "satisfied_unattached_pcl_points_fraction": 0.535
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 276540,
+    "fully_satisfied": 70387,
+    "fully_satisfied_fraction": 0.2545,
+    "points": 1685559,
+    "points_satisfied_fraction": 0.535
+   },
+   "relative": {
+    "collections": 17,
+    "fully_satisfied": 12,
+    "fully_satisfied_fraction": 0.7059,
+    "points": 95,
+    "points_satisfied_fraction": 0.7368
+   },
+   "same_winding": {
+    "collections": 5,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.8,
+    "points": 175,
+    "points_satisfied_fraction": 0.7886
+   }
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2645
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 26,
+    "fully_satisfied_fraction": 0.7647,
+    "points": 166,
+    "points_satisfied_fraction": 0.8313
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.3143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6697
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.4972
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.4444,
+    "points": 517,
+    "points_satisfied_fraction": 0.9072
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 15091,
+    "fully_satisfied_fraction": 0.3195,
+    "points": 196944,
+    "points_satisfied_fraction": 0.5541
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2645
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 26,
+    "fully_satisfied_fraction": 0.7647,
+    "points": 166,
+    "points_satisfied_fraction": 0.8313
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 11,
+    "fully_satisfied_fraction": 0.3143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6697
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1765,
+    "points": 712,
+    "points_satisfied_fraction": 0.4972
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.4444,
+    "points": 517,
+    "points_satisfied_fraction": 0.9072
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 30673,
+    "fully_satisfied_fraction": 0.6495,
+    "points": 196944,
+    "points_satisfied_fraction": 0.8558
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0111,
+    "points": 13628,
+    "points_satisfied_fraction": 0.3854
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 32,
+    "fully_satisfied_fraction": 0.9412,
+    "points": 166,
+    "points_satisfied_fraction": 0.9458
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 22,
+    "fully_satisfied_fraction": 0.6286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.7998
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.4118,
+    "points": 712,
+    "points_satisfied_fraction": 0.6629
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 15,
+    "fully_satisfied_fraction": 0.8333,
+    "points": 517,
+    "points_satisfied_fraction": 0.9884
+   }
+  }
  },
  {
   "run": "few_ADT_s1",
@@ -8870,364 +10174,6 @@
   }
  },
  {
-  "run": "few_ARWh_s1",
-  "train": "exit=0 elapsed=2554s peak_gpu_MiB=5914",
-  "final_step": "step 29800: loss = 36.5, umbilicus = 0.1, patch_radius = 5.5, patch_dt = 9.1, sym_dirichlet = 14.1, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 3.4, dense_spacing_winding_model_relative = 3.3, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.3, unattached_pcl_dt = 0.0, shell_outer = 0.4",
-  "train_inputs": {
-   "total_patches": 917,
-   "satisfied_patches_fraction": 0.6881,
-   "satisfied_patches_area_weighted_fraction": 0.7779,
-   "boundary_satisfied_patches_fraction": 0.7121,
-   "total_area": 168549168.75,
-   "satisfied_area_fraction": 0.8983,
-   "total_unattached_pcls": 502487,
-   "satisfied_unattached_pcls_fraction": 0.2761,
-   "total_unattached_pcl_points": 1005440,
-   "satisfied_unattached_pcl_points_fraction": 0.4802
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 502442,
-    "fully_satisfied": 138685,
-    "fully_satisfied_fraction": 0.276,
-    "points": 1004884,
-    "points_satisfied_fraction": 0.4801
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 25,
-    "fully_satisfied_fraction": 0.7353,
-    "points": 166,
-    "points_satisfied_fraction": 0.8554
-   },
-   "same_winding": {
-    "collections": 11,
-    "fully_satisfied": 5,
-    "fully_satisfied_fraction": 0.4545,
-    "points": 390,
-    "points_satisfied_fraction": 0.5333
-   }
-  },
-  "patches": {
-   "satisfied_patches": 1389,
-   "total_patches": 8257,
-   "satisfied_patches_fraction": 0.1682,
-   "satisfied_patches_area": 269269106.25,
-   "all_patches_area": 1442919056.25,
-   "satisfied_patches_area_weighted_fraction": 0.1866,
-   "boundary_satisfied_patches": 1324,
-   "boundary_total_patches": 8257,
-   "boundary_satisfied_patches_fraction": 0.1603,
-   "satisfied_area": 832927368.75,
-   "total_area": 1442919056.25,
-   "satisfied_area_fraction": 0.5773
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1512
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 25,
-    "fully_satisfied_fraction": 0.7353,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4736
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3188
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6867
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 10753,
-    "fully_satisfied_fraction": 0.2277,
-    "points": 196944,
-    "points_satisfied_fraction": 0.4846
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1512
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 25,
-    "fully_satisfied_fraction": 0.7353,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4736
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3188
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6867
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 23379,
-    "fully_satisfied_fraction": 0.495,
-    "points": 196944,
-    "points_satisfied_fraction": 0.7715
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0074,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2165
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 31,
-    "fully_satisfied_fraction": 0.9118,
-    "points": 166,
-    "points_satisfied_fraction": 0.9337
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.2,
-    "points": 1229,
-    "points_satisfied_fraction": 0.6314
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0588,
-    "points": 712,
-    "points_satisfied_fraction": 0.5
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3333,
-    "points": 517,
-    "points_satisfied_fraction": 0.8124
-   }
-  }
- },
- {
-  "run": "few_ARWh_s2",
-  "train": "exit=0 elapsed=2587s peak_gpu_MiB=7038",
-  "final_step": "step 29800: loss = 38.8, umbilicus = 0.0, patch_radius = 5.3, patch_dt = 16.3, sym_dirichlet = 9.9, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 3.0, dense_spacing_winding_model_relative = 3.1, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.3, unattached_pcl_dt = 0.0, shell_outer = 0.2",
-  "train_inputs": {
-   "total_patches": 917,
-   "satisfied_patches_fraction": 0.7317,
-   "satisfied_patches_area_weighted_fraction": 0.8289,
-   "boundary_satisfied_patches_fraction": 0.7361,
-   "total_area": 168549168.75,
-   "satisfied_area_fraction": 0.9084,
-   "total_unattached_pcls": 502487,
-   "satisfied_unattached_pcls_fraction": 0.2754,
-   "total_unattached_pcl_points": 1005440,
-   "satisfied_unattached_pcl_points_fraction": 0.4833
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 502442,
-    "fully_satisfied": 138339,
-    "fully_satisfied_fraction": 0.2753,
-    "points": 1004884,
-    "points_satisfied_fraction": 0.4832
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 11,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.5455,
-    "points": 390,
-    "points_satisfied_fraction": 0.4923
-   }
-  },
-  "patches": {
-   "satisfied_patches": 1576,
-   "total_patches": 8257,
-   "satisfied_patches_fraction": 0.1909,
-   "satisfied_patches_area": 330792418.75,
-   "all_patches_area": 1442919056.25,
-   "satisfied_patches_area_weighted_fraction": 0.2293,
-   "boundary_satisfied_patches": 1478,
-   "boundary_total_patches": 8257,
-   "boundary_satisfied_patches_fraction": 0.179,
-   "satisfied_area": 845090806.25,
-   "total_area": 1442919056.25,
-   "satisfied_area_fraction": 0.5857
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1489
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4304
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2654
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6576
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 10801,
-    "fully_satisfied_fraction": 0.2287,
-    "points": 196944,
-    "points_satisfied_fraction": 0.4877
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1489
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 28,
-    "fully_satisfied_fraction": 0.8235,
-    "points": 166,
-    "points_satisfied_fraction": 0.8795
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4304
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2654
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6576
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 23444,
-    "fully_satisfied_fraction": 0.4964,
-    "points": 196944,
-    "points_satisfied_fraction": 0.773
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.213
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 32,
-    "fully_satisfied_fraction": 0.9412,
-    "points": 166,
-    "points_satisfied_fraction": 0.9277
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.1714,
-    "points": 1229,
-    "points_satisfied_fraction": 0.5948
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0588,
-    "points": 712,
-    "points_satisfied_fraction": 0.4354
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 5,
-    "fully_satisfied_fraction": 0.2778,
-    "points": 517,
-    "points_satisfied_fraction": 0.8143
-   }
-  }
- },
- {
   "run": "few_ARW_s1",
   "train": "exit=0 elapsed=2545s peak_gpu_MiB=6050",
   "final_step": "step 29800: loss = 49.3, umbilicus = 0.0, patch_radius = 6.7, patch_dt = 18.9, sym_dirichlet = 12.5, rel_winding = 3.4, abs_winding = 0.0, dense_normals = 3.3, dense_spacing_winding_model_relative = 3.5, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.2, unattached_pcl_dt = 0.0, shell_outer = 0.3",
@@ -9765,6 +10711,536 @@
   }
  },
  {
+  "run": "few_ARWh_s1",
+  "train": "exit=0 elapsed=2554s peak_gpu_MiB=5914",
+  "final_step": "step 29800: loss = 36.5, umbilicus = 0.1, patch_radius = 5.5, patch_dt = 9.1, sym_dirichlet = 14.1, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 3.4, dense_spacing_winding_model_relative = 3.3, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.3, unattached_pcl_dt = 0.0, shell_outer = 0.4",
+  "train_inputs": {
+   "total_patches": 917,
+   "satisfied_patches_fraction": 0.6881,
+   "satisfied_patches_area_weighted_fraction": 0.7779,
+   "boundary_satisfied_patches_fraction": 0.7121,
+   "total_area": 168549168.75,
+   "satisfied_area_fraction": 0.8983,
+   "total_unattached_pcls": 502487,
+   "satisfied_unattached_pcls_fraction": 0.2761,
+   "total_unattached_pcl_points": 1005440,
+   "satisfied_unattached_pcl_points_fraction": 0.4802
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 502442,
+    "fully_satisfied": 138685,
+    "fully_satisfied_fraction": 0.276,
+    "points": 1004884,
+    "points_satisfied_fraction": 0.4801
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 25,
+    "fully_satisfied_fraction": 0.7353,
+    "points": 166,
+    "points_satisfied_fraction": 0.8554
+   },
+   "same_winding": {
+    "collections": 11,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.4545,
+    "points": 390,
+    "points_satisfied_fraction": 0.5333
+   }
+  },
+  "patches": {
+   "satisfied_patches": 1389,
+   "total_patches": 8257,
+   "satisfied_patches_fraction": 0.1682,
+   "satisfied_patches_area": 269269106.25,
+   "all_patches_area": 1442919056.25,
+   "satisfied_patches_area_weighted_fraction": 0.1866,
+   "boundary_satisfied_patches": 1324,
+   "boundary_total_patches": 8257,
+   "boundary_satisfied_patches_fraction": 0.1603,
+   "satisfied_area": 832927368.75,
+   "total_area": 1442919056.25,
+   "satisfied_area_fraction": 0.5773
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1512
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 25,
+    "fully_satisfied_fraction": 0.7353,
+    "points": 166,
+    "points_satisfied_fraction": 0.8614
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4736
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3188
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6867
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 10753,
+    "fully_satisfied_fraction": 0.2277,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4846
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1512
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 25,
+    "fully_satisfied_fraction": 0.7353,
+    "points": 166,
+    "points_satisfied_fraction": 0.8614
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4736
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3188
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6867
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 23379,
+    "fully_satisfied_fraction": 0.495,
+    "points": 196944,
+    "points_satisfied_fraction": 0.7715
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0074,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2165
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 31,
+    "fully_satisfied_fraction": 0.9118,
+    "points": 166,
+    "points_satisfied_fraction": 0.9337
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6314
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.5
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
+    "points": 517,
+    "points_satisfied_fraction": 0.8124
+   }
+  }
+ },
+ {
+  "run": "few_ARWh_s2",
+  "train": "exit=0 elapsed=2587s peak_gpu_MiB=7038",
+  "final_step": "step 29800: loss = 38.8, umbilicus = 0.0, patch_radius = 5.3, patch_dt = 16.3, sym_dirichlet = 9.9, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 3.0, dense_spacing_winding_model_relative = 3.1, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.3, unattached_pcl_dt = 0.0, shell_outer = 0.2",
+  "train_inputs": {
+   "total_patches": 917,
+   "satisfied_patches_fraction": 0.7317,
+   "satisfied_patches_area_weighted_fraction": 0.8289,
+   "boundary_satisfied_patches_fraction": 0.7361,
+   "total_area": 168549168.75,
+   "satisfied_area_fraction": 0.9084,
+   "total_unattached_pcls": 502487,
+   "satisfied_unattached_pcls_fraction": 0.2754,
+   "total_unattached_pcl_points": 1005440,
+   "satisfied_unattached_pcl_points_fraction": 0.4833
+  },
+  "train_pcls": {
+   "auto": {
+    "collections": 502442,
+    "fully_satisfied": 138339,
+    "fully_satisfied_fraction": 0.2753,
+    "points": 1004884,
+    "points_satisfied_fraction": 0.4832
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 11,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.5455,
+    "points": 390,
+    "points_satisfied_fraction": 0.4923
+   }
+  },
+  "patches": {
+   "satisfied_patches": 1576,
+   "total_patches": 8257,
+   "satisfied_patches_fraction": 0.1909,
+   "satisfied_patches_area": 330792418.75,
+   "all_patches_area": 1442919056.25,
+   "satisfied_patches_area_weighted_fraction": 0.2293,
+   "boundary_satisfied_patches": 1478,
+   "boundary_total_patches": 8257,
+   "boundary_satisfied_patches_fraction": 0.179,
+   "satisfied_area": 845090806.25,
+   "total_area": 1442919056.25,
+   "satisfied_area_fraction": 0.5857
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1489
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4304
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.2654
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6576
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 10801,
+    "fully_satisfied_fraction": 0.2287,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4877
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1489
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 28,
+    "fully_satisfied_fraction": 0.8235,
+    "points": 166,
+    "points_satisfied_fraction": 0.8795
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4304
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.2654
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6576
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 23444,
+    "fully_satisfied_fraction": 0.4964,
+    "points": 196944,
+    "points_satisfied_fraction": 0.773
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.213
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 32,
+    "fully_satisfied_fraction": 0.9412,
+    "points": 166,
+    "points_satisfied_fraction": 0.9277
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.1714,
+    "points": 1229,
+    "points_satisfied_fraction": 0.5948
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0588,
+    "points": 712,
+    "points_satisfied_fraction": 0.4354
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.8143
+   }
+  }
+ },
+ {
+  "run": "few_ASD_s1",
+  "train": "exit=0 elapsed=2289s peak_gpu_MiB=5847",
+  "final_step": "step 29800: loss = 23.8, umbilicus = 0.0, patch_radius = 5.6, patch_dt = 9.0, sym_dirichlet = 3.8, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 2.5, dense_spacing_winding_model_relative = 2.3, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.0, shell_outer = 0.2",
+  "train_inputs": {
+   "total_patches": 917,
+   "satisfied_patches_fraction": 0.6707,
+   "satisfied_patches_area_weighted_fraction": 0.739,
+   "boundary_satisfied_patches_fraction": 0.6892,
+   "total_area": 168549168.75,
+   "satisfied_area_fraction": 0.8533,
+   "total_unattached_pcls": 45,
+   "satisfied_unattached_pcls_fraction": 0.7556,
+   "total_unattached_pcl_points": 556,
+   "satisfied_unattached_pcl_points_fraction": 0.6978
+  },
+  "train_pcls": {
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 27,
+    "fully_satisfied_fraction": 0.7941,
+    "points": 166,
+    "points_satisfied_fraction": 0.9096
+   },
+   "same_winding": {
+    "collections": 11,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.6364,
+    "points": 390,
+    "points_satisfied_fraction": 0.6077
+   }
+  },
+  "patches": {
+   "satisfied_patches": 1383,
+   "total_patches": 8257,
+   "satisfied_patches_fraction": 0.1675,
+   "satisfied_patches_area": 288846900.0,
+   "all_patches_area": 1442919056.25,
+   "satisfied_patches_area_weighted_fraction": 0.2002,
+   "boundary_satisfied_patches": 1358,
+   "boundary_total_patches": 8257,
+   "boundary_satisfied_patches_fraction": 0.1645,
+   "satisfied_area": 783764931.25,
+   "total_area": 1442919056.25,
+   "satisfied_area_fraction": 0.5432
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1618
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 27,
+    "fully_satisfied_fraction": 0.7941,
+    "points": 166,
+    "points_satisfied_fraction": 0.9096
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4768
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3216
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6905
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 10997,
+    "fully_satisfied_fraction": 0.2329,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4795
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1618
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 27,
+    "fully_satisfied_fraction": 0.7941,
+    "points": 166,
+    "points_satisfied_fraction": 0.9096
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.1143,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4768
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3216
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.2222,
+    "points": 517,
+    "points_satisfied_fraction": 0.6905
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 24747,
+    "fully_satisfied_fraction": 0.524,
+    "points": 196944,
+    "points_satisfied_fraction": 0.7885
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 1,
+    "fully_satisfied_fraction": 0.0037,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2346
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 34,
+    "fully_satisfied_fraction": 1.0,
+    "points": 166,
+    "points_satisfied_fraction": 1.0
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.1429,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6566
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.514
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 5,
+    "fully_satisfied_fraction": 0.2778,
+    "points": 517,
+    "points_satisfied_fraction": 0.853
+   }
+  }
+ },
+ {
   "run": "few_A_s1",
   "train": "exit=0 elapsed=2209s peak_gpu_MiB=5774",
   "final_step": "step 29800: loss = 33.1, umbilicus = 0.0, patch_radius = 5.8, patch_dt = 10.0, sym_dirichlet = 11.0, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 3.0, dense_spacing_winding_model_relative = 2.8, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.0, shell_outer = 0.2",
@@ -10105,178 +11581,6 @@
     "fully_satisfied_fraction": 0.3889,
     "points": 517,
     "points_satisfied_fraction": 0.8317
-   }
-  }
- },
- {
-  "run": "few_ASD_s1",
-  "train": "exit=0 elapsed=2289s peak_gpu_MiB=5847",
-  "final_step": "step 29800: loss = 23.8, umbilicus = 0.0, patch_radius = 5.6, patch_dt = 9.0, sym_dirichlet = 3.8, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 2.5, dense_spacing_winding_model_relative = 2.3, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.0, shell_outer = 0.2",
-  "train_inputs": {
-   "total_patches": 917,
-   "satisfied_patches_fraction": 0.6707,
-   "satisfied_patches_area_weighted_fraction": 0.739,
-   "boundary_satisfied_patches_fraction": 0.6892,
-   "total_area": 168549168.75,
-   "satisfied_area_fraction": 0.8533,
-   "total_unattached_pcls": 45,
-   "satisfied_unattached_pcls_fraction": 0.7556,
-   "total_unattached_pcl_points": 556,
-   "satisfied_unattached_pcl_points_fraction": 0.6978
-  },
-  "train_pcls": {
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 27,
-    "fully_satisfied_fraction": 0.7941,
-    "points": 166,
-    "points_satisfied_fraction": 0.9096
-   },
-   "same_winding": {
-    "collections": 11,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.6364,
-    "points": 390,
-    "points_satisfied_fraction": 0.6077
-   }
-  },
-  "patches": {
-   "satisfied_patches": 1383,
-   "total_patches": 8257,
-   "satisfied_patches_fraction": 0.1675,
-   "satisfied_patches_area": 288846900.0,
-   "all_patches_area": 1442919056.25,
-   "satisfied_patches_area_weighted_fraction": 0.2002,
-   "boundary_satisfied_patches": 1358,
-   "boundary_total_patches": 8257,
-   "boundary_satisfied_patches_fraction": 0.1645,
-   "satisfied_area": 783764931.25,
-   "total_area": 1442919056.25,
-   "satisfied_area_fraction": 0.5432
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1618
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 27,
-    "fully_satisfied_fraction": 0.7941,
-    "points": 166,
-    "points_satisfied_fraction": 0.9096
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4768
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3216
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6905
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 10997,
-    "fully_satisfied_fraction": 0.2329,
-    "points": 196944,
-    "points_satisfied_fraction": 0.4795
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1618
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 27,
-    "fully_satisfied_fraction": 0.7941,
-    "points": 166,
-    "points_satisfied_fraction": 0.9096
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.1143,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4768
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.3216
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.2222,
-    "points": 517,
-    "points_satisfied_fraction": 0.6905
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 24747,
-    "fully_satisfied_fraction": 0.524,
-    "points": 196944,
-    "points_satisfied_fraction": 0.7885
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 1,
-    "fully_satisfied_fraction": 0.0037,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2346
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 34,
-    "fully_satisfied_fraction": 1.0,
-    "points": 166,
-    "points_satisfied_fraction": 1.0
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 5,
-    "fully_satisfied_fraction": 0.1429,
-    "points": 1229,
-    "points_satisfied_fraction": 0.6566
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.514
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 5,
-    "fully_satisfied_fraction": 0.2778,
-    "points": 517,
-    "points_satisfied_fraction": 0.853
    }
   }
  },
@@ -11480,185 +12784,6 @@
   }
  },
  {
-  "run": "few_oracRWh_s1",
-  "train": "exit=0 elapsed=2571s peak_gpu_MiB=5914",
-  "final_step": "step 29800: loss = 48.1, umbilicus = 0.0, patch_radius = 9.7, patch_dt = 15.9, sym_dirichlet = 10.0, rel_winding = 5.6, abs_winding = 0.0, dense_normals = 2.9, dense_spacing_winding_model_relative = 2.8, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.2, unattached_pcl_dt = 0.0, shell_outer = 0.5",
-  "train_inputs": {
-   "total_patches": 1388,
-   "satisfied_patches_fraction": 0.7082,
-   "satisfied_patches_area_weighted_fraction": 0.7918,
-   "boundary_satisfied_patches_fraction": 0.7169,
-   "total_area": 254250293.75,
-   "satisfied_area_fraction": 0.8917,
-   "total_unattached_pcls": 495181,
-   "satisfied_unattached_pcls_fraction": 0.2876,
-   "total_unattached_pcl_points": 990828,
-   "satisfied_unattached_pcl_points_fraction": 0.4925
-  },
-  "train_pcls": {
-   "auto": {
-    "collections": 495137,
-    "fully_satisfied": 142376,
-    "fully_satisfied_fraction": 0.2875,
-    "points": 990274,
-    "points_satisfied_fraction": 0.4924
-   },
-   "relative": {
-    "collections": 33,
-    "fully_satisfied": 26,
-    "fully_satisfied_fraction": 0.7879,
-    "points": 164,
-    "points_satisfied_fraction": 0.8598
-   },
-   "same_winding": {
-    "collections": 11,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.5455,
-    "points": 390,
-    "points_satisfied_fraction": 0.6205
-   }
-  },
-  "patches": {
-   "satisfied_patches": 1409,
-   "total_patches": 6978,
-   "satisfied_patches_fraction": 0.2019,
-   "satisfied_patches_area": 296598500.0,
-   "all_patches_area": 1234369768.75,
-   "satisfied_patches_area_weighted_fraction": 0.2403,
-   "boundary_satisfied_patches": 1390,
-   "boundary_total_patches": 6978,
-   "boundary_satisfied_patches_fraction": 0.1992,
-   "satisfied_area": 761615487.5,
-   "total_area": 1234369768.75,
-   "satisfied_area_fraction": 0.617
-  },
-  "pcls": {
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1722
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 27,
-    "fully_satisfied_fraction": 0.7941,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0857,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4337
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2739
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1667,
-    "points": 517,
-    "points_satisfied_fraction": 0.6538
-   }
-  },
-  "diag_default": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 11400,
-    "fully_satisfied_fraction": 0.2414,
-    "points": 196944,
-    "points_satisfied_fraction": 0.5
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.1722
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 27,
-    "fully_satisfied_fraction": 0.7941,
-    "points": 166,
-    "points_satisfied_fraction": 0.8614
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.0857,
-    "points": 1229,
-    "points_satisfied_fraction": 0.4337
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.2739
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 3,
-    "fully_satisfied_fraction": 0.1667,
-    "points": 517,
-    "points_satisfied_fraction": 0.6538
-   }
-  },
-  "diag_scanfree": {
-   "auto": {
-    "collections": 47227,
-    "fully_satisfied": 24277,
-    "fully_satisfied_fraction": 0.514,
-    "points": 196944,
-    "points_satisfied_fraction": 0.7855
-   },
-   "fibers": {
-    "collections": 271,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 13628,
-    "points_satisfied_fraction": 0.2439
-   },
-   "relative": {
-    "collections": 34,
-    "fully_satisfied": 31,
-    "fully_satisfied_fraction": 0.9118,
-    "points": 166,
-    "points_satisfied_fraction": 0.9398
-   },
-   "same_winding": {
-    "collections": 35,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.2,
-    "points": 1229,
-    "points_satisfied_fraction": 0.6135
-   },
-   "same_winding_z10343": {
-    "collections": 17,
-    "fully_satisfied": 0,
-    "fully_satisfied_fraction": 0.0,
-    "points": 712,
-    "points_satisfied_fraction": 0.4691
-   },
-   "same_winding_z10604": {
-    "collections": 18,
-    "fully_satisfied": 7,
-    "fully_satisfied_fraction": 0.3889,
-    "points": 517,
-    "points_satisfied_fraction": 0.8124
-   }
-  }
- },
- {
   "run": "few_oracRW_s1",
   "train": "exit=0 elapsed=2556s peak_gpu_MiB=6052",
   "final_step": "step 29800: loss = 81.8, umbilicus = 0.0, patch_radius = 10.1, patch_dt = 26.7, sym_dirichlet = 11.2, rel_winding = 8.2, abs_winding = 0.0, dense_normals = 3.1, dense_spacing_winding_model_relative = 3.2, dense_spacing_winding_model_density = 0.5, min_spacing = 0.0, unattached_pcl_radius = 0.4, unattached_pcl_dt = 0.0, shell_outer = 18.3",
@@ -12196,50 +13321,57 @@
   }
  },
  {
-  "run": "few_orac_s1",
-  "train": "exit=0 elapsed=2350s peak_gpu_MiB=5909",
-  "final_step": "step 29800: loss = 47.1, umbilicus = 0.0, patch_radius = 5.8, patch_dt = 23.0, sym_dirichlet = 13.1, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 2.4, dense_spacing_winding_model_relative = 2.2, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.0, shell_outer = 0.3",
+  "run": "few_oracRWh_s1",
+  "train": "exit=0 elapsed=2571s peak_gpu_MiB=5914",
+  "final_step": "step 29800: loss = 48.1, umbilicus = 0.0, patch_radius = 9.7, patch_dt = 15.9, sym_dirichlet = 10.0, rel_winding = 5.6, abs_winding = 0.0, dense_normals = 2.9, dense_spacing_winding_model_relative = 2.8, dense_spacing_winding_model_density = 0.4, min_spacing = 0.0, unattached_pcl_radius = 0.2, unattached_pcl_dt = 0.0, shell_outer = 0.5",
   "train_inputs": {
    "total_patches": 1388,
-   "satisfied_patches_fraction": 0.6088,
-   "satisfied_patches_area_weighted_fraction": 0.6628,
-   "boundary_satisfied_patches_fraction": 0.6239,
+   "satisfied_patches_fraction": 0.7082,
+   "satisfied_patches_area_weighted_fraction": 0.7918,
+   "boundary_satisfied_patches_fraction": 0.7169,
    "total_area": 254250293.75,
-   "satisfied_area_fraction": 0.7845,
-   "total_unattached_pcls": 44,
-   "satisfied_unattached_pcls_fraction": 0.6818,
-   "total_unattached_pcl_points": 554,
-   "satisfied_unattached_pcl_points_fraction": 0.5903
+   "satisfied_area_fraction": 0.8917,
+   "total_unattached_pcls": 495181,
+   "satisfied_unattached_pcls_fraction": 0.2876,
+   "total_unattached_pcl_points": 990828,
+   "satisfied_unattached_pcl_points_fraction": 0.4925
   },
   "train_pcls": {
+   "auto": {
+    "collections": 495137,
+    "fully_satisfied": 142376,
+    "fully_satisfied_fraction": 0.2875,
+    "points": 990274,
+    "points_satisfied_fraction": 0.4924
+   },
    "relative": {
     "collections": 33,
     "fully_satisfied": 26,
     "fully_satisfied_fraction": 0.7879,
     "points": 164,
-    "points_satisfied_fraction": 0.9024
+    "points_satisfied_fraction": 0.8598
    },
    "same_winding": {
     "collections": 11,
-    "fully_satisfied": 4,
-    "fully_satisfied_fraction": 0.3636,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.5455,
     "points": 390,
-    "points_satisfied_fraction": 0.459
+    "points_satisfied_fraction": 0.6205
    }
   },
   "patches": {
-   "satisfied_patches": 1169,
+   "satisfied_patches": 1409,
    "total_patches": 6978,
-   "satisfied_patches_fraction": 0.1675,
-   "satisfied_patches_area": 217704293.75,
+   "satisfied_patches_fraction": 0.2019,
+   "satisfied_patches_area": 296598500.0,
    "all_patches_area": 1234369768.75,
-   "satisfied_patches_area_weighted_fraction": 0.1764,
-   "boundary_satisfied_patches": 1173,
+   "satisfied_patches_area_weighted_fraction": 0.2403,
+   "boundary_satisfied_patches": 1390,
    "boundary_total_patches": 6978,
-   "boundary_satisfied_patches_fraction": 0.1681,
-   "satisfied_area": 663599937.5,
+   "boundary_satisfied_patches_fraction": 0.1992,
+   "satisfied_area": 761615487.5,
    "total_area": 1234369768.75,
-   "satisfied_area_fraction": 0.5376
+   "satisfied_area_fraction": 0.617
   },
   "pcls": {
    "fibers": {
@@ -12247,123 +13379,123 @@
     "fully_satisfied": 0,
     "fully_satisfied_fraction": 0.0,
     "points": 13628,
-    "points_satisfied_fraction": 0.1855
+    "points_satisfied_fraction": 0.1722
    },
    "relative": {
     "collections": 34,
     "fully_satisfied": 27,
     "fully_satisfied_fraction": 0.7941,
     "points": 166,
-    "points_satisfied_fraction": 0.9036
+    "points_satisfied_fraction": 0.8614
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0571,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
     "points": 1229,
-    "points_satisfied_fraction": 0.4833
+    "points_satisfied_fraction": 0.4337
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 0,
     "fully_satisfied_fraction": 0.0,
     "points": 712,
-    "points_satisfied_fraction": 0.3736
+    "points_satisfied_fraction": 0.2739
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1111,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
     "points": 517,
-    "points_satisfied_fraction": 0.6344
+    "points_satisfied_fraction": 0.6538
    }
   },
   "diag_default": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 11294,
-    "fully_satisfied_fraction": 0.2391,
+    "fully_satisfied": 11400,
+    "fully_satisfied_fraction": 0.2414,
     "points": 196944,
-    "points_satisfied_fraction": 0.4929
+    "points_satisfied_fraction": 0.5
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 0,
     "fully_satisfied_fraction": 0.0,
     "points": 13628,
-    "points_satisfied_fraction": 0.1855
+    "points_satisfied_fraction": 0.1722
    },
    "relative": {
     "collections": 34,
     "fully_satisfied": 27,
     "fully_satisfied_fraction": 0.7941,
     "points": 166,
-    "points_satisfied_fraction": 0.9036
+    "points_satisfied_fraction": 0.8614
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.0571,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.0857,
     "points": 1229,
-    "points_satisfied_fraction": 0.4833
+    "points_satisfied_fraction": 0.4337
    },
    "same_winding_z10343": {
     "collections": 17,
     "fully_satisfied": 0,
     "fully_satisfied_fraction": 0.0,
     "points": 712,
-    "points_satisfied_fraction": 0.3736
+    "points_satisfied_fraction": 0.2739
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1111,
+    "fully_satisfied": 3,
+    "fully_satisfied_fraction": 0.1667,
     "points": 517,
-    "points_satisfied_fraction": 0.6344
+    "points_satisfied_fraction": 0.6538
    }
   },
   "diag_scanfree": {
    "auto": {
     "collections": 47227,
-    "fully_satisfied": 24672,
-    "fully_satisfied_fraction": 0.5224,
+    "fully_satisfied": 24277,
+    "fully_satisfied_fraction": 0.514,
     "points": 196944,
-    "points_satisfied_fraction": 0.7908
+    "points_satisfied_fraction": 0.7855
    },
    "fibers": {
     "collections": 271,
     "fully_satisfied": 0,
     "fully_satisfied_fraction": 0.0,
     "points": 13628,
-    "points_satisfied_fraction": 0.2527
+    "points_satisfied_fraction": 0.2439
    },
    "relative": {
     "collections": 34,
-    "fully_satisfied": 34,
-    "fully_satisfied_fraction": 1.0,
+    "fully_satisfied": 31,
+    "fully_satisfied_fraction": 0.9118,
     "points": 166,
-    "points_satisfied_fraction": 1.0
+    "points_satisfied_fraction": 0.9398
    },
    "same_winding": {
     "collections": 35,
-    "fully_satisfied": 8,
-    "fully_satisfied_fraction": 0.2286,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.2,
     "points": 1229,
-    "points_satisfied_fraction": 0.6379
+    "points_satisfied_fraction": 0.6135
    },
    "same_winding_z10343": {
     "collections": 17,
-    "fully_satisfied": 2,
-    "fully_satisfied_fraction": 0.1176,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
     "points": 712,
-    "points_satisfied_fraction": 0.5295
+    "points_satisfied_fraction": 0.4691
    },
    "same_winding_z10604": {
     "collections": 18,
-    "fully_satisfied": 6,
-    "fully_satisfied_fraction": 0.3333,
+    "fully_satisfied": 7,
+    "fully_satisfied_fraction": 0.3889,
     "points": 517,
-    "points_satisfied_fraction": 0.7872
+    "points_satisfied_fraction": 0.8124
    }
   }
  },
@@ -12536,6 +13668,178 @@
     "fully_satisfied_fraction": 0.2778,
     "points": 517,
     "points_satisfied_fraction": 0.8046
+   }
+  }
+ },
+ {
+  "run": "few_orac_s1",
+  "train": "exit=0 elapsed=2350s peak_gpu_MiB=5909",
+  "final_step": "step 29800: loss = 47.1, umbilicus = 0.0, patch_radius = 5.8, patch_dt = 23.0, sym_dirichlet = 13.1, rel_winding = 0.0, abs_winding = 0.0, dense_normals = 2.4, dense_spacing_winding_model_relative = 2.2, dense_spacing_winding_model_density = 0.3, min_spacing = 0.0, unattached_pcl_radius = 0.0, unattached_pcl_dt = 0.0, shell_outer = 0.3",
+  "train_inputs": {
+   "total_patches": 1388,
+   "satisfied_patches_fraction": 0.6088,
+   "satisfied_patches_area_weighted_fraction": 0.6628,
+   "boundary_satisfied_patches_fraction": 0.6239,
+   "total_area": 254250293.75,
+   "satisfied_area_fraction": 0.7845,
+   "total_unattached_pcls": 44,
+   "satisfied_unattached_pcls_fraction": 0.6818,
+   "total_unattached_pcl_points": 554,
+   "satisfied_unattached_pcl_points_fraction": 0.5903
+  },
+  "train_pcls": {
+   "relative": {
+    "collections": 33,
+    "fully_satisfied": 26,
+    "fully_satisfied_fraction": 0.7879,
+    "points": 164,
+    "points_satisfied_fraction": 0.9024
+   },
+   "same_winding": {
+    "collections": 11,
+    "fully_satisfied": 4,
+    "fully_satisfied_fraction": 0.3636,
+    "points": 390,
+    "points_satisfied_fraction": 0.459
+   }
+  },
+  "patches": {
+   "satisfied_patches": 1169,
+   "total_patches": 6978,
+   "satisfied_patches_fraction": 0.1675,
+   "satisfied_patches_area": 217704293.75,
+   "all_patches_area": 1234369768.75,
+   "satisfied_patches_area_weighted_fraction": 0.1764,
+   "boundary_satisfied_patches": 1173,
+   "boundary_total_patches": 6978,
+   "boundary_satisfied_patches_fraction": 0.1681,
+   "satisfied_area": 663599937.5,
+   "total_area": 1234369768.75,
+   "satisfied_area_fraction": 0.5376
+  },
+  "pcls": {
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1855
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 27,
+    "fully_satisfied_fraction": 0.7941,
+    "points": 166,
+    "points_satisfied_fraction": 0.9036
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4833
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3736
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1111,
+    "points": 517,
+    "points_satisfied_fraction": 0.6344
+   }
+  },
+  "diag_default": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 11294,
+    "fully_satisfied_fraction": 0.2391,
+    "points": 196944,
+    "points_satisfied_fraction": 0.4929
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.1855
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 27,
+    "fully_satisfied_fraction": 0.7941,
+    "points": 166,
+    "points_satisfied_fraction": 0.9036
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.0571,
+    "points": 1229,
+    "points_satisfied_fraction": 0.4833
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 712,
+    "points_satisfied_fraction": 0.3736
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1111,
+    "points": 517,
+    "points_satisfied_fraction": 0.6344
+   }
+  },
+  "diag_scanfree": {
+   "auto": {
+    "collections": 47227,
+    "fully_satisfied": 24672,
+    "fully_satisfied_fraction": 0.5224,
+    "points": 196944,
+    "points_satisfied_fraction": 0.7908
+   },
+   "fibers": {
+    "collections": 271,
+    "fully_satisfied": 0,
+    "fully_satisfied_fraction": 0.0,
+    "points": 13628,
+    "points_satisfied_fraction": 0.2527
+   },
+   "relative": {
+    "collections": 34,
+    "fully_satisfied": 34,
+    "fully_satisfied_fraction": 1.0,
+    "points": 166,
+    "points_satisfied_fraction": 1.0
+   },
+   "same_winding": {
+    "collections": 35,
+    "fully_satisfied": 8,
+    "fully_satisfied_fraction": 0.2286,
+    "points": 1229,
+    "points_satisfied_fraction": 0.6379
+   },
+   "same_winding_z10343": {
+    "collections": 17,
+    "fully_satisfied": 2,
+    "fully_satisfied_fraction": 0.1176,
+    "points": 712,
+    "points_satisfied_fraction": 0.5295
+   },
+   "same_winding_z10604": {
+    "collections": 18,
+    "fully_satisfied": 6,
+    "fully_satisfied_fraction": 0.3333,
+    "points": 517,
+    "points_satisfied_fraction": 0.7872
    }
   }
  },

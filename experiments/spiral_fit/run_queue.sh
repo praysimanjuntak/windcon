@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Train runs two at a time, score each on the held-out data, then re-collect every run's metrics.
-#   [ROOT=<experiment root>] run_queue.sh <runA> <runB> [<runC> <runD> ...]
+# Train runs in SLOTS slots at a time (default 2), score each on the held-out data in its slot, then
+# re-collect every run's metrics.
+#   [ROOT=<experiment root>] [SLOTS=n] run_queue.sh <runA> <runB> [<runC> <runD> ...]
 # A run is <regime>_s<seed> with datasets/<regime> and configs/<run>.json from setup_ab.py, all
 # under ROOT (default $POSTEL; a second window lives in its own root).
 # Finished steps are skipped, so the queue can be re-run after an interruption.
@@ -36,20 +37,21 @@ evaluate() {  # <run> <patches|pcls>
   log "eval $1 $2: $(cat "$out/DONE" 2>/dev/null || echo FAILED)"
 }
 
+fit_and_score() {  # <run>
+  train "$1"
+  case "$1" in sparse_*|few_*) evaluate "$1" patches ;; esac  # held out only in these families
+  evaluate "$1" pcls
+  if ok "$R/$1" && [ ! -f "$R/$1/diag_scanfree/satisfied_fitted.json" ]; then
+    bash "$S/diag_eval.sh" "$1"
+  fi
+}
+
 log "queue start: $*"
-runs=("$@")
-for ((i = 0; i < ${#runs[@]}; i += 2)); do
-  pair=("${runs[@]:i:2}")
-  for run in "${pair[@]}"; do train "$run" & done
-  wait
-  for run in "${pair[@]}"; do
-    case "$run" in sparse_*|few_*) evaluate "$run" patches ;; esac  # held out only in these families
-    evaluate "$run" pcls
-    if ok "$R/$run" && [ ! -f "$R/$run/diag_scanfree/satisfied_fitted.json" ]; then
-      bash "$S/diag_eval.sh" "$run"
-    fi
-  done
+for run in "$@"; do
+  while [ "$(jobs -rp | wc -l)" -ge "${SLOTS:-2}" ]; do wait -n; done
+  fit_and_score "$run" &
 done
+wait
 shopt -s nullglob  # a root may hold only some families
 cd "$POSTEL/windcon" && .venv/bin/python "$S/collect_metrics.py" "$R"/sparse_*_s? "$R"/full*_*_s? "$R"/few_*_s? \
   --heldout "$ROOT/pcls/heldout_same.json" --out "$ROOT/results_ab.json" > /dev/null
