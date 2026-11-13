@@ -60,8 +60,9 @@ def fetch_chunk(url: str, dest: Path) -> int:
     return len(body)
 
 
-def mirror_store(url: str, out: Path, group: str, z_begin: int, z_end: int, margin: int, pool) -> None:
-    """Copy the metadata of one store and the chunk rows of `group` that cover [z_begin - margin, z_end + margin)."""
+def mirror_store(url: str, out: Path, group: str, z_begin: int, z_end: int, margin: int, pool, fit_level: int = 0) -> None:
+    """Copy the metadata of one store and the chunk rows of `group` that cover [z_begin - margin, z_end + margin),
+    slices of the scan's pyramid level `fit_level`."""
     out.mkdir(parents=True, exist_ok=True)
     for name in (".zattrs", ".zgroup"):
         body = http(f"{url}/{name}")
@@ -80,7 +81,7 @@ def mirror_store(url: str, out: Path, group: str, z_begin: int, z_end: int, marg
     meta = json.loads(meta_body)
     shape, chunks = meta["shape"], meta["chunks"]
     separator = meta.get("dimension_separator", ".")
-    scale_z = float(scales[group][0])
+    scale_z = float(scales[group][0]) / 2**fit_level  # the stores' scales count voxels of the scan's level 0
     first = max(0, int((z_begin - margin) / scale_z) // chunks[0])
     last = min(shape[0] - 1, int((z_end + margin - 1) / scale_z)) // chunks[0]
     done_path = out / group / "rows_done.json"
@@ -110,6 +111,8 @@ def main() -> None:
     ap.add_argument("--z-begin", type=int, required=True, help="fit window, in voxels of the fitted volume")
     ap.add_argument("--z-end", type=int, required=True)
     ap.add_argument("--margin", type=int, default=160, help="extra voxels at both ends (the flow field's z margin)")
+    ap.add_argument("--fit-level", type=int, default=0,
+                    help="pyramid level of the scan the fit runs in (2 for the 9.6 um frame of a 2.4 um scan)")
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--workers", type=int, default=64)
     args = ap.parse_args()
@@ -117,7 +120,7 @@ def main() -> None:
         for channel in CHANNELS:
             store = f"{args.name}_{channel}.ome.zarr"
             mirror_store(f"{MIRROR}/{args.lasagna.strip('/')}/{store}", args.out / store, args.group,
-                         args.z_begin, args.z_end, args.margin, pool)
+                         args.z_begin, args.z_end, args.margin, pool, args.fit_level)
     print(time.strftime("%H:%M:%S"), "done", flush=True)
 
 
