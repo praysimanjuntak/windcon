@@ -90,6 +90,8 @@ def main() -> None:
                                                 "tight": float(np.mean(ring < TIGHT_UM))}  # fmt: skip
         row = {
             "median_gap_um": float(np.median(microns)),
+            "mean_gap_um": float(microns.mean()),
+            "mean_gap_um_without_the_widest_tenth": float(microns[microns <= np.percentile(microns, 90)].mean()),
             "gap_um_10th_90th": [float(np.percentile(microns, q)) for q in (10, 90)],
             f"share_of_gaps_{LOOSE_UM:g}_um_or_more": float(np.mean(microns >= LOOSE_UM)),
             f"share_of_gaps_under_{TIGHT_UM:g}_um": float(np.mean(microns < TIGHT_UM)),
@@ -98,8 +100,10 @@ def main() -> None:
         }
         report["slices"][str(z)] = row
         print(f"z {z}: median gap {row['median_gap_um']:.0f} um (10th-90th {row['gap_um_10th_90th'][0]:.0f}-"
-              f"{row['gap_um_10th_90th'][1]:.0f}), {np.mean(microns >= LOOSE_UM):.0%} of gaps {LOOSE_UM:g} um or more, "
-              f"{np.mean(microns < TIGHT_UM):.0%} under {TIGHT_UM:g} um, {np.median(counts):.0f} sheets on the median line")
+              f"{row['gap_um_10th_90th'][1]:.0f}; mean {row['mean_gap_um']:.0f}, without the widest tenth "
+              f"{row['mean_gap_um_without_the_widest_tenth']:.0f}), {np.mean(microns >= LOOSE_UM):.0%} of gaps "
+              f"{LOOSE_UM:g} um or more, {np.mean(microns < TIGHT_UM):.0%} under {TIGHT_UM:g} um, "
+              f"{np.median(counts):.0f} sheets on the median line")
         print("   rings (voxels: median um, loose share): " + "  ".join(
             f"{name}: {ring['median_um']:.0f}, {ring['loose']:.0%}" for name, ring in rings.items()), flush=True)  # fmt: skip
     if args.out:
