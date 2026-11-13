@@ -23,7 +23,12 @@ traced windings between them:
 
 Reported: the model's windings per traced winding, the share of pairs one traced winding apart
 between which the model counts one (within a half), none or two and more, and the same by the
-distance between the two sheets on the ray.
+distance between the two sheets on the ray. With --surface, a surface prediction is a second
+witness: does it have a sheet between two traced neighbours where the model counts two?
+
+With --checkpoint the same pairs are counted by a fitted spiral instead of the model: the fit's
+winding coordinate at the two passes (run.sh store_vs_meshes.py ..., villa's environment). The
+store then only supplies the lines along which the sheets are met.
 """
 
 from __future__ import annotations
@@ -45,6 +50,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "ink_probe"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "spiral_fit"))
 from make_outer_shell import axis_xy  # noqa: E402
 from render_mesh import load_mesh  # noqa: E402
+
+from windcon.zarr_io import ZarrArray  # noqa: E402
 
 GROUPS_UM = (0, 115, 145, 175, 230, np.inf)  # distance between the two sheets on the ray
 SAMPLE = 0.5  # ray samples between which the nearest mesh point is looked up
@@ -92,18 +99,38 @@ def passes(tree: cKDTree, origin: np.ndarray, step: np.ndarray, t: np.ndarray, w
     return [(position, point) for position, point, _ in found]
 
 
+def predicted_sheets(surface: ZarrArray, origin: np.ndarray, step: np.ndarray, first: float, last: float) -> np.ndarray:
+    """Positions along the ray, in samples, of the centres of its stretches inside a surface prediction."""
+    samples = np.arange(int(np.floor(first)), int(np.ceil(last)) + 1)
+    line = np.rint(origin + samples[:, None] * step).astype(int)  # z, y, x
+    low, high = line.min(0), line.max(0) + 1
+    block = surface.read(tuple((int(a), int(b)) for a, b in zip(low, high)))
+    inside = block[line[:, 0] - low[0], line[:, 1] - low[1], line[:, 2] - low[2]] > 0
+    edges = np.diff(np.concatenate([[0], inside.astype(np.int8), [0]]))
+    return samples[0] + (np.flatnonzero(edges == 1) + np.flatnonzero(edges == -1) - 1) / 2
+
+
 def summary(rows: np.ndarray) -> dict:
-    """rows: traced windings between two passes, the model's level difference, sheet distance in micrometres."""
-    traced, model = rows[:, 0], np.abs(rows[:, 1])
+    """rows: traced windings between two passes, the windings counted between them (by the model or by a fit),
+    sheet distance in micrometres, predicted sheets strictly between the passes (nan without a prediction)."""
+    traced, model, between = rows[:, 0], np.abs(rows[:, 1]), rows[:, 3]
     one = traced == 1
-    return {
+    result = {
         "pairs": len(rows),
-        "model_windings_per_traced_winding": float(model.sum() / traced.sum()),
+        "windings_per_traced_winding": float(model.sum() / traced.sum()),
         "pairs_one_traced_winding_apart": int(one.sum()),
         "of_those_counted_as_one": float(np.mean(np.abs(model[one] - 1) < 0.5)) if one.any() else None,
         "of_those_counted_as_none": float(np.mean(model[one] < 0.5)) if one.any() else None,
         "of_those_counted_as_two_or_more": float(np.mean(model[one] >= 1.5)) if one.any() else None,
     }
+    clear, crowded = one & (between == 0), one & (between >= 1)
+    if clear.any() or crowded.any():
+        result["of_those_with_a_predicted_sheet_between"] = float(crowded.sum() / (clear.sum() + crowded.sum()))
+        if clear.any():
+            result["counted_as_one_where_the_prediction_has_no_sheet_between"] = float(np.mean(np.abs(model[clear] - 1) < 0.5))
+        if crowded.any():
+            result["counted_as_two_or_more_where_the_prediction_has_a_sheet_between"] = float(np.mean(model[crowded] >= 1.5))
+    return result
 
 
 def main() -> None:
@@ -115,6 +142,9 @@ def main() -> None:
     ap.add_argument("--within", type=float, default=4.0, help="a ray passes a mesh if it comes this near, voxels")
     ap.add_argument("--merge", type=float, default=6.0, help="passes closer than this are one sheet, voxels")
     ap.add_argument("--upsample", type=int, default=4, help="mesh points per grid cell edge")
+    ap.add_argument("--surface", help="URL of a surface prediction's level in the store's voxels: also count its "
+                                      "sheets between two traced ones, as a second witness where the model counts two")
+    ap.add_argument("--checkpoint", type=Path, help="count with this fitted spiral instead of the store's model")
     ap.add_argument("--out", type=Path, help="write the report here as JSON")
     args = ap.parse_args()
 
@@ -133,14 +163,38 @@ def main() -> None:
     number = np.array([float(m.group(1)) if m else np.nan for m in numbers])
     print(f"{len(args.mesh)} meshes, {len(points):,} points in z {z_range[0]:.0f}-{z_range[1]:.0f}", flush=True)
     tree = cKDTree(points)
+    surface = ZarrArray(args.surface) if args.surface else None
+    clearance = args.within + 2  # voxels: a predicted sheet this near a pass is the traced sheet itself
 
-    rows, left_out = [], 0
+    met = []  # per ray: crossings, origin, step, voxels per sample, passes
     for i in np.flatnonzero(rays["crossing_counts"] >= 3):
         t = rays["crossing_t"][begins[i] : ends[i]].astype(np.float64)
         origin, step = rays["ray_origin_zyx"][i].astype(np.float64), rays["ray_step_zyx"][i].astype(np.float64)
         pitch = float(np.linalg.norm(step))
         found = passes(tree, origin, step, t, args.within, args.merge / pitch)
-        for (t_a, a), (t_b, b) in itertools.pairwise(found):
+        if len(found) >= 2:
+            met.append((t, origin, step, pitch, found))
+
+    fit = None
+    if args.checkpoint:
+        import torch
+        from vesuvius.neural_tracing.winding_models import infer_winding_volume as villa
+
+        sys.path.insert(0, villa._spiral_scripts_dir())
+        from mesh_windings import winding_coordinate
+        from store_vs_fit import fitted_transform
+
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        where = np.concatenate([origin + np.array([p for p, _ in found])[:, None] * step for _, origin, step, _, found in met])
+        with torch.inference_mode():
+            transform, dr_per_winding, (z_begin, z_end) = fitted_transform(args.checkpoint, args.umbilicus, device)
+            winding, theta = winding_coordinate(transform, dr_per_winding, where[:, ::-1], device)
+        fit = (winding, theta / (2 * np.pi), (where[:, 0] >= z_begin) & (where[:, 0] < z_end))
+
+    rows, left_out, first = [], 0, 0  # first: index of a ray's first pass among all passes
+    for t, origin, step, pitch, found in met:
+        centres = None  # the prediction's sheets on this ray, read once if a pair needs them
+        for j, ((t_a, a), (t_b, b)) in enumerate(itertools.pairwise(found), start=first):
             if mesh[a] == mesh[b]:
                 swing = angle[b] - angle[a]
                 traced = abs(round(float(along[b] - along[a] - (swing - round(swing)))))
@@ -148,16 +202,27 @@ def main() -> None:
                 traced = 1
             else:
                 traced = 0
-            if traced == 0:
+            if traced == 0 or (fit is not None and not (fit[2][j] and fit[2][j + 1])):
                 left_out += 1
                 continue
-            level = np.interp([t_a, t_b], t, np.arange(len(t)))
-            rows.append((traced, level[1] - level[0], (t_b - t_a) * pitch * args.voxel_um / traced))
+            if fit is None:
+                level = np.interp([t_a, t_b], t, np.arange(len(t)))
+                counted = level[1] - level[0]
+            else:  # the coordinate jumps by one where the spiral's angle wraps: take that out
+                counted = fit[0][j + 1] - fit[0][j] + round(float(fit[1][j + 1] - fit[1][j]))
+            between = np.nan
+            if surface is not None:
+                if centres is None:
+                    centres = predicted_sheets(surface, origin, step, found[0][0], found[-1][0])
+                between = np.sum((centres > t_a + clearance / pitch) & (centres < t_b - clearance / pitch))
+            rows.append((traced, counted, (t_b - t_a) * pitch * args.voxel_um / traced, between))
+        first += len(found)
     if not rows:
         raise SystemExit("no ray passes two traced windings")
     rows = np.array(rows)
     report = {
         "store": str(args.store),
+        "counted_by": str(args.checkpoint) if args.checkpoint else "the store's model",
         "rays": int((rays["crossing_counts"] >= 3).sum()),
         "pairs_left_out": left_out,
         "traced_sheet_distance_um_10_50_90": [float(np.percentile(rows[:, 2], q)) for q in (10, 50, 90)],
