@@ -65,6 +65,8 @@ def main() -> None:
     ap.add_argument("--umbilicus", type=Path, required=True)
     ap.add_argument("--store", type=Path, action="append", required=True)
     ap.add_argument("--pairs", type=int, default=200_000, help="pairs drawn of each kind from each store")
+    ap.add_argument("--rings", type=int, default=0,
+                    help="also report the pairs 3 to 15 levels apart in rings of this many voxels round the umbilicus")
     ap.add_argument("--out", type=Path, help="write the report here as JSON")
     args = ap.parse_args()
 
@@ -72,9 +74,12 @@ def main() -> None:
     from vesuvius.neural_tracing.winding_models import infer_winding_volume as villa
 
     sys.path.insert(0, villa._spiral_scripts_dir())
+    from umbilicus import json_umbilicus_z_to_yx
     from winding_supervision import _component_residual, load_winding_inference_store
 
-    device = torch.device("cuda:0")
+    centre_yx = json_umbilicus_z_to_yx(str(args.umbilicus), coordinate_scale=1.0)
+
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     report = {}
     with torch.inference_mode():
         transform, dr_per_winding, (z_begin, z_end) = fitted_transform(args.checkpoint, args.umbilicus, device)
@@ -102,6 +107,22 @@ def main() -> None:
                     "abs_error_p95": float(np.percentile(error, 95)),
                     "signed_error_mean": float(residual[valid].float().mean()),
                 }
+                if args.rings and kind == "3 to 15 levels apart":
+                    middle = points[valid].mean(1).cpu().numpy()  # z, y, x
+                    radius = np.hypot(*(middle[:, 1:] - centre_yx(middle[:, 0])).T)
+                    signed = residual[valid].float().cpu().numpy()
+                    target = sample["target"][valid].float().cpu().numpy()
+                    row["rings"] = {
+                        f"{low}-{low + args.rings}": {
+                            "pairs": int(ring.sum()),
+                            "within_half_a_winding": float(np.mean(error[ring] < 0.5)),
+                            "abs_error_median": float(np.median(error[ring])),
+                            # The fit's windings per winding of the store between the two points.
+                            "fit_per_store_winding": float(1 + signed[ring].sum() / target[ring].sum()),
+                        }
+                        for low in range(0, int(radius.max()) + 1, args.rings)
+                        if (ring := (radius >= low) & (radius < low + args.rings)).sum() >= 200
+                    }
             report[str(path)] = row
             print(path.name, json.dumps(row), flush=True)
     if args.out:
