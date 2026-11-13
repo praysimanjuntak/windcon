@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
-"""Render the layer stack around a tifxyz mesh from the scan, as one TIFF per layer.
+"""Render the layer stack around a tifxyz mesh from the scan, as one TIFF per layer or as a zarr group.
 
 A tifxyz folder holds x.tif, y.tif and z.tif: the position of every node of a grid, in voxels of
 the scan's level 0, and -1 where there is no node. meta.json's `scale` is nodes per output pixel
 (0.05: one node every 20 pixels). Positions and normals are interpolated linearly between nodes.
 Layer k of N samples the scan (trilinear) at k - (N - 1) / 2 voxels along the surface normal, as
-VC3D's `vc_render_tifxyz --scale 1 --slice-step 1` does. With --umbilicus the normals are turned
-away from the scroll's axis; without it they are the cross product of the grid's column and row
-directions.
+VC3D's `vc_render_tifxyz --scale 1 --slice-step 1` does; --first-offset moves the stack (17 layers
+from -6.5 are layers 26-42 of a 66-layer render, the window the 9 um ink models read at depth +1).
+With --umbilicus the normals are turned away from the scroll's axis; without it they are the cross
+product of the grid's column and row directions.
 
     uv run python render_mesh.py <mesh.tifxyz> --volume <URL of the scan's level 0> \
         --umbilicus <umbilicus.json> --layers 66 --out <folder>/<name>_layers
+    uv run python render_mesh.py <mesh.tifxyz> --volume <URL> --umbilicus <umbilicus.json> \
+        --layers 17 --first-offset -6.5 --zarr <folder>/<name>/<name>.zarr
 
-The result is the TIFF-folder input of fetch_layers.py:
-    uv run python fetch_layers.py <folder>/<name>_layers --name <name> --native-spacing 8.64 ...
+--out writes the TIFF-folder input of fetch_layers.py (which makes the stacks the other scripts
+here read). --zarr writes the group villa's ink inference reads, directly. --near renders only the
+part of the mesh within --within voxels of another mesh.
 """
 
 from __future__ import annotations
@@ -77,9 +81,16 @@ def main() -> None:
     ap.add_argument("--volume", required=True, help="URL of the scan's level-0 array")
     ap.add_argument("--umbilicus", type=Path, help="turn the normals away from this axis")
     ap.add_argument("--layers", type=int, default=66)
-    ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--first-offset", type=float, help="voxels along the normal of layer 0 (default: centred)")
+    ap.add_argument("--out", type=Path, help="write one TIFF per layer into this folder")
+    ap.add_argument("--zarr", type=Path, help="write the stack as a zarr group")
+    ap.add_argument("--voxel-um", type=float, default=8.64, help="the scan's voxel size, for the zarr's attributes")
     ap.add_argument("--tile", type=int, default=256, help="pixels per side of a sampling tile")
+    ap.add_argument("--near", type=Path, help="render only the part of the mesh near this other tifxyz mesh")
+    ap.add_argument("--within", type=float, default=200.0, help="voxels a node may be from the --near mesh")
     args = ap.parse_args()
+    if not (args.out or args.zarr):
+        ap.error("give --out, --zarr or both")
     from PIL import Image
 
     xyz, valid, scale = load_mesh(args.mesh)
@@ -89,9 +100,18 @@ def main() -> None:
         flip = (normals[..., :2] * outward).sum(-1) < 0
         normals[flip] *= -1
         print(f"normals turned away from the axis at {flip[valid].mean():.1%} of the nodes")
+    if args.near:
+        from scipy.spatial import cKDTree
+
+        other, other_valid, _ = load_mesh(args.near)
+        distance = np.full(valid.shape, np.inf)
+        distance[valid] = cKDTree(other[other_valid]).query(xyz[valid])[0]
+        print(f"{(distance <= args.within).sum():,} of {valid.sum():,} nodes are within {args.within:g} voxels of {args.near.name}")
+        valid = distance <= args.within
     step = round(1 / scale)
     height, width = xyz.shape[0] * step, xyz.shape[1] * step
-    offsets = np.arange(args.layers) - (args.layers - 1) / 2
+    first = -(args.layers - 1) / 2 if args.first_offset is None else args.first_offset
+    offsets = first + np.arange(args.layers)
     volume = ZarrArray(args.volume)
     stack = np.zeros((args.layers, height, width), dtype=np.uint8)
     started = time.time()
@@ -119,10 +139,16 @@ def main() -> None:
         stack[:, r0 : r0 + tile.shape[1], c0 : c0 + tile.shape[2]] = tile
         if count % 20 == 0 or count == len(tiles):
             print(f"{time.strftime('%H:%M:%S')} {count}/{len(tiles)} tiles, {time.time() - started:.0f} s", flush=True)
-    args.out.mkdir(parents=True, exist_ok=True)
-    for index, layer in enumerate(stack):
-        Image.fromarray(layer).save(args.out / f"{index:02d}.tif")
-    print(f"{args.out}: {args.layers} layers of {height} x {width}, {(stack[args.layers // 2] > 0).mean():.1%} covered")
+    if args.out:
+        args.out.mkdir(parents=True, exist_ok=True)
+        for index, layer in enumerate(stack):
+            Image.fromarray(layer).save(args.out / f"{index:02d}.tif")
+    if args.zarr:
+        from fetch_layers import write_zarr
+
+        write_zarr(args.zarr, stack, [args.voxel_um] * 3)
+    covered = (stack[args.layers // 2] > 0).mean()
+    print(f"{args.out or args.zarr}: {args.layers} layers of {height} x {width}, {covered:.1%} covered")
 
 
 if __name__ == "__main__":
