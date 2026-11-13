@@ -1,0 +1,183 @@
+{
+ "lines": 162,
+ "usable": 127,
+ "windows": [
+  {
+   "half_width_samples": 40,
+   "rays": 127,
+   "fine_windings_mean": 7.0930928695858935,
+   "view": {
+    "same_count_share": 0.9606299212598425,
+    "abs_difference_median": 0.14447593688964844,
+    "difference_mean": -0.0022786696126141886
+   },
+   "coarse": {
+    "same_count_share": 0.25984251968503935,
+    "abs_difference_median": 1.1103801727294922,
+    "difference_mean": -1.089593284712063
+   },
+   "native": {
+    "same_count_share": 0.1889763779527559,
+    "abs_difference_median": 1.7313913770465152,
+    "difference_mean": -1.8669430335341033
+   }
+  },
+  {
+   "half_width_samples": 80,
+   "rays": 127,
+   "fine_windings_mean": 14.119164504404143,
+   "view": {
+    "same_count_share": 0.8188976377952756,
+    "abs_difference_median": 0.23054885864257812,
+    "difference_mean": 0.0023166344860407312
+   },
+   "coarse": {
+    "same_count_share": 0.1732283464566929,
+    "abs_difference_median": 2.034313201904297,
+    "difference_mean": -2.32680824610192
+   },
+   "native": {
+    "same_count_share": 0.047244094488188976,
+    "abs_difference_median": 2.9935624996555905,
+    "difference_mean": -3.6989534714077537
+   }
+  },
+  {
+   "half_width_samples": 120,
+   "rays": 127,
+   "fine_windings_mean": 21.032020356711442,
+   "view": {
+    "same_count_share": 0.7086614173228346,
+    "abs_difference_median": 0.30275630950927734,
+    "difference_mean": 0.07742000377084327
+   },
+   "coarse": {
+    "same_count_share": 0.11811023622047244,
+    "abs_difference_median": 2.7976267337799072,
+    "difference_mean": -3.414825555846447
+   },
+   "native": {
+    "same_count_share": 0.023622047244094488,
+    "abs_difference_median": 4.367238546916024,
+    "difference_mean": -5.127214766534368
+   }
+  },
+  {
+   "half_width_samples": 160,
+   "rays": 127,
+   "fine_windings_mean": 27.963951849561976,
+   "view": {
+    "same_count_share": 0.5669291338582677,
+    "abs_difference_median": 0.44156980514526367,
+    "difference_mean": 0.0669153689399479
+   },
+   "coarse": {
+    "same_count_share": 0.08661417322834646,
+    "abs_difference_median": 2.889106273651123,
+    "difference_mean": -4.266265440174914
+   },
+   "native": {
+    "same_count_share": 0.007874015748031496,
+    "abs_difference_median": 5.177555700863277,
+    "difference_mean": -5.677735644601195
+   }
+  }
+ ],
+ "by_sheet_spacing": [
+  {
+   "samples_per_winding": [
+    0,
+    10
+   ],
+   "stretches": 316,
+   "view": {
+    "same_count_share": 0.9556962025316456,
+    "windings_per_fine_winding": 0.9961585362382342
+   },
+   "coarse": {
+    "same_count_share": 0.14240506329113925,
+    "windings_per_fine_winding": 0.6888111294419528
+   },
+   "native": {
+    "same_count_share": 0.06962025316455696,
+    "windings_per_fine_winding": 0.5372038279666873
+   }
+  },
+  {
+   "samples_per_winding": [
+    10,
+    12
+   ],
+   "stretches": 358,
+   "view": {
+    "same_count_share": 0.9664804469273743,
+    "windings_per_fine_winding": 1.000011379773906
+   },
+   "coarse": {
+    "same_count_share": 0.329608938547486,
+    "windings_per_fine_winding": 0.8319415373060409
+   },
+   "native": {
+    "same_count_share": 0.20949720670391062,
+    "windings_per_fine_winding": 0.7408795414758625
+   }
+  },
+  {
+   "samples_per_winding": [
+    12,
+    14
+   ],
+   "stretches": 233,
+   "view": {
+    "same_count_share": 0.9699570815450643,
+    "windings_per_fine_winding": 1.006184320409116
+   },
+   "coarse": {
+    "same_count_share": 0.4721030042918455,
+    "windings_per_fine_winding": 1.0059361927941652
+   },
+   "native": {
+    "same_count_share": 0.27896995708154504,
+    "windings_per_fine_winding": 1.0331739998606284
+   }
+  },
+  {
+   "samples_per_winding": [
+    14,
+    18
+   ],
+   "stretches": 175,
+   "view": {
+    "same_count_share": 0.9485714285714286,
+    "windings_per_fine_winding": 1.011469537773256
+   },
+   "coarse": {
+    "same_count_share": 0.64,
+    "windings_per_fine_winding": 1.0437782618279081
+   },
+   "native": {
+    "same_count_share": 0.36,
+    "windings_per_fine_winding": 1.1620260434301608
+   }
+  },
+  {
+   "samples_per_winding": [
+    18,
+    1000
+   ],
+   "stretches": 61,
+   "view": {
+    "same_count_share": 0.9180327868852459,
+    "windings_per_fine_winding": 1.0591167561187753
+   },
+   "coarse": {
+    "same_count_share": 0.9016393442622951,
+    "windings_per_fine_winding": 1.070882262265295
+   },
+   "native": {
+    "same_count_share": 0.5737704918032787,
+    "windings_per_fine_winding": 1.1550102386382768
+   }
+  }
+ ]
+}

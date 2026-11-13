@@ -1,0 +1,42 @@
+{
+ "winding model": {
+  "steps": 159,
+  "steps_counted_as_one": 0.9371069182389937,
+  "step_median": 1.0323269348263384,
+  "collections": 31,
+  "collections_with_the_persons_total": 0.7419354838709677,
+  "windings_counted_per_winding_of_the_person": 1.061528366477869
+ },
+ "sparse_A_s1": {
+  "steps": 159,
+  "steps_counted_as_one": 0.8301886792452831,
+  "step_median": 1.0232586860656738,
+  "collections": 31,
+  "collections_with_the_persons_total": 0.4838709677419355,
+  "windings_counted_per_winding_of_the_person": 1.1047747150157232
+ },
+ "sparse_TX_s1": {
+  "steps": 159,
+  "steps_counted_as_one": 0.7735849056603774,
+  "step_median": 1.1806293725967407,
+  "collections": 31,
+  "collections_with_the_persons_total": 0.3225806451612903,
+  "windings_counted_per_winding_of_the_person": 1.188477618139495
+ },
+ "sparse_T_s1": {
+  "steps": 159,
+  "steps_counted_as_one": 0.8805031446540881,
+  "step_median": 1.0099769830703735,
+  "collections": 31,
+  "collections_with_the_persons_total": 0.6451612903225806,
+  "windings_counted_per_winding_of_the_person": 1.0081986721206762
+ },
+ "fullnodt_A_s1": {
+  "steps": 159,
+  "steps_counted_as_one": 0.9748427672955975,
+  "step_median": 0.9997914433479309,
+  "collections": 31,
+  "collections_with_the_persons_total": 1.0,
+  "windings_counted_per_winding_of_the_person": 1.0050880863981426
+ }
+}

@@ -1105,6 +1105,28 @@ stored and +0.02 to +0.35 reversed, the range the wrong-order control above reac
 segments show nothing, which says little about the scroll: they are small, and nothing measures
 how well they sit on their sheets.
 
+**PHerc. 343, where letters were found.** The First Letters submission for this scroll
+([Nieuwlaar/pherc343-first-letters](https://github.com/Nieuwlaar/pherc343-first-letters))
+publishes its mesh, its image and a record of how the image was made, but not its ink maps. Here
+`render_mesh.py` renders the 66 layers around that mesh from the scan, `run_fl343_models.sh` runs
+the submission's four models on them through its own script at its depth +1, and `fl343_check.py`
+builds its ensemble and compares it with the ink drawn on the published image.
+
+| | |
+| --- | --- |
+| our render against the CT layer of the published image | correlation +0.93 at the offset found |
+| our four-model ensemble against the ink drawn on the published image | correlation +0.87 |
+| the 18 places the submission marked as letters that are brighter than the rest of the sheet | 18 |
+| pixels inside those boxes against outside, ROC AUC | Hecate 0.77, the submission's fine-tune 0.65, `ink_9um` 0.60 and 0.61, ensemble 0.70 |
+
+The boxes are rectangles around letters, so most of their pixels are not ink. Differences from
+the submission: villa `5a4388f` instead of `0fb38c45`, the fine-tune rebuilt from its public
+weights, a render that is not bit-identical to VC3D's, and one tile phase instead of two. On an
+RTX 4070 SUPER the three villa models take 35 s each for the 10 cm² segment and Hecate 16 minutes
+for both layer orders. So the ink half of that result runs on a 12 GB card from public parts.
+Whether a fit made here puts a sheet there is the open half. Scores and our image of the
+ensemble: `results/ink_probe/`.
+
 ```bash
 P=~/Documents/postel/vesuvius_challenge; E=experiments/ink_probe; I=$P/ink
 uv venv $I/.venv && uv pip install --python $I/.venv/bin/python torch zarr scipy tifffile imagecodecs \
@@ -1138,11 +1160,35 @@ uv run python $E/score_labels.py --label $D/labels/inklabels.png --mask $D/label
   $D/predictions/v8in.png $O/w058_hecate_rev.png $O/w058_ink9um_s42_reverse.tif $O/w058_hecate_fwd.png
 uv run python $E/agree_maps.py $I/segments/PHerc1447/w058.npy $D/predictions/v8in.png \
   $O/w058_hecate_rev.png $O/w058_ink9um_s42_reverse.tif $O/w058_hecate_fwd.png $O/w058_ink9um_s42.tif
+# PHerc. 343: the First Letters submission's mesh, rendered and read again.
+git clone https://github.com/Nieuwlaar/pherc343-first-letters $P/data/PHerc0343/winner
+W=$P/data/PHerc0343/winner; N=concat_w047-w048_R5B2_z9500-11000; S=$I/segments/PHerc0343
+PY=$I/.venv/bin/python bash $W/ink/scripts/fetch_checkpoints.sh $W/ink/models.tsv $I/ckpt343
+uv run python $E/render_mesh.py $W/outputs/$N.tifxyz --layers 66 --out $S/winner66_layers --volume \
+  https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc0343/volumes/20250521140437-8.640um-1.2m-116keV-masked.zarr/0
+uv run python $E/fetch_layers.py $S/winner66_layers --name winner66 --native-spacing 8.64 --out $S --zarr
+bash $E/run_fl343_models.sh $S/winner66.zarr $I/out/fl343_winner 1
+uv run python $E/fl343_check.py --maps $I/out/fl343_winner --render $S/winner66.npy \
+  --sidecar $W/outputs/$N.json --image $W/outputs/$N.png --out $I/out/fl343_winner/check
 ```
 
 ## Winding-inference rays from any fit (`experiments/winding_inference/`)
 
-Tooling for the next experiment. No fit has been trained on its output yet.
+**First result (window 1, one seed of the new fit).** Rays made here from the fit without
+annotations (`TX`), fed back to a fit with tracks and the published outer shell (regime `TWc`:
+10,271 rays, the centre ray of each slab, 8 % of the published rays in the window). Scores are
+%, on inputs no fit below trained on; two values are seeds 1 and 2:
+
+| regime | human-curated patch area | `band-seed` patch area | held-out arcs | eval fibres | human relative windings | automatic paths, no scan test |
+| --- | --- | --- | --- | --- | --- | --- |
+| `TX`: tracks, no rays, no shell | 54.4 / 53.0 | 62.5 / 62.1 | 61.1 / 58.9 | 39.6 / 38.9 | 54.2 / 52.4 | 85.1 / 85.2 |
+| `TWc`: tracks, shell, rays made here | 55.0 | 60.6 | 69.5 | 38.0 | 65.1 | 86.0 |
+| `T`: tracks, shell, published rays | 60.1 / 63.3 | 62.8 / 62.9 | 70.9 / 71.0 | 38.8 / 39.2 | 71.7 / 69.3 | 86.2 / 86.3 |
+
+The rays made here bring the human relative windings two thirds of the way from `TX` to `T` and
+the held-out arcs most of the way. The patch areas do not move. What the shell alone does
+(`TS`), what the published rays do at the same count (`TP`) and what nine rays per slab do (`TW`)
+is not measured yet.
 
 In Round 7, taking the winding-inference rays and the outer shell away from the fit with tracks
 costs 3–6 points of the human-curated patch area and 18 points of the human relative windings
@@ -1157,14 +1203,16 @@ a phase for all 128 × 128 columns of every slab, 25 MB per slab, of which
 
 - `vc_shim/vc` stands in for the `vc` calls of the model's slab extractor, on top of windcon's
   chunk cache. On an oblique 128 × 384 plane it differs from `scipy.ndimage.map_coordinates` by one
-  grey level on 0.004 % of the pixels.
+  grey level on 0.004 % of the pixels. It interpolates on the CPU or on the GPU
+  (`VC_SHIM_DEVICE`); the two give crossings a median 0.01 samples apart.
 - `build_store.py` runs the same model on the same slabs, decodes rays with villa's own
   `decode_center_ray` and writes the store `fit_spiral.py` loads. `--columns 3` keeps a 3 × 3 grid
   of rays per slab instead of the centre one. `--step` sets the sampling step for a scan that is
   not at 9.6 µm. A ray that reads four zero voxels in a row leaves the masked scan and is dropped;
   the published store dropped rays that cross the exterior of a CT mask.
-- `subset_store.py` writes a store with part of the rays: the centre ray of each slab, or every
-  Nth slab.
+- `subset_store.py` writes a store with part of the rays of another, the published one included:
+  the centre ray of each slab, every Nth slab, or a random draw from the rays a z-window uses.
+- `run.sh <script> ...` runs either script, or `transfer_check.py` below, in villa's environment.
 
 **Check against the published store.** Its manifest names the public checkpoint
 (`winding_model_3d_large_11/ckpt_final.pth`). 300 of its rays with midpoints in z 10300–10500 were
@@ -1180,19 +1228,87 @@ made again from the public masked volume:
 
 `fit_spiral.py`'s loader accepts the result. Crossings are about 14 samples apart on these rays
 (23 kept on 368 samples after two are trimmed at each end), so the scatter is about 2 % of the
-sheet spacing. It has no preferred direction and its cause is not established; the published run
-read another copy of the volume (`s1_2um_ds2.zarr`).
+sheet spacing. It has no preferred direction and is not numerical noise, which is 0.01 samples
+(above); the published run read another copy of the volume (`s1_2um_ds2.zarr`).
 
-**Cost.** On an RTX 4070 SUPER, 1.7–2.7 slabs per second at batch 1 and 2.5 GiB of GPU memory,
-measured while two fits shared the card; alone it has not been timed. The published store took
-1,557,627 slabs. Seeding the 1,000-slice window at every 8th winding and 96 voxels gives 12,043
-slabs; with 3 × 3 rays each, the first 3,584 slabs gave 4,604–4,608 rays per 512 slabs and 20–24
-crossings per ray.
+**Off-centre rays.** The same 300 lines were placed at a random off-centre column of a 3 × 3
+build, 32 samples from the slab's centre, and compared with the published centre ray on the same
+line:
 
-**Not measured yet.** Whether the off-centre rays of a slab are as accurate as the centre ray,
-and whether a fit trained on rays seeded from the fit without annotations (regime `TW`) reaches
-the fit trained on the published rays (regime `T`). Regime `TS` (tracks and shell, no rays)
-separates the shell's share.
+| the line's place in the slab | rays | crossings on the published level | rays with every level as published | distance to the published crossing, samples (median / 90th percentile) |
+| --- | --- | --- | --- | --- |
+| centre | 299 | 100 % | 100 % | 0.31 / 0.65 |
+| 32 samples off on one axis | 156 | 97.7 % | 75.6 % | 0.73 / 2.9 |
+| 32 samples off on both axes | 141 | 94.8 % | 66.7 % | 1.08 / 4.0 |
+
+A quarter to a third of the off-centre rays count at least one winding differently from the
+centre view of the same line. Which view is right is not known, so a 3 × 3 store is nine times
+denser and noisier than a centre-only one.
+
+**Cost.** On an RTX 4070 SUPER with nothing else on it: 6 slabs per second at batch 1 (0.16 s per
+slab in the model), 2.5 GiB of GPU memory with CPU interpolation (1.1 CPU-seconds per slab) and
+3.5–4.0 GiB with GPU interpolation (0.26 CPU-seconds). Next to a fit: 3 slabs per second with CPU
+interpolation and 1.9 with GPU interpolation, because the fit takes about four fifths of the
+card; batch 2 is no faster and takes 6.9 GiB. The published store took 1,557,627 slabs. Seeding
+the 1,000-slice window at every 8th winding and 96 voxels gives 12,043 slabs.
+
+**The model against people** (`human_check.py`). The dataset's `relative_windings.json` holds
+lines a person drew across the sheets, one point per sheet. One slab was laid along each line that
+lies wholly in a window, and the model's phase read at every point. The same steps were read
+through fitted spirals (seed 1):
+
+| | window 1: steps counted as one winding (±½) | collections with the person's total | windings per winding of the person | window 2: steps | collections | windings |
+| --- | --- | --- | --- | --- | --- | --- |
+| the winding model, read directly | 93.7 % | 74.2 % | 1.06 | 99.2 % | 100 % | 1.01 |
+| `A`: published rays, no tracks | 83.0 % | 48.4 % | 1.10 | 89.3 % | 33.3 % | 1.11 |
+| `TX`: tracks, no rays, no shell | 77.4 % | 32.3 % | 1.19 | 59.8 % | 0 % | 1.39 |
+| `T`: tracks and published rays | 88.1 % | 64.5 % | 1.01 | 82.8 % | 16.7 % | 1.18 |
+| `fullnodt_A`: trained on these lines | 97.5 % | 100 % | 1.01 | 100 % | 100 % | 0.99 |
+
+Window 1 has 31 such lines with 159 steps, window 2 has 18 with 122. A fit with tracks and no
+rays puts 19 % and 39 % too many windings along them; that is what the rays repair, fully in
+window 1 and half in window 2, where the model itself is right on every line. The model is not
+independent of these lines: it was trained on the Paris 4 fit, which was trained on them.
+
+**Stores against fits** (`store_vs_fit.py`). Pairs of crossings are drawn from a store as
+`fit_spiral.py` draws them, and the fit's winding difference is compared with the store's.
+Share of pairs 3–15 levels apart that a fit has within half a winding (200,000 pairs each):
+
+| store (rays in window 1) | `fullnodt_A` | `T` | `TX` |
+| --- | --- | --- | --- |
+| published (128,600) | 45.1 % | 39.6 % | 19.7 % |
+| published, 10,271 drawn at random | 44.6 % | 39.3 % | 19.3 % |
+| made here from the `TX` fit, centre rays (10,271) | 42.4 % | 38.7 % | 18.9 % |
+| made here from the `TX` fit, off-centre rays (81,652) | 42.4 % | 38.6 % | 19.0 % |
+
+The first two fits were trained on the published rays and the third on none. Rays seeded from a
+fit without annotations agree with all three almost as well as the published rays do, and the
+off-centre rays as well as the centre ones. Even the all-patches fit is within half a winding on
+under half of these pairs: on average it has 0.5 winding fewer between the two points than the
+rays say, the 6 % by which the model counts more than the people did in window 1.
+
+**The same lines in an 8.64 µm scan** (`transfer_check.py`). The model was trained on 2.4 µm
+scans read at 9.6 µm. PHerc. 0009B has such a scan (2025-07-18, 77 keV) and an 8.64 µm scan of
+the May 2025 campaign (116 keV), registered by a `transform.json` in the open data. 162 lines at
+six places deep inside the fragment were read in both, 127 of them stay inside it. Over
+stretches of 64 samples, grouped by how far apart the sheets are in the fine scan:
+
+| sheets apart, samples of 9.6 µm | stretches | fine scan again, the line seen off-centre: same count | 8.64 µm scan at the fine scan's sample positions: same count; windings per fine winding | 8.64 µm scan at its own pitch |
+| --- | --- | --- | --- | --- |
+| under 10 | 316 | 95.6 % | 14.2 %; 0.69 | 7.0 %; 0.54 |
+| 10–12 | 358 | 96.6 % | 33.0 %; 0.83 | 20.9 %; 0.74 |
+| 12–14 | 233 | 97.0 % | 47.2 %; 1.01 | 27.9 %; 1.03 |
+| 14–18 | 175 | 94.9 % | 64.0 %; 1.04 | 36.0 %; 1.16 |
+| 18 and more | 61 | 91.8 % | 90.2 %; 1.07 | 57.4 %; 1.16 |
+
+Over ±40 samples around the seed the fine scan holds 7.1 windings and the 8.64 µm scan gives 1.1
+fewer. So on this scan the model loses up to a third of the windings where sheets are closer
+than about 115 µm, and counts as the fine scan does where they are 175 µm or more apart. Read at
+its own 8.64 µm pitch the scan does worse everywhere, so `build_store.py --step 1.111` is the
+setting for these scans. This is one object, a tightly packed fragment; the reference is the
+model on the fine scan, not a person; and neighbouring stretches of a line overlap by half.
+`results/winding_inference/transfer_0009B.png` shows six of the lines in both scans. The raw
+numbers of the three checks are in the same folder.
 
 villa at `5a4388f`: `build_seed_rays` fails on a checkpoint written by `fit_spiral.py` of the same
 commit (`KeyError: 'num_flow_integration_steps'`), because it reads the model settings without
@@ -1218,11 +1334,14 @@ PHerc. 343, whose fit has not run:
 P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference
 hf download scrollprize/winding_model_9um --local-dir $P/wi/model
 # The volume is the chunk cache folder whose SOURCE file names the level the fit was made in.
-bash $W/run_build_store.sh --checkpoint $P/runs/sparse_TX_s1/checkpoint_fitted.ckpt \
+bash $W/run.sh build_store.py --checkpoint $P/runs/sparse_TX_s1/checkpoint_fitted.ckpt \
   --umbilicus $P/data/PHercParis4/umbilicus.json --volume data/cache/<folder> \
   --model $P/wi/model/ckpt_final.pth --out $P/wi/stores/TX_s1_ws8 \
   --winding-range 10 130 --winding-step 8 --seed-spacing 96 --columns 3 --batch-size 1
-python3 experiments/spiral_fit/setup_ab.py --postel $P && bash experiments/spiral_fit/run_queue.sh sparse_TW_s1 sparse_TS_s1
+(cd $P/villa/spiral-fitting && .venv/bin/python $P/windcon/$W/subset_store.py $P/wi/stores/TX_s1_ws8 \
+  $P/wi/stores/TX_s1_ws8_centre --centre-only)
+python3 experiments/spiral_fit/setup_ab.py --postel $P
+bash experiments/spiral_fit/run_queue.sh sparse_TW_s1 sparse_TWc_s1 sparse_TS_s1
 # Other scrolls.
 uv run python experiments/spiral_fit/make_outer_shell.py --volume <URL of the masked zarr> --mask-level 5 \
   --fit-level 2 --umbilicus $P/data/PHercParis4/umbilicus.json --z-begin 9900 --z-end 10900 \

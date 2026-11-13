@@ -41,6 +41,7 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
      4,610 patches): nine rays from each slab the model reads
   TWc  TW with the centre ray of each slab only, which is what villa's exporter keeps
   TP  T with as many published rays as TWc has in the window, drawn at random (subset_store.py)
+  TH  T with the rays' two loss weights at three times the default
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -138,6 +139,7 @@ GROWN_LINKS = TRACK_LINKS | {"verified_patches": "patches_grown"}
 NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
          "input_use_winding_inference": False}
 NO_SHELL_NO_WI = NO_WI | {"input_use_outer_shell": False}
+HEAVY_RAYS = {"loss_weight_dense_spacing": 36.0, "loss_weight_dense_spacing_density": 36.0}  # default 12
 
 
 def own_rays(key: str) -> dict:
@@ -173,6 +175,7 @@ REGIMES = {
     "sparse_TW": (False, None, TRACKS, False, own_rays("rays_tx")),
     "sparse_TWc": (False, None, TRACKS, False, own_rays("rays_tx_centre")),
     "sparse_TP": (False, None, TRACKS, False, own_rays("rays_published_thin")),
+    "sparse_TH": (False, None, TRACKS | HEAVY_RAYS, False, TRACK_LINKS),
     "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
     "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
     "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),
@@ -319,6 +322,10 @@ def main() -> None:
             continue
         budget_file = cfg_dir / f"own_budget_{regime}.json"
         overrides = json.loads(budget_file.read_text()) if budget and budget_file.exists() else {}
+        # fit_spiral.py accepts a checkpoint only with the ray store it was trained on, and the scoring
+        # roots hold the published one. Scoring runs no step, so a fit with a store of its own is scored
+        # with the rays off.
+        scoring = NO_WINDING_INFERENCE if other and "winding_inference" in other[0] else {}
         for seed in SEEDS:
             run = f"{regime}_s{seed}"
             # Scoring resumes the checkpoint, so the model's shape settings must match training.
@@ -331,7 +338,7 @@ def main() -> None:
                     continue
             (cfg_dir / f"{run}.json").write_text(json.dumps(config | overrides))
             for kind, t in EVAL.items():
-                (cfg_dir / f"{run}_eval_{kind}.json").write_text(json.dumps(seeded | t))
+                (cfg_dir / f"{run}_eval_{kind}.json").write_text(json.dumps(seeded | t | scoring))
     print("roots:", sorted(p.name for p in (P / "datasets").iterdir()))
 
 

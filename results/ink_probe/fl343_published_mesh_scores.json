@@ -1,0 +1,43 @@
+{
+ "dnative": {
+  "file": "winner66__dnative__L66s26_reverse.tif",
+  "mean_z_in_boxes": 1.3551740646362305,
+  "mean_z_elsewhere": 0.8387629985809326,
+  "auc": 0.6470288038253784
+ },
+ "hecate": {
+  "file": "winner66__hecate__L66zc33.50_reverse.png",
+  "mean_z_in_boxes": 1.3688433170318604,
+  "mean_z_elsewhere": -0.06309883296489716,
+  "auc": 0.7697425484657288
+ },
+ "ink9-42": {
+  "file": "winner66__hybrid_3d2d-seed42__L66s26_reverse.tif",
+  "mean_z_in_boxes": 1.6236586570739746,
+  "mean_z_elsewhere": 1.2518669366836548,
+  "auc": 0.6027085781097412
+ },
+ "ink9-43": {
+  "file": "winner66__hybrid_3d2d-seed43__L66s26_reverse.tif",
+  "mean_z_in_boxes": 1.5758540630340576,
+  "mean_z_elsewhere": 1.1642534732818604,
+  "auc": 0.6079479455947876
+ },
+ "ensemble": {
+  "models": 4,
+  "mean_z_in_boxes": 1.4808825254440308,
+  "mean_z_elsewhere": 0.7979460954666138,
+  "auc": 0.6971142888069153,
+  "boxes": 18,
+  "boxes_brighter_than_elsewhere": 18
+ },
+ "published_image": {
+  "area_offset_yx": [
+   183,
+   173
+  ],
+  "ct_layer": 34,
+  "ct_correlation": 0.9257514927242669,
+  "ink_correlation": 0.869891882189012
+ }
+}

@@ -1,0 +1,77 @@
+{
+ "checkpoint": "$P/runs/sparse_T_s1/checkpoint_fitted.ckpt",
+ "stores": {
+  "$P/data/PHercParis4/winding_inference": {
+   "rays": 1147551,
+   "rays_in_window": 128600,
+   "neighbouring crossings": {
+    "pairs_in_window": 182668,
+    "within_half_a_winding": 0.8283935883679682,
+    "abs_error_median": 0.23845261335372925,
+    "abs_error_p95": 0.8098461627960205,
+    "signed_error_mean": -0.0634026899933815
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 176024,
+    "within_half_a_winding": 0.39595168840612643,
+    "abs_error_median": 0.684361457824707,
+    "abs_error_p95": 3.618901252746582,
+    "signed_error_mean": -0.5067331194877625
+   }
+  },
+  "$P/wi/stores/published_thin": {
+   "rays": 10271,
+   "rays_in_window": 10271,
+   "neighbouring crossings": {
+    "pairs_in_window": 182357,
+    "within_half_a_winding": 0.8258471021128885,
+    "abs_error_median": 0.2412571907043457,
+    "abs_error_p95": 0.8388859033584595,
+    "signed_error_mean": -0.0678185299038887
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 175316,
+    "within_half_a_winding": 0.39251979283123045,
+    "abs_error_median": 0.6928410530090332,
+    "abs_error_p95": 3.8257579803466797,
+    "signed_error_mean": -0.5284780263900757
+   }
+  },
+  "$P/wi/stores/TX_s1_ws8_centre": {
+   "rays": 10271,
+   "rays_in_window": 10271,
+   "neighbouring crossings": {
+    "pairs_in_window": 195309,
+    "within_half_a_winding": 0.8189893962899815,
+    "abs_error_median": 0.2445448637008667,
+    "abs_error_p95": 0.840470552444458,
+    "signed_error_mean": -0.04976537823677063
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 191733,
+    "within_half_a_winding": 0.38739810048348483,
+    "abs_error_median": 0.6989030838012695,
+    "abs_error_p95": 3.7708005905151367,
+    "signed_error_mean": -0.3935832679271698
+   }
+  },
+  "$P/wi/stores/TX_s1_ws8_offcentre": {
+   "rays": 82094,
+   "rays_in_window": 81652,
+   "neighbouring crossings": {
+    "pairs_in_window": 194029,
+    "within_half_a_winding": 0.8177385854691824,
+    "abs_error_median": 0.24472439289093018,
+    "abs_error_p95": 0.8465647101402283,
+    "signed_error_mean": -0.04955798014998436
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 190069,
+    "within_half_a_winding": 0.3861387180444996,
+    "abs_error_median": 0.7037909030914307,
+    "abs_error_p95": 3.7797884941101074,
+    "signed_error_mean": -0.40978485345840454
+   }
+  }
+ }
+}
