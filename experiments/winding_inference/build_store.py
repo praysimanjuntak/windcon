@@ -13,7 +13,7 @@ model looks, the model decides where the sheets are. A stored ray holds the posi
 model's phase passes whole numbers, as levels relative to the ray's midpoint.
 
 Work is saved every 512 slabs under <out>.partial; a rerun with the same arguments resumes.
-Run it with run_build_store.sh, which sets up villa's environment.
+Run it with `run.sh build_store.py ...`, which sets up villa's environment.
 """
 
 from __future__ import annotations
@@ -128,21 +128,25 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
     columns_gpu = torch.as_tensor(columns, device=device)
 
     def extract(index):
+        began = time.perf_counter()
         direction = rays["direction_xyz"][index].astype(np.float64)
         origin = rays["seed_xyz"][index].astype(np.float64) - midpoint * spacing * direction
-        return (index, *extractor.extract(0, direction, origin))
+        return (index, *extractor.extract(0, direction, origin), time.perf_counter() - began)
 
     origins, steps, windings, counts, positions, levels, sources = [], [], [], [], [], [], []
     outside = short = 0
+    extract_seconds = model_seconds = 0.0
 
     def forward(batch):
-        nonlocal outside, short
+        nonlocal outside, short, model_seconds
+        began = time.perf_counter()
         images = torch.from_numpy(np.stack([item[1] for item in batch])).to(device)
         valid = torch.from_numpy(np.stack([item[2] for item in batch])).to(device)
         with torch.autocast("cuda", dtype=torch.bfloat16):
             phase = model(images, valid.bool())["phase"]
         phase = phase.float()[:, columns_gpu][:, :, columns_gpu].cpu().numpy()
-        for sample, (index, image, slab_valid, frame) in enumerate(batch):
+        model_seconds += time.perf_counter() - began
+        for sample, (index, image, slab_valid, frame, _) in enumerate(batch):
             for a, native_a in enumerate(columns):
                 for b, native_b in enumerate(columns):
                     row, column = int(native_a) * stride, int(native_b) * stride
@@ -183,6 +187,7 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
         batch = []
         while window:
             batch.append(window.popleft().result())
+            extract_seconds += batch[-1][-1]
             refill()
             if len(batch) == args.batch_size or not window:
                 forward(batch)
@@ -198,6 +203,9 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
         "crossing_level": np.concatenate(levels).astype(np.int16) if levels else np.empty(0, np.int16),
         "rays_leaving_scan": np.int64(outside),
         "rays_under_two_crossings": np.int64(short),
+        # Seconds per slab: reading and sampling the scan (summed over the threads), and the model on the GPU.
+        "extract_seconds_per_slab": np.float64(extract_seconds / max(len(indices), 1)),
+        "model_seconds_per_slab": np.float64(model_seconds / max(len(indices), 1)),
     }
 
 
@@ -245,19 +253,34 @@ def save_store(folder: Path, rays: dict[str, np.ndarray], record: dict) -> dict:
             }
         ],
     }
-    manifest["fingerprint"] = canonical_digest(manifest)  # the loader recomputes it without this key
+    # The loader recomputes the fingerprint without itself and without three keys of villa's exporter,
+    # which a subset of a published store carries over.
+    manifest["fingerprint"] = canonical_digest(
+        {key: value for key, value in manifest.items() if key not in ("elapsed_seconds", "export_workers", "rays_per_task")}
+    )
     (folder / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     return manifest
 
 
 def load_store(folder: Path) -> tuple[dict[str, np.ndarray], dict]:
-    """The rays of a store that save_store wrote, and its manifest."""
+    """The rays of a store and its manifest.
+
+    A store from villa's exporter has several shards and no ray_source.npy; every ray of it is the centre
+    column of its own slab, so its source is (ray number, 0, 0).
+    """
     manifest = json.loads((folder / "manifest.json").read_text())
-    (shard,) = manifest["shards"]
-    arrays = {name: np.load(folder / shard["name"] / shard["arrays"][name]["file"]) for name in ARRAYS}
-    rays = {name: arrays[name] for name in ARRAYS if name != "crossing_offsets"}
-    rays["crossing_counts"] = np.diff(arrays["crossing_offsets"])
-    rays["ray_source"] = np.load(folder / "ray_source.npy")
+    shards = [
+        {name: np.load(folder / shard["name"] / shard["arrays"][name]["file"]) for name in ARRAYS}
+        for shard in manifest["shards"]
+    ]
+    rays = {name: np.concatenate([shard[name] for shard in shards]) for name in ARRAYS if name != "crossing_offsets"}
+    rays["crossing_counts"] = np.concatenate([np.diff(shard["crossing_offsets"]) for shard in shards])
+    source = folder / "ray_source.npy"
+    if source.exists():
+        rays["ray_source"] = np.load(source)
+    else:
+        rays["ray_source"] = np.zeros((len(rays["crossing_counts"]), 3), dtype=np.int32)
+        rays["ray_source"][:, 0] = np.arange(len(rays["crossing_counts"]))
     return rays, manifest
 
 
@@ -348,6 +371,8 @@ def main() -> None:
         print(
             f"{time.strftime('%H:%M:%S')} {end:,}/{total:,} slabs  "
             f"{(end - begin) / (time.monotonic() - started):.2f} slabs/s  "
+            f"(scan {result['extract_seconds_per_slab']:.2f} s per slab over {args.extract_threads} threads, "
+            f"model {result['model_seconds_per_slab']:.2f} s)  "
             f"{len(result['seed_winding']):,} rays, {len(result['crossing_t']):,} crossings in this part  "
             f"GPU peak {torch.cuda.max_memory_allocated(device) / 2**20:,.0f} MiB",
             flush=True,

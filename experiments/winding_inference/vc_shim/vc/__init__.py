@@ -11,10 +11,14 @@ the level with voxel centres on whole numbers, the value is trilinear between th
 neighbours and truncated to uint8, a sample outside the level reads 0, and every sample counts as
 valid. One difference: within one voxel of a chunk the store does not have, the C++ sampler
 returns 0 and this one interpolates towards 0.
+
+The chunks are read on the CPU. The interpolation runs on the device named by the environment
+variable VC_SHIM_DEVICE (default `cpu`; with `cuda` a slab takes a quarter of the CPU time).
 """
 
 from __future__ import annotations
 
+import os
 import threading
 from pathlib import Path
 
@@ -28,6 +32,7 @@ __all__ = ["Volume", "set_chunk_cache_budget", "set_chunk_cache_io_threads"]
 
 _OPENED: dict[str, Volume] = {}
 _OPENED_LOCK = threading.Lock()
+_DEVICE = torch.device(os.environ.get("VC_SHIM_DEVICE", "cpu"))
 
 
 def set_chunk_cache_budget(nbytes: int) -> None:
@@ -67,18 +72,18 @@ class Volume:
         if level != 0:
             raise ValueError("open the folder of the level you want; this stand-in has no pyramid")
         height, width = (int(v) for v in shape)
-        origins = torch.from_numpy(np.ascontiguousarray(origins_xyz, dtype=np.float32))
-        x_steps = torch.from_numpy(np.ascontiguousarray(x_steps_xyz, dtype=np.float32))
-        y_steps = torch.from_numpy(np.ascontiguousarray(y_steps_xyz, dtype=np.float32))
-        rows = torch.arange(height, dtype=torch.float32)[None, :, None, None]
-        columns = torch.arange(width, dtype=torch.float32)[None, None, :, None]
+        origins = torch.from_numpy(np.ascontiguousarray(origins_xyz, dtype=np.float32)).to(_DEVICE)
+        x_steps = torch.from_numpy(np.ascontiguousarray(x_steps_xyz, dtype=np.float32)).to(_DEVICE)
+        y_steps = torch.from_numpy(np.ascontiguousarray(y_steps_xyz, dtype=np.float32)).to(_DEVICE)
+        rows = torch.arange(height, dtype=torch.float32, device=_DEVICE)[None, :, None, None]
+        columns = torch.arange(width, dtype=torch.float32, device=_DEVICE)[None, None, :, None]
         coords = origins[:, None, None, :] + rows * y_steps[:, None, None, :]
         coords = coords + columns * x_steps[:, None, None, :]
         return self._sample(coords, sampling)
 
     def sample_coords(self, coords_xyz, mask=None, sampling="trilinear", tile_size=32):
         """uint8 values and validity for an [N, M, 3] array of points; points with a false `mask` read 0."""
-        coords = torch.from_numpy(np.ascontiguousarray(coords_xyz, dtype=np.float32))
+        coords = torch.from_numpy(np.ascontiguousarray(coords_xyz, dtype=np.float32)).to(_DEVICE)
         values, valid, stats = self._sample(coords, sampling)
         if mask is not None:
             keep = np.asarray(mask, dtype=bool)
@@ -91,20 +96,21 @@ class Volume:
             raise ValueError(f"only trilinear sampling is implemented, got {sampling!r}")
         # The C++ sampler skips these three kinds of coordinate and marks them invalid.
         sentinel = ~torch.isfinite(coords).all(-1) | (coords == -1.0).any(-1) | (coords == 0.0).all(-1)
-        size_xyz = torch.tensor(self._array.shape[::-1], dtype=torch.float32)
+        size_xyz = torch.tensor(self._array.shape[::-1], dtype=torch.float32, device=coords.device)
         inside = ((coords >= 0) & (coords < size_xyz)).all(-1) & ~sentinel
-        values = torch.zeros(coords.shape[:-1], dtype=torch.uint8)
+        values = torch.zeros(coords.shape[:-1], dtype=torch.uint8, device=coords.device)
         if bool(inside.any()):
             used = coords[inside]
             low = used.amin(0).floor().long()
             high = used.amax(0).floor().long() + 2  # half-open, with the upper neighbour of the last voxel
+            first, end = low.tolist(), high.tolist()
             with self._read_lock:
-                block = self._array.read(tuple((int(low[axis]), int(high[axis])) for axis in (2, 1, 0)))
+                block = self._array.read(tuple((first[axis], end[axis]) for axis in (2, 1, 0)))
             span = (high - low - 1).to(torch.float32)
             grid = (coords - low.to(torch.float32)) / span * 2 - 1
-            grid = torch.where(inside[..., None], grid, torch.full_like(grid, -2.0))
+            grid[~inside] = -2.0
             sampled = F.grid_sample(
-                torch.from_numpy(block).to(torch.float32)[None, None],
+                torch.from_numpy(block).to(coords.device, torch.float32)[None, None],
                 grid.reshape(1, 1, 1, -1, 3),
                 mode="bilinear",
                 padding_mode="zeros",
@@ -112,4 +118,4 @@ class Volume:
             )
             values = sampled.reshape(coords.shape[:-1]).clamp_(0, 255).to(torch.uint8)
             values[~inside] = 0
-        return values.numpy(), (~sentinel).to(torch.uint8).numpy(), {}
+        return values.cpu().numpy(), (~sentinel).to(torch.uint8).cpu().numpy(), {}
