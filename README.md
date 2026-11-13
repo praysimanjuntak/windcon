@@ -1176,7 +1176,7 @@ over both faces:
 
 Seven windows reach the submission's cut of 4. All are on the reversed layers, the face towards
 the scroll's axis, where the letters are; none of the 20 windows of the other face does (largest
-3.11). So a winding of a fit made here, not snapped, with public ink models and the public
+3.11; `lane_table.py` lists every window beside the other face of the same place). So a winding of a fit made here, not snapped, with public ink models and the public
 triage, puts PHerc. 343's letters in the first review tier, beside the submission's own mesh.
 The cards show the difference that remains: on the mesh two rows of separate marks, on our
 winding a short row of joined marks among blobs, and streaks in the CT where the surface cuts
