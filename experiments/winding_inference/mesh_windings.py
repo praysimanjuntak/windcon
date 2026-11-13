@@ -117,6 +117,9 @@ def main() -> None:
     ap.add_argument("--umbilicus", type=Path, required=True)
     ap.add_argument("--mesh", type=Path, action="append", required=True)
     ap.add_argument("--surface", help="URL of a surface prediction's level-0 array, for the sheets' own spacing")
+    ap.add_argument("--sectors", type=int, default=0,
+                    help="also give the windings per turn in this many equal sectors of the angle round the "
+                         "umbilicus, for a mesh that passes a sector on two turns or more")
     ap.add_argument("--out", type=Path, help="write the report here as JSON")
     args = ap.parse_args()
 
@@ -165,6 +168,14 @@ def main() -> None:
                 "turns_spanned": float(np.ptp(along)),
                 "fit_windings_per_turn": float(1 + np.polyfit(along, winding, 1)[0]),
             }
+            if args.sectors:
+                # Between two passes of the sheet through one sector the fit should count one winding.
+                sector = np.minimum((theta / (2 * np.pi) * args.sectors).astype(int), args.sectors - 1)
+                row["fit_windings_per_turn_by_sector"] = [
+                    float(1 + np.polyfit(along[sector == k], winding[sector == k], 1)[0])
+                    if (sector == k).sum() > 20 and np.ptp(along[sector == k]) > 1.5 else None
+                    for k in range(args.sectors)
+                ]
             if surface is not None:
                 # The same lines for a mesh whatever else is read in the run.
                 row.update(read_prediction(surface, points, normals, np.random.default_rng(0)))
