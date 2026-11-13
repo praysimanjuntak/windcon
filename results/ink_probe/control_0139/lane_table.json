@@ -1,0 +1,46 @@
+{
+ "cut": -99.0,
+ "other_face_under": 3.2,
+ "windows": [
+  {
+   "winding": "curated_w035",
+   "face": "rev",
+   "x0": 0,
+   "row_score": 14.64,
+   "other_face": -0.43,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  },
+  {
+   "winding": "curated_w035",
+   "face": "rev",
+   "x0": 1300,
+   "row_score": 3.72,
+   "other_face": -1.09,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  },
+  {
+   "winding": "curated_w035",
+   "face": "fwd",
+   "x0": 0,
+   "row_score": -0.43,
+   "other_face": 14.64,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": false
+  },
+  {
+   "winding": "curated_w035",
+   "face": "fwd",
+   "x0": 1300,
+   "row_score": -1.09,
+   "other_face": 3.72,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": false
+  }
+ ]
+}

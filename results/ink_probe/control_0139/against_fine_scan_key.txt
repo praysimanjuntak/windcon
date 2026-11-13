@@ -1,0 +1,2 @@
+reverse: correlation of smoothed maps +0.630 at shift (-8, -8) | pixel AUC against key ink 0.864 | key ink share 0.100 | mean z in key ink +1.28, elsewhere -0.16
+fwd: correlation of smoothed maps -0.022 at shift (-16, 40) | pixel AUC against key ink 0.482 | key ink share 0.100 | mean z in key ink -0.05, elsewhere +0.01

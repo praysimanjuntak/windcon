@@ -1189,9 +1189,28 @@ pass, all reversed (w048 at 10.2, w047 at 9.9 and 9.7), and no forward window of
 over 6.8. `triage_lane.sh` with `GLYPH=1` admits a window by either score: w047 of the fit without
 rays then joins the first tier (row score 2.42, glyph 9.88).
 
+**The same chain at 9.362 µm, where the ink is known.** PHerc. 0139's curated winding w035
+(registered on its 9.362 µm scan, the scan protocol of eight First Letters volumes), the part
+inside z 4500–6000: rendered here, read by the three villa models, through the same triage.
+
+| window | row score | other face | queue |
+| --- | --- | --- | --- |
+| layers reversed, x 0 | 14.64 | −0.43 | REVIEW (rows 0° off, fibres 1.2° off, crack 0.0, shape 0.49) |
+| layers reversed, x 1300 | 3.72 | −1.09 | under the cut of 4 |
+| layers as stored, x 0 and x 1300 | −0.43, −1.09 | | rejected: rows not along the winding |
+
+The Scroll Prize team publishes its ink detection of this winding from the 2.399 µm scan. Against
+it (resampled to our grid, ink where it is over 110 of 255) the reversed map has a pixel AUC of
+0.864 and the smoothed maps correlate at +0.63; the map of the layers as stored is at 0.482 and
+−0.02. The card shows three rows of marks where the fine scan has its three lines, and some
+letters as shapes. The `ink_9um` models were trained on this scroll, so this is a check of the
+chain at that protocol (render, face, depth, triage), not of the models: the reversed layers are
+the face towards the axis on an anticlockwise scroll too, and text of this kind is a first-tier
+window on one face.
+
 `screen_band.sh` runs the same chain over the windings of a band of any scroll: snap to the
-surface prediction, render, ink both faces, lay out. The triage's table and two of its cards
-(the mesh and our w048) are in `results/ink_probe/triage_343/`.
+surface prediction, render, ink both faces, lay out. The triage's tables and cards are in
+`results/ink_probe/triage_343/` (the mesh and our w048) and `results/ink_probe/control_0139/`.
 
 ```bash
 P=~/Documents/postel/vesuvius_challenge; E=experiments/ink_probe; I=$P/ink
@@ -1244,6 +1263,7 @@ $I/.venv/bin/python $E/lane_layout.py $I/out/lane343 winner_w000 $S/winner66.npy
   --rev ${M}__dnative__L66s26_reverse.tif ${M}__hybrid_3d2d-seed42__L66s26_reverse.tif \
         ${M}__hybrid_3d2d-seed43__L66s26_reverse.tif
 bash $E/triage_lane.sh $I/out/lane343 8.64
+uv run python $E/lane_table.py $I/out/lane343
 B=https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc0358
 bash $E/screen_band.sh $P/p358/runs/minimal_s1_meshes/meshes/fitted $I/out/lane358_minimal \
   $B/volumes/20250821151737-9.362um-1.2m-113keV-masked.zarr/0 $P/data/PHerc0358/umbilicus.json \
@@ -1925,8 +1945,9 @@ where the tracer mostly abstains (item 1).
    ink models, 40 windows; the other face of the same surfaces is the only null. The cut and the
    gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and
    flattened 31-layer renders; here the renders are 66 layers along the mesh normals, not
-   flattened. A window in the review tier is a place to look, not a reading. Not done: the same
-   control on snapped windings and one at 9.362 µm on PHerc. 0139's labelled windings.
+   flattened. A window in the review tier is a place to look, not a reading. The 9.362 µm control
+   is a curated surface of the scroll the models were trained on. Not done: windings of our own
+   fit there, and the 343 control on snapped windings.
 
 ## Licence
 

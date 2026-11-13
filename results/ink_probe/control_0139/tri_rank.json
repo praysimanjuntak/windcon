@@ -1,0 +1,86 @@
+[
+ {
+  "score": 14.64,
+  "name": "curated_w035",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 90.0,
+  "fibres": [
+   176.2,
+   91.2
+  ],
+  "row_off": 0.0,
+  "fib_off": 1.2,
+  "tex": 0.363,
+  "rel_tex": null,
+  "crack": 0.0,
+  "shape": 0.49,
+  "recur": null,
+  "glyph": null,
+  "via": "row",
+  "queue": "REVIEW"
+ },
+ {
+  "score": 3.72,
+  "name": "curated_w035",
+  "side": "rev",
+  "x0": 1300,
+  "row_angle": 90.0,
+  "fibres": [
+   91.2,
+   176.2
+  ],
+  "row_off": 0.0,
+  "fib_off": 1.2,
+  "tex": 0.352,
+  "rel_tex": null,
+  "crack": 1.02,
+  "shape": 0.487,
+  "recur": null,
+  "glyph": null,
+  "via": "row",
+  "queue": "REVIEW"
+ },
+ {
+  "score": -0.43,
+  "name": "curated_w035",
+  "side": "fwd",
+  "x0": 0,
+  "row_angle": 35.0,
+  "fibres": [
+   176.2,
+   91.2
+  ],
+  "row_off": 55.0,
+  "fib_off": 1.2,
+  "tex": 0.363,
+  "rel_tex": null,
+  "crack": null,
+  "shape": null,
+  "recur": null,
+  "glyph": null,
+  "via": "row",
+  "queue": "auto-reject: rows not along winding"
+ },
+ {
+  "score": -1.09,
+  "name": "curated_w035",
+  "side": "fwd",
+  "x0": 1300,
+  "row_angle": 165.0,
+  "fibres": [
+   91.2,
+   176.2
+  ],
+  "row_off": 75.0,
+  "fib_off": 1.2,
+  "tex": 0.352,
+  "rel_tex": null,
+  "crack": null,
+  "shape": null,
+  "recur": null,
+  "glyph": null,
+  "via": "row",
+  "queue": "auto-reject: rows not along winding"
+ }
+]

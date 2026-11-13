@@ -1,0 +1,4 @@
+ 14.64 curated_w035           rev x0      rows   0.0 fib 1.2 tex None crack 0.0 shape 0.49 recur None  -> REVIEW
+  3.72 curated_w035           rev x1300   rows   0.0 fib 1.2 tex None crack 1.02 shape 0.487 recur None  -> REVIEW
+ -0.43 curated_w035           fwd x0      rows  55.0 fib 1.2 tex None crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.09 curated_w035           fwd x1300   rows  75.0 fib 1.2 tex None crack None shape None recur None  -> auto-reject: rows not along winding
