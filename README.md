@@ -1281,6 +1281,8 @@ with CMake. The tools below stay at the pin and need neither build.
   over the mesh, the fit's windings per turn along it, and the distance between the fit's sheets
   along the mesh normals. With `--surface` it also reads a surface prediction on the same normals:
   the distance between predicted sheets, and how far the mesh is from the nearest one.
+- `store_vs_surface.py` counts, along the rays of a store, the model's windings and the sheets of
+  a surface prediction on the same stretch: a check of a store on a scan where nobody has counted.
 - `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
   environment.
 
