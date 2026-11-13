@@ -1245,12 +1245,22 @@ surface, so, rebuilt with villa's own `ShellPolarMap`:
 | window 1 (z 9900–10900) | 780–2,200 per 10° sector between 100° and 230°, 20–470 elsewhere, none between 50° and 100° | 27.6 %: 45–65 % between 100° and 230°, 1–30 % elsewhere, 0 % between 50° and 100° |
 | window 2 (z 13400–14400) | 1,000–1,200 per sector between 90° and 230°, none elsewhere | 25.3 %: 59–65 % between 90° and 230°, 0 % elsewhere |
 
-Of the crossings of the store made here, 27.8 % pass in window 1. So every fit with rays in this
-repository had them on about a quarter of its window, and at 10,271 rays about 2,900 counted.
+Of the crossings of the store made here, 27.8 % pass in window 1. So every fit with rays above
+had them on about a quarter of its window, and at 10,271 rays about 2,900 counted.
 `shell_min_confidence: 0` makes every pair inside the table's radius count, and makes the shell
-loss read the table's filled-in radius everywhere; regimes `TA`, `TWA` and `TWcA` are `T`, `TW`
-and `TWc` with it, not measured yet. A shell made by `make_outer_shell.py` needs the key as
-well: its rows are 20 slices apart, and with a row on the table's edge slice no cell passes.
+loss read the table's filled-in radius everywhere. Regime `TA` is `T` with that one key
+(window 1, one seed; the two values of `T` are its seeds):
+
+| regime | human-curated patch area | `band-seed` patch area | held-out arcs | eval fibres | human relative windings | automatic paths, no scan test |
+| --- | --- | --- | --- | --- | --- | --- |
+| `T`: published rays where the shell table passes them | 60.1 / 63.3 | 62.8 / 62.9 | 70.9 / 71.0 | 38.8 / 39.2 | 71.7 / 69.3 | 86.2 / 86.3 |
+| `TA`: all published rays | 63.0 | 62.7 | 72.2 | 38.2 | 75.3 | 86.0 |
+
+The human relative windings gain 3.6–6.0 points, more than the 2.4 between the two seeds of `T`,
+and the held-out arcs 1.2; the curated area is inside `T`'s range and the eval fibres 0.6–1.0
+lower. A second seed, window 2 and the rays made here under the same key (`TWA`, `TWcA`) are not
+measured yet. A shell made by `make_outer_shell.py` needs the key as well: its rows are 20
+slices apart, and with a row on the table's edge slice no cell passes.
 
 In Round 7, taking the winding-inference rays and the outer shell away from the fit with tracks
 costs 3–6 points of the human-curated patch area and 18 points of the human relative windings
