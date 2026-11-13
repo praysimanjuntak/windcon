@@ -14,6 +14,8 @@ Stdlib only. Source: https://dl.ash2txt.org/datasets/spiral_datasets/PHercParis4
 * with `--parts tracks`: the surface tracks of the whole scroll (27 GiB): the DBM, its packed store
   and its crossings cache. villa 5a4388f accepts the two caches only while the DBM file's size and
   modification time equal the fingerprint stored with them, so the DBM's time is set from it.
+  Another scroll's dataset holds only tracks/; `--parts tracks --base <its URL> --tracks <its DBM>`
+  fetches them (its lasagna stores are in the open-data bucket: fetch_lasagna.py).
 
 Re-running resumes: finished files are skipped, fetched sidecar row runs and file parts are recorded.
 """
@@ -236,14 +238,18 @@ def fetch_whole(rel: str, out_root: Path, pool: ThreadPoolExecutor, part: int = 
 def fetch_tracks(out_root: Path, pool: ThreadPoolExecutor) -> None:
     store = f"{TRACKS}.vctracks"
     rels = [f"{store}/{n}" for n in listing(store) if not n.endswith("/")]
-    rels += [f"{TRACKS}.crossings.npz", f"{TRACKS}.db"]
+    rels.append(f"{TRACKS}.crossings.npz")
     fetched = sum(fetch_whole(r, out_root, pool) for r in rels)
+    # The packed store names the DBM's backing file: <name>.db for Paris 4, <name> itself elsewhere.
     signature = json.loads((out_root / store / "metadata.json").read_text())["source_db_signature"]
+    folder = Path(TRACKS).parent
     for name, size, mtime_ns in signature:
-        path = (out_root / TRACKS).parent / name
+        fetched += fetch_whole(str(folder / name), out_root, pool)
+        path = out_root / folder / name
         assert path.stat().st_size == size, (path, path.stat().st_size, size)
         os.utime(path, ns=(mtime_ns, mtime_ns))
-    log(f"tracks: {len(rels)} files, {fetched / 2**30:.2f} GiB fetched, DBM time set from the packed store")
+    log(f"tracks: {len(rels) + len(signature)} files, {fetched / 2**30:.2f} GiB fetched, "
+        "DBM time set from the packed store")
 
 
 def bbox_hits_window(bbox, z_begin: int, z_end: int) -> bool:
@@ -317,6 +323,7 @@ def fetch_patches(out_root: Path, z_begin: int, z_end: int, pool: ThreadPoolExec
 
 
 def main() -> None:
+    global BASE, TRACKS
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--z-begin", type=int, required=True)
@@ -324,7 +331,11 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=64)
     ap.add_argument("--parts", nargs="+", default=["small", "normals", "patches"],
                     choices=["small", "normals", "grad_mag", "patches", "tracks"])
+    ap.add_argument("--base", default=BASE,
+                    help="dataset URL; the other scrolls' (…/spiral_datasets/<scroll>/<volume id>) hold only tracks/")
+    ap.add_argument("--tracks", default=TRACKS, help="logical DBM path of the tracks inside the dataset")
     args = ap.parse_args()
+    BASE, TRACKS = args.base.rstrip("/"), args.tracks
     args.out.mkdir(parents=True, exist_ok=True)
     with ThreadPoolExecutor(args.workers) as pool:
         if "small" in args.parts:
