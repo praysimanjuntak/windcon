@@ -23,6 +23,10 @@ lines of 121 voxels: its sheets per 100 voxels, the distance between neighbourin
 median gap on each line that meets at least three), and how far the mesh itself is from the
 nearest predicted sheet, with the share of the lines' own length that is as near for comparison.
 
+--profile N gives the coordinate's median in three bands of height by N stretches of the mesh's
+turns, which shows where along a sheet a fit leaves it; --distance-to gives the distance to the
+nearest node of another mesh in the same table.
+
     run.sh mesh_windings.py --checkpoint <run>/checkpoint_fitted.ckpt --umbilicus <umbilicus.json> \
         --mesh <mesh.tifxyz> [--mesh <another>] [--surface <URL of the prediction's level 0>]
 """
@@ -30,6 +34,7 @@ nearest predicted sheet, with the share of the lines' own length that is as near
 from __future__ import annotations
 
 import argparse
+import itertools
 import json
 import sys
 from pathlib import Path
@@ -83,6 +88,20 @@ def turns(theta: np.ndarray, mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return turn, largest
 
 
+def by_height_and_stretch(values: np.ndarray, along: np.ndarray, z: np.ndarray, stretches: int) -> list[list]:
+    """Medians of `values` in three bands of height with equal node counts (rows, low z first) and `stretches`
+    equal stretches of the turns along the mesh (columns); None where a cell has under 20 nodes."""
+    edges = np.linspace(along.min(), along.max() + 1e-9, stretches + 1)
+    heights = np.percentile(z, [0, 100 / 3, 200 / 3, 100])
+    heights[-1] += 1
+    table = []
+    for low, high in itertools.pairwise(heights):
+        band = (z >= low) & (z < high)
+        cells = [band & (along >= a) & (along < b) for a, b in itertools.pairwise(edges)]
+        table.append([float(np.median(values[cell])) if cell.sum() >= 20 else None for cell in cells])
+    return table
+
+
 def read_prediction(surface: ZarrArray, points: np.ndarray, normals: np.ndarray, rng) -> dict:
     """Readings of a surface prediction along the normal at up to 2,000 of the points, REACH voxels each way."""
     chosen = rng.choice(len(points), min(2000, len(points)), replace=False)
@@ -120,6 +139,12 @@ def main() -> None:
     ap.add_argument("--sectors", type=int, default=0,
                     help="also give the windings per turn in this many equal sectors of the angle round the "
                          "umbilicus, for a mesh that passes a sector on two turns or more")
+    ap.add_argument("--profile", type=int, default=0,
+                    help="also give the coordinate's median in three bands of height by this many stretches of "
+                         "the mesh's turns")
+    ap.add_argument("--distance-to", type=Path,
+                    help="with --profile: another tifxyz mesh; the distance from each node to its nearest node, "
+                         "in the same table")
     ap.add_argument("--out", type=Path, help="write the report here as JSON")
     args = ap.parse_args()
 
@@ -176,6 +201,16 @@ def main() -> None:
                     if (sector == k).sum() > 20 and np.ptp(along[sector == k]) > 1.5 else None
                     for k in range(args.sectors)
                 ]
+            if args.profile:
+                row["winding_by_height_and_stretch"] = by_height_and_stretch(winding, along, points[:, 2], args.profile)
+                if args.distance_to:
+                    from scipy.spatial import cKDTree
+
+                    other, other_valid, _ = load_mesh(args.distance_to)
+                    distance = cKDTree(other[other_valid]).query(points)[0]
+                    row["distance_to_other_mesh_by_height_and_stretch"] = by_height_and_stretch(
+                        distance, along, points[:, 2], args.profile
+                    )
             if surface is not None:
                 # The same lines for a mesh whatever else is read in the run.
                 row.update(read_prediction(surface, points, normals, np.random.default_rng(0)))
