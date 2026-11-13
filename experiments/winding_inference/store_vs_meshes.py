@@ -16,6 +16,9 @@ traced windings between them:
 - two passes of one mesh: the turns between them along the mesh;
 - passes of two meshes named w<number>... whose numbers differ by one at most: one winding (the
   end of each mesh overlaps the start of the next, so the numbers alone would miscount there);
+- with --number-step N, for a scroll where only every Nth winding is traced (PHerc. 1447: w058,
+  w060, w062) and every mesh starts at the same angle: the difference of the numbers, a mesh's
+  second turn counting as the next number;
 - anything else is left out.
 
     uv run python store_vs_meshes.py --store <store> --umbilicus <umbilicus.json> --voxel-um 9.362 \
@@ -144,6 +147,8 @@ def main() -> None:
     ap.add_argument("--upsample", type=int, default=4, help="mesh points per grid cell edge")
     ap.add_argument("--surface", help="URL of a surface prediction's level in the store's voxels: also count its "
                                       "sheets between two traced ones, as a second witness where the model counts two")
+    ap.add_argument("--number-step", type=int, default=1,
+                    help="the traced windings are this many numbers apart (meshes must start at one angle)")
     ap.add_argument("--checkpoint", type=Path, help="count with this fitted spiral instead of the store's model")
     ap.add_argument("--out", type=Path, help="write the report here as JSON")
     args = ap.parse_args()
@@ -161,6 +166,8 @@ def main() -> None:
     mesh = np.repeat(np.arange(len(clouds)), [len(c[0]) for c in clouds])
     numbers = [re.match(r"w(\d+)", path.name) for path in args.mesh]
     number = np.array([float(m.group(1)) if m else np.nan for m in numbers])
+    # a mesh's number plus the whole turns from its start: its second turn lies on the next winding
+    lap = np.concatenate([np.floor(c[1] - c[1].min() + 1e-6) if len(c[1]) else c[1] for c in clouds])
     print(f"{len(args.mesh)} meshes, {len(points):,} points in z {z_range[0]:.0f}-{z_range[1]:.0f}", flush=True)
     tree = cKDTree(points)
     surface = ZarrArray(args.surface) if args.surface else None
@@ -198,7 +205,10 @@ def main() -> None:
             if mesh[a] == mesh[b]:
                 swing = angle[b] - angle[a]
                 traced = abs(round(float(along[b] - along[a] - (swing - round(swing)))))
-            elif abs(number[mesh[a]] - number[mesh[b]]) <= 1:  # nan when a mesh has no number
+            elif args.number_step > 1:
+                apart = abs(number[mesh[a]] + lap[a] - number[mesh[b]] - lap[b])  # nan when a mesh has no number
+                traced = int(apart) if 1 <= apart <= args.number_step else 0
+            elif abs(number[mesh[a]] - number[mesh[b]]) <= 1:
                 traced = 1
             else:
                 traced = 0
