@@ -1238,15 +1238,17 @@ slope is less certain.
 of the outer shell has a confidence of 0.25 or more at both (`shell_min_confidence`; villa
 `5a4388f` and main). The table bins the shell mesh's nodes by slice and angle, and its confidence
 is the smoothed occupancy divided by its maximum. Paris 4's published `outer_shell` is a partial
-surface, so, rebuilt with villa's own `ShellPolarMap`:
+surface, so, rebuilt with villa's own `ShellPolarMap` (`shell_gate.py`):
 
 | | nodes of the shell | cells of the window that pass |
 | --- | --- | --- |
 | window 1 (z 9900–10900) | 780–2,200 per 10° sector between 100° and 230°, 20–470 elsewhere, none between 50° and 100° | 27.6 %: 45–65 % between 100° and 230°, 1–30 % elsewhere, 0 % between 50° and 100° |
 | window 2 (z 13400–14400) | 1,000–1,200 per sector between 90° and 230°, none elsewhere | 25.3 %: 59–65 % between 90° and 230°, 0 % elsewhere |
 
-Of the crossings of the store made here, 27.8 % pass in window 1. So every fit with rays above
-had them on about a quarter of its window, and at 10,271 rays about 2,900 counted.
+Of the crossings of the store made here, 27.8 % pass in window 1, and of the published store's
+2.1 million crossings in window 2, 27.4 %. So every fit with rays above had them on about a
+quarter of its window, and at 10,271 rays about 2,900 counted. PHerc. 0332's published shell, a
+full ring every 20 slices, passes 55.7 % of a window, evenly round the scroll.
 `shell_min_confidence: 0` makes every pair inside the table's radius count, and makes the shell
 loss read the table's filled-in radius everywhere. Regime `TA` is `T` with that one key
 (window 1, one seed; the two values of `T` are its seeds):
@@ -1299,6 +1301,8 @@ with CMake. The tools below stay at the pin and need neither build.
   which they count winding N as an `outer_shell/`; it also prints the count at a mask's boundary.
 - `sheet_gaps.py` measures how far apart a scroll's sheets are, from its surface prediction along
   radial lines, before any fit exists.
+- `shell_gate.py` rebuilds the fitter's table of an outer shell and says which part of a window,
+  and which share of a store's crossings, the fitter will count.
 - `line_windings.py` scores a fit on hand-traced lines that each follow one sheet round the
   scroll, by the rule of PHerc. 0332's published scorer.
 - `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
