@@ -38,7 +38,9 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
   TS  TX with the published outer shell: tracks and shell, no winding-inference rays
   TW  T with winding-inference rays made here from the TX fit instead of the published ones
      (experiments/winding_inference/build_store.py; the published rays start from a fit with
-     4,610 patches)
+     4,610 patches): nine rays from each slab the model reads
+  TWc  TW with the centre ray of each slab only, which is what villa's exporter keeps
+  TP  T with as many published rays as TWc has in the window, drawn at random (subset_store.py)
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -95,6 +97,8 @@ AUTO_FILES = {  # relative to --postel
     "patches_all": "data/PHercParis4/verified_patches",
     "patches_grown": "data/PHercParis4/grown_patches",
     "rays_tx": "wi/stores/TX_s1_ws8",
+    "rays_tx_centre": "wi/stores/TX_s1_ws8_centre",
+    "rays_published_thin": "wi/stores/published_thin",
 }
 FEW_FRACTION, FEW_SEED = 0.10, 0
 FEW_LINKS = {"verified_patches": "patches_few"}
@@ -134,7 +138,13 @@ GROWN_LINKS = TRACK_LINKS | {"verified_patches": "patches_grown"}
 NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
          "input_use_winding_inference": False}
 NO_SHELL_NO_WI = NO_WI | {"input_use_outer_shell": False}
-OWN_RAYS_LINKS = TRACK_LINKS | {"winding_inference": "rays_tx"}
+
+
+def own_rays(key: str) -> dict:
+    """Links of a regime with tracks whose winding-inference store is AUTO_FILES[key]."""
+    return TRACK_LINKS | {"winding_inference": key}
+
+
 # regime -> (human inputs, automatic path file key or None, extra overrides, own budget,
 #            [other automatic files: dataset file name -> AUTO_FILES key])
 REGIMES = {
@@ -160,7 +170,9 @@ REGIMES = {
     "sparse_TX": (False, None, TRACKS | NO_SHELL_NO_WI, False, TRACK_LINKS),
     "sparse_TXR": (False, "relwind", TRACKS | NO_SHELL_NO_WI | D_SETTINGS, False, TRACK_LINKS),
     "sparse_TS": (False, None, TRACKS | NO_WI, False, TRACK_LINKS),
-    "sparse_TW": (False, None, TRACKS, False, OWN_RAYS_LINKS),
+    "sparse_TW": (False, None, TRACKS, False, own_rays("rays_tx")),
+    "sparse_TWc": (False, None, TRACKS, False, own_rays("rays_tx_centre")),
+    "sparse_TP": (False, None, TRACKS, False, own_rays("rays_published_thin")),
     "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
     "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
     "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),

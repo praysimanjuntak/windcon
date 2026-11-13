@@ -41,7 +41,7 @@ METRICS = [
 ORDER = ("sparse_A", "sparse_L", "sparse_B", "sparse_C", "sparse_D", "sparse_E", "sparse_Eg",
          "sparse_F", "sparse_H", "sparse_J", "sparse_K", "sparse_M", "sparse_N", "sparse_O",
          "sparse_P", "sparse_Q", "sparse_T", "sparse_TE", "sparse_TR", "sparse_TX", "sparse_TXR",
-         "sparse_TB", "sparse_TG", "sparse_TBR",
+         "sparse_TS", "sparse_TW", "sparse_TWc", "sparse_TP", "sparse_TB", "sparse_TG", "sparse_TBR",
          "few_A", "few_Ig", "few_rand", "few_targ", "few_orac", "few_AR10", "few_oracR10",
          "few_ALR", "few_oracLR", "few_ANW", "few_oracNW", "few_AP", "few_oracP", "few_ADT",
          "few_oracDT", "few_ASD", "few_oracSD", "few_ARW", "few_oracRW", "few_ARWh",
