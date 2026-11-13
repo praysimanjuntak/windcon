@@ -14,8 +14,8 @@ distances from the umbilicus. Patches under --min-turns have no such pairs and a
 
 Reported per patch: turns, pairs, the median difference and the share of pairs that are further
 out. A patch votes when it has 50 pairs, four in five of them agree, and the difference is under
-a quarter of the patch's radius (a patch that runs past the umbilicus sweeps the angle without
-following a sheet round). A scroll whose patches are further out one turn of growing
+half the patch's radius (a patch that runs past the umbilicus sweeps the angle without following
+a sheet round). A scroll whose patches are further out one turn of growing
 atan2(y - cy, x - cx) later is `CW` in spiral-scroll.json's terms, as PHerc. Paris 4 is; the
 other way `ACW`, as PHerc. 0332.
 winding_sense.sh grows such patches from a scroll's surface tracks with villa's grow_track_graph.py.
@@ -60,7 +60,7 @@ def one_turn_later(folder: Path, umbilicus: Path, min_turns: float) -> dict | No
         return None
     change = radius[partner[paired]] - radius[paired]
     share = float(np.mean(change > 0))
-    clear = paired.sum() >= 50 and abs(share - 0.5) >= 0.3 and abs(np.median(change)) < 0.25 * np.median(radius)
+    clear = paired.sum() >= 50 and abs(share - 0.5) >= 0.3 and abs(np.median(change)) < 0.5 * np.median(radius)
     return {
         "turns": float(np.ptp(along)),
         "pairs": int(paired.sum()),
