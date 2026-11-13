@@ -47,6 +47,8 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
      normalises that by its densest spot: with the published shell 28 % of window 1 passes, and none
      of the angles 40-100 degrees (measured by rebuilding the table). At 0 every pair inside the
      shell's radius counts, and the shell loss reads the table everywhere
+  TAH, TWAH  TA and TWA with the rays' two loss weights at ten times the default: on PHerc. 343,
+     where no traced shell sets the winding count, a fit follows its rays only at that weight
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -145,6 +147,7 @@ NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
          "input_use_winding_inference": False}
 NO_SHELL_NO_WI = NO_WI | {"input_use_outer_shell": False}
 HEAVY_RAYS = {"loss_weight_dense_spacing": 36.0, "loss_weight_dense_spacing_density": 36.0}  # default 12
+TENFOLD_RAYS = {"loss_weight_dense_spacing": 120.0, "loss_weight_dense_spacing_density": 120.0}
 WHOLE_SHELL_TABLE = {"shell_min_confidence": 0.0}  # default 0.25
 
 
@@ -185,6 +188,8 @@ REGIMES = {
     "sparse_TA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, TRACK_LINKS),
     "sparse_TWA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, own_rays("rays_tx")),
     "sparse_TWcA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, own_rays("rays_tx_centre")),
+    "sparse_TAH": (False, None, TRACKS | WHOLE_SHELL_TABLE | TENFOLD_RAYS, False, TRACK_LINKS),
+    "sparse_TWAH": (False, None, TRACKS | WHOLE_SHELL_TABLE | TENFOLD_RAYS, False, own_rays("rays_tx")),
     "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
     "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
     "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),
