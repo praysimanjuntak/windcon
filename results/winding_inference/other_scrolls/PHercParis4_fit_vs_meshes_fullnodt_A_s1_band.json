@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/TX_s1_ws8_centre",
+ "counted_by": "$P/runs/fullnodt_A_s1/checkpoint_fitted.ckpt",
+ "rays": 10269,
+ "pairs_left_out": 119,
+ "traced_sheet_distance_um_10_50_90": [
+  81.60000033815064,
+  115.19999824400216,
+  172.8000043460431
+ ],
+ "all": {
+  "pairs": 7051,
+  "windings_per_traced_winding": 0.9971351884395387,
+  "pairs_one_traced_winding_apart": 6695,
+  "of_those_counted_as_one": 0.9994025392083644,
+  "of_those_counted_as_none": 0.00014936519790888724,
+  "of_those_counted_as_two_or_more": 0.00044809559372666166
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3437,
+   "windings_per_traced_winding": 0.988764735915898,
+   "pairs_one_traced_winding_apart": 3097,
+   "of_those_counted_as_one": 0.9990313206328705,
+   "of_those_counted_as_none": 0.00032289312237649337,
+   "of_those_counted_as_two_or_more": 0.0006457862447529867
+  },
+  "115-145": {
+   "pairs": 2151,
+   "windings_per_traced_winding": 1.0034341606052442,
+   "pairs_one_traced_winding_apart": 2135,
+   "of_those_counted_as_one": 0.9995316159250586,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.000468384074941452
+  },
+  "145-175": {
+   "pairs": 766,
+   "windings_per_traced_winding": 1.0086900795719953,
+   "pairs_one_traced_winding_apart": 766,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "175-230": {
+   "pairs": 516,
+   "windings_per_traced_winding": 1.0105503806772158,
+   "pairs_one_traced_winding_apart": 516,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "230-inf": {
+   "pairs": 181,
+   "windings_per_traced_winding": 1.010956063454981,
+   "pairs_one_traced_winding_apart": 181,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ }
+}

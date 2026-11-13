@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/TX_s1_ws8_centre",
+ "counted_by": "$P/runs/sparse_TX_s1/checkpoint_fitted.ckpt",
+ "rays": 10269,
+ "pairs_left_out": 119,
+ "traced_sheet_distance_um_10_50_90": [
+  81.60000033815064,
+  115.19999824400216,
+  172.8000043460431
+ ],
+ "all": {
+  "pairs": 7051,
+  "windings_per_traced_winding": 1.3224786163559226,
+  "pairs_one_traced_winding_apart": 6695,
+  "of_those_counted_as_one": 0.6941000746825989,
+  "of_those_counted_as_none": 0.005675877520537715,
+  "of_those_counted_as_two_or_more": 0.30022404779686335
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3437,
+   "windings_per_traced_winding": 1.2144323588665866,
+   "pairs_one_traced_winding_apart": 3097,
+   "of_those_counted_as_one": 0.8120762027768809,
+   "of_those_counted_as_none": 0.010978366160800775,
+   "of_those_counted_as_two_or_more": 0.17694543106231836
+  },
+  "115-145": {
+   "pairs": 2151,
+   "windings_per_traced_winding": 1.3866471775098779,
+   "pairs_one_traced_winding_apart": 2135,
+   "of_those_counted_as_one": 0.6562060889929743,
+   "of_those_counted_as_none": 0.001405152224824356,
+   "of_those_counted_as_two_or_more": 0.34238875878220143
+  },
+  "145-175": {
+   "pairs": 766,
+   "windings_per_traced_winding": 1.4814642166655618,
+   "pairs_one_traced_winding_apart": 766,
+   "of_those_counted_as_one": 0.5548302872062664,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.4451697127937337
+  },
+  "175-230": {
+   "pairs": 516,
+   "windings_per_traced_winding": 1.5381756642068078,
+   "pairs_one_traced_winding_apart": 516,
+   "of_those_counted_as_one": 0.45930232558139533,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.5406976744186046
+  },
+  "230-inf": {
+   "pairs": 181,
+   "windings_per_traced_winding": 1.543956166472883,
+   "pairs_one_traced_winding_apart": 181,
+   "of_those_counted_as_one": 0.3812154696132597,
+   "of_those_counted_as_none": 0.0055248618784530384,
+   "of_those_counted_as_two_or_more": 0.6132596685082873
+  }
+ }
+}

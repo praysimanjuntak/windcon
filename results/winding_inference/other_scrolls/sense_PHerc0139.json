@@ -1,0 +1,48 @@
+{
+ "summary": {
+  "patches": 27,
+  "patches_over_a_turn": 6,
+  "further_out_one_turn_later": 0,
+  "further_in_one_turn_later": 6,
+  "median_of_the_patches_medians_voxels": -23.483845034505492,
+  "spiral_outward_sense": "ACW"
+ },
+ "patches": {
+  "band-seed1795850-20261113-180144-668.tifxyz": {
+   "turns": 1.6048355679057553,
+   "pairs": 5353,
+   "radius_one_turn_later_median": -24.434184537641954,
+   "share_of_pairs_further_out": 0.07771343172053054
+  },
+  "band-seed1803544-20261113-180156-812.tifxyz": {
+   "turns": 1.3256218697258226,
+   "pairs": 2963,
+   "radius_one_turn_later_median": -22.290068485896597,
+   "share_of_pairs_further_out": 0.12014849814377321
+  },
+  "band-seed1826972-20261113-180054-576.tifxyz": {
+   "turns": 1.692006712242876,
+   "pairs": 3672,
+   "radius_one_turn_later_median": -31.546624675287404,
+   "share_of_pairs_further_out": 0.0010893246187363835
+  },
+  "band-seed1828024-20261113-180054-954.tifxyz": {
+   "turns": 1.506523437258048,
+   "pairs": 1821,
+   "radius_one_turn_later_median": -18.8633437765277,
+   "share_of_pairs_further_out": 0.05546403075233388
+  },
+  "band-seed1831942-20261113-180117-627.tifxyz": {
+   "turns": 1.7908288315805194,
+   "pairs": 6285,
+   "radius_one_turn_later_median": -22.53350553136903,
+   "share_of_pairs_further_out": 0.038504375497215595
+  },
+  "band-seed1841242-20261113-180106-209.tifxyz": {
+   "turns": 2.5108905374129575,
+   "pairs": 4549,
+   "radius_one_turn_later_median": -31.402524053988486,
+   "share_of_pairs_further_out": 0.003737085073642559
+  }
+ }
+}

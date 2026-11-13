@@ -1,0 +1,986 @@
+{
+ "summary": {
+  "patches": 1480,
+  "patches_over_a_turn": 139,
+  "patches_voting": 130,
+  "further_out_one_turn_later": 0,
+  "further_in_one_turn_later": 130,
+  "median_of_the_voting_patches_medians_voxels": -22.50344611322155,
+  "spiral_outward_sense": "ACW"
+ },
+ "patches": {
+  "band-seed12222584-20261113-195601-486.tifxyz": {
+   "turns": 1.346751409822856,
+   "pairs": 407,
+   "radius_one_turn_later_median": -20.170839981761247,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12239210-20261113-195404-961.tifxyz": {
+   "turns": 1.1472850516705961,
+   "pairs": 130,
+   "radius_one_turn_later_median": -16.515888181052773,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12324268-20261113-194210-069.tifxyz": {
+   "turns": 1.4021172766062335,
+   "pairs": 324,
+   "radius_one_turn_later_median": -17.81090413261527,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12324547-20261113-195111-657.tifxyz": {
+   "turns": 1.9652392884548282,
+   "pairs": 426,
+   "radius_one_turn_later_median": -19.947757128160923,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12324877-20261113-194750-227.tifxyz": {
+   "turns": 1.5967290658351154,
+   "pairs": 135,
+   "radius_one_turn_later_median": -23.885154412369076,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12345586-20261113-195158-097.tifxyz": {
+   "turns": 1.3985983050820177,
+   "pairs": 163,
+   "radius_one_turn_later_median": -14.583326587293044,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12353272-20261113-195140-093.tifxyz": {
+   "turns": 1.4867990368038966,
+   "pairs": 176,
+   "radius_one_turn_later_median": -20.542378599101625,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12370114-20261113-194914-299.tifxyz": {
+   "turns": 1.2588426333124074,
+   "pairs": 66,
+   "radius_one_turn_later_median": -20.723546091959754,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12478394-20261113-195547-245.tifxyz": {
+   "turns": 2.008513767391782,
+   "pairs": 425,
+   "radius_one_turn_later_median": -24.784810492099183,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12482480-20261113-195113-753.tifxyz": {
+   "turns": 1.2103566961661607,
+   "pairs": 111,
+   "radius_one_turn_later_median": -32.24089110166338,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12482552-20261113-194731-456.tifxyz": {
+   "turns": 1.6674224723868014,
+   "pairs": 67,
+   "radius_one_turn_later_median": -17.989148133999322,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12526621-20261113-195408-915.tifxyz": {
+   "turns": 1.8989482884098683,
+   "pairs": 462,
+   "radius_one_turn_later_median": -23.765287890482632,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed12567637-20261113-195552-741.tifxyz": {
+   "turns": 1.7888916530744081,
+   "pairs": 583,
+   "radius_one_turn_later_median": -23.93841319525913,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4369732-20261113-195705-175.tifxyz": {
+   "turns": 2.00994313870053,
+   "pairs": 560,
+   "radius_one_turn_later_median": -19.080886818558255,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4380723-20261113-195717-931.tifxyz": {
+   "turns": 1.2077260188286514,
+   "pairs": 60,
+   "radius_one_turn_later_median": -42.68159750225321,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4418038-20261113-195106-305.tifxyz": {
+   "turns": 1.1856111934047968,
+   "pairs": 115,
+   "radius_one_turn_later_median": -22.517519184969643,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4456431-20261113-194747-128.tifxyz": {
+   "turns": 1.4918935010661973,
+   "pairs": 485,
+   "radius_one_turn_later_median": -24.116679094680194,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4464491-20261113-194916-670.tifxyz": {
+   "turns": 1.6316188201534334,
+   "pairs": 488,
+   "radius_one_turn_later_median": -23.500372643560354,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4472341-20261113-195014-647.tifxyz": {
+   "turns": 1.7913514365137433,
+   "pairs": 458,
+   "radius_one_turn_later_median": -22.503446962786242,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4488033-20261113-194600-812.tifxyz": {
+   "turns": 2.161134186562607,
+   "pairs": 480,
+   "radius_one_turn_later_median": -18.83359956499585,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4490892-20261113-195538-906.tifxyz": {
+   "turns": 1.9385423506859825,
+   "pairs": 630,
+   "radius_one_turn_later_median": -19.45252820811632,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4527800-20261113-194542-103.tifxyz": {
+   "turns": 1.3155368271137813,
+   "pairs": 255,
+   "radius_one_turn_later_median": -23.613308487317397,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed4553311-20261113-194412-425.tifxyz": {
+   "turns": 1.8177888367487443,
+   "pairs": 281,
+   "radius_one_turn_later_median": -22.191378816084068,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5549249-20261113-195549-544.tifxyz": {
+   "turns": 2.0411290470247,
+   "pairs": 290,
+   "radius_one_turn_later_median": -18.48513620762796,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5630202-20261113-195754-888.tifxyz": {
+   "turns": 1.4450447004611835,
+   "pairs": 128,
+   "radius_one_turn_later_median": -37.59079806822099,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5658731-20261113-194259-148.tifxyz": {
+   "turns": 2.8971541428469223,
+   "pairs": 1405,
+   "radius_one_turn_later_median": -26.401841700326145,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5677013-20261113-194643-534.tifxyz": {
+   "turns": 1.9427539011620822,
+   "pairs": 323,
+   "radius_one_turn_later_median": -19.52699468358071,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5695918-20261113-194737-398.tifxyz": {
+   "turns": 1.964168470228816,
+   "pairs": 88,
+   "radius_one_turn_later_median": -18.556110674740964,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5703945-20261113-195326-375.tifxyz": {
+   "turns": 1.5522074598675404,
+   "pairs": 91,
+   "radius_one_turn_later_median": -30.260070512577585,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5719917-20261113-194951-714.tifxyz": {
+   "turns": 1.1219175874443448,
+   "pairs": 112,
+   "radius_one_turn_later_median": -16.013017458560597,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5723977-20261113-194244-499.tifxyz": {
+   "turns": 1.9730914802563884,
+   "pairs": 682,
+   "radius_one_turn_later_median": -27.609501067468436,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5724486-20261113-194407-313.tifxyz": {
+   "turns": 1.3756761592396967,
+   "pairs": 36,
+   "radius_one_turn_later_median": -44.66152385698611,
+   "share_of_pairs_further_out": 0.0,
+   "votes": false
+  },
+  "band-seed5732272-20261113-195053-518.tifxyz": {
+   "turns": 2.029349737777024,
+   "pairs": 519,
+   "radius_one_turn_later_median": -28.342582015932592,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5733386-20261113-194637-544.tifxyz": {
+   "turns": 2.444703976509575,
+   "pairs": 750,
+   "radius_one_turn_later_median": -26.351525931117713,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5734891-20261113-194729-614.tifxyz": {
+   "turns": 1.0291947019838321,
+   "pairs": 31,
+   "radius_one_turn_later_median": 5.449316703495924,
+   "share_of_pairs_further_out": 0.5806451612903226,
+   "votes": false
+  },
+  "band-seed5737903-20261113-195130-055.tifxyz": {
+   "turns": 1.0555158402283036,
+   "pairs": 109,
+   "radius_one_turn_later_median": -30.601587557406503,
+   "share_of_pairs_further_out": 0.045871559633027525,
+   "votes": true
+  },
+  "band-seed5739329-20261113-195712-353.tifxyz": {
+   "turns": 1.4682529048686463,
+   "pairs": 397,
+   "radius_one_turn_later_median": -22.503445263656857,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5739778-20261113-194214-518.tifxyz": {
+   "turns": 2.434291762298379,
+   "pairs": 1515,
+   "radius_one_turn_later_median": -22.515240083036517,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5747135-20261113-194919-064.tifxyz": {
+   "turns": 1.210014408084548,
+   "pairs": 38,
+   "radius_one_turn_later_median": -19.804767455303008,
+   "share_of_pairs_further_out": 0.0,
+   "votes": false
+  },
+  "band-seed5752462-20261113-194504-415.tifxyz": {
+   "turns": 1.4791416575083023,
+   "pairs": 132,
+   "radius_one_turn_later_median": -24.060955179960224,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5755232-20261113-194415-139.tifxyz": {
+   "turns": 1.5370988785216795,
+   "pairs": 618,
+   "radius_one_turn_later_median": -29.528311434844674,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5756676-20261113-195615-959.tifxyz": {
+   "turns": 2.2407147344601506,
+   "pairs": 592,
+   "radius_one_turn_later_median": -21.55145782454555,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5759366-20261113-195717-314.tifxyz": {
+   "turns": 1.0832340494390122,
+   "pairs": 155,
+   "radius_one_turn_later_median": -28.395145171750414,
+   "share_of_pairs_further_out": 0.05161290322580645,
+   "votes": true
+  },
+  "band-seed5761705-20261113-194804-168.tifxyz": {
+   "turns": 1.4169805468051198,
+   "pairs": 83,
+   "radius_one_turn_later_median": -16.723886465144744,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5762766-20261113-194755-987.tifxyz": {
+   "turns": 2.2322670556522244,
+   "pairs": 1042,
+   "radius_one_turn_later_median": -24.931540264599278,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5765303-20261113-195534-588.tifxyz": {
+   "turns": 1.5183780423111108,
+   "pairs": 359,
+   "radius_one_turn_later_median": -16.592974774392417,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5765305-20261113-195544-041.tifxyz": {
+   "turns": 1.0519251402579202,
+   "pairs": 41,
+   "radius_one_turn_later_median": -36.98502243852357,
+   "share_of_pairs_further_out": 0.04878048780487805,
+   "votes": false
+  },
+  "band-seed5765313-20261113-194344-753.tifxyz": {
+   "turns": 1.6440603122867046,
+   "pairs": 200,
+   "radius_one_turn_later_median": -24.710889996968632,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5773937-20261113-195247-852.tifxyz": {
+   "turns": 1.4367470425541264,
+   "pairs": 74,
+   "radius_one_turn_later_median": -27.98619986247457,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5775007-20261113-194254-723.tifxyz": {
+   "turns": 1.4149324123112381,
+   "pairs": 196,
+   "radius_one_turn_later_median": -27.403874809050322,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5782052-20261113-194758-167.tifxyz": {
+   "turns": 4.451799819477853,
+   "pairs": 3517,
+   "radius_one_turn_later_median": -23.146800259352617,
+   "share_of_pairs_further_out": 0.0005686664771111743,
+   "votes": true
+  },
+  "band-seed5783046-20261113-195745-381.tifxyz": {
+   "turns": 4.5897205188289885,
+   "pairs": 4782,
+   "radius_one_turn_later_median": -20.610919536177292,
+   "share_of_pairs_further_out": 0.0004182350480970305,
+   "votes": true
+  },
+  "band-seed5783049-20261113-195459-643.tifxyz": {
+   "turns": 1.52599841323579,
+   "pairs": 177,
+   "radius_one_turn_later_median": -24.89143570962122,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5784705-20261113-194922-469.tifxyz": {
+   "turns": 4.871606377002489,
+   "pairs": 5018,
+   "radius_one_turn_later_median": -20.926275637834593,
+   "share_of_pairs_further_out": 0.0005978477481068154,
+   "votes": true
+  },
+  "band-seed5788720-20261113-194947-734.tifxyz": {
+   "turns": 4.876683157770521,
+   "pairs": 3736,
+   "radius_one_turn_later_median": -20.276110050095113,
+   "share_of_pairs_further_out": 0.0008029978586723769,
+   "votes": true
+  },
+  "band-seed5793556-20261113-195542-903.tifxyz": {
+   "turns": 2.8507010502727588,
+   "pairs": 1645,
+   "radius_one_turn_later_median": -25.703395662372955,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5794965-20261113-195651-949.tifxyz": {
+   "turns": 1.569350289041336,
+   "pairs": 129,
+   "radius_one_turn_later_median": -15.551039901435757,
+   "share_of_pairs_further_out": 0.015503875968992248,
+   "votes": true
+  },
+  "band-seed5796741-20261113-194833-994.tifxyz": {
+   "turns": 4.736312449179017,
+   "pairs": 6177,
+   "radius_one_turn_later_median": -20.95670208461152,
+   "share_of_pairs_further_out": 0.0008094544277157196,
+   "votes": true
+  },
+  "band-seed5796767-20261113-195047-040.tifxyz": {
+   "turns": 1.7131414815948678,
+   "pairs": 560,
+   "radius_one_turn_later_median": -23.22873850051647,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5798241-20261113-195842-569.tifxyz": {
+   "turns": 1.0519442826170162,
+   "pairs": 58,
+   "radius_one_turn_later_median": -21.506827767804054,
+   "share_of_pairs_further_out": 0.08620689655172414,
+   "votes": true
+  },
+  "band-seed5798245-20261113-195839-578.tifxyz": {
+   "turns": 5.127877808735557,
+   "pairs": 7288,
+   "radius_one_turn_later_median": -21.607125368131697,
+   "share_of_pairs_further_out": 0.0009604829857299671,
+   "votes": true
+  },
+  "band-seed5800780-20261113-194754-215.tifxyz": {
+   "turns": 4.674868922169898,
+   "pairs": 7035,
+   "radius_one_turn_later_median": -20.876269337584176,
+   "share_of_pairs_further_out": 0.0009950248756218905,
+   "votes": true
+  },
+  "band-seed5808361-20261113-194340-395.tifxyz": {
+   "turns": 5.5537727743901275,
+   "pairs": 5899,
+   "radius_one_turn_later_median": -21.941560319105065,
+   "share_of_pairs_further_out": 0.00016952025767079165,
+   "votes": true
+  },
+  "band-seed5810199-20261113-194832-254.tifxyz": {
+   "turns": 4.997964951893586,
+   "pairs": 5592,
+   "radius_one_turn_later_median": -20.87336809022343,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5810201-20261113-195233-107.tifxyz": {
+   "turns": 1.450012022235873,
+   "pairs": 889,
+   "radius_one_turn_later_median": -20.475733017483464,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5844610-20261113-195232-522.tifxyz": {
+   "turns": 4.335368557568819,
+   "pairs": 4797,
+   "radius_one_turn_later_median": -21.494847168852175,
+   "share_of_pairs_further_out": 0.0006253908692933083,
+   "votes": true
+  },
+  "band-seed5855890-20261113-195358-201.tifxyz": {
+   "turns": 1.5424790388944594,
+   "pairs": 998,
+   "radius_one_turn_later_median": -16.729527042187925,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5863724-20261113-195136-759.tifxyz": {
+   "turns": 4.392145369458117,
+   "pairs": 6203,
+   "radius_one_turn_later_median": -21.55124610747029,
+   "share_of_pairs_further_out": 0.0016121231662098985,
+   "votes": true
+  },
+  "band-seed5867172-20261113-194833-579.tifxyz": {
+   "turns": 4.898022410477426,
+   "pairs": 5752,
+   "radius_one_turn_later_median": -22.493494407777575,
+   "share_of_pairs_further_out": 0.00017385257301808066,
+   "votes": true
+  },
+  "band-seed5867968-20261113-195634-414.tifxyz": {
+   "turns": 5.002341770521786,
+   "pairs": 6356,
+   "radius_one_turn_later_median": -21.32217049407828,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5878690-20261113-195627-707.tifxyz": {
+   "turns": 5.2403059059869435,
+   "pairs": 8743,
+   "radius_one_turn_later_median": -22.149457510088254,
+   "share_of_pairs_further_out": 0.0005718860802928057,
+   "votes": true
+  },
+  "band-seed5878691-20261113-194605-809.tifxyz": {
+   "turns": 1.8903261041374062,
+   "pairs": 300,
+   "radius_one_turn_later_median": -15.223888122502913,
+   "share_of_pairs_further_out": 0.0033333333333333335,
+   "votes": true
+  },
+  "band-seed5890127-20261113-194655-460.tifxyz": {
+   "turns": 5.14718816295321,
+   "pairs": 7248,
+   "radius_one_turn_later_median": -21.20864446397345,
+   "share_of_pairs_further_out": 0.0002759381898454746,
+   "votes": true
+  },
+  "band-seed5915695-20261113-194606-464.tifxyz": {
+   "turns": 1.1741742293125084,
+   "pairs": 39,
+   "radius_one_turn_later_median": -48.13008039124144,
+   "share_of_pairs_further_out": 0.0,
+   "votes": false
+  },
+  "band-seed5921628-20261113-194932-695.tifxyz": {
+   "turns": 5.090082856297682,
+   "pairs": 5626,
+   "radius_one_turn_later_median": -21.520805134496058,
+   "share_of_pairs_further_out": 0.002132954141485958,
+   "votes": true
+  },
+  "band-seed5948547-20261113-194933-498.tifxyz": {
+   "turns": 1.4449915460667613,
+   "pairs": 475,
+   "radius_one_turn_later_median": -19.825439534101093,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5950937-20261113-194349-381.tifxyz": {
+   "turns": 1.8166242041098752,
+   "pairs": 821,
+   "radius_one_turn_later_median": -23.37350183974982,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5951967-20261113-195655-257.tifxyz": {
+   "turns": 1.0782140500325315,
+   "pairs": 40,
+   "radius_one_turn_later_median": -28.112956401935193,
+   "share_of_pairs_further_out": 0.025,
+   "votes": false
+  },
+  "band-seed5956684-20261113-194903-999.tifxyz": {
+   "turns": 2.0028552571576363,
+   "pairs": 1372,
+   "radius_one_turn_later_median": -20.132608598521358,
+   "share_of_pairs_further_out": 0.0007288629737609329,
+   "votes": true
+  },
+  "band-seed5959170-20261113-194538-188.tifxyz": {
+   "turns": 1.1632850900071428,
+   "pairs": 31,
+   "radius_one_turn_later_median": -33.71974245406114,
+   "share_of_pairs_further_out": 0.0,
+   "votes": false
+  },
+  "band-seed5960124-20261113-194613-561.tifxyz": {
+   "turns": 1.4407281696654164,
+   "pairs": 334,
+   "radius_one_turn_later_median": -22.745756716951114,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5962722-20261113-194711-790.tifxyz": {
+   "turns": 1.400767183844023,
+   "pairs": 220,
+   "radius_one_turn_later_median": -28.3387764372697,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5964506-20261113-194359-257.tifxyz": {
+   "turns": 2.835447031520232,
+   "pairs": 763,
+   "radius_one_turn_later_median": -25.046733640007815,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5965613-20261113-195343-188.tifxyz": {
+   "turns": 1.4962673674719673,
+   "pairs": 428,
+   "radius_one_turn_later_median": -37.65657842188958,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5967328-20261113-194637-465.tifxyz": {
+   "turns": 1.9673761163886252,
+   "pairs": 972,
+   "radius_one_turn_later_median": -21.90965597151481,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5967933-20261113-194840-502.tifxyz": {
+   "turns": 2.5188245194675627,
+   "pairs": 825,
+   "radius_one_turn_later_median": -23.70282270121146,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5969182-20261113-194357-541.tifxyz": {
+   "turns": 1.421923572940169,
+   "pairs": 322,
+   "radius_one_turn_later_median": -19.764636732795438,
+   "share_of_pairs_further_out": 0.024844720496894408,
+   "votes": true
+  },
+  "band-seed5969201-20261113-195059-957.tifxyz": {
+   "turns": 1.9941924964977484,
+   "pairs": 778,
+   "radius_one_turn_later_median": -27.379634999592888,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5969204-20261113-195105-613.tifxyz": {
+   "turns": 1.7341864556014164,
+   "pairs": 319,
+   "radius_one_turn_later_median": -23.465624004440357,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5971558-20261113-195557-806.tifxyz": {
+   "turns": 1.9637635018813415,
+   "pairs": 783,
+   "radius_one_turn_later_median": -21.869789149979567,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5972190-20261113-194548-588.tifxyz": {
+   "turns": 1.9342830829633755,
+   "pairs": 806,
+   "radius_one_turn_later_median": -18.772314235998095,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5973846-20261113-194537-203.tifxyz": {
+   "turns": 2.835841487026567,
+   "pairs": 1201,
+   "radius_one_turn_later_median": -26.680849565818335,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5979002-20261113-195355-149.tifxyz": {
+   "turns": 1.853318393302355,
+   "pairs": 626,
+   "radius_one_turn_later_median": -24.50767459399642,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5980147-20261113-195354-429.tifxyz": {
+   "turns": 1.9156236661731874,
+   "pairs": 304,
+   "radius_one_turn_later_median": -22.932399815702126,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5981312-20261113-195010-261.tifxyz": {
+   "turns": 2.0935577673059163,
+   "pairs": 592,
+   "radius_one_turn_later_median": -24.538532567339054,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5982517-20261113-194225-962.tifxyz": {
+   "turns": 1.918929933312775,
+   "pairs": 1376,
+   "radius_one_turn_later_median": -25.628445592357664,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5984369-20261113-195734-787.tifxyz": {
+   "turns": 1.95174175247954,
+   "pairs": 710,
+   "radius_one_turn_later_median": -24.75916571274118,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5987446-20261113-195305-707.tifxyz": {
+   "turns": 1.4034158026987045,
+   "pairs": 237,
+   "radius_one_turn_later_median": -26.392564031464147,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed5993098-20261113-194533-159.tifxyz": {
+   "turns": 2.011722198845788,
+   "pairs": 797,
+   "radius_one_turn_later_median": -21.06253527148047,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6000718-20261113-195109-786.tifxyz": {
+   "turns": 1.4538364406769153,
+   "pairs": 458,
+   "radius_one_turn_later_median": -22.37114187940029,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6003182-20261113-195609-591.tifxyz": {
+   "turns": 1.3949695830243172,
+   "pairs": 420,
+   "radius_one_turn_later_median": -18.529684486598995,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6003199-20261113-194743-885.tifxyz": {
+   "turns": 2.7655395316240026,
+   "pairs": 553,
+   "radius_one_turn_later_median": -30.400131614400806,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6010737-20261113-194326-163.tifxyz": {
+   "turns": 2.76524416066134,
+   "pairs": 898,
+   "radius_one_turn_later_median": -28.26485852166902,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6011716-20261113-195825-060.tifxyz": {
+   "turns": 1.3164932795240523,
+   "pairs": 185,
+   "radius_one_turn_later_median": -22.754903646558375,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6016497-20261113-195112-958.tifxyz": {
+   "turns": 1.4237394109830175,
+   "pairs": 336,
+   "radius_one_turn_later_median": -21.163025359299027,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6016502-20261113-195747-013.tifxyz": {
+   "turns": 1.4008833195981802,
+   "pairs": 211,
+   "radius_one_turn_later_median": -26.31179512233345,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6023042-20261113-194802-924.tifxyz": {
+   "turns": 1.646768087538505,
+   "pairs": 900,
+   "radius_one_turn_later_median": -21.655496660460415,
+   "share_of_pairs_further_out": 0.0011111111111111111,
+   "votes": true
+  },
+  "band-seed6024869-20261113-194226-641.tifxyz": {
+   "turns": 1.4030289381795416,
+   "pairs": 336,
+   "radius_one_turn_later_median": -18.721969070040757,
+   "share_of_pairs_further_out": 0.005952380952380952,
+   "votes": true
+  },
+  "band-seed6027293-20261113-194735-193.tifxyz": {
+   "turns": 1.4449239771041646,
+   "pairs": 580,
+   "radius_one_turn_later_median": -19.380675530035496,
+   "share_of_pairs_further_out": 0.013793103448275862,
+   "votes": true
+  },
+  "band-seed6030970-20261113-195740-900.tifxyz": {
+   "turns": 2.167724759089081,
+   "pairs": 1212,
+   "radius_one_turn_later_median": -21.362388688810576,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6032735-20261113-194455-151.tifxyz": {
+   "turns": 1.5594606182045023,
+   "pairs": 1002,
+   "radius_one_turn_later_median": -20.3347381369812,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6032736-20261113-194656-162.tifxyz": {
+   "turns": 1.8348034363552337,
+   "pairs": 323,
+   "radius_one_turn_later_median": -22.506311644422055,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6036268-20261113-194339-711.tifxyz": {
+   "turns": 1.4053169914984704,
+   "pairs": 160,
+   "radius_one_turn_later_median": -28.382701892582993,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6037469-20261113-195332-892.tifxyz": {
+   "turns": 1.4260978301105638,
+   "pairs": 731,
+   "radius_one_turn_later_median": -20.348470341897098,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6055716-20261113-195809-895.tifxyz": {
+   "turns": 2.328874788014856,
+   "pairs": 1451,
+   "radius_one_turn_later_median": -19.42948050773802,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed6106800-20261113-195630-044.tifxyz": {
+   "turns": 1.42399911411901,
+   "pairs": 63,
+   "radius_one_turn_later_median": -48.818058672242344,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7561650-20261113-195128-458.tifxyz": {
+   "turns": 1.4040641185032072,
+   "pairs": 335,
+   "radius_one_turn_later_median": -16.501053893091182,
+   "share_of_pairs_further_out": 0.011940298507462687,
+   "votes": true
+  },
+  "band-seed7577234-20261113-194509-519.tifxyz": {
+   "turns": 1.084961229060162,
+   "pairs": 53,
+   "radius_one_turn_later_median": -21.949381998014957,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7577235-20261113-195236-649.tifxyz": {
+   "turns": 1.418200673103928,
+   "pairs": 343,
+   "radius_one_turn_later_median": -18.778903430230685,
+   "share_of_pairs_further_out": 0.0029154518950437317,
+   "votes": true
+  },
+  "band-seed7592754-20261113-195334-629.tifxyz": {
+   "turns": 1.4939236220673833,
+   "pairs": 473,
+   "radius_one_turn_later_median": -17.663962500379256,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7641015-20261113-195436-827.tifxyz": {
+   "turns": 1.0688689285803556,
+   "pairs": 80,
+   "radius_one_turn_later_median": -30.93719245106189,
+   "share_of_pairs_further_out": 0.125,
+   "votes": true
+  },
+  "band-seed7641403-20261113-195503-096.tifxyz": {
+   "turns": 2.2621329068546725,
+   "pairs": 680,
+   "radius_one_turn_later_median": -23.554387018356167,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7642508-20261113-195145-908.tifxyz": {
+   "turns": 3.401014176215777,
+   "pairs": 1717,
+   "radius_one_turn_later_median": -23.64677163513298,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7657522-20261113-195336-285.tifxyz": {
+   "turns": 1.9537970862753467,
+   "pairs": 486,
+   "radius_one_turn_later_median": -23.06470080603524,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7688480-20261113-195005-500.tifxyz": {
+   "turns": 1.1073639496578314,
+   "pairs": 36,
+   "radius_one_turn_later_median": -29.046420103815286,
+   "share_of_pairs_further_out": 0.0,
+   "votes": false
+  },
+  "band-seed7721983-20261113-194919-481.tifxyz": {
+   "turns": 1.9360111867394898,
+   "pairs": 785,
+   "radius_one_turn_later_median": -24.135698107662847,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7766048-20261113-195444-722.tifxyz": {
+   "turns": 1.5361187749316212,
+   "pairs": 689,
+   "radius_one_turn_later_median": -16.61957507726035,
+   "share_of_pairs_further_out": 0.0043541364296081275,
+   "votes": true
+  },
+  "band-seed7767114-20261113-195125-900.tifxyz": {
+   "turns": 2.4000880024459867,
+   "pairs": 903,
+   "radius_one_turn_later_median": -23.891235739892537,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7781427-20261113-195734-561.tifxyz": {
+   "turns": 1.595533857455346,
+   "pairs": 171,
+   "radius_one_turn_later_median": -25.916572192686147,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7781466-20261113-194258-292.tifxyz": {
+   "turns": 1.5125238493090625,
+   "pairs": 435,
+   "radius_one_turn_later_median": -23.68625213775752,
+   "share_of_pairs_further_out": 0.009195402298850575,
+   "votes": true
+  },
+  "band-seed7839852-20261113-194412-526.tifxyz": {
+   "turns": 1.1471870560146156,
+   "pairs": 43,
+   "radius_one_turn_later_median": -17.236962548931587,
+   "share_of_pairs_further_out": 0.09302325581395349,
+   "votes": false
+  },
+  "band-seed7885839-20261113-194526-960.tifxyz": {
+   "turns": 1.1413557951200473,
+   "pairs": 78,
+   "radius_one_turn_later_median": -24.68797790196396,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7934555-20261113-195511-571.tifxyz": {
+   "turns": 1.6502470649523637,
+   "pairs": 351,
+   "radius_one_turn_later_median": -23.380412250403353,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7934638-20261113-194542-104.tifxyz": {
+   "turns": 1.7557509673993519,
+   "pairs": 87,
+   "radius_one_turn_later_median": -22.658083299658827,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7934951-20261113-194209-188.tifxyz": {
+   "turns": 1.5089498010778393,
+   "pairs": 415,
+   "radius_one_turn_later_median": -25.485684725114112,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7949595-20261113-195813-941.tifxyz": {
+   "turns": 1.873004592026283,
+   "pairs": 326,
+   "radius_one_turn_later_median": -24.768689586872696,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7949610-20261113-195504-207.tifxyz": {
+   "turns": 1.8615392892627758,
+   "pairs": 523,
+   "radius_one_turn_later_median": -22.096257119392675,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  },
+  "band-seed7997574-20261113-194332-261.tifxyz": {
+   "turns": 1.8155865089751093,
+   "pairs": 532,
+   "radius_one_turn_later_median": -16.504940754053578,
+   "share_of_pairs_further_out": 0.0037593984962406013,
+   "votes": true
+  },
+  "band-seed8044738-20261113-195117-184.tifxyz": {
+   "turns": 1.9493212854280688,
+   "pairs": 1180,
+   "radius_one_turn_later_median": -19.365019296070038,
+   "share_of_pairs_further_out": 0.0,
+   "votes": true
+  }
+ }
+}

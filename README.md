@@ -7,10 +7,11 @@ point-collection documents that `villa/spiral-fitting/fit_spiral.py` already con
 
 ## Findings in brief
 
-Measured on PHerc. Paris 4 with the published `fit_spiral.py`, scored on human annotations the fits
-never saw (details and numbers in the sections below). Round 7 corrects two things about points
-2–5: their fits ran without villa's surface tracks, the fitter's default, and 92 % of the verified
-patches they call human were grown automatically. Point 6 is the result with the tracks on.
+Points 1–7 are measured on PHerc. Paris 4 with the published `fit_spiral.py`, scored on human
+annotations the fits never saw (details and numbers in the sections below). Round 7 corrects two
+things about points 2–5: their fits ran without villa's surface tracks, the fitter's default, and
+92 % of the verified patches they call human were grown automatically. Point 6 is the result with
+the tracks on. Points 8 and 9 are on PHerc. 0332, 0139, 343 and 0358.
 
 1. **The tracer is precise.** 97.6 % of traced length lies on the human arc it claims (held-out
    slices); paths cover 39 % of the arcs' length. Paths link across slices into chains with 1.0 %
@@ -57,6 +58,31 @@ patches they call human were grown automatically. Point 6 is the result with the
    area. The chains keep their second use: they flag the patches a tracks-based fit fails (AUC
    0.84), and the share of traced paths a fit keeps on one winding ranks fits as the held-out
    truth does (Spearman +0.9 over 35 fits that trained on no path).
+7. **The winding-inference rays set the count, and a fit that saw no annotation can seed them
+   (window 1).** Between neighbouring turns of a curated band of 6.4 turns a fit with tracks alone
+   counts one winding in 69 % of 6,695 places (1.32 windings per turn), with the published shell
+   82 %, with the published rays 93 %; the fit on every patch 99.9 %, and the rays themselves
+   98.6 %. Rays made here with the public model from the fit without annotations move the fit as
+   the published rays do on 12 of 13 curated patches. `fit_spiral.py` counts rays only where its
+   table of the outer shell passes them, a quarter of each window with Paris 4's partial shell;
+   with that gate off the human relative windings rise from 69–72 % to 75 %.
+8. **On other scrolls, without rays, a fit's winding count is that of its starting spiral.** Tracks
+   ask for a constant winding number along a sheet and say nothing about the number between two
+   sheets. PHerc. 343 fits started at 16, 20 and 23 voxels per winding end with counts in exactly
+   those ratios. On PHerc. 0332, scored on the Scroll Prize team's hand-traced lines and winding
+   anchors, the fit with tracks and lasagna density counts right in the inner two thirds and has
+   half the windings in the outer third; rays made from that fit bring it to two thirds there, and
+   the team's own score does not rise. On PHerc. 0139's 9.362 µm scan, whose pitch happens to be
+   the fitter's start, a fit with no count signal has 1.06 windings per curated winding and counts
+   77 % of neighbouring curated windings as one apart; with rays made from it, 87 %.
+9. **What a scroll gives away before a fit.** Its pitch: the median gap between predicted sheets
+   along radial lines is 2–11 % above the pitch people fixed on three scrolls. Its sense: patches
+   grown from the tracks at the umbilicus pass a full turn and show which way the sheets go; right
+   on the three scrolls where people fixed it, and PHerc. 0358, whose one public fit is
+   clockwise, winds anticlockwise. How far to trust rays there: against 37 hand-curated windings
+   of PHerc. 0139 the public winding model counts one winding between 90 % of 66,843 neighbouring
+   pairs on the native 9.36 µm scan (98.6 % on Paris 4 at 9.6 µm from the fine scan), merging
+   sheets that are under 115 µm apart.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -1124,8 +1150,48 @@ the submission: villa `5a4388f` instead of `0fb38c45`, the fine-tune rebuilt fro
 weights, a render that is not bit-identical to VC3D's, and one tile phase instead of two. On an
 RTX 4070 SUPER the three villa models take 35 s each for the 10 cm² segment and Hecate 16 minutes
 for both layer orders. So the ink half of that result runs on a 12 GB card from public parts.
-Whether a fit made here puts a sheet there is the open half. Scores and our image of the
-ensemble: `results/ink_probe/`.
+Scores and our image of the ensemble: `results/ink_probe/`.
+
+**The screen that found PHerc. 0306B's line, on these letters.** The PHerc. 0306B submission
+([SirProdigle/pherc0306b-first-letters](https://github.com/SirProdigle/pherc0306b-first-letters),
+`discovery/`) found its line by reading every winding of a spiral fit and scoring every window of
+every map: a row-periodicity score on windows 2,600 px wide (`window_score.py`), gates on the
+direction of the rows, the flatness of the sheet, papyrus texture, cracks and the shape of the
+marks (`tri_rank.py`), and a review card per window that is left. Here `lane_layout.py` writes
+the folder those scripts read from a 66-layer render and the ink maps of both faces, and
+`triage_lane.sh` runs them unchanged. The test: the submission's mesh, and windings of two fits
+made here with no annotation (`fl343_own_fit.sh`; "The winding count and the winding sense on
+other scrolls" below), as fitted, within 200 voxels of that mesh. Three villa models, 40 windows
+over both faces:
+
+| window | row score | rows off the winding | queue |
+| --- | --- | --- | --- |
+| the submission's mesh, layers reversed, x 1300 | 8.68 | 15° | REVIEW |
+| **winding w048 of our fit with tracks, normals and density, reversed, x 0** | 5.72 | 0° | **REVIEW** |
+| the submission's mesh, reversed, x 0 | 5.10 | 0° | REVIEW |
+| w048 of our fit with rays, reversed, x 0 | 6.94 | 15° | second tier: on cracks |
+| the submission's mesh, reversed, x 2600 | 19.45 | 15° | second tier: round blobs |
+| w047 of our fit without rays, reversed, x 1300 | 9.02 | 25° | rejected: rows not along the winding |
+| w049 of our fit with rays, reversed, x 0 | 4.24 | 45° | rejected: rows not along the winding |
+
+Seven windows reach the submission's cut of 4. All are on the reversed layers, the face towards
+the scroll's axis, where the letters are; none of the 20 windows of the other face does (largest
+3.11). So a winding of a fit made here, not snapped, with public ink models and the public
+triage, puts PHerc. 343's letters in the first review tier, beside the submission's own mesh.
+The cards show the difference that remains: on the mesh two rows of separate marks, on our
+winding a short row of joined marks among blobs, and streaks in the CT where the surface cuts
+through sheets.
+
+The submission's glyph network (`glyph_win.py`, a 2.6 MB classifier of letter-like marks; here on
+the CPU, 40 s a winding) is a second detector. Its threshold is 9.06. The mesh's four reversed
+windows score 10.7, 11.0, 10.8 and 7.7 and its forward ones at most 5.5; of our 32 windows three
+pass, all reversed (w048 at 10.2, w047 at 9.9 and 9.7), and no forward window of any surface is
+over 6.8. `triage_lane.sh` with `GLYPH=1` admits a window by either score: w047 of the fit without
+rays then joins the first tier (row score 2.42, glyph 9.88).
+
+`screen_band.sh` runs the same chain over the windings of a band of any scroll: snap to the
+surface prediction, render, ink both faces, lay out. The triage's table and two of its cards
+(the mesh and our w048) are in `results/ink_probe/triage_343/`.
 
 ```bash
 P=~/Documents/postel/vesuvius_challenge; E=experiments/ink_probe; I=$P/ink
@@ -1170,6 +1236,20 @@ uv run python $E/fetch_layers.py $S/winner66_layers --name winner66 --native-spa
 bash $E/run_fl343_models.sh $S/winner66.zarr $I/out/fl343_winner 1
 uv run python $E/fl343_check.py --maps $I/out/fl343_winner --render $S/winner66.npy \
   --sidecar $W/outputs/$N.json --image $W/outputs/$N.png --out $I/out/fl343_winner/check
+# The same maps through the PHerc. 0306B submission's triage; then a band of an unread scroll.
+git clone https://github.com/SirProdigle/pherc0306b-first-letters $P/data/PHerc0306B_winner
+M=$I/out/fl343_winner/winner66
+$I/.venv/bin/python $E/lane_layout.py $I/out/lane343 winner_w000 $S/winner66.npy \
+  --fwd ${M}__dnative__L66s26.tif ${M}__hybrid_3d2d-seed42__L66s26.tif ${M}__hybrid_3d2d-seed43__L66s26.tif \
+  --rev ${M}__dnative__L66s26_reverse.tif ${M}__hybrid_3d2d-seed42__L66s26_reverse.tif \
+        ${M}__hybrid_3d2d-seed43__L66s26_reverse.tif
+bash $E/triage_lane.sh $I/out/lane343 8.64
+B=https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc0358
+bash $E/screen_band.sh $P/p358/runs/minimal_s1_meshes/meshes/fitted $I/out/lane358_minimal \
+  $B/volumes/20250821151737-9.362um-1.2m-113keV-masked.zarr/0 $P/data/PHerc0358/umbilicus.json \
+  $B/representations/predictions/surfaces/20250821151737-surface-20260413222639-surface-m7-L0-th0.2.zarr \
+  9.362 20 100
+bash $E/triage_lane.sh $I/out/lane358_minimal 9.362
 ```
 
 ## Winding-inference rays from any fit (`experiments/winding_inference/`)
@@ -1292,7 +1372,8 @@ with CMake. The tools below stay at the pin and need neither build.
 - `mesh_windings.py` reads a fit's winding number on a tifxyz mesh of a known sheet: its spread
   over the mesh, the fit's windings per turn along it, and the distance between the fit's sheets
   along the mesh normals. With `--surface` it also reads a surface prediction on the same normals:
-  the distance between predicted sheets, and how far the mesh is from the nearest one.
+  the distance between predicted sheets, and how far the mesh is from the nearest one. `--profile`
+  gives the number by height and by stretch of the turn, which shows where a fit leaves a sheet.
 - `store_vs_surface.py` counts, along the rays of a store, the model's windings and the sheets of
   a surface prediction on the same stretch: a check of a store on a scan where nobody has counted.
 - `store_vs_fit.py` compares a fit with a store pair by pair, as the fitter's loss does;
@@ -1300,11 +1381,17 @@ with CMake. The tools below stay at the pin and need neither build.
 - `count_shell.py` sums the rays' windings outwards from the umbilicus and writes the surface on
   which they count winding N as an `outer_shell/`; it also prints the count at a mask's boundary.
 - `sheet_gaps.py` measures how far apart a scroll's sheets are, from its surface prediction along
-  radial lines, before any fit exists.
+  radial lines, before any fit exists. Its median is the scroll's pitch (next section).
 - `shell_gate.py` rebuilds the fitter's table of an outer shell and says which part of a window,
   and which share of a store's crossings, the fitter will count.
 - `line_windings.py` scores a fit on hand-traced lines that each follow one sheet round the
-  scroll, by the rule of PHerc. 0332's published scorer.
+  scroll, by the rule of PHerc. 0332's published scorer, and `anchor_windings.py` on that
+  dataset's points with a winding number people fixed.
+- `store_vs_meshes.py` takes pairs of traced sheets that follow one another on a ray and asks
+  whether the model counts one winding between them; with `--checkpoint` a fit is asked instead.
+  `seed_rays_on_meshes.py` seeds the rays on the traced sheets, so that no fit is needed.
+- `winding_profile.py` prints a fit's winding number against distance from the umbilicus: the
+  windings a fit has between two radii, with no annotation.
 - `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
   environment.
 
@@ -1409,16 +1496,17 @@ commit (`KeyError: 'num_flow_integration_steps'`), because it reads the model se
 their `model_` prefix. `build_store.py` adds the old names before calling it. villa's main branch
 no longer has this fault.
 
-**Other scrolls.** Three helpers for a scroll that has no spiral-input dataset, staged for
-PHerc. 343, whose fit has not run:
+**Other scrolls.** Helpers for a scroll that has no spiral-input dataset, used for PHerc. 343,
+0332, 0139 and 0358 in the next section:
 
 - `experiments/spiral_fit/fetch_lasagna.py` mirrors the rows of the lasagna stores (normals,
   gradient magnitude) that a z-window needs from the open-data bucket, for villa's
   `pack_resident_pools.py`.
 - `experiments/spiral_fit/make_outer_shell.py` reads an outer shell off the scan's mask.
-  `fit_spiral.py` uses rays only together with an outer shell, and only Paris 4 has one. On
-  Paris 4 the mask shell lies outside the published one by a median 34 voxels (5th–95th
+  `fit_spiral.py` uses rays only together with an outer shell, and only Paris 4 has a traced
+  one. On Paris 4 the mask shell lies outside the published one by a median 34 voxels (5th–95th
   percentile 14–52) at 28,516 points of z 9740–11060.
+- `experiments/spiral_fit/winding_sense.sh` reads the winding sense off the scroll's tracks.
 - `experiments/ink_probe/render_mesh.py` renders the layer stack around a tifxyz mesh from the
   scan. On the mesh of the PHerc. 343 First Letters submission
   ([Nieuwlaar/pherc343-first-letters](https://github.com/Nieuwlaar/pherc343-first-letters)) the
@@ -1446,6 +1534,268 @@ python3 experiments/spiral_fit/fetch_lasagna.py --name PHerc0343 --group 2 --z-b
   --out $P/data/PHerc0343/lasagna_inputs
 uv run python experiments/ink_probe/render_mesh.py <mesh>.tifxyz --volume <URL of the scan's level 0> \
   --layers 66 --out <folder>/<name>_layers
+```
+
+## The winding count and the winding sense on other scrolls
+
+A spiral fit numbers the sheets from the umbilicus outwards. On Paris 4 the published rays and
+shell fix that number; the scrolls of the First Letters prize have surface tracks, lasagna
+normals and density, no rays and no traced shell, and four public reports describe fits there
+whose surfaces do not stay on a sheet
+([EconLearn](https://github.com/EconLearn/vesuvius-first-letters-stage-loss) on PHerc. 1447,
+[Lat70](https://github.com/Lat70/first-light-pherc0358) on 0358,
+[bnleft](https://github.com/bnleft/first-light-pherc0211) on 0211,
+[millerandmuller](https://github.com/millerandmuller/first-light-pherc0826) on 0826). This
+section measures the count where somebody has fixed it, what moves it, and what a scroll gives
+away before any fit: its pitch and its sense. One band and one seed per fit throughout.
+
+| scroll | scan read by the fit | truth | band |
+| --- | --- | --- | --- |
+| Paris 4 | 2.4 µm at level 2 (9.6 µm) | lines drawn across the sheets, a curated band of 6.4 turns | z 9900–10900 |
+| PHerc. 0332 | 2.4 µm at level 2 (9.6 µm) | 51 hand-traced lines of three turns, 24,000 absolute winding anchors (the Scroll Prize team's [spiral dataset](https://dl.ash2txt.org/datasets/spiral_datasets/PHerc0332/20251211183505/)) | z 2500–3500 |
+| PHerc. 0139 | 9.362 µm | 37 curated windings in a row, w023–w059, registered on this scan | z 4500–6000 |
+| PHerc. 343 | 8.64 µm | none; the letters of the [First Letters submission](https://github.com/Nieuwlaar/pherc343-first-letters) | z 9500–11000 |
+
+**Tracks cannot set the count.** For the first 25,000 of its 30,000 steps `fit_spiral.py`'s track
+term takes the winding coordinate at the points of one track, subtracts that track's own mean and
+penalises the rest (`losses.py` at `5a4388f`): a track is satisfied at 47.5 as well as at 47, and
+re-labelling the coordinate across the sheets costs nothing. From step 25,000 a second term pulls
+each track to the nearest whole winding (`snap_dt_target`), which puts the fit's windings on
+tracks and keeps whatever number of them the first 25,000 steps left between two sheets. What
+sets that number is the starting spiral, the gradient-magnitude spacing term (it integrates
+lasagna's predicted density over a segment that spans one winding and wants 1) and, where a
+scroll has them, rays, a shell or annotations.
+
+**Without rays the count is the starting spiral's.** `fit_spiral.py` starts from a round spiral
+with `model_initial_dr_per_winding` = 16 voxels between windings. Three PHerc. 343 fits with
+tracks, normals and gradient-magnitude spacing were stopped at step 3,000 and read with
+`winding_profile.py`:
+
+| initial pitch, voxels | fit's coordinate at radius 400 / 1,000 / 2,000 (median of 72 directions) | gradient-magnitude spacing loss |
+| --- | --- | --- |
+| 16 | 26.3 / 60.0 / 122.2 | 8.9 |
+| 20 | 21.2 / 48.2 / 98.2 | 13.1 |
+| 23 | 18.2 / 42.0 / 85.4 | 16.0 |
+| 16, all 30,000 steps | 27.3 / 60.6 / 123.8 | 10.1 |
+
+The counts are in the ratio of the pitches to the percent, and 27,000 further steps do not
+change them.
+
+**A scroll's pitch before any fit** (`sheet_gaps.py`). The median distance between neighbouring
+sheets of the m7 surface prediction along lines from the umbilicus, against the radial pitch
+people fixed:
+
+| scroll, slices | radial pitch people fixed | median gap of the prediction | mean gap | mean without the widest tenth |
+| --- | --- | --- | --- | --- |
+| PHerc. 0332, z 2750 / 3250 | 151 µm (15.7 voxels; radius one turn later on 19 hand-traced lines) | 154 / 163 µm | 247 / 248 | 159 / 163 |
+| Paris 4, z 10150 / 10650 | 173 µm (18.0 voxels; the all-patches fit between radius 200 and 2,000) | 178 / 178 µm | 266 / 263 | 179 / 181 |
+| PHerc. 0139, z 4800 / 5700 | 156 µm (16.7 voxels; median radius of the curated windings w023–w059) | 173 / 173 µm | 252 / 246 | 180 / 180 |
+| PHerc. 343, z 9900 / 10600 | not known | 164 / 160 µm (19.0 / 18.5 voxels) | 238 / 233 | 170 / 163 |
+
+The median is 2–11 % above the truth; the mean is half as large again, because it counts the
+gaps where the prediction misses sheets. All 17 unread scrolls surveyed have a median of
+164–197 µm, 18–22 voxels of their scans, against the fitter's 16.
+
+**The winding model against traced sheets** (`store_vs_meshes.py`). Where a ray of a store
+passes two traced sheets that follow one another, the model should count one winding between
+them. On Paris 4 the traced sheets are the turns of the curated band; on PHerc. 0139, 900 slabs
+were seeded on seven of the curated windings (`build_store.py --rays`, 4.5 minutes beside a fit)
+and read against all 37:
+
+| scan | pairs of neighbouring traced sheets | model windings per traced winding | counted as one | as none | as two or more |
+| --- | --- | --- | --- | --- | --- |
+| Paris 4, 2.4 µm at level 2, store made here from the `TX` fit (centre rays) | 6,799 | 1.02 | 98.6 % | 0.1 % | 1.3 % |
+| the same, off-centre rays | 54,674 | 1.02 | 98.4 % | 0.2 % | 1.4 % |
+| Paris 4, published rays (thinned) | 7,052 | 1.02 | 98.1 % | 0.2 % | 1.7 % |
+| **PHerc. 0139, 9.362 µm**, `--step 1.025` | 66,843 | 1.05 | **90.4 %** | 1.7 % | 7.9 % |
+| the same, `--step 1.0` | 65,110 | 1.05 | 90.6 % | 1.7 % | 7.7 % |
+| PHerc. 1447, 8.64 µm, `--step 1.111`: traced windings w058, w060, w062, two numbers apart | 14,969 | 0.83 | – | – | – |
+
+By the distance between the two traced sheets on the ray, PHerc. 0139: under 115 µm 94.0 % as one
+and 5.5 % as none (0.82 windings per traced winding); 115–175 µm 96–97 %; 175–230 µm 91.6 %;
+over 230 µm 75.2 %, with two or more in 24.7 % (1.34). The scan's surface prediction has a sheet
+between the two traced ones in 16.7 % of those wide pairs, and the model counts two there in four
+of five; where the prediction has none between, the model counts one in 93.6 % of all pairs. So
+on a native 9.36 µm scan the model keeps the count within 5 %, merges some sheets that are
+under 115 µm apart, and counts a second winding in wide gaps, where part of the time a second
+layer is there. This is its first test on a coarse scan against a person; the PHerc. 0009B check
+above had the model on the fine scan as reference.
+
+The PHerc. 1447 row is weaker evidence. Its three traced windings
+([`ink-8um-pherc1447-surfaces`](https://huggingface.co/datasets/YoussefMoNader/ink-8um-pherc1447-surfaces))
+are 118 µm per winding apart at the median, a tight stretch, and the prediction has a sheet
+between two of them at 60–74 % of sampled nodes and none at 16–29 %, so some pairs may be one
+winding apart and the model's 0.83 as much as 0.95. By sheet distance it reads 0.73 under 115 µm,
+0.88 at 115–145 µm and 0.94–0.99 above: the same lean as on PHerc. 0139, further.
+
+`store_vs_meshes.py --checkpoint` counts the same pairs with a fit's winding coordinate instead.
+On Paris 4's band: all-patches fit 99.9 % of 6,695 pairs as one (1.00 windings per traced
+winding), `TA` 93.5 % (1.04), `T` 92.7 % (1.05), `TS` 81.7 % (1.18), `TX` 69.4 % (1.32). A fit
+with rays keeps 93 % where its rays have 98.6 %.
+
+**PHerc. 0332, the Scroll Prize team's own truth.** Fits of z 2500–3500 with the dataset's
+tracks, normals and density and no patch, fibre or anchor as input, scored on what the team
+scores with: the 32 hand-traced lines in the window (`line_windings.py`, their scorer's rule)
+and the 3,281 absolute winding anchors there (points on hand-annotated fibres with the winding
+number people gave them).
+
+| fit | lines: points within a quarter winding of their line's median | steps of over half a winding per 1,000 points | fit windings per turn along a line (median; 10th–90th percentile) | anchors: fit windings per true winding at true windings 0–20 / 20–40 / 40–70 |
+| --- | --- | --- | --- | --- |
+| tracks, normals, density | 43.3 % | 19.6 | 0.79; 0.52–0.95 | 1.03 / 1.01 / 0.53 |
+| tracks, normals, rays made from that fit, at weight 120 | 39.6 % | 49.9 | 0.91; 0.77–1.02 | 1.06 / 0.98 / 0.67 |
+
+- The fit without rays counts as people do through the inner two thirds, after 13–14 surplus
+  windings inside a radius of 100 voxels, and has half the windings in the outer third, where the
+  hand-traced lines are: one winding per 27–31 voxels between a radius of 900 and 1,200, and one
+  per 8–9 beyond. The scroll's pitch there is 15.7 voxels, the fitter's initial 16.
+- The store made from that fit (11,244 slabs, 17,642 rays, 56 minutes beside a fit) says so
+  without any annotation: `store_vs_fit.py --rings 100` gives 0.90–1.07 fit windings per store
+  winding from a radius of 200 to 800 voxels and 0.60–0.71 beyond 900.
+- With those rays at weight 120 the count of the outer third moves a quarter to a half of the
+  way to the truth, depending on the measure, and the surface gets rougher along the sheets: the
+  windings per turn rise on every one of the 32 lines and so do the steps, 2.4–4.7 times; the
+  team's score, the share within a quarter winding, falls on 26 of them. The fit follows its
+  store within 7 % in every ring (87 % of ray pairs within half a winding, 28 % before), so what
+  is still missing in the outer third is missing in the rays: by the anchors the model counts
+  about 0.7 windings per true winding there. The weight was chosen on PHerc. 343, where the only
+  aim was that the fit follow its rays; the default weight has not been scored here.
+
+**PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
+volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
+made from the prediction with `make_normals.py` of the
+[PHerc. 0306B submission](https://github.com/SirProdigle/pherc0306b-first-letters), the umbilicus
+is the fine scan's through the published transform, the sense (`ACW`) was read off the curated
+windings, and the fit has no spacing term at all. Fits of z 4500–6000, read on the curated
+windings (`mesh_windings.py`) and on the 66,843 pairs of neighbouring curated windings the model
+was scored on above (`store_vs_meshes.py --checkpoint`):
+
+| counted by | fitted windings per curated winding, w023 to w059 | curated windings kept within one winding (5th–95th percentile spread under 1) | neighbouring curated windings counted as one / none / two or more |
+| --- | --- | --- | --- |
+| the winding model's rays | 1.05 | – | 90.4 % / 1.7 % / 7.9 % |
+| fit with tracks and normals | 1.06 | 14 of 37 | 76.9 % / 8.4 % / 14.7 % |
+| fit with tracks, normals and rays made from that fit, at weight 120 | 0.97 | 16 of 37 | 87.4 % / 3.1 % / 9.5 % |
+
+Without any count signal the fit has the right total: the scroll's pitch, 16.7 voxels, happens
+to be the fitter's starting 16, and winding w023 gets the index 47, its radius over 16. With rays
+(`build_store.py --step 1.025` from that fit: 6,206 slabs, 41,991 rays) the fit counts one winding
+between neighbouring curated windings in 87.4 % of the pairs, 3 points under the rays themselves
+and 10.5 over the fit without them. From one curated winding to the next the fitted number rises
+by one, within 0.15, at 24 of the 36 steps (17 without rays), and at all eleven from w023 to
+w034. Satisfied track points: 75.7 %.
+
+**The winding sense before a fit** (`experiments/spiral_fit/winding_sense.sh`). `fit_spiral.py`
+needs to be told which way the scroll winds, and no score of a fit shows a wrong choice: a fit
+of the wrong sense follows the sheets locally and loses two windings per turn in the gaps
+between its tracks. A traced sheet of more than a turn shows it. villa's `grow_track_graph.py`
+makes such sheets from the tracks alone when it is seeded near the umbilicus, where a turn is
+short; `patch_sense.py` then compares the radius of a patch with its radius one turn later:
+
+| scroll | sense fixed by | seeds | patches written | pass a turn | further out one turn later / further in | reading |
+| --- | --- | --- | --- | --- | --- | --- |
+| PHerc. 0139, 9.362 µm | curated windings: `ACW` | 64 at radius 350–700, z 4800–5700 | 56 | 10 | 0 / 9 | `ACW` |
+| the same, other seeds | | 64 | 27 | 6 | 0 / 6 | `ACW` |
+| PHerc. 0332 | its dataset: `ACW` | 64 at radius 250–550, z 2800–3200 | 42 | 15 | 0 / 13 | `ACW` |
+| Paris 4 | its dataset: `CW` | 6,000 at radius 80–260, z 2000–17000 | 685 | 14 | 10 / 0 | `CW` |
+| PHerc. 343 | the First Letters submission's choice: `CW` | 6,000 at radius 80–260, whole height | 671 | 34 | 25 / 0 | `CW` |
+| PHerc. 0358, 9.362 µm | nobody | 6,000 at radius 80–260, z 2000–13000 | 594 | 47 | 0 / 47 | `ACW` |
+| PHerc. 0813, 9.362 µm | nobody | 6,000 at radius 80–260, z 4652–16220 | 1,143 | 85 | 74 / 0 | `CW` |
+| PHerc. 0846A, 9.362 µm | nobody | 6,000 at radius 80–260, z 4612–13420 | 838 | 1 | 0 / 0 | none |
+| PHerc. 0257, 9.362 µm | nobody | 6,000 at radius 80–260, z 4724–17124 | 378 | 0 | 0 / 0 | none |
+| PHerc. 0211, 9.362 µm | nobody | 6,000 at radius 80–260, z 4820–17278 | 1,480 | 139 | 0 / 130 | `ACW` |
+
+A patch votes with 50 pairs of nodes one turn apart, four in five of them agreeing, and a change
+under half its radius. Further out, where a turn is long, the grower's patches stay under a turn
+on Paris 4, 343 and 0358 (15, 26 and 97 patches from 704, 768 and 4,128 seeds at a radius of
+200–800 voxels; none over 0.72 turns), so the seeds go to the axis and small patches are kept
+(`MIN_SIZE=0.12`). Four minutes for 6,000 seeds on ten cores. The one public fit of PHerc. 0358
+([Lat70](https://github.com/Lat70/first-light-pherc0358), 30,000 steps) is clockwise.
+
+**PHerc. 343 (8.64 µm): three estimates of the count, no truth.** Band z 9500–11000, sense `CW`
+(the submission's, confirmed by the patches above), tracks,
+published lasagna normals and density, and rays made here (`build_store.py --step 1.111` from
+the tracks-only fit: 9,415 slabs, 82,873 rays, 1.50 M crossings, 47 minutes beside a fit).
+
+| | tracks, normals, density | with the rays at weight 120 | at weight 360 |
+| --- | --- | --- | --- |
+| ray pairs 3–15 levels apart within half a winding (`store_vs_fit.py`) | 13.9 % | 68.9 % | 93.8 % |
+| fit windings per winding of the store, rings of 250 voxels from 250 to 2,500 | 1.34 1.54 1.50 1.55 1.41 1.13 1.00 0.94 0.93 | 1.02 1.05 1.05 1.04 1.02 1.01 0.99 0.98 0.96 | 1.00 1.01 1.00 1.00 1.00 1.00 1.00 0.99 0.99 |
+| voxels per winding between radius 200 and 1,400 | 17.1 | 23.0 | 24.0 |
+| satisfied track points | 59.6 % | 58.6 % | 56.8 % |
+| fit windings per predicted sheet along the submission's mesh (`mesh_windings.py --surface`) | 1.47 | 1.00 | 0.98 |
+| own windings w045–w049: nodes within 2 voxels of a predicted sheet (41–43 % for a surface placed at random) | 44–58 % | 60–65 % | 55–57 % |
+| windings that carry 5 % or more of the submission's mesh of 1.3 turns | five | three (w048 43 %, w049 46 %, w047 7 %) | four |
+| ink control, the submission's three villa models on those windings: letter boxes brighter than the rest, all windings together / the best one alone | 18 of 18 / 9 | 14 of 18 / 10 | |
+
+- At the fitter's default weight 12 the fit does not follow these rays: the ray loss stays at
+  13.5 for 4,400 steps, where Paris 4 fits fall from 20 to 5 in 1,000. Neither a shell (the
+  mask's boundary as winding 130, or the surface where the rays count 130, which
+  `count_shell.py` writes) nor ten times the gap-expander rate changes that in pilots of 1,600
+  steps; ten times the ray weight does.
+- The fits with rays did not remove windings. Winding 48 lies 765–768 voxels from the umbilicus
+  in all three fits, which is 48 times the initial pitch; with rays, 20 windings sit inside a
+  radius of 117 voxels, where the scroll's core gives no rays and no tracks, and the rest are
+  spread out.
+- The three annotation-free estimates of this scroll's pitch disagree: lasagna's density prefers
+  16 voxels or less (its loss is lowest for the densest start), the prediction's median gap says
+  18.5–19, the rays 23. On PHerc. 0139 the last two are 11 % and 5 % from the truth (tables
+  above); here they are a fifth apart, and nothing says which is right. By the
+  median gap the tracks-only fit is about right on average and 1.4 times too dense at the
+  letters (13.3 voxels per winding between w045 and w048), and the fit with rays a fifth too
+  sparse.
+- The ink control does not decide it either. Its composite takes, for each node of the
+  submission's mesh, any winding within 4 voxels, and a fit with windings 11 voxels apart has
+  one there more often than a fit with windings 17 apart; and the submission's mesh comes from a
+  tracks-only fit of the same kind, snapped to the prediction, so agreeing with it also rewards
+  the same mistakes. Where the fit with rays gives the submission's two consecutive windings the
+  same coordinate, those two meshes are 5–7 voxels apart (15–23 elsewhere;
+  `mesh_windings.py --profile --distance-to`).
+
+The reports of `store_vs_meshes.py`, `line_windings.py`, `anchor_windings.py`, `store_vs_fit.py`,
+`mesh_windings.py`, `patch_sense.py` and `sheet_gaps.py` behind this section are in
+`results/winding_inference/other_scrolls/`.
+
+**Settings of the fits in this section** (overrides of `fit_spiral.py`'s defaults; 30,000 steps,
+seed 1): tracks and normals on; fibres, patches and every human point collection off. Without
+rays: `input_use_gradient_magnitude` where the scroll has lasagna density, `dense_spacing_mode:
+"grad_mag"`, no shell. With rays: `input_use_winding_inference`, `dense_spacing_mode:
+"winding_model"`, the shell from the scan's mask as `outer_shell` with `loss_weight_shell_outer:
+0` and `shell_min_confidence: 0` (the fitter takes rays only inside a shell), and
+`loss_weight_dense_spacing` and `loss_weight_dense_spacing_density` at 120 or at their default 12.
+
+```bash
+P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference; S=experiments/spiral_fit
+B=https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com
+# A scroll's pitch and sense before a fit (PHerc. 0358).
+uv run python $W/sheet_gaps.py --umbilicus $P/data/PHerc0358/umbilicus.json --z 5160 9583 --voxel-um 9.362 \
+  --surface $B/PHerc0358/representations/predictions/surfaces/20250821151737-surface-20260413222639-surface-m7-L0-th0.2.zarr/0
+MIN_SIZE=0.12 bash $S/winding_sense.sh $P/data/PHerc0358/tracks/PHerc0358_20250821151737_surface_m7_L0_th0.2.dbm \
+  $P/data/PHerc0358/umbilicus.json 2000 13000 80 260 $P/data/PHerc0358/sense 6000 10
+# The winding model against PHerc. 0139's curated windings, then a fit on the same pairs.
+uv run python $W/seed_rays_on_meshes.py --umbilicus $P/data/PHerc0139/umbilicus.json --z 4600 5900 --every 6 \
+  $(for k in 026 031 037 041 047 052 056; do echo --mesh $P/data/PHerc0139/windings/w${k}_*; done) --out $P/p139/seeds.npz
+bash $W/run.sh build_store.py --rays $P/p139/seeds.npz --volume data/cache/<folder of the 0139 scan> \
+  --model $P/wi/model/ckpt_final.pth --out $P/p139/stores/truth --columns 3 --batch-size 1 --step 1.025 --max-slabs 900
+M=$(for d in $P/data/PHerc0139/windings/w*; do echo --mesh $d; done)
+uv run python $W/store_vs_meshes.py --store $P/p139/stores/truth --umbilicus $P/data/PHerc0139/umbilicus.json --voxel-um 9.362 $M \
+  --surface $B/PHerc0139/representations/predictions/surfaces/20250728140407-surface-20260413222639-surface-m7-L0-th0.2.zarr/0
+bash $W/run.sh store_vs_meshes.py --store $P/p139/stores/truth --umbilicus $P/data/PHerc0139/umbilicus.json --voxel-um 9.362 $M \
+  --checkpoint $P/p139/runs/minimal_s1/checkpoint_fitted.ckpt
+bash $W/run.sh mesh_windings.py --checkpoint $P/p139/runs/minimal_s1/checkpoint_fitted.ckpt \
+  --umbilicus $P/data/PHerc0139/umbilicus.json $M
+# PHerc. 0332 on the team's lines and anchors.
+bash $W/run.sh line_windings.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt \
+  --umbilicus $P/data/PHerc0332/umbilicus.json --lines $P/data/PHerc0332/slice_lines/PHerc0332_vcslices.volpkg.json --scale 4
+bash $W/run.sh anchor_windings.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt \
+  --umbilicus $P/data/PHerc0332/umbilicus.json --anchors $P/data/PHerc0332/anchors/anchors_train_records.json \
+  --anchors $P/data/PHerc0332/anchors/anchors_held_records.json
+# A store from a fit, the fit against it by ring, and its windings by radius.
+bash $W/run.sh build_store.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt --umbilicus $P/data/PHerc0332/umbilicus.json \
+  --volume data/cache/<folder of the 0332 scan's level 2> --model $P/wi/model/ckpt_final.pth --out $P/p332/stores/minimal_s1 \
+  --winding-range 10 130 --winding-step 8 --seed-spacing 96 --columns 3 --batch-size 1
+bash $W/run.sh store_vs_fit.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt \
+  --umbilicus $P/data/PHerc0332/umbilicus.json --store $P/p332/stores/minimal_s1 --rings 100
+bash $W/run.sh winding_profile.py --umbilicus $P/data/PHerc0343/umbilicus.json \
+  --checkpoint $P/p343/runs/minimal_s1/checkpoint_fitted.ckpt --checkpoint $P/p343/runs/rays120_s1/checkpoint_fitted.ckpt
 ```
 
 ## Usage
@@ -1561,6 +1911,22 @@ where the tracer mostly abstains (item 1).
    there at 8× the data.
 8. **Scale-out** belongs next to the data (same-region AWS): the 179 slices of this window took
    40 min on 20 cores, about 4.5 core-minutes per whole slice.
+9. **The count on other scrolls** rests on one band and one seed per fit. Two scrolls have a
+   truth besides Paris 4 (PHerc. 0332's lines and anchors, PHerc. 0139's curated windings); on
+   343 and on every First Letters scroll the count can only be estimated. Rays are no cure where
+   the model merges sheets: under 115 µm it loses a fifth to a quarter of the windings on the
+   coarse scans, and in the outer third of PHerc. 0332 the store itself has about 0.7 windings per
+   true winding. A fit with rays at ten times the weight is rougher along the sheets. The sense
+   reading needs patches that pass a turn, which the grower gives only near the umbilicus. Not
+   done: a second seed anywhere, rays seeded again from a fit that used rays, patches of more
+   than a turn as fit input, and an ink reading on windings of a fit made this way on an unread
+   scroll.
+10. **The screen control is one text.** PHerc. 343's letters, eight windings of two fits, three
+   ink models, 40 windows; the other face of the same surfaces is the only null. The cut and the
+   gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and
+   flattened 31-layer renders; here the renders are 66 layers along the mesh normals, not
+   flattened. A window in the review tier is a place to look, not a reading. Not done: the same
+   control on snapped windings and one at 9.362 µm on PHerc. 0139's labelled windings.
 
 ## Licence
 

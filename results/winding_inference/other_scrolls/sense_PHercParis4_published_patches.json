@@ -1,0 +1,48 @@
+{
+ "summary": {
+  "patches": 9424,
+  "patches_over_a_turn": 6,
+  "further_out_one_turn_later": 5,
+  "further_in_one_turn_later": 1,
+  "median_of_the_patches_medians_voxels": 20.887144257257376,
+  "spiral_outward_sense": "CW"
+ },
+ "patches": {
+  "0000_mid_band_final": {
+   "turns": 6.419732066747989,
+   "pairs": 133152,
+   "radius_one_turn_later_median": 21.46208759180763,
+   "share_of_pairs_further_out": 0.8875120163422254
+  },
+  "4424_david_masked": {
+   "turns": 1.4652907329213045,
+   "pairs": 15657,
+   "radius_one_turn_later_median": 18.892888305453937,
+   "share_of_pairs_further_out": 0.9216324966468672
+  },
+  "5753_-1_flatboi_copy": {
+   "turns": 1.5969364104518882,
+   "pairs": 3288,
+   "radius_one_turn_later_median": 20.31220092270712,
+   "share_of_pairs_further_out": 0.9668491484184915
+  },
+  "band-seed750066-20260729-235237-589.tifxyz": {
+   "turns": 1.0214280409494418,
+   "pairs": 37,
+   "radius_one_turn_later_median": -10.822891627758906,
+   "share_of_pairs_further_out": 0.4594594594594595
+  },
+  "band-seed885585-20260729-171249-541.tifxyz": {
+   "turns": 1.040963722014207,
+   "pairs": 44,
+   "radius_one_turn_later_median": 29.543985576127483,
+   "share_of_pairs_further_out": 1.0
+  },
+  "middle_3_flat": {
+   "turns": 1.2310097038655448,
+   "pairs": 73,
+   "radius_one_turn_later_median": 33.91040590704853,
+   "share_of_pairs_further_out": 1.0
+  }
+ }
+}

@@ -1,0 +1,7 @@
+rank	card	queue	score	row_off	fib_off	rel_tex	crack	shape	recur
+1	01_R_winner_w000_rev_x1300_CARD.jpg	REVIEW	8.68	15.0	6.2	0.92	0.74	0.353	None
+2	02_R_minimal_w048_rev_x0_CARD.jpg	REVIEW	5.72	0.0	8.8	1.0	0.01	0.488	None
+3	03_R_winner_w000_rev_x0_CARD.jpg	REVIEW	5.1	0.0	6.2	0.97	0.26	0.348	None
+4	04_R_minimal_w047_rev_x0_CARD.jpg	REVIEW	2.42	10.0	6.2	1.03	0.88	0.271	None
+5	05_R2_rays120_w048_rev_x0_CARD.jpg	REVIEW-2: on cracks	6.94	15.0	3.8	1.0	1.94	0.324	None
+6	06_R2_winner_w000_rev_x2600_CARD.jpg	REVIEW-2: round blobs, no strokes	19.45	15.0	8.8	0.92	1.37	0.163	None

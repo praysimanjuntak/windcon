@@ -1,0 +1,77 @@
+{
+ "store": "$P/p1447/stores/truth_step1.111",
+ "counted_by": "the store's model",
+ "rays": 8024,
+ "pairs_left_out": 218,
+ "traced_sheet_distance_um_10_50_90": [
+  76.79232185587162,
+  117.58824415294782,
+  191.9808014584376
+ ],
+ "all": {
+  "pairs": 14969,
+  "windings_per_traced_winding": 0.832581876445997,
+  "pairs_one_traced_winding_apart": 90,
+  "of_those_counted_as_one": 0.43333333333333335,
+  "of_those_counted_as_none": 0.022222222222222223,
+  "of_those_counted_as_two_or_more": 0.5444444444444444,
+  "of_those_with_a_predicted_sheet_between": 0.6666666666666666,
+  "counted_as_one_where_the_prediction_has_no_sheet_between": 0.5,
+  "counted_as_two_or_more_where_the_prediction_has_a_sheet_between": 0.6
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 6735,
+   "windings_per_traced_winding": 0.7294500055416369,
+   "pairs_one_traced_winding_apart": 6,
+   "of_those_counted_as_one": 0.8333333333333334,
+   "of_those_counted_as_none": 0.16666666666666666,
+   "of_those_counted_as_two_or_more": 0.0,
+   "of_those_with_a_predicted_sheet_between": 0.0,
+   "counted_as_one_where_the_prediction_has_no_sheet_between": 0.8333333333333334
+  },
+  "115-145": {
+   "pairs": 4139,
+   "windings_per_traced_winding": 0.881506521302892,
+   "pairs_one_traced_winding_apart": 4,
+   "of_those_counted_as_one": 0.75,
+   "of_those_counted_as_none": 0.25,
+   "of_those_counted_as_two_or_more": 0.0,
+   "of_those_with_a_predicted_sheet_between": 0.0,
+   "counted_as_one_where_the_prediction_has_no_sheet_between": 0.75
+  },
+  "145-175": {
+   "pairs": 1950,
+   "windings_per_traced_winding": 0.942149080550947,
+   "pairs_one_traced_winding_apart": 7,
+   "of_those_counted_as_one": 0.5714285714285714,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.42857142857142855,
+   "of_those_with_a_predicted_sheet_between": 0.14285714285714285,
+   "counted_as_one_where_the_prediction_has_no_sheet_between": 0.5,
+   "counted_as_two_or_more_where_the_prediction_has_a_sheet_between": 0.0
+  },
+  "175-230": {
+   "pairs": 1353,
+   "windings_per_traced_winding": 0.9529674987875807,
+   "pairs_one_traced_winding_apart": 27,
+   "of_those_counted_as_one": 0.3333333333333333,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.6666666666666666,
+   "of_those_with_a_predicted_sheet_between": 0.5925925925925926,
+   "counted_as_one_where_the_prediction_has_no_sheet_between": 0.2727272727272727,
+   "counted_as_two_or_more_where_the_prediction_has_a_sheet_between": 0.625
+  },
+  "230-inf": {
+   "pairs": 792,
+   "windings_per_traced_winding": 0.9851870718144509,
+   "pairs_one_traced_winding_apart": 46,
+   "of_those_counted_as_one": 0.391304347826087,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.6086956521739131,
+   "of_those_with_a_predicted_sheet_between": 0.9347826086956522,
+   "counted_as_one_where_the_prediction_has_no_sheet_between": 0.3333333333333333,
+   "counted_as_two_or_more_where_the_prediction_has_a_sheet_between": 0.6046511627906976
+  }
+ }
+}

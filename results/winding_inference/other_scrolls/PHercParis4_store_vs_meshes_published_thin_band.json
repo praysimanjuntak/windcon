@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/published_thin",
+ "counted_by": "the store's model",
+ "rays": 10255,
+ "pairs_left_out": 10,
+ "traced_sheet_distance_um_10_50_90": [
+  81.59999945972552,
+  115.19999829132625,
+  177.59999544742215
+ ],
+ "all": {
+  "pairs": 7478,
+  "windings_per_traced_winding": 1.017967509112295,
+  "pairs_one_traced_winding_apart": 7052,
+  "of_those_counted_as_one": 0.9811401020986954,
+  "of_those_counted_as_none": 0.0022688598979013048,
+  "of_those_counted_as_two_or_more": 0.01659103800340329
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3643,
+   "windings_per_traced_winding": 0.9233649552476539,
+   "pairs_one_traced_winding_apart": 3238,
+   "of_those_counted_as_one": 0.9969116738727609,
+   "of_those_counted_as_none": 0.0018529956763434219,
+   "of_those_counted_as_two_or_more": 0.0012353304508956147
+  },
+  "115-145": {
+   "pairs": 2206,
+   "windings_per_traced_winding": 1.0788084821301598,
+   "pairs_one_traced_winding_apart": 2186,
+   "of_those_counted_as_one": 0.9835315645013724,
+   "of_those_counted_as_none": 0.0018298261665141812,
+   "of_those_counted_as_two_or_more": 0.01463860933211345
+  },
+  "145-175": {
+   "pairs": 873,
+   "windings_per_traced_winding": 1.1479642547529867,
+   "pairs_one_traced_winding_apart": 872,
+   "of_those_counted_as_one": 0.9610091743119266,
+   "of_those_counted_as_none": 0.0022935779816513763,
+   "of_those_counted_as_two_or_more": 0.03669724770642202
+  },
+  "175-230": {
+   "pairs": 549,
+   "windings_per_traced_winding": 1.200851005400946,
+   "pairs_one_traced_winding_apart": 549,
+   "of_those_counted_as_one": 0.9508196721311475,
+   "of_those_counted_as_none": 0.0036429872495446266,
+   "of_those_counted_as_two_or_more": 0.04553734061930783
+  },
+  "230-inf": {
+   "pairs": 207,
+   "windings_per_traced_winding": 1.2380346833354798,
+   "pairs_one_traced_winding_apart": 207,
+   "of_those_counted_as_one": 0.8743961352657005,
+   "of_those_counted_as_none": 0.00966183574879227,
+   "of_those_counted_as_two_or_more": 0.11594202898550725
+  }
+ }
+}

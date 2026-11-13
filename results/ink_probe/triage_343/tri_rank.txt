@@ -1,0 +1,8 @@
+  8.68 winner_w000            rev x1300   rows  15.0 fib 6.2 tex 0.92 crack 0.74 shape 0.353 recur None glyph 11.019 via row  -> REVIEW
+  5.72 minimal_w048           rev x0      rows   0.0 fib 8.8 tex 1.0 crack 0.01 shape 0.488 recur None glyph 10.172 via row  -> REVIEW
+  5.10 winner_w000            rev x0      rows   0.0 fib 6.2 tex 0.97 crack 0.26 shape 0.348 recur None glyph 10.655 via row  -> REVIEW
+  2.42 minimal_w047           rev x0      rows  10.0 fib 6.2 tex 1.03 crack 0.88 shape 0.271 recur None glyph 9.883 via glyph  -> REVIEW
+  6.94 rays120_w048           rev x0      rows  15.0 fib 3.8 tex 1.0 crack 1.94 shape 0.324 recur None glyph 8.396 via row  -> REVIEW-2: on cracks
+ 19.45 winner_w000            rev x2600   rows  15.0 fib 8.8 tex 0.92 crack 1.37 shape 0.163 recur None glyph 10.81 via row  -> REVIEW-2: round blobs, no strokes
+  9.02 minimal_w047           rev x1300   rows  25.0 fib 11.2 tex 1.01 crack None shape None recur None glyph 9.698 via row  -> auto-reject: rows not along winding
+  4.24 rays120_w049           rev x0      rows  45.0 fib 8.8 tex 1.1 crack None shape None recur None glyph 7.873 via row  -> auto-reject: rows not along winding

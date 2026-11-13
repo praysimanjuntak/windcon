@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/TX_s1_ws8_centre",
+ "counted_by": "$P/runs/sparse_TS_s1/checkpoint_fitted.ckpt",
+ "rays": 10269,
+ "pairs_left_out": 119,
+ "traced_sheet_distance_um_10_50_90": [
+  81.60000033815064,
+  115.19999824400216,
+  172.8000043460431
+ ],
+ "all": {
+  "pairs": 7051,
+  "windings_per_traced_winding": 1.182717424322626,
+  "pairs_one_traced_winding_apart": 6695,
+  "of_those_counted_as_one": 0.817176997759522,
+  "of_those_counted_as_none": 0.010007468259895444,
+  "of_those_counted_as_two_or_more": 0.17281553398058253
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3437,
+   "windings_per_traced_winding": 1.09475813561085,
+   "pairs_one_traced_winding_apart": 3097,
+   "of_those_counted_as_one": 0.8743945753955441,
+   "of_those_counted_as_none": 0.019696480464966096,
+   "of_those_counted_as_two_or_more": 0.10590894413948983
+  },
+  "115-145": {
+   "pairs": 2151,
+   "windings_per_traced_winding": 1.2424712082435345,
+   "pairs_one_traced_winding_apart": 2135,
+   "of_those_counted_as_one": 0.7943793911007025,
+   "of_those_counted_as_none": 0.00234192037470726,
+   "of_those_counted_as_two_or_more": 0.20327868852459016
+  },
+  "145-175": {
+   "pairs": 766,
+   "windings_per_traced_winding": 1.3131246243070995,
+   "pairs_one_traced_winding_apart": 766,
+   "of_those_counted_as_one": 0.7441253263707572,
+   "of_those_counted_as_none": 0.0013054830287206266,
+   "of_those_counted_as_two_or_more": 0.2545691906005222
+  },
+  "175-230": {
+   "pairs": 516,
+   "windings_per_traced_winding": 1.339366735414017,
+   "pairs_one_traced_winding_apart": 516,
+   "of_those_counted_as_one": 0.7228682170542635,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.2771317829457364
+  },
+  "230-inf": {
+   "pairs": 181,
+   "windings_per_traced_winding": 1.322590590840545,
+   "pairs_one_traced_winding_apart": 181,
+   "of_those_counted_as_one": 0.6850828729281768,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.3149171270718232
+  }
+ }
+}

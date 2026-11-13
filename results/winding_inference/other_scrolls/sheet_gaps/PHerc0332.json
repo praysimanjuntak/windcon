@@ -1,0 +1,82 @@
+{
+ "surface": "https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc0332/representations/predictions/surfaces/20251211183505-surface-20260413222639-surface-m7-L2-th0.2.zarr/0",
+ "voxel_um": 9.596,
+ "slices": {
+  "2750": {
+   "median_gap_um": 153.536,
+   "mean_gap_um": 247.1743585074942,
+   "mean_gap_um_without_the_widest_tenth": 159.31887927093715,
+   "gap_um_10th_90th": [
+    95.96000000000001,
+    340.658
+   ],
+   "share_of_gaps_175_um_or_more": 0.39373548659489127,
+   "share_of_gaps_under_115_um": 0.20986383787207094,
+   "sheets_on_the_median_line": 54.0,
+   "rings_voxels": {
+    "0-500": {
+     "median_um": 163.132,
+     "gaps": 14419,
+     "loose": 0.44871350301685275,
+     "tight": 0.1775435189680283
+    },
+    "500-1000": {
+     "median_um": 143.94,
+     "gaps": 18793,
+     "loose": 0.32698345128505296,
+     "tight": 0.24828393550790187
+    },
+    "1000-1500": {
+     "median_um": 172.728,
+     "gaps": 4608,
+     "loose": 0.4852430555555556,
+     "tight": 0.15690104166666666
+    },
+    "1500-2000": {
+     "median_um": 3953.552,
+     "gaps": 76,
+     "loose": 0.9210526315789473,
+     "tight": 0.05263157894736842
+    }
+   }
+  },
+  "3250": {
+   "median_gap_um": 163.132,
+   "mean_gap_um": 247.89426203476566,
+   "mean_gap_um_without_the_widest_tenth": 163.30955294874798,
+   "gap_um_10th_90th": [
+    100.758,
+    331.062
+   ],
+   "share_of_gaps_175_um_or_more": 0.419113186146501,
+   "share_of_gaps_under_115_um": 0.17562185117775844,
+   "sheets_on_the_median_line": 53.0,
+   "rings_voxels": {
+    "0-500": {
+     "median_um": 167.93,
+     "gaps": 15815,
+     "loose": 0.4679734429339235,
+     "tight": 0.1317736326272526
+    },
+    "500-1000": {
+     "median_um": 148.738,
+     "gaps": 18121,
+     "loose": 0.3444622261464599,
+     "tight": 0.22404944539484575
+    },
+    "1000-1500": {
+     "median_um": 189.52100000000002,
+     "gaps": 3896,
+     "loose": 0.5562114989733059,
+     "tight": 0.13193018480492813
+    },
+    "1500-2000": {
+     "median_um": 3483.348,
+     "gaps": 79,
+     "loose": 1.0,
+     "tight": 0.0
+    }
+   }
+  }
+ }
+}

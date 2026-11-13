@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/TX_s1_ws8_centre",
+ "counted_by": "$P/runs/sparse_TA_s1/checkpoint_fitted.ckpt",
+ "rays": 10269,
+ "pairs_left_out": 119,
+ "traced_sheet_distance_um_10_50_90": [
+  81.60000033815064,
+  115.19999824400216,
+  172.8000043460431
+ ],
+ "all": {
+  "pairs": 7051,
+  "windings_per_traced_winding": 1.03578328331855,
+  "pairs_one_traced_winding_apart": 6695,
+  "of_those_counted_as_one": 0.9347274085138163,
+  "of_those_counted_as_none": 0.011799850634802092,
+  "of_those_counted_as_two_or_more": 0.05347274085138163
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3437,
+   "windings_per_traced_winding": 0.9605902247403929,
+   "pairs_one_traced_winding_apart": 3097,
+   "of_those_counted_as_one": 0.9431708104617371,
+   "of_those_counted_as_none": 0.022602518566354538,
+   "of_those_counted_as_two_or_more": 0.0342266709719083
+  },
+  "115-145": {
+   "pairs": 2151,
+   "windings_per_traced_winding": 1.092309647483387,
+   "pairs_one_traced_winding_apart": 2135,
+   "of_those_counted_as_one": 0.9269320843091335,
+   "of_those_counted_as_none": 0.003278688524590164,
+   "of_those_counted_as_two_or_more": 0.06978922716627635
+  },
+  "145-175": {
+   "pairs": 766,
+   "windings_per_traced_winding": 1.141730973365724,
+   "pairs_one_traced_winding_apart": 766,
+   "of_those_counted_as_one": 0.9268929503916449,
+   "of_those_counted_as_none": 0.0026109660574412533,
+   "of_those_counted_as_two_or_more": 0.07049608355091384
+  },
+  "175-230": {
+   "pairs": 516,
+   "windings_per_traced_winding": 1.1599315377168877,
+   "pairs_one_traced_winding_apart": 516,
+   "of_those_counted_as_one": 0.9263565891472868,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.07364341085271318
+  },
+  "230-inf": {
+   "pairs": 181,
+   "windings_per_traced_winding": 1.1411767190332571,
+   "pairs_one_traced_winding_apart": 181,
+   "of_those_counted_as_one": 0.9392265193370166,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.06077348066298342
+  }
+ }
+}

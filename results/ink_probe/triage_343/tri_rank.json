@@ -1,0 +1,170 @@
+[
+ {
+  "score": 8.68,
+  "name": "winner_w000",
+  "side": "rev",
+  "x0": 1300,
+  "row_angle": 75.0,
+  "fibres": [
+   83.8,
+   173.8
+  ],
+  "row_off": 15.0,
+  "fib_off": 6.2,
+  "tex": 0.254,
+  "rel_tex": 0.92,
+  "crack": 0.74,
+  "shape": 0.353,
+  "recur": null,
+  "glyph": 11.019,
+  "via": "row",
+  "queue": "REVIEW"
+ },
+ {
+  "score": 5.72,
+  "name": "minimal_w048",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 90.0,
+  "fibres": [
+   98.8,
+   1.2
+  ],
+  "row_off": 0.0,
+  "fib_off": 8.8,
+  "tex": 0.276,
+  "rel_tex": 1.0,
+  "crack": 0.01,
+  "shape": 0.488,
+  "recur": null,
+  "glyph": 10.172,
+  "via": "row",
+  "queue": "REVIEW"
+ },
+ {
+  "score": 5.1,
+  "name": "winner_w000",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 90.0,
+  "fibres": [
+   83.8,
+   168.8
+  ],
+  "row_off": 0.0,
+  "fib_off": 6.2,
+  "tex": 0.267,
+  "rel_tex": 0.97,
+  "crack": 0.26,
+  "shape": 0.348,
+  "recur": null,
+  "glyph": 10.655,
+  "via": "row",
+  "queue": "REVIEW"
+ },
+ {
+  "score": 2.42,
+  "name": "minimal_w047",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 100.0,
+  "fibres": [
+   96.2,
+   6.2
+  ],
+  "row_off": 10.0,
+  "fib_off": 6.2,
+  "tex": 0.283,
+  "rel_tex": 1.03,
+  "crack": 0.88,
+  "shape": 0.271,
+  "recur": null,
+  "glyph": 9.883,
+  "via": "glyph",
+  "queue": "REVIEW"
+ },
+ {
+  "score": 6.94,
+  "name": "rays120_w048",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 75.0,
+  "fibres": [
+   93.8,
+   1.2
+  ],
+  "row_off": 15.0,
+  "fib_off": 3.8,
+  "tex": 0.276,
+  "rel_tex": 1.0,
+  "crack": 1.94,
+  "shape": 0.324,
+  "recur": null,
+  "glyph": 8.396,
+  "via": "row",
+  "queue": "REVIEW-2: on cracks"
+ },
+ {
+  "score": 19.45,
+  "name": "winner_w000",
+  "side": "rev",
+  "x0": 2600,
+  "row_angle": 75.0,
+  "fibres": [
+   81.2,
+   176.2
+  ],
+  "row_off": 15.0,
+  "fib_off": 8.8,
+  "tex": 0.254,
+  "rel_tex": 0.92,
+  "crack": 1.37,
+  "shape": 0.163,
+  "recur": null,
+  "glyph": 10.81,
+  "via": "row",
+  "queue": "REVIEW-2: round blobs, no strokes"
+ },
+ {
+  "score": 9.02,
+  "name": "minimal_w047",
+  "side": "rev",
+  "x0": 1300,
+  "row_angle": 115.0,
+  "fibres": [
+   111.2,
+   78.8
+  ],
+  "row_off": 25.0,
+  "fib_off": 11.2,
+  "tex": 0.28,
+  "rel_tex": 1.01,
+  "crack": null,
+  "shape": null,
+  "recur": null,
+  "glyph": 9.698,
+  "via": "row",
+  "queue": "auto-reject: rows not along winding"
+ },
+ {
+  "score": 4.24,
+  "name": "rays120_w049",
+  "side": "rev",
+  "x0": 0,
+  "row_angle": 135.0,
+  "fibres": [
+   98.8,
+   66.2
+  ],
+  "row_off": 45.0,
+  "fib_off": 8.8,
+  "tex": 0.303,
+  "rel_tex": 1.1,
+  "crack": null,
+  "shape": null,
+  "recur": null,
+  "glyph": 7.873,
+  "via": "row",
+  "queue": "auto-reject: rows not along winding"
+ }
+]

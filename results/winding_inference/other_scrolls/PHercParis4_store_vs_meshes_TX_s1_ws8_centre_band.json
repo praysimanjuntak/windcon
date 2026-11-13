@@ -1,0 +1,61 @@
+{
+ "store": "$P/wi/stores/TX_s1_ws8_centre",
+ "counted_by": "the store's model",
+ "rays": 10269,
+ "pairs_left_out": 1,
+ "traced_sheet_distance_um_10_50_90": [
+  81.6000002737193,
+  115.19999826585524,
+  173.76000299221892
+ ],
+ "all": {
+  "pairs": 7169,
+  "windings_per_traced_winding": 1.0208409206012838,
+  "pairs_one_traced_winding_apart": 6799,
+  "of_those_counted_as_one": 0.9861744374172673,
+  "of_those_counted_as_none": 0.0007354022650389764,
+  "of_those_counted_as_two_or_more": 0.01309016031769378
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 3490,
+   "windings_per_traced_winding": 0.9333228494109738,
+   "pairs_one_traced_winding_apart": 3137,
+   "of_those_counted_as_one": 0.9980873445967485,
+   "of_those_counted_as_none": 0.000637551801083838,
+   "of_those_counted_as_two_or_more": 0.001275103602167676
+  },
+  "115-145": {
+   "pairs": 2186,
+   "windings_per_traced_winding": 1.0726425292881423,
+   "pairs_one_traced_winding_apart": 2169,
+   "of_those_counted_as_one": 0.9880129091747349,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0119870908252651
+  },
+  "145-175": {
+   "pairs": 776,
+   "windings_per_traced_winding": 1.1452369168456362,
+   "pairs_one_traced_winding_apart": 776,
+   "of_those_counted_as_one": 0.9664948453608248,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.03350515463917526
+  },
+  "175-230": {
+   "pairs": 533,
+   "windings_per_traced_winding": 1.1943202189378586,
+   "pairs_one_traced_winding_apart": 533,
+   "of_those_counted_as_one": 0.9624765478424016,
+   "of_those_counted_as_none": 0.001876172607879925,
+   "of_those_counted_as_two_or_more": 0.03564727954971857
+  },
+  "230-inf": {
+   "pairs": 184,
+   "windings_per_traced_winding": 1.2214723392135176,
+   "pairs_one_traced_winding_apart": 184,
+   "of_those_counted_as_one": 0.9130434782608695,
+   "of_those_counted_as_none": 0.010869565217391304,
+   "of_those_counted_as_two_or_more": 0.07608695652173914
+  }
+ }
+}
