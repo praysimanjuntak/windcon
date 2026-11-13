@@ -9,13 +9,17 @@ papyrus, this script reads that coordinate at every node and reports
              keeps the sheet on one of its windings
   phase      how far the mesh's median lies from the fit's nearest sheet, in windings (0 to 0.5)
   spacing    the distance between the fit's sheets along the mesh normal, in voxels
+  per turn   the fit's windings passed in one turn along the mesh (a straight line through the
+             coordinate against the angle): 1 when the fit counts as the sheet does, 2 when it
+             packs two windings into each of the sheet's
 
 Along one sheet the coordinate grows by one with every turn round the scroll; the turns are
 counted along the mesh's grid and taken out. Only the largest connected part of the mesh inside
 the fit's z-range is read.
 
-and, with --surface, the distance between neighbouring sheets of a surface prediction along the
-same normals (the median gap on each 121-voxel line that meets at least three predicted sheets).
+and, with --surface, two readings of a surface prediction along the same normals, on up to 2,000
+lines of 121 voxels: the distance between its neighbouring sheets (the median gap on each line
+that meets at least three), and how far the mesh itself is from the nearest predicted sheet.
 
     run.sh mesh_windings.py --checkpoint <run>/checkpoint_fitted.ckpt --umbilicus <umbilicus.json> \
         --mesh <mesh.tifxyz> [--mesh <another>] [--surface <URL of the prediction's level 0>]
@@ -77,22 +81,24 @@ def turns(theta: np.ndarray, mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return turn, largest
 
 
-def prediction_spacing(surface: ZarrArray, points: np.ndarray, normals: np.ndarray, rng) -> np.ndarray:
-    """Distance between neighbouring predicted sheets along the normal at up to 2,000 of the points, in voxels:
-    per line, the median gap between the centres of the stretches the line spends inside the prediction."""
+def read_prediction(surface: ZarrArray, points: np.ndarray, normals: np.ndarray, rng) -> tuple[np.ndarray, np.ndarray]:
+    """Along the normal at up to 2,000 of the points: the distance between neighbouring predicted sheets (per
+    line, the median gap between the centres of the stretches the line spends inside the prediction), and the
+    distance from the point to the nearest predicted voxel on its line (REACH + 1 where there is none)."""
     chosen = rng.choice(len(points), min(2000, len(points)), replace=False)
     offsets = np.arange(-REACH, REACH + 1)
-    spacings = []
+    spacings, distances = [], []
     for index in chosen:
         line = np.rint(points[index] + offsets[:, None] * normals[index]).astype(int)  # x, y, z
         low, high = line.min(0), line.max(0) + 1
         block = surface.read(((low[2], high[2]), (low[1], high[1]), (low[0], high[0])))
         inside = block[line[:, 2] - low[2], line[:, 1] - low[1], line[:, 0] - low[0]] > 0
+        distances.append(np.abs(offsets[inside]).min() if inside.any() else REACH + 1)
         edges = np.diff(np.concatenate([[0], inside.astype(np.int8), [0]]))
         begins, ends = np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)
         if len(begins) >= 3:
             spacings.append(np.median(np.diff((begins + ends - 1) / 2)))
-    return np.array(spacings, dtype=np.float64)
+    return np.array(spacings, dtype=np.float64), np.array(distances, dtype=np.float64)
 
 
 def main() -> None:
@@ -109,7 +115,6 @@ def main() -> None:
 
     sys.path.insert(0, villa._spiral_scripts_dir())
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    rng = np.random.default_rng(0)
     surface = ZarrArray(args.surface) if args.surface else None
     report = {}
     with torch.inference_mode():
@@ -128,6 +133,7 @@ def main() -> None:
             turn, valid = turns(grid_theta, valid)
             points, normals = xyz[valid], all_normals[valid]
             winding, theta = (grid_winding - turn)[valid], grid_theta[valid]
+            along = theta / (2 * np.pi) + turn[valid]  # turns round the scroll, continuous over the mesh
             ahead, _ = winding_coordinate(transform, dr_per_winding, points + 4 * normals, device)
             behind, theta_behind = winding_coordinate(transform, dr_per_winding, points - 4 * normals, device)
             same_turn = np.abs(theta_behind - theta) < np.pi  # not across the seam
@@ -141,11 +147,16 @@ def main() -> None:
                 "phase": float(abs(median - round(median))),
                 "share_within_half_a_winding_of_the_median": float(np.mean(np.abs(winding - median) < 0.5)),
                 "fit_spacing_voxels": [float(np.percentile(spacing, q)) for q in (10, 50, 90)],
+                "turns_spanned": float(np.ptp(along)),
+                "fit_windings_per_turn": float(1 + np.polyfit(along, winding, 1)[0]),
             }
             if surface is not None:
-                sheets = prediction_spacing(surface, points, normals, rng)
+                # The same lines for a mesh whatever else is read in the run.
+                sheets, distance = read_prediction(surface, points, normals, np.random.default_rng(0))
                 row["prediction_spacing_voxels"] = [float(np.percentile(sheets, q)) for q in (10, 50, 90)]
                 row["prediction_lines"] = len(sheets)
+                row["share_within_2_voxels_of_a_predicted_sheet"] = float(np.mean(distance <= 2))
+                row["distance_to_predicted_sheet_voxels"] = [float(np.percentile(distance, q)) for q in (50, 90)]
             report[path.name] = row
             print(path.name, json.dumps(row), flush=True)
     if args.out:

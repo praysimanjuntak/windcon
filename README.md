@@ -1182,13 +1182,51 @@ annotations (`TX`), fed back to a fit with tracks and the published outer shell 
 | regime | human-curated patch area | `band-seed` patch area | held-out arcs | eval fibres | human relative windings | automatic paths, no scan test |
 | --- | --- | --- | --- | --- | --- | --- |
 | `TX`: tracks, no rays, no shell | 54.4 / 53.0 | 62.5 / 62.1 | 61.1 / 58.9 | 39.6 / 38.9 | 54.2 / 52.4 | 85.1 / 85.2 |
+| `TS`: tracks, shell, no rays | 53.4 | 66.4 | 67.5 | 38.8 | 51.2 | 86.1 |
 | `TWc`: tracks, shell, rays made here | 55.0 | 60.6 | 69.5 | 38.0 | 65.1 | 86.0 |
 | `T`: tracks, shell, published rays | 60.1 / 63.3 | 62.8 / 62.9 | 70.9 / 71.0 | 38.8 / 39.2 | 71.7 / 69.3 | 86.2 / 86.3 |
 
-The rays made here bring the human relative windings two thirds of the way from `TX` to `T` and
-the held-out arcs most of the way. The patch areas do not move. What the shell alone does
-(`TS`), what the published rays do at the same count (`TP`) and what nine rays per slab do (`TW`)
-is not measured yet.
+The shell alone gives most of the gain on the held-out arcs (61.1 / 58.9 → 67.5) and nothing on
+the human relative windings. The rays made here add 14 points of relative windings (51.2 → 65.1),
+against 18–20 for the published rays, and 2 points of arcs. The human-curated patch area moves
+only with the published rays. What the published rays do at the same count (`TP`) and what nine
+rays per slab do (`TW`) is not measured yet.
+
+**The same fits on sheets a person followed round the scroll** (`mesh_windings.py`). Along one
+sheet a fit's winding number should grow by exactly one per turn. The table gives the fit's
+windings per turn along every human-curated patch of window 1 that spans half a turn or more
+(13 of 711; one more is left out because the fit trained on all patches fails it too). The first
+row is a band of 35 cm² that runs 6.4 turns; the others are single patches of 0.5–1 turn, where a
+slope is less certain.
+
+| patch (turns) | all patches | `T` s1 / s2 | `TWc` | `TS` | `TX` s1 / s2 |
+| --- | --- | --- | --- | --- | --- |
+| `0000_mid_band_final` (6.40) | 1.00 | 1.04 / 1.04 | 1.19 | 1.17 | 1.33 / 1.32 |
+| `middle_3_flat` (0.99) | 1.00 | 1.05 / 1.08 | 1.07 | 1.11 | 1.13 / 1.12 |
+| `5753_-1_flatboi_copy` (0.96) | 1.05 | 1.19 / 1.19 | 1.21 | 1.24 | 1.25 / 1.25 |
+| `4424_david_masked` (0.93) | 0.97 | 0.88 / 0.88 | 0.88 | 1.24 | 1.28 / 1.26 |
+| `auto_grown_…113228_36` (0.82) | 1.07 | 1.26 / 1.28 | 1.28 | 1.57 | 1.56 / 1.55 |
+| `same_wrap000644_lasagna` (0.80) | 0.98 | 1.13 / 1.13 | 1.18 | 1.33 | 1.25 / 1.27 |
+| `auto_grown_…113228_33` (0.79) | 1.17 | 1.12 / 1.11 | 1.15 | 1.14 | 1.17 / 1.16 |
+| `auto_grown_…113725_2` (0.67) | 1.06 | 1.05 / 1.06 | 1.06 | 1.29 | 1.28 / 1.27 |
+| `auto_grown_…103415_38` (0.64) | 1.35 | 1.25 / 1.26 | 1.20 | 1.21 | 1.14 / 1.17 |
+| `same_wrap000641_lasagna` (0.62) | 1.02 | 1.04 / 1.05 | 1.09 | 1.35 | 1.34 / 1.39 |
+| `auto_grown_…150051_26` (0.62) | 1.02 | 1.23 / 1.22 | 1.21 | 1.34 | 1.29 / 1.33 |
+| `auto_grown_…124951_1` (0.59) | 1.00 | 0.57 / 0.55 | 0.48 | 0.97 | 0.83 / 0.84 |
+| `same_wrap001113_lasagna` (0.50) | 0.92 | 0.74 / 0.72 | 0.71 | 0.83 | 0.74 / 0.73 |
+
+- The fit with tracks alone packs a third more windings into the band than it has (1.33), the
+  shell brings that to 1.17, the published rays to 1.04.
+- On the 12 shorter patches the rays made here move the fit to where the published rays move it:
+  the two differ by a median 0.02–0.03 windings per turn, two seeds of one regime by 0.01–0.02,
+  and the fit with the shell and no rays differs from the published-ray fit by 0.15. That holds
+  where the published rays under-count as well (0.57, 0.74, 0.88 against 0.48, 0.71, 0.88).
+- Median distance from one winding per turn on those 12: 0.04 with all patches, 0.16 with the
+  published rays, 0.19 with the rays made here, 0.24 with the shell alone, 0.25–0.26 with tracks
+  alone.
+- On the band they do not (1.19 against 1.04). The two stores have the same number of crossings
+  per ray at every radius, so `TP` and `TW` are needed to say whether the number of rays decides.
+- Two seeds agree within 0.05.
 
 In Round 7, taking the winding-inference rays and the outer shell away from the fit with tracks
 costs 3–6 points of the human-curated patch area and 18 points of the human relative windings
@@ -1215,7 +1253,12 @@ with CMake. The tools below stay at the pin and need neither build.
   the published store dropped rays that cross the exterior of a CT mask.
 - `subset_store.py` writes a store with part of the rays of another, the published one included:
   the centre ray of each slab, every Nth slab, or a random draw from the rays a z-window uses.
-- `run.sh <script> ...` runs either script, or `transfer_check.py` below, in villa's environment.
+- `mesh_windings.py` reads a fit's winding number on a tifxyz mesh of a known sheet: its spread
+  over the mesh, the fit's windings per turn along it, and the distance between the fit's sheets
+  along the mesh normals. With `--surface` it also reads a surface prediction on the same normals:
+  the distance between predicted sheets, and how far the mesh is from the nearest one.
+- `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
+  environment.
 
 **Check against the published store.** Its manifest names the public checkpoint
 (`winding_model_3d_large_11/ckpt_final.pth`). 300 of its rays with midpoints in z 10300–10500 were
