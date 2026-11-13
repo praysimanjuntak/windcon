@@ -1293,6 +1293,14 @@ with CMake. The tools below stay at the pin and need neither build.
   the distance between predicted sheets, and how far the mesh is from the nearest one.
 - `store_vs_surface.py` counts, along the rays of a store, the model's windings and the sheets of
   a surface prediction on the same stretch: a check of a store on a scan where nobody has counted.
+- `store_vs_fit.py` compares a fit with a store pair by pair, as the fitter's loss does;
+  `--rings` gives the fit's windings per winding of the store by distance from the umbilicus.
+- `count_shell.py` sums the rays' windings outwards from the umbilicus and writes the surface on
+  which they count winding N as an `outer_shell/`; it also prints the count at a mask's boundary.
+- `sheet_gaps.py` measures how far apart a scroll's sheets are, from its surface prediction along
+  radial lines, before any fit exists.
+- `line_windings.py` scores a fit on hand-traced lines that each follow one sheet round the
+  scroll, by the rule of PHerc. 0332's published scorer.
 - `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
   environment.
 
