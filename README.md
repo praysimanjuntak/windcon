@@ -11,7 +11,8 @@ Points 1–7 are measured on PHerc. Paris 4 with the published `fit_spiral.py`, 
 annotations the fits never saw (details and numbers in the sections below). Round 7 corrects two
 things about points 2–5: their fits ran without villa's surface tracks, the fitter's default, and
 92 % of the verified patches they call human were grown automatically. Point 6 is the result with
-the tracks on. Points 8 and 9 are on PHerc. 0332, 0139, 343 and 0358.
+the tracks on. Points 8 and 9 are on PHerc. 0332, 0139, 343 and 0358; point 10 is the ink
+screen.
 
 1. **The tracer is precise.** 97.6 % of traced length lies on the human arc it claims (held-out
    slices); paths cover 39 % of the arcs' length. Paths link across slices into chains with 1.0 %
@@ -83,6 +84,13 @@ the tracks on. Points 8 and 9 are on PHerc. 0332, 0139, 343 and 0358.
    of PHerc. 0139 the public winding model counts one winding between 90 % of 66,843 neighbouring
    pairs on the native 9.36 µm scan (98.6 % on Paris 4 at 9.6 µm from the fine scan), merging
    sheets that are under 115 µm apart.
+10. **A screen for letters that passes on known text (`experiments/ink_probe/`).** The triage of
+   the PHerc. 0306B First Letters submission runs unchanged on renders and ink maps made here.
+   Windings of fits made here with no annotation put PHerc. 343's letters (8.64 µm) and PHerc.
+   0139's text (9.362 µm) in its first review tier, on the face that carries the ink and not on
+   the other. On PHerc. 0139 the ink maps of such windings agree with the Scroll Prize team's ink
+   detection from the 2.4 µm scan at a pixel AUC of 0.80, where the hand-curated surface gives
+   0.86.
 
 ![All 2,553 paths traced on slice z 10425, one colour per path](results/spiral_fit/auto_z10425.png)
 
@@ -1208,6 +1216,26 @@ chain at that protocol (render, face, depth, triage), not of the models: the rev
 the face towards the axis on an anticlockwise scroll too, and text of this kind is a first-tier
 window on one face.
 
+The same on windings of a fit made here: the band fitted with tracks and normals alone (the fit
+of the section on other scrolls below; the curated w035 is its winding 59), its windings 57–61
+snapped to the surface prediction and read like any band, 30 windows over both faces.
+
+| window | row score | other face | queue |
+| --- | --- | --- | --- |
+| our winding 58, layers reversed, x 2600 | 12.34 | 1.43 | REVIEW |
+| our winding 59, layers reversed, x 1300 | 11.17 | 4.75 | REVIEW |
+| our winding 58, layers reversed, x 1300 | 4.40 | −0.31 | REVIEW |
+| our winding 59, layers as stored, x 1300 | 4.75 | 11.17 | rejected: rows not along the winding |
+
+No other of the 30 windows reaches 3. Brought into the curated winding's frame
+(`resample_to_mesh.py`: each pixel from the winding nearest along the normal, within 4 voxels;
+67 % of the pixels filled, winding 59 alone within 4 voxels of 73 % of the curated nodes), the
+reversed maps have a pixel AUC of 0.803 against the fine-scan ink, where the curated surface has
+0.864, and the maps of the layers as stored 0.493. So at this scan protocol a fit with no
+annotation, snapped, shows known text as rows in the first review tier, on the neighbouring
+sheet as well, with letters as shapes on the card
+(`results/ink_probe/control_0139/card_own_w059_reversed_x1300.jpg`).
+
 `screen_band.sh` runs the same chain over the windings of a band of any scroll: snap to the
 surface prediction, render, ink both faces, lay out. The triage's tables and cards are in
 `results/ink_probe/triage_343/` (the mesh and our w048) and `results/ink_probe/control_0139/`.
@@ -1946,8 +1974,9 @@ where the tracer mostly abstains (item 1).
    gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and
    flattened 31-layer renders; here the renders are 66 layers along the mesh normals, not
    flattened. A window in the review tier is a place to look, not a reading. The 9.362 µm control
-   is a curated surface of the scroll the models were trained on. Not done: windings of our own
-   fit there, and the 343 control on snapped windings.
+   is on the scroll the models were trained on, a curated surface and five windings of one fit.
+   Not done: the 343 control on snapped windings, and any text the models have not seen at
+   9.362 µm.
 
 ## Licence
 

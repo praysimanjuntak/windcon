@@ -1,0 +1,10 @@
+fwd (1760, 5060) covered 0.671
+fwd: correlation of smoothed maps +0.009 at shift (-16, 40) | pixel AUC against key ink 0.493 | key ink share 0.096 | mean z in key ink -0.02, elsewhere +0.00
+reverse (1760, 5060) covered 0.671
+reverse: correlation of smoothed maps +0.494 at shift (-8, -8) | pixel AUC against key ink 0.803 | key ink share 0.096 | mean z in key ink +1.04, elsewhere -0.11
+target nodes with a source within 4 voxels: 78.5%
+w057: within one grid cell of 97.2% of the target's nodes; along the normal there: median 32.6 voxels, within 4: 0.1%
+w058: within one grid cell of 98.9% of the target's nodes; along the normal there: median 13.6 voxels, within 4: 6.5%
+w059: within one grid cell of 99.5% of the target's nodes; along the normal there: median 2.2 voxels, within 4: 72.7%
+w060: within one grid cell of 97.1% of the target's nodes; along the normal there: median 19.3 voxels, within 4: 1.9%
+w061: within one grid cell of 95.7% of the target's nodes; along the normal there: median 33.6 voxels, within 4: 0.1%

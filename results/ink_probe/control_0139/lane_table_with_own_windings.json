@@ -1,0 +1,66 @@
+{
+ "cut": 3.0,
+ "other_face_under": 3.2,
+ "windows": [
+  {
+   "winding": "curated_w035",
+   "face": "rev",
+   "x0": 0,
+   "row_score": 14.64,
+   "other_face": -0.43,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  },
+  {
+   "winding": "own_w058",
+   "face": "rev",
+   "x0": 2600,
+   "row_score": 12.34,
+   "other_face": 1.43,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  },
+  {
+   "winding": "own_w059",
+   "face": "rev",
+   "x0": 1300,
+   "row_score": 11.17,
+   "other_face": 4.75,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": false
+  },
+  {
+   "winding": "own_w059",
+   "face": "fwd",
+   "x0": 1300,
+   "row_score": 4.75,
+   "other_face": 11.17,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": false
+  },
+  {
+   "winding": "own_w058",
+   "face": "rev",
+   "x0": 1300,
+   "row_score": 4.4,
+   "other_face": -0.31,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  },
+  {
+   "winding": "curated_w035",
+   "face": "rev",
+   "x0": 1300,
+   "row_score": 3.72,
+   "other_face": -1.09,
+   "glyph": null,
+   "other_face_glyph": null,
+   "one_face_only": true
+  }
+ ]
+}

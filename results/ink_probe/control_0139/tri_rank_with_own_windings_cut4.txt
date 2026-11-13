@@ -1,0 +1,5 @@
+ 14.64 curated_w035           rev x0      rows   0.0 fib 1.2 tex 1.0 crack 0.0 shape 0.49 recur None  -> REVIEW
+ 12.34 own_w058               rev x2600   rows   0.0 fib 8.8 tex 0.91 crack 0.0 shape 0.461 recur None  -> REVIEW
+ 11.17 own_w059               rev x1300   rows  10.0 fib 8.8 tex 1.03 crack 0.0 shape 0.612 recur None  -> REVIEW
+  4.40 own_w058               rev x1300   rows  10.0 fib 1.2 tex 0.94 crack 0.0 shape 0.369 recur None  -> REVIEW
+  4.75 own_w059               fwd x1300   rows  40.0 fib 8.8 tex 1.03 crack None shape None recur None  -> auto-reject: rows not along winding
