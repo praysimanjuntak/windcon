@@ -1,0 +1,34 @@
+ 14.64 curated_w035           rev x0      rows   0.0 fib 1.2 tex 1.11 crack 0.0 shape 0.49 recur None  -> REVIEW
+ 12.34 own_w058               rev x2600   rows   0.0 fib 8.8 tex 1.0 crack 0.0 shape 0.461 recur None  -> REVIEW
+ 11.17 own_w059               rev x1300   rows  10.0 fib 8.8 tex 1.14 crack 0.0 shape 0.612 recur None  -> REVIEW
+  4.40 own_w058               rev x1300   rows  10.0 fib 1.2 tex 1.04 crack 0.0 shape 0.369 recur None  -> REVIEW
+  3.72 curated_w035           rev x1300   rows   0.0 fib 1.2 tex 1.07 crack 1.02 shape 0.487 recur None  -> REVIEW
+  2.24 own_w057               fwd x2600   rows  10.0 fib 6.2 tex 0.96 crack 0.0 shape 0.357 recur None  -> REVIEW
+  2.01 own_w057               rev x0      rows   0.0 fib 1.2 tex 1.02 crack 0.0 shape 0.292 recur None  -> REVIEW
+  1.43 own_w058               fwd x2600   rows  10.0 fib 8.8 tex 1.0 crack 0.0 shape 0.28 recur None  -> REVIEW
+  0.57 own_w059               rev x2600   rows   0.0 fib 3.8 tex 0.98 crack 0.88 shape 0.609 recur None  -> REVIEW
+  0.02 own_w059               rev x0      rows   0.0 fib 1.2 tex 1.08 crack 0.0 shape 0.587 recur None  -> REVIEW
+ -0.02 own_w057               fwd x1300   rows  15.0 fib 1.2 tex 1.05 crack 0.0 shape 0.247 recur None  -> REVIEW
+ -0.31 own_w058               fwd x1300   rows  10.0 fib 1.2 tex 1.04 crack 0.0 shape 0.295 recur None  -> REVIEW
+ -0.69 own_w058               rev x0      rows   0.0 fib 3.8 tex 0.98 crack 0.85 shape 0.054 recur None  -> REVIEW-2: round blobs, no strokes
+  4.75 own_w059               fwd x1300   rows  40.0 fib 8.8 tex 1.14 crack None shape None recur None  -> auto-reject: rows not along winding
+  2.67 own_w061               fwd x2600   rows  70.0 fib 6.2 tex 0.81 crack None shape None recur None  -> auto-reject: rows not along winding
+  1.14 own_w059               fwd x2600   rows  55.0 fib 3.8 tex 0.98 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.98 own_w061               rev x2600   rows  40.0 fib 6.2 tex 0.81 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.58 own_w061               fwd x0      rows  90.0 fib 1.2 tex 0.92 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.39 own_w060               fwd x2600   rows  75.0 fib 11.2 tex 0.89 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.31 own_w058               fwd x0      rows  70.0 fib 3.8 tex 0.98 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.12 own_w059               fwd x0      rows  30.0 fib 1.2 tex 1.08 crack None shape None recur None  -> auto-reject: rows not along winding
+  0.11 own_w060               rev x1300   rows   0.0 fib 13.8 tex 1.0 crack None shape None recur None  -> auto-reject: sheet not flat (fold/crossing)
+  0.02 own_w060               fwd x0      rows  90.0 fib 1.2 tex 0.94 crack None shape None recur None  -> auto-reject: rows not along winding
+ -0.06 own_w061               fwd x1300   rows  80.0 fib 1.2 tex 0.99 crack None shape None recur None  -> auto-reject: rows not along winding
+ -0.43 curated_w035           fwd x0      rows  55.0 fib 1.2 tex 1.11 crack None shape None recur None  -> auto-reject: rows not along winding
+ -0.49 own_w061               rev x1300   rows  75.0 fib 1.2 tex 0.99 crack None shape None recur None  -> auto-reject: rows not along winding
+ -0.69 own_w057               fwd x0      rows  40.0 fib 1.2 tex 1.02 crack None shape None recur None  -> auto-reject: rows not along winding
+ -0.97 own_w060               fwd x1300   rows  80.0 fib 13.8 tex 1.0 crack None shape None recur None  -> auto-reject: rows not along winding, sheet not flat (fold/crossing)
+ -1.00 own_w057               rev x2600   rows  40.0 fib 6.2 tex 0.96 crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.00 own_w061               rev x0      rows  35.0 fib 1.2 tex 0.92 crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.02 own_w060               rev x2600   rows  30.0 fib 11.2 tex 0.89 crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.09 curated_w035           fwd x1300   rows  75.0 fib 1.2 tex 1.07 crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.11 own_w060               rev x0      rows  30.0 fib 1.2 tex 0.94 crack None shape None recur None  -> auto-reject: rows not along winding
+ -1.28 own_w057               rev x1300   rows  80.0 fib 1.2 tex 1.05 crack None shape None recur None  -> auto-reject: rows not along winding

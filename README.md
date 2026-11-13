@@ -1227,7 +1227,9 @@ snapped to the surface prediction and read like any band, 30 windows over both f
 | our winding 58, layers reversed, x 1300 | 4.40 | −0.31 | REVIEW |
 | our winding 59, layers as stored, x 1300 | 4.75 | 11.17 | rejected: rows not along the winding |
 
-No other of the 30 windows reaches 3. Brought into the curated winding's frame
+No other of the 30 windows reaches 3 (all 34 windows of the lane with their gates:
+`results/ink_probe/control_0139/tri_rank_with_own_windings_all_windows.txt`). Brought into the
+curated winding's frame
 (`resample_to_mesh.py`: each pixel from the winding nearest along the normal, within 4 voxels;
 67 % of the pixels filled, winding 59 alone within 4 voxels of 73 % of the curated nodes), the
 reversed maps have a pixel AUC of 0.803 against the fine-scan ink, where the curated surface has
@@ -1773,6 +1775,7 @@ the tracks-only fit: 9,415 slabs, 82,873 rays, 1.50 M crossings, 47 minutes besi
 | own windings w045–w049: nodes within 2 voxels of a predicted sheet (41–43 % for a surface placed at random) | 44–58 % | 60–65 % | 55–57 % |
 | windings that carry 5 % or more of the submission's mesh of 1.3 turns | five | three (w048 43 %, w049 46 %, w047 7 %) | four |
 | ink control, the submission's three villa models on those windings: letter boxes brighter than the rest, all windings together / the best one alone | 18 of 18 / 9 | 14 of 18 / 10 | |
+| the same after the windings are snapped to the surface prediction (the submission's `snap_meshes.py`): boxes brighter than the rest, and ROC AUC of the three-model ensemble inside the boxes against outside (as fitted) | not run (0.72) | 18 of 18, 0.73 (0.62) | |
 
 - At the fitter's default weight 12 the fit does not follow these rays: the ray loss stays at
   13.5 for 4,400 steps, where Paris 4 fits fall from 20 to 5 in 1,000. Neither a shell (the
@@ -1975,8 +1978,8 @@ where the tracer mostly abstains (item 1).
    flattened 31-layer renders; here the renders are 66 layers along the mesh normals, not
    flattened. A window in the review tier is a place to look, not a reading. The 9.362 µm control
    is on the scroll the models were trained on, a curated surface and five windings of one fit.
-   Not done: the 343 control on snapped windings, and any text the models have not seen at
-   9.362 µm.
+   Not done: snapped 343 windings through the triage (their letter boxes are scored in the
+   section on other scrolls), and any text the models have not seen at 9.362 µm.
 
 ## Licence
 
