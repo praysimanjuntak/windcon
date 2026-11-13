@@ -1195,11 +1195,14 @@ costs 3–6 points of the human-curated patch area and 18 points of the human re
 (regime `TX` against `T`, both windows). The only published rays are Paris 4's, and they start
 from a fit with 4,610 patches.
 villa can make rays from any fit with the public model
-[`winding_model_9um`](https://huggingface.co/scrollprize/winding_model_9um), but two things stand
-in the way on a small machine. `infer_winding_volume.py` reads the scan through `vc`, the Python
-module that is compiled with volume-cartographer. And with this model its intermediate cache holds
-a phase for all 128 × 128 columns of every slab, 25 MB per slab, of which
-`export_spiral_supervision.py` keeps one ray.
+[`winding_model_9um`](https://huggingface.co/scrollprize/winding_model_9um). At the commit all
+fits here use (`5a4388f`, 2026-10-03) two things stand in the way on a small machine.
+`infer_winding_volume.py` reads the scan through `vc`, the Python module that is compiled with
+volume-cartographer. And with this model its intermediate cache holds a phase for all 128 × 128
+columns of every slab, 25 MB per slab, of which `export_spiral_supervision.py` keeps one ray.
+villa's main branch has moved since: `--spiral-supervision-only` (`00e42bd`, 2026-11-01) writes the
+store without that cache, and the scan is read through `vc_reader` (#2440), a C++ library built
+with CMake. The tools below stay at the pin and need neither build.
 
 - `vc_shim/vc` stands in for the `vc` calls of the model's slab extractor, on top of windcon's
   chunk cache. On an oblique 128 × 384 plane it differs from `scipy.ndimage.map_coordinates` by one
@@ -1312,7 +1315,8 @@ numbers of the three checks are in the same folder.
 
 villa at `5a4388f`: `build_seed_rays` fails on a checkpoint written by `fit_spiral.py` of the same
 commit (`KeyError: 'num_flow_integration_steps'`), because it reads the model settings without
-their `model_` prefix. `build_store.py` adds the old names before calling it.
+their `model_` prefix. `build_store.py` adds the old names before calling it. villa's main branch
+no longer has this fault.
 
 **Other scrolls.** Three helpers for a scroll that has no spiral-input dataset, staged for
 PHerc. 343, whose fit has not run:
