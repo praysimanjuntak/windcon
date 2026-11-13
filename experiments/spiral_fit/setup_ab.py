@@ -42,6 +42,11 @@ Variants (automatic paths are fed as drawn_control_points.json, their own sampli
   TWc  TW with the centre ray of each slab only, which is what villa's exporter keeps
   TP  T with as many published rays as TWc has in the window, drawn at random (subset_store.py)
   TH  T with the rays' two loss weights at three times the default
+  TA, TWA, TWcA  T, TW and TWc with `shell_min_confidence` 0. fit_spiral.py uses a pair of ray points
+     only where its table of the outer shell has a confidence of 0.25 or more, and the table
+     normalises that by its densest spot: with the published shell 28 % of window 1 passes, and none
+     of the angles 40-100 degrees (measured by rebuilding the table). At 0 every pair inside the
+     shell's radius counts, and the shell loss reads the table everywhere
   few family: A, Ig (gap-filled chains); rand, targ, orac (471 extra patches, select_patches.py);
      AR10, oracR10 (10-voxel deformation lattice); ALR, oracLR (fine lattice at the coarse rate);
      ANW, oracNW (no winding inference); AP, oracP (no human point collections);
@@ -140,6 +145,7 @@ NO_WI = {"dense_spacing_mode": "grad_mag", "input_use_gradient_magnitude": True,
          "input_use_winding_inference": False}
 NO_SHELL_NO_WI = NO_WI | {"input_use_outer_shell": False}
 HEAVY_RAYS = {"loss_weight_dense_spacing": 36.0, "loss_weight_dense_spacing_density": 36.0}  # default 12
+WHOLE_SHELL_TABLE = {"shell_min_confidence": 0.0}  # default 0.25
 
 
 def own_rays(key: str) -> dict:
@@ -176,6 +182,9 @@ REGIMES = {
     "sparse_TWc": (False, None, TRACKS, False, own_rays("rays_tx_centre")),
     "sparse_TP": (False, None, TRACKS, False, own_rays("rays_published_thin")),
     "sparse_TH": (False, None, TRACKS | HEAVY_RAYS, False, TRACK_LINKS),
+    "sparse_TA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, TRACK_LINKS),
+    "sparse_TWA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, own_rays("rays_tx")),
+    "sparse_TWcA": (False, None, TRACKS | WHOLE_SHELL_TABLE, False, own_rays("rays_tx_centre")),
     "sparse_TB": (False, None, TRACKS | BAND_SEED_ONLY, False, BAND_SEED_LINKS),
     "sparse_TG": (False, None, TRACKS | PATCHES_ONLY, False, GROWN_LINKS),
     "sparse_TBR": (False, "relwind", TRACKS | BAND_SEED_ONLY | D_SETTINGS, False, BAND_SEED_LINKS),
