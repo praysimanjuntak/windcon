@@ -19,7 +19,8 @@ the fit's z-range is read.
 
 and, with --surface, two readings of a surface prediction along the same normals, on up to 2,000
 lines of 121 voxels: the distance between its neighbouring sheets (the median gap on each line
-that meets at least three), and how far the mesh itself is from the nearest predicted sheet.
+that meets at least three), and how far the mesh itself is from the nearest predicted sheet,
+with the share of the lines' own length that is as near for comparison.
 
     run.sh mesh_windings.py --checkpoint <run>/checkpoint_fitted.ckpt --umbilicus <umbilicus.json> \
         --mesh <mesh.tifxyz> [--mesh <another>] [--surface <URL of the prediction's level 0>]
@@ -81,24 +82,26 @@ def turns(theta: np.ndarray, mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return turn, largest
 
 
-def read_prediction(surface: ZarrArray, points: np.ndarray, normals: np.ndarray, rng) -> tuple[np.ndarray, np.ndarray]:
+def read_prediction(surface: ZarrArray, points: np.ndarray, normals: np.ndarray, rng):
     """Along the normal at up to 2,000 of the points: the distance between neighbouring predicted sheets (per
-    line, the median gap between the centres of the stretches the line spends inside the prediction), and the
-    distance from the point to the nearest predicted voxel on its line (REACH + 1 where there is none)."""
+    line, the median gap between the centres of the stretches the line spends inside the prediction), the
+    distance from the point to the nearest predicted voxel on its line (REACH + 1 where there is none), and
+    the share of each line that is within 2 voxels of a predicted voxel (what a surface placed at random gets)."""
     chosen = rng.choice(len(points), min(2000, len(points)), replace=False)
     offsets = np.arange(-REACH, REACH + 1)
-    spacings, distances = [], []
+    spacings, distances, near = [], [], []
     for index in chosen:
         line = np.rint(points[index] + offsets[:, None] * normals[index]).astype(int)  # x, y, z
         low, high = line.min(0), line.max(0) + 1
         block = surface.read(((low[2], high[2]), (low[1], high[1]), (low[0], high[0])))
         inside = block[line[:, 2] - low[2], line[:, 1] - low[1], line[:, 0] - low[0]] > 0
         distances.append(np.abs(offsets[inside]).min() if inside.any() else REACH + 1)
+        near.append(np.convolve(inside, np.ones(5), mode="same")[2:-2].astype(bool).mean())
         edges = np.diff(np.concatenate([[0], inside.astype(np.int8), [0]]))
         begins, ends = np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)
         if len(begins) >= 3:
             spacings.append(np.median(np.diff((begins + ends - 1) / 2)))
-    return np.array(spacings, dtype=np.float64), np.array(distances, dtype=np.float64)
+    return np.array(spacings, dtype=np.float64), np.array(distances, dtype=np.float64), float(np.mean(near))
 
 
 def main() -> None:
@@ -152,10 +155,11 @@ def main() -> None:
             }
             if surface is not None:
                 # The same lines for a mesh whatever else is read in the run.
-                sheets, distance = read_prediction(surface, points, normals, np.random.default_rng(0))
+                sheets, distance, chance = read_prediction(surface, points, normals, np.random.default_rng(0))
                 row["prediction_spacing_voxels"] = [float(np.percentile(sheets, q)) for q in (10, 50, 90)]
                 row["prediction_lines"] = len(sheets)
                 row["share_within_2_voxels_of_a_predicted_sheet"] = float(np.mean(distance <= 2))
+                row["the_same_for_a_surface_placed_at_random"] = chance
                 row["distance_to_predicted_sheet_voxels"] = [float(np.percentile(distance, q)) for q in (50, 90)]
             report[path.name] = row
             print(path.name, json.dumps(row), flush=True)

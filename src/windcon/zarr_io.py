@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import threading
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -84,9 +86,10 @@ class ZarrArray:
         if body is None:
             missing.touch()
             return
-        tmp = self._chunk_path(idx, ".part")
+        # A name of its own for every writer: two processes may fetch the same chunk into one cache.
+        tmp = self._chunk_path(idx, f".part{os.getpid()}_{threading.get_ident()}")
         tmp.write_bytes(body)
-        tmp.rename(path)
+        tmp.replace(path)
 
     def _decode(self, idx: tuple[int, ...]) -> np.ndarray | None:
         path = self._chunk_path(idx)
