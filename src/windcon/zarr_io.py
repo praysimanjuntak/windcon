@@ -9,6 +9,7 @@ on read. Missing chunks (HTTP 403/404, i.e. masked-out regions) decode to
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import os
 import threading
@@ -39,7 +40,8 @@ def _http_get(url: str, timeout: float = 30.0, retries: int = 6) -> bytes | None
                 return None
             if attempt == retries - 1:
                 raise
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException):
+            # A reset or a body cut short mid-read arrives as ConnectionError or IncompleteRead.
             if attempt == retries - 1:
                 raise
     raise AssertionError("unreachable")
