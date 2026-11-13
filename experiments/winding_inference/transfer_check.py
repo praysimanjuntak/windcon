@@ -45,7 +45,7 @@ OFF_CENTRE = 32  # samples between the slab centre and the line in the `view` re
 WINDOWS = (40, 80, 120, 160)  # half-widths in samples of the fine reading (384 samples per ray)
 READINGS = ("fine", "view", "coarse", "native")
 STRETCH = 64  # samples of the fine reading per stretch in the table by sheet spacing
-SPACINGS = (0, 8, 10, 12, 14, 18, 1000)  # its groups: samples of the fine reading per winding
+SPACINGS = (0, 10, 12, 14, 18, 1000)  # its groups: samples of the fine reading per winding
 
 
 def registration(url: str, fine_downscale: int, in_fine_volume: bool) -> np.ndarray:
