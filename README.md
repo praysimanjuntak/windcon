@@ -1803,6 +1803,14 @@ number people gave them).
   has too few windings it has too few seeds, and its windings beyond the scroll's last sheet lie
   outside the mask (all 4,086 seeds beyond radius 1,600). Rays are still kept for only 21 % of the
   slabs seeded at 1,000–1,200 and 4 % at 1,200–1,400.
+- The same rebuild of PHerc. 0139's store from its tracks-only fit: 628 slabs, 83 minutes on the CPU.
+  The share of rays kept goes from 75 % to 84 %, and of the rays seeded at radius 1,000–1,200 from
+  77 % to 97 %. On the 37 curated windings the store gives 265,410 pairs of neighbouring windings
+  on its rays, against 242,094, with 91.0 % against 90.8 % counted as one, and the same shares in
+  every band of sheet distance to 0.2 points. That fit counts as its store does in the outer rings,
+  1.01–1.15 fit windings per store winding from radius 1,000 to 2,100 (the scroll's pitch is the
+  fitter's start). The rebuilt store gives the same ratios to 0.04 in every ring from radius 100
+  out. Cutting adds rays where they were missing and changes nothing else.
 - With those rays at weight 120 the count of the outer third moves a quarter to a half of the
   way to the truth, depending on the measure, and the surface gets rougher along the sheets: the
   windings per turn rise on every one of the 32 lines and so do the steps, 2.4–4.7 times; the

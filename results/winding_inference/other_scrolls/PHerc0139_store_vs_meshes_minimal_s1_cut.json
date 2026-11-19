@@ -1,0 +1,61 @@
+{
+ "store": "$P/p139/stores/minimal_s1_cut",
+ "counted_by": "the store's model",
+ "rays": 46773,
+ "pairs_left_out": 50405,
+ "traced_sheet_distance_um_10_50_90": [
+  86.36445142623077,
+  143.94074821428734,
+  292.6795214469937
+ ],
+ "all": {
+  "pairs": 265410,
+  "windings_per_traced_winding": 1.0457064244899288,
+  "pairs_one_traced_winding_apart": 265410,
+  "of_those_counted_as_one": 0.9097170415583437,
+  "of_those_counted_as_none": 0.014509626615425191,
+  "of_those_counted_as_two_or_more": 0.07577333182623111
+ },
+ "by_sheet_distance_um": {
+  "0-115": {
+   "pairs": 75680,
+   "windings_per_traced_winding": 0.8214391599963454,
+   "pairs_one_traced_winding_apart": 75680,
+   "of_those_counted_as_one": 0.9494053911205074,
+   "of_those_counted_as_none": 0.04447674418604651,
+   "of_those_counted_as_two_or_more": 0.0061178646934460885
+  },
+  "115-145": {
+   "pairs": 62291,
+   "windings_per_traced_winding": 0.9820834970330551,
+   "pairs_one_traced_winding_apart": 62291,
+   "of_those_counted_as_one": 0.973399046411199,
+   "of_those_counted_as_none": 0.0058114334334012935,
+   "of_those_counted_as_two_or_more": 0.020789520155399657
+  },
+  "145-175": {
+   "pairs": 36932,
+   "windings_per_traced_winding": 1.0691156187346378,
+   "pairs_one_traced_winding_apart": 36932,
+   "of_those_counted_as_one": 0.9524531571536878,
+   "of_those_counted_as_none": 0.0020307592331853135,
+   "of_those_counted_as_two_or_more": 0.045516083613126826
+  },
+  "175-230": {
+   "pairs": 39945,
+   "windings_per_traced_winding": 1.1522825880539014,
+   "pairs_one_traced_winding_apart": 39945,
+   "of_those_counted_as_one": 0.9150331706095882,
+   "of_those_counted_as_none": 0.0008261359369132557,
+   "of_those_counted_as_two_or_more": 0.08414069345349856
+  },
+  "230-inf": {
+   "pairs": 50562,
+   "windings_per_traced_winding": 1.358469945230446,
+   "pairs_one_traced_winding_apart": 50562,
+   "of_those_counted_as_one": 0.7364423875637831,
+   "of_those_counted_as_none": 0.00029666548000474666,
+   "of_those_counted_as_two_or_more": 0.26326094695621216
+  }
+ }
+}
