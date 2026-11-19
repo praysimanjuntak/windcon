@@ -2021,6 +2021,23 @@ With the pairs and every patch, `pcl_sampling_weights` giving `drawn_control_poi
 and every other group 1 (`RW_DOUBLE` in `setup_ab.py`) gave the best fits in both windows (one
 seed each, without tracks).
 
+Winding-model rays for a scroll that has none (section "The winding count and the winding sense
+on other scrolls"). Start from a fit of one band with tracks and normals, which keeps the winding
+count of its starting spiral. Then:
+
+```bash
+W=experiments/winding_inference
+# Store at 9.6 um per sample, rays cut at the scroll's mask, outer shell from the mask, fit with the rays.
+bash $W/rays_for_scroll.sh <dataset> <tracks-only run> <out> <masked scan zarr URL> <fit level> <voxel um> [weight]
+# Before trusting the fit: where does the tracks-only fit disagree with the rays, by distance from the umbilicus?
+bash $W/run.sh store_vs_fit.py --checkpoint <tracks-only run>/checkpoint_fitted.ckpt \
+  --umbilicus <dataset>/umbilicus.json --store <out>/store --rings 100
+```
+
+On a scroll the model has not seen (PHerc. 0332), the rays count one winding right between sheets
+77–154 µm apart. They merge closer sheets and count a second winding in gaps over about 190 µm.
+`sheet_gaps.py` gives a scroll's pitch from its surface prediction before any of this.
+
 ## Limitations and next steps
 
 Round 7 changes what this list rests on. Rounds 1–6 ran without villa's surface tracks. With them
