@@ -1,0 +1,116 @@
+{
+ "store": "$P/p332/stores/zoom_1.5",
+ "sample_step_voxels": 1.5,
+ "fibres": [
+  "dj_20261023T141346553_001001",
+  "dj_20261023T141346553_001002",
+  "dj_20261023T141346553_001003",
+  "dj_20261023T141346553_001004",
+  "dj_20261023T141346553_001005",
+  "dj_20261023T141346553_001006",
+  "dj_20261023T141346553_001007",
+  "dj_20261023T141346553_001008",
+  "dj_20261023T141346553_001009",
+  "dj_20261023T141346553_001010",
+  "dj_20261023T141346553_001011",
+  "dj_20261023T141346553_001012",
+  "dj_20261023T141346553_001013",
+  "dj_20261023T141346553_001032",
+  "dj_20261023T141346553_001033",
+  "dj_20261023T141346553_001034",
+  "dj_20261023T141346553_001035",
+  "dj_20261023T141346553_001036",
+  "dj_20261023T141346553_001037",
+  "dj_20261023T141346553_001038",
+  "dj_20261023T141346553_001039",
+  "dj_20261023T141346553_001040",
+  "dj_20261023T141346553_001041",
+  "dj_20261023T141346553_001042",
+  "dj_20261023T141346553_001043",
+  "dj_20261023T141346553_001044",
+  "dj_20261023T141346553_001045",
+  "dj_20261023T141346553_001046",
+  "dj_20261023T141346553_001047",
+  "dj_20261023T141346553_001048",
+  "dj_20261023T141346553_001049",
+  "dj_20261023T141346553_001050",
+  "dj_20261023T141346553_001051"
+ ],
+ "rays_with_pairs": 69,
+ "all": {
+  "pairs": 132,
+  "pairs_one_winding_apart": 132,
+  "windings_per_true_winding": 0.6287878787878788,
+  "of_those_counted_as_one": 0.6287878787878788,
+  "of_those_counted_as_none": 0.3712121212121212,
+  "of_those_counted_as_two_or_more": 0.0
+ },
+ "by_ring_voxels": {
+  "600-900": {
+   "pairs": 51,
+   "pairs_one_winding_apart": 51,
+   "windings_per_true_winding": 0.6274509803921569,
+   "of_those_counted_as_one": 0.6274509803921569,
+   "of_those_counted_as_none": 0.37254901960784315,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "900-1200": {
+   "pairs": 81,
+   "pairs_one_winding_apart": 81,
+   "windings_per_true_winding": 0.6296296296296297,
+   "of_those_counted_as_one": 0.6296296296296297,
+   "of_those_counted_as_none": 0.37037037037037035,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ },
+ "by_sheet_distance_voxels": {
+  "0-8": {
+   "pairs": 35,
+   "pairs_one_winding_apart": 35,
+   "windings_per_true_winding": 0.0,
+   "of_those_counted_as_one": 0.0,
+   "of_those_counted_as_none": 1.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "8-12": {
+   "pairs": 31,
+   "pairs_one_winding_apart": 31,
+   "windings_per_true_winding": 0.5483870967741935,
+   "of_those_counted_as_one": 0.5483870967741935,
+   "of_those_counted_as_none": 0.45161290322580644,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "12-16": {
+   "pairs": 38,
+   "pairs_one_winding_apart": 38,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "16-20": {
+   "pairs": 11,
+   "pairs_one_winding_apart": 11,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "20-25": {
+   "pairs": 9,
+   "pairs_one_winding_apart": 9,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "25-40": {
+   "pairs": 7,
+   "pairs_one_winding_apart": 7,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ }
+}

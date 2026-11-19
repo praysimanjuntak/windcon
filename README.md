@@ -80,10 +80,12 @@ screen.
    along radial lines is 2–11 % above the pitch people fixed on three scrolls. Its sense: patches
    grown from the tracks at the umbilicus pass a full turn and show which way the sheets go; right
    on the three scrolls where people fixed it, and PHerc. 0358, whose one public fit is
-   clockwise, winds anticlockwise. How far to trust rays there: against 37 hand-curated windings
-   of PHerc. 0139 the public winding model counts one winding between 90 % of 66,843 neighbouring
-   pairs on the native 9.36 µm scan (98.6 % on Paris 4 at 9.6 µm from the fine scan), merging
-   sheets that are under 115 µm apart.
+   clockwise, winds anticlockwise. How far to trust rays there: on PHerc. 0332, which the public
+   winding model was not trained on, it counts one winding between two successive turns of the
+   team's hand-traced fibres at 79 % of 411 places. That is 95–98 % where the sheets lie 77–154 µm
+   apart; below that it merges them, and in gaps over about 190 µm it counts a second winding.
+   Showing it the scan at another scale fixes neither. On PHerc. 0139, one of its training
+   scrolls, it counts 90 % of 66,843 pairs of curated windings right on the 9.36 µm scan.
 10. **A screen for letters that passes on known text (`experiments/ink_probe/`).** The triage of
    the PHerc. 0306B First Letters submission runs unchanged on renders and ink maps made here.
    Windings of fits made here with no annotation put PHerc. 343's letters (8.64 µm) and PHerc.
@@ -1415,8 +1417,12 @@ with CMake. The tools below stay at the pin and need neither build.
 - `build_store.py` runs the same model on the same slabs, decodes rays with villa's own
   `decode_center_ray` and writes the store `fit_spiral.py` loads. `--columns 3` keeps a 3 × 3 grid
   of rays per slab instead of the centre one. `--step` sets the sampling step for a scan that is
-  not at 9.6 µm. A ray that reads four zero voxels in a row leaves the masked scan and is dropped;
-  the published store dropped rays that cross the exterior of a CT mask.
+  not at 9.6 µm. A ray that reads four zero voxels in a row reaches outside the masked scan and is
+  dropped, as the published store dropped rays that cross the exterior of a CT mask; with
+  `--outside cut` it keeps the part on the seed's side of the mask instead. `--device cpu` runs
+  the model on the CPU in float32 (9 s per slab on 12 threads of an i7-14700, plus 5 s reading the
+  scan). `--volume-scale 2` reads a scan level one finer than the fit's and writes the rays in the
+  fit's voxels.
 - `subset_store.py` writes a store with part of the rays of another, the published one included:
   the centre ray of each slab, every Nth slab, or a random draw from the rays a z-window uses.
 - `mesh_windings.py` reads a fit's winding number on a tifxyz mesh of a known sheet: its spread
@@ -1440,6 +1446,13 @@ with CMake. The tools below stay at the pin and need neither build.
 - `store_vs_meshes.py` takes pairs of traced sheets that follow one another on a ray and asks
   whether the model counts one winding between them; with `--checkpoint` a fit is asked instead.
   `seed_rays_on_meshes.py` seeds the rays on the traced sheets, so that no fit is needed.
+- `store_vs_lines.py` scores a store on hand-traced fibres that run round the scroll, such as
+  PHerc. 0332's slice lines. Two successive crossings of one fibre by one ray are one winding
+  apart. `seed_rays_on_lines.py` puts rays through two successive turns of the fibres, spread
+  evenly over the distance between them, so that every slab tests the model.
+- `rays_for_scroll.sh` builds a store from a fit with tracks, makes an outer shell from the scan's
+  mask where the dataset has none, and writes the dataset and overrides for a fit with those rays.
+  Then it runs that fit (next section).
 - `winding_profile.py` prints a fit's winding number against distance from the umbilicus: the
   windings a fit has between two radii, with no annotation.
 - `run.sh <script> ...` runs any of these scripts, or `transfer_check.py` below, in villa's
@@ -1678,6 +1691,76 @@ between two of them at 60–74 % of sampled nodes and none at 16–29 %, so some
 winding apart and the model's 0.83 as much as 0.95. By sheet distance it reads 0.73 under 115 µm,
 0.88 at 115–145 µm and 0.94–0.99 above: the same lean as on PHerc. 0139, further.
 
+**Which scrolls the model has seen.** The public model was trained without a held-out set
+(`validation_mode: train_batch` in the `config.json` of `winding_model_9um`) on PHerc. 0139's
+2.4 µm scan at level 2 with that scroll's segments as labels, on PHerc. 1667's at level 2, and on
+Paris 4 at 4.8 µm with Paris 4's spiral fit as labels. The PHerc. 0139 rows above read the same
+sheets on another scan of a training scroll, and the Paris 4 rows a training scroll against its
+own labels. PHerc. 1447 and PHerc. 0332 (below) are scrolls the model has not seen.
+
+**The winding model against PHerc. 0332's fibres** (`store_vs_lines.py`). A hand-traced fibre that
+runs round the scroll follows one sheet. A ray that crosses it at two successive turns therefore
+crosses exactly one winding between them, and no winding number is needed. In the store made from
+the fit with tracks (below; 17,642 rays), 287 rays cross one of the window's 35 fibres twice:
+
+| distance between the two crossings, voxels of 9.6 µm | pairs | model windings per true winding | counted as one | as none | as two or more |
+| --- | --- | --- | --- | --- | --- |
+| 0–8 | 117 | 0.56 | 55.6 % | 44.4 % | 0 % |
+| 8–12 | 100 | 0.95 | 95.0 % | 5.0 % | 0 % |
+| 12–16 | 89 | 1.02 | 97.8 % | 0 % | 2.2 % |
+| 16–20 | 46 | 1.11 | 89.1 % | 0 % | 10.9 % |
+| 20–25 | 29 | 1.34 | 65.5 % | 0 % | 34.5 % |
+| 25–40 | 26 | 1.50 | 50.0 % | 0 % | 50.0 % |
+| all | 411 | 0.94 | 78.6 % | 13.9 % | 7.5 % |
+
+On a scroll it has not seen, the model counts right where the sheets are 8–16 voxels (77–154 µm)
+apart. Below that it merges them, and in wider gaps it counts a second winding. By distance from the
+umbilicus it gives 0.96 windings per true winding at 600–900 voxels and 0.91 at 900–1,200; no pair
+lies further out. At the merged pairs the scan along the ray mostly shows one bright band. At the
+doubled ones it shows a dark gap 15–20 voxels wide with a crossing inside it. Rebuilt on the CPU
+(`--device cpu`), the 159 slabs of these rays give 401 pairs and 80.0 % counted as one.
+
+**Other sample steps do not help.** The same 159 slabs were rebuilt at two other steps, and 300 of
+the 900 PHerc. 0139 truth slabs at 1.4. The tight and wide bands are under 8 and over 20 voxels on
+PHerc. 0332, and under 115 and over 230 µm on PHerc. 0139:
+
+| store | pairs | counted as one | tight band as one | wide band as one |
+| --- | --- | --- | --- | --- |
+| PHerc. 0332, `--step 1.0` (9.6 µm per sample) | 401 | 80.0 % | 61.9 % | 56.6 % |
+| PHerc. 0332, `--step 0.6` (5.8 µm) | 76 | 71.1 % | 58.6 % | 1 of 6 |
+| PHerc. 0332, `--step 1.5` (14.4 µm) | 132 | 62.9 % | 0 % | 100 % (16) |
+| PHerc. 0139, `--step 1.025` (9.6 µm) | 22,392 | 90.3 % | 94.1 % | 73.9 % |
+| PHerc. 0139, `--step 1.4` (13.1 µm) | 28,659 | 88.7 % | 92.6 % | 67.7 % |
+
+Zooming in leaves the merges and adds doubles. Zooming out removes PHerc. 0332's doubles, merges
+every pair under 8 voxels and half of those at 8–12, and keeps PHerc. 0139's doubles. On the pairs
+that both steps see (51 and 19), the share counted as one is the same as at step 1.0 or lower. A
+rule that picks a step per pair from the model's own crossings has nothing to go on: those
+crossings lie 11–15 samples apart at every step. Darkness of the scan does not mark a wrong
+crossing either. Dropping the crossings where the scan stays dark took a tenth of them and lowered
+the share counted as one from 80.0 % to 76.8–78.3 %. So `build_store.py --step` keeps the model's
+own scale, 9.6 µm per sample.
+
+**A finer scan level does not help either.** `seed_rays_on_lines.py` put 150 rays through two
+successive turns of the team's fibres, 25 in each band of the table above. They were built from
+level 2 (9.6 µm) and from level 1 (4.8 µm, `--volume-scale 2`) of the 2.4 µm scan. Counted as one
+on the 133 pairs that both stores see:
+
+| band, voxels of 9.6 µm | pairs | level 2 | level 1 |
+| --- | --- | --- | --- |
+| 0–8 | 24 | 54.2 % | 75.0 % |
+| 8–12 | 21 | 90.5 % | 85.7 % |
+| 12–16 | 25 | 96.0 % | 84.0 % |
+| 16–20 | 20 | 90.0 % | 60.0 % |
+| 20–25 | 15 | 93.3 % | 80.0 % |
+| 25–40 | 26 | 65.4 % | 53.8 % |
+| all | 133 | 79.7 % | 71.4 % |
+
+At 4.8 µm the model separates about half of the sheets it merges at 9.6 µm, and it counts a second
+winding between sheets 12 voxels or more apart. Its sweet spot is about 8–16 samples per winding,
+whatever the voxel size. Taking the better level for each pair would give 85.7 %, but nothing
+tells which level that is.
+
 `store_vs_meshes.py --checkpoint` counts the same pairs with a fit's winding coordinate instead.
 On Paris 4's band: all-patches fit 99.9 % of 6,695 pairs as one (1.00 windings per traced
 winding), `TA` 93.5 % (1.04), `T` 92.7 % (1.05), `TS` 81.7 % (1.18), `TX` 69.4 % (1.32). A fit
@@ -1701,14 +1784,24 @@ number people gave them).
 - The store made from that fit (11,244 slabs, 17,642 rays, 56 minutes beside a fit) says so
   without any annotation: `store_vs_fit.py --rings 100` gives 0.90–1.07 fit windings per store
   winding from a radius of 200 to 800 voxels and 0.60–0.71 beyond 900.
+- That store has almost no rays where the fit undercounts. Rays are 384 voxels long, and the
+  rule that drops a ray reaching outside the masked scroll kept 100 % of the rays seeded within a
+  radius of 600 voxels, 82 % at 600–800, 40 % at 800–1,000, 8 % at 1,000–1,200 and under 1 %
+  beyond (17,642 of 101,196 in all; PHerc. 0139's store kept 75 %, PHerc. 343's 98 %). Cut at the
+  mask instead (`--outside cut`), all 150 test rays through the team's fibres are kept, against 56
+  when dropped. They give 436 fibre pairs, 81.0 % counted as one, and the same count on every pair
+  that the dropped store kept.
 - With those rays at weight 120 the count of the outer third moves a quarter to a half of the
   way to the truth, depending on the measure, and the surface gets rougher along the sheets: the
   windings per turn rise on every one of the 32 lines and so do the steps, 2.4–4.7 times; the
   team's score, the share within a quarter winding, falls on 26 of them. The fit follows its
-  store within 7 % in every ring (87 % of ray pairs within half a winding, 28 % before), so what
-  is still missing in the outer third is missing in the rays: by the anchors the model counts
-  about 0.7 windings per true winding there. The weight was chosen on PHerc. 343, where the only
-  aim was that the fit follow its rays; the default weight has not been scored here.
+  store within 7 % in every ring (87 % of ray pairs within half a winding, 28 % before). The
+  fibres cross a ray twice only between radius 600 and 1,200. There the store counts 0.96 and
+  0.91 windings per true winding (above), and the fit 0.91 per turn along the lines. The anchors
+  give the fit 0.67 for true windings 40–70. They lie between radius 700 and 1,300, and within any
+  ring of 100 voxels they spread over 15–18 windings, so the two measures do not read the same
+  places. The weight was chosen on PHerc. 343, where the only aim was that the fit follow its
+  rays; the default weight has not been scored here.
 
 **PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
 volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
@@ -1801,9 +1894,10 @@ the tracks-only fit: 9,415 slabs, 82,873 rays, 1.50 M crossings, 47 minutes besi
   same coordinate, those two meshes are 5–7 voxels apart (15–23 elsewhere;
   `mesh_windings.py --profile --distance-to`).
 
-The reports of `store_vs_meshes.py`, `line_windings.py`, `anchor_windings.py`, `store_vs_fit.py`,
-`mesh_windings.py`, `patch_sense.py` and `sheet_gaps.py` behind this section are in
-`results/winding_inference/other_scrolls/`.
+The reports of `store_vs_meshes.py`, `store_vs_lines.py`, `line_windings.py`, `anchor_windings.py`,
+`store_vs_fit.py`, `mesh_windings.py`, `patch_sense.py` and `sheet_gaps.py` behind this section
+are in `results/winding_inference/other_scrolls/`, with the chart of the PHerc. 0332 fibre check
+(`PHerc0332_store_vs_lines.png`).
 
 **Settings of the fits in this section** (overrides of `fit_spiral.py`'s defaults; 30,000 steps,
 seed 1): tracks and normals on; fibres, patches and every human point collection off. Without
@@ -1812,6 +1906,8 @@ rays: `input_use_gradient_magnitude` where the scroll has lasagna density, `dens
 "winding_model"`, the shell from the scan's mask as `outer_shell` with `loss_weight_shell_outer:
 0` and `shell_min_confidence: 0` (the fitter takes rays only inside a shell), and
 `loss_weight_dense_spacing` and `loss_weight_dense_spacing_density` at 120 or at their default 12.
+`rays_for_scroll.sh` does all of it from a fit with tracks: store, shell, dataset, overrides and
+fit. On PHerc. 0332 it writes the overrides of the fit with rays in the table above, key for key.
 
 ```bash
 P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference; S=experiments/spiral_fit
@@ -1839,6 +1935,16 @@ bash $W/run.sh line_windings.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_
 bash $W/run.sh anchor_windings.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt \
   --umbilicus $P/data/PHerc0332/umbilicus.json --anchors $P/data/PHerc0332/anchors/anchors_train_records.json \
   --anchors $P/data/PHerc0332/anchors/anchors_held_records.json
+# The store against the team's fibres; rays through two successive turns of every fibre, on level 2 and level 1.
+bash $W/run.sh store_vs_lines.py --store $P/p332/stores/minimal_s1 --umbilicus $P/data/PHerc0332/umbilicus.json \
+  --lines $P/data/PHerc0332/slice_lines/PHerc0332_vcslices.volpkg.json --out store_vs_lines.json
+uv run python $W/seed_rays_on_lines.py --umbilicus $P/data/PHerc0332/umbilicus.json \
+  --lines $P/data/PHerc0332/slice_lines/PHerc0332_vcslices.volpkg.json --per-bin 25 --out $P/p332/line_seeds.npz
+bash $W/run.sh build_store.py --rays $P/p332/line_seeds.npz --volume data/cache/<folder of level 1> --volume-scale 2 \
+  --model $P/wi/model/ckpt_final.pth --out $P/p332/stores/lines_L1 --columns 1 --batch-size 1 --device cpu
+# Rays for a scroll that has none, and the fit with them (PHerc. 0332 at level 2 of its 2.4 um scan).
+bash $W/rays_for_scroll.sh $P/data/PHerc0332 $P/p332/runs/minimal_s1 $P/p332/rays \
+  $B/PHerc0332/volumes/20251211183505-2.399um-0.2m-78keV-masked.zarr 2 9.596 120
 # A store from a fit, the fit against it by ring, and its windings by radius.
 bash $W/run.sh build_store.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt --umbilicus $P/data/PHerc0332/umbilicus.json \
   --volume data/cache/<folder of the 0332 scan's level 2> --model $P/wi/model/ckpt_final.pth --out $P/p332/stores/minimal_s1 \

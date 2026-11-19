@@ -25,6 +25,7 @@ import shutil
 import time
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import nullcontext
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -111,10 +112,15 @@ def column_indices(native_columns: int, stride: int, count: int, spacing: int) -
     return indices
 
 
-def leaves_scan(values: np.ndarray, run: int) -> bool:
-    """True when `run` consecutive samples of a ray read 0, which a masked scan does only outside the scroll."""
-    zeros = np.concatenate([[0], np.cumsum(values == 0)])
-    return bool((zeros[run:] - zeros[:-run] == run).any())
+def outside_samples(values: np.ndarray, run: int) -> np.ndarray:
+    """Samples of a ray that lie in a run of `run` or more zeros, which a masked scan reads only outside the scroll."""
+    zero = values == 0
+    edges = np.diff(np.concatenate([[0], zero.astype(np.int8), [0]]))
+    outside = np.zeros(len(values), bool)
+    for begin, end in zip(np.flatnonzero(edges == 1), np.flatnonzero(edges == -1), strict=True):
+        if end - begin >= run:
+            outside[begin:end] = True
+    return outside
 
 
 def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict[str, np.ndarray]:
@@ -122,7 +128,7 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
     import torch
     from vesuvius.neural_tracing.winding_models.export_spiral_supervision import decode_center_ray
 
-    ray_length, spacing, stride, columns = geometry
+    ray_length, spacing, stride, columns, scale = geometry
     midpoint = (ray_length - 1) / 2.0
     anchor = round(midpoint)
     columns_gpu = torch.as_tensor(columns, device=device)
@@ -130,19 +136,20 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
     def extract(index):
         began = time.perf_counter()
         direction = rays["direction_xyz"][index].astype(np.float64)
-        origin = rays["seed_xyz"][index].astype(np.float64) - midpoint * spacing * direction
+        origin = scale * rays["seed_xyz"][index].astype(np.float64) - midpoint * spacing * direction
         return (index, *extractor.extract(0, direction, origin), time.perf_counter() - began)
 
     origins, steps, windings, counts, positions, levels, sources = [], [], [], [], [], [], []
-    outside = short = 0
+    outside = cut = short = 0
     extract_seconds = model_seconds = 0.0
 
     def forward(batch):
-        nonlocal outside, short, model_seconds
+        nonlocal outside, cut, short, model_seconds
         began = time.perf_counter()
         images = torch.from_numpy(np.stack([item[1] for item in batch])).to(device)
         valid = torch.from_numpy(np.stack([item[2] for item in batch])).to(device)
-        with torch.autocast("cuda", dtype=torch.bfloat16):
+        precision = torch.autocast("cuda", dtype=torch.bfloat16) if device.type == "cuda" else nullcontext()
+        with precision:
             phase = model(images, valid.bool())["phase"]
         phase = phase.float()[:, columns_gpu][:, :, columns_gpu].cpu().numpy()
         model_seconds += time.perf_counter() - began
@@ -150,12 +157,17 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
             for a, native_a in enumerate(columns):
                 for b, native_b in enumerate(columns):
                     row, column = int(native_a) * stride, int(native_b) * stride
-                    if leaves_scan(image[row, column], args.outside_run):
-                        outside += 1
-                        continue
+                    off_scan = outside_samples(image[row, column], args.outside_run)
+                    if off_scan.any():
+                        if args.outside == "drop":
+                            outside += 1
+                            continue
+                        cut += 1
+                    # decode_center_ray keeps the valid run that holds the ray's midpoint: with --outside cut, the
+                    # part of the ray inside the scroll on the seed's side
                     t, level = decode_center_ray(
                         phase[sample, a, b],
-                        slab_valid[row, column],
+                        slab_valid[row, column].astype(bool) & ~off_scan,
                         anchor=anchor,
                         edge_margin=args.edge_margin,
                         edge_trim=args.edge_trim,
@@ -164,8 +176,8 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
                         short += 1
                         continue
                     start = frame.origin + spacing * (row * frame.axis_a + column * frame.axis_b)
-                    origins.append(start[::-1])
-                    steps.append((spacing * frame.direction)[::-1])
+                    origins.append(start[::-1] / scale)
+                    steps.append((spacing / scale * frame.direction)[::-1])
                     windings.append(rays["seed_winding"][index])
                     sources.append((index, a, b))
                     counts.append(len(t))
@@ -202,6 +214,7 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
         "crossing_t": np.concatenate(positions).astype(np.float32) if positions else np.empty(0, np.float32),
         "crossing_level": np.concatenate(levels).astype(np.int16) if levels else np.empty(0, np.int16),
         "rays_leaving_scan": np.int64(outside),
+        "rays_cut_at_mask": np.int64(cut),
         "rays_under_two_crossings": np.int64(short),
         # Seconds per slab: reading and sampling the scan (summed over the threads), and the model on the GPU.
         "extract_seconds_per_slab": np.float64(extract_seconds / max(len(indices), 1)),
@@ -213,7 +226,8 @@ def merge_parts(parts: list[Path]) -> tuple[dict[str, np.ndarray], dict[str, int
     """The rays of all parts, and their counters summed."""
     loaded = [np.load(path) for path in parts]
     rays = {name: np.concatenate([part[name] for part in loaded]) for name in RAY_FIELDS}
-    counters = {name: int(sum(part[name] for part in loaded)) for name in ("rays_leaving_scan", "rays_under_two_crossings")}
+    counters = {name: int(sum(part[name] for part in loaded if name in part))
+                for name in ("rays_leaving_scan", "rays_cut_at_mask", "rays_under_two_crossings")}
     return rays, counters
 
 
@@ -301,13 +315,20 @@ def main() -> None:
     parser.add_argument("--edge-margin", type=int, default=8, help="samples ignored at each end of a ray")
     parser.add_argument("--edge-trim", type=int, default=2, help="crossings dropped at each end of a ray")
     parser.add_argument("--outside-run", type=int, default=4,
-                        help="drop a ray that reads this many zero voxels in a row: it leaves the masked scan")
+                        help="this many zero voxels in a row are outside the masked scroll")
+    parser.add_argument("--outside", choices=("drop", "cut"), default="drop",
+                        help="a ray that reaches outside the masked scroll: drop it, or keep its part on the seed's "
+                             "side of the mask")
     parser.add_argument("--step", type=float,
-                        help="voxels between samples (default: the model's, 1). The model was trained on 9.6 um "
-                             "voxels, so an 8.64 um scan is shown to it at its own scale with --step 1.111")
+                        help="voxels of --volume between samples (default: the model's, 1). The model was trained on "
+                             "9.6 um voxels, so an 8.64 um scan is shown to it at its own scale with --step 1.111")
+    parser.add_argument("--volume-scale", type=float, default=1.0,
+                        help="voxels of --volume per voxel of the fit (2: a scan level one finer than the fit's). "
+                             "Seeds are scaled into the volume, rays written back in the fit's voxels")
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--extract-threads", type=int, default=4)
     parser.add_argument("--max-slabs", type=int, help="use this many evenly spread seeds (for timing)")
+    parser.add_argument("--device", default="cuda:0", help="torch device of the model (cpu runs it in float32)")
     args = parser.parse_args()
     if not args.rays and not (args.checkpoint and args.umbilicus):
         parser.error("give --checkpoint and --umbilicus, or --rays")
@@ -320,7 +341,9 @@ def main() -> None:
 
     partial = Path(str(args.out) + ".partial")
     partial.mkdir(parents=True, exist_ok=True)
-    settings = {key: str(value) for key, value in vars(args).items() if key not in ("batch_size", "extract_threads")}
+    settings = {
+        key: str(value) for key, value in vars(args).items() if key not in ("batch_size", "extract_threads", "device")
+    }
     settings_path = partial / "arguments.json"
     rays_path = partial / "seed_rays.npz"
     if settings_path.exists():
@@ -334,7 +357,7 @@ def main() -> None:
         settings_path.write_text(json.dumps(settings, indent=2) + "\n")
     total = len(rays["seed_xyz"])
 
-    device = torch.device("cuda:0")
+    device = torch.device(args.device)
     checkpoint = torch.load(args.model, map_location="cpu", weights_only=False)
     config = checkpoint["config"]
     model = WindingModel(config.get("model"))
@@ -353,7 +376,7 @@ def main() -> None:
         sampling=str(config.get("sampling", "trilinear")),
         tile_size=int(config.get("tile_size", 64)),
     )
-    geometry = (ray_length, spacing, stride, columns)
+    geometry = (ray_length, spacing, stride, columns, args.volume_scale)
 
     print(f"{total:,} slabs, {args.columns**2} ray(s) each, batch {args.batch_size}", flush=True)
     parts = []
@@ -374,7 +397,7 @@ def main() -> None:
             f"(scan {result['extract_seconds_per_slab']:.2f} s per slab over {args.extract_threads} threads, "
             f"model {result['model_seconds_per_slab']:.2f} s)  "
             f"{len(result['seed_winding']):,} rays, {len(result['crossing_t']):,} crossings in this part  "
-            f"GPU peak {torch.cuda.max_memory_allocated(device) / 2**20:,.0f} MiB",
+            + (f"GPU peak {torch.cuda.max_memory_allocated(device) / 2**20:,.0f} MiB" if device.type == "cuda" else ""),
             flush=True,
         )
 
@@ -400,7 +423,9 @@ def main() -> None:
             "edge_margin": args.edge_margin,
             "edge_trim": args.edge_trim,
             "outside_run": args.outside_run,
-            "sample_step_voxels": spacing,
+            "outside": args.outside,
+            "sample_step_voxels": spacing / args.volume_scale,
+            "volume_scale": args.volume_scale,
             **counters,
         },
     )

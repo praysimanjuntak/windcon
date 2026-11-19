@@ -1,0 +1,142 @@
+{
+ "store": "$P/p332/stores/lines_L2",
+ "sample_step_voxels": 1.0,
+ "fibres": [
+  "dj_20261023T141346553_001001",
+  "dj_20261023T141346553_001002",
+  "dj_20261023T141346553_001003",
+  "dj_20261023T141346553_001004",
+  "dj_20261023T141346553_001005",
+  "dj_20261023T141346553_001006",
+  "dj_20261023T141346553_001007",
+  "dj_20261023T141346553_001008",
+  "dj_20261023T141346553_001009",
+  "dj_20261023T141346553_001010",
+  "dj_20261023T141346553_001011",
+  "dj_20261023T141346553_001012",
+  "dj_20261023T141346553_001013",
+  "dj_20261023T141346553_001014",
+  "dj_20261023T141346553_001015",
+  "dj_20261023T141346553_001016",
+  "dj_20261023T141346553_001017",
+  "dj_20261023T141346553_001018",
+  "dj_20261023T141346553_001019",
+  "dj_20261023T141346553_001020",
+  "dj_20261023T141346553_001021",
+  "dj_20261023T141346553_001022",
+  "dj_20261023T141346553_001023",
+  "dj_20261023T141346553_001024",
+  "dj_20261023T141346553_001025",
+  "dj_20261023T141346553_001026",
+  "dj_20261023T141346553_001027",
+  "dj_20261023T141346553_001028",
+  "dj_20261023T141346553_001029",
+  "dj_20261023T141346553_001030",
+  "dj_20261023T141346553_001031",
+  "dj_20261023T141346553_001032",
+  "dj_20261023T141346553_001033",
+  "dj_20261023T141346553_001034",
+  "dj_20261023T141346553_001035",
+  "dj_20261023T141346553_001036",
+  "dj_20261023T141346553_001037",
+  "dj_20261023T141346553_001038",
+  "dj_20261023T141346553_001039",
+  "dj_20261023T141346553_001040",
+  "dj_20261023T141346553_001041",
+  "dj_20261023T141346553_001042",
+  "dj_20261023T141346553_001043",
+  "dj_20261023T141346553_001044",
+  "dj_20261023T141346553_001045",
+  "dj_20261023T141346553_001046",
+  "dj_20261023T141346553_001047",
+  "dj_20261023T141346553_001048",
+  "dj_20261023T141346553_001049",
+  "dj_20261023T141346553_001050",
+  "dj_20261023T141346553_001051"
+ ],
+ "rays_with_pairs": 56,
+ "all": {
+  "pairs": 166,
+  "pairs_one_winding_apart": 166,
+  "windings_per_true_winding": 1.0120481927710843,
+  "of_those_counted_as_one": 0.8192771084337349,
+  "of_those_counted_as_none": 0.09036144578313253,
+  "of_those_counted_as_two_or_more": 0.09036144578313253
+ },
+ "by_ring_voxels": {
+  "600-900": {
+   "pairs": 52,
+   "pairs_one_winding_apart": 52,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 0.7884615384615384,
+   "of_those_counted_as_none": 0.11538461538461539,
+   "of_those_counted_as_two_or_more": 0.09615384615384616
+  },
+  "900-1200": {
+   "pairs": 107,
+   "pairs_one_winding_apart": 107,
+   "windings_per_true_winding": 1.0186915887850467,
+   "of_those_counted_as_one": 0.822429906542056,
+   "of_those_counted_as_none": 0.08411214953271028,
+   "of_those_counted_as_two_or_more": 0.09345794392523364
+  },
+  "1200-1500": {
+   "pairs": 7,
+   "pairs_one_winding_apart": 7,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 1.0,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ },
+ "by_sheet_distance_voxels": {
+  "0-8": {
+   "pairs": 27,
+   "pairs_one_winding_apart": 27,
+   "windings_per_true_winding": 0.5185185185185185,
+   "of_those_counted_as_one": 0.5185185185185185,
+   "of_those_counted_as_none": 0.48148148148148145,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "8-12": {
+   "pairs": 25,
+   "pairs_one_winding_apart": 25,
+   "windings_per_true_winding": 0.92,
+   "of_those_counted_as_one": 0.92,
+   "of_those_counted_as_none": 0.08,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "12-16": {
+   "pairs": 30,
+   "pairs_one_winding_apart": 30,
+   "windings_per_true_winding": 1.0333333333333334,
+   "of_those_counted_as_one": 0.9666666666666667,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.03333333333333333
+  },
+  "16-20": {
+   "pairs": 28,
+   "pairs_one_winding_apart": 28,
+   "windings_per_true_winding": 1.0714285714285714,
+   "of_those_counted_as_one": 0.9285714285714286,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.07142857142857142
+  },
+  "20-25": {
+   "pairs": 16,
+   "pairs_one_winding_apart": 16,
+   "windings_per_true_winding": 1.0625,
+   "of_those_counted_as_one": 0.9375,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0625
+  },
+  "25-40": {
+   "pairs": 33,
+   "pairs_one_winding_apart": 33,
+   "windings_per_true_winding": 1.303030303030303,
+   "of_those_counted_as_one": 0.7272727272727273,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.2727272727272727
+  }
+ }
+}

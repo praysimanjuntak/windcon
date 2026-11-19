@@ -1,0 +1,126 @@
+{
+ "store": "$P/p332/stores/zoom_1.0_dark0.2",
+ "sample_step_voxels": 1.0,
+ "fibres": [
+  "dj_20261023T141346553_001001",
+  "dj_20261023T141346553_001002",
+  "dj_20261023T141346553_001003",
+  "dj_20261023T141346553_001004",
+  "dj_20261023T141346553_001005",
+  "dj_20261023T141346553_001006",
+  "dj_20261023T141346553_001007",
+  "dj_20261023T141346553_001008",
+  "dj_20261023T141346553_001009",
+  "dj_20261023T141346553_001010",
+  "dj_20261023T141346553_001011",
+  "dj_20261023T141346553_001012",
+  "dj_20261023T141346553_001013",
+  "dj_20261023T141346553_001014",
+  "dj_20261023T141346553_001015",
+  "dj_20261023T141346553_001032",
+  "dj_20261023T141346553_001033",
+  "dj_20261023T141346553_001034",
+  "dj_20261023T141346553_001035",
+  "dj_20261023T141346553_001036",
+  "dj_20261023T141346553_001037",
+  "dj_20261023T141346553_001038",
+  "dj_20261023T141346553_001039",
+  "dj_20261023T141346553_001040",
+  "dj_20261023T141346553_001041",
+  "dj_20261023T141346553_001042",
+  "dj_20261023T141346553_001043",
+  "dj_20261023T141346553_001044",
+  "dj_20261023T141346553_001045",
+  "dj_20261023T141346553_001046",
+  "dj_20261023T141346553_001047",
+  "dj_20261023T141346553_001048",
+  "dj_20261023T141346553_001049",
+  "dj_20261023T141346553_001050",
+  "dj_20261023T141346553_001051"
+ ],
+ "rays_with_pairs": 280,
+ "all": {
+  "pairs": 401,
+  "pairs_one_winding_apart": 401,
+  "windings_per_true_winding": 0.8877805486284289,
+  "of_those_counted_as_one": 0.7830423940149626,
+  "of_those_counted_as_none": 0.16458852867830423,
+  "of_those_counted_as_two_or_more": 0.05236907730673317
+ },
+ "by_ring_voxels": {
+  "600-900": {
+   "pairs": 216,
+   "pairs_one_winding_apart": 216,
+   "windings_per_true_winding": 0.8888888888888888,
+   "of_those_counted_as_one": 0.7962962962962963,
+   "of_those_counted_as_none": 0.1574074074074074,
+   "of_those_counted_as_two_or_more": 0.046296296296296294
+  },
+  "900-1200": {
+   "pairs": 180,
+   "pairs_one_winding_apart": 180,
+   "windings_per_true_winding": 0.8888888888888888,
+   "of_those_counted_as_one": 0.7666666666666667,
+   "of_those_counted_as_none": 0.17222222222222222,
+   "of_those_counted_as_two_or_more": 0.06111111111111111
+  },
+  "1200-1500": {
+   "pairs": 5,
+   "pairs_one_winding_apart": 5,
+   "windings_per_true_winding": 0.8,
+   "of_those_counted_as_one": 0.8,
+   "of_those_counted_as_none": 0.2,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ },
+ "by_sheet_distance_voxels": {
+  "0-8": {
+   "pairs": 113,
+   "pairs_one_winding_apart": 113,
+   "windings_per_true_winding": 0.5752212389380531,
+   "of_those_counted_as_one": 0.5752212389380531,
+   "of_those_counted_as_none": 0.4247787610619469,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "8-12": {
+   "pairs": 99,
+   "pairs_one_winding_apart": 99,
+   "windings_per_true_winding": 0.9090909090909091,
+   "of_those_counted_as_one": 0.9090909090909091,
+   "of_those_counted_as_none": 0.09090909090909091,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "12-16": {
+   "pairs": 79,
+   "pairs_one_winding_apart": 79,
+   "windings_per_true_winding": 0.9746835443037974,
+   "of_those_counted_as_one": 0.8987341772151899,
+   "of_those_counted_as_none": 0.06329113924050633,
+   "of_those_counted_as_two_or_more": 0.0379746835443038
+  },
+  "16-20": {
+   "pairs": 53,
+   "pairs_one_winding_apart": 53,
+   "windings_per_true_winding": 1.0566037735849056,
+   "of_those_counted_as_one": 0.8679245283018868,
+   "of_those_counted_as_none": 0.03773584905660377,
+   "of_those_counted_as_two_or_more": 0.09433962264150944
+  },
+  "20-25": {
+   "pairs": 29,
+   "pairs_one_winding_apart": 29,
+   "windings_per_true_winding": 1.2413793103448276,
+   "of_those_counted_as_one": 0.6896551724137931,
+   "of_those_counted_as_none": 0.034482758620689655,
+   "of_those_counted_as_two_or_more": 0.27586206896551724
+  },
+  "25-40": {
+   "pairs": 24,
+   "pairs_one_winding_apart": 24,
+   "windings_per_true_winding": 1.1666666666666667,
+   "of_those_counted_as_one": 0.75,
+   "of_those_counted_as_none": 0.041666666666666664,
+   "of_those_counted_as_two_or_more": 0.20833333333333334
+  }
+ }
+}

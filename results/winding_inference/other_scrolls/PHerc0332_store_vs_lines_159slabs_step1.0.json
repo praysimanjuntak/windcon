@@ -1,0 +1,126 @@
+{
+ "store": "$P/p332/stores/zoom_1.0",
+ "sample_step_voxels": 1.0,
+ "fibres": [
+  "dj_20261023T141346553_001001",
+  "dj_20261023T141346553_001002",
+  "dj_20261023T141346553_001003",
+  "dj_20261023T141346553_001004",
+  "dj_20261023T141346553_001005",
+  "dj_20261023T141346553_001006",
+  "dj_20261023T141346553_001007",
+  "dj_20261023T141346553_001008",
+  "dj_20261023T141346553_001009",
+  "dj_20261023T141346553_001010",
+  "dj_20261023T141346553_001011",
+  "dj_20261023T141346553_001012",
+  "dj_20261023T141346553_001013",
+  "dj_20261023T141346553_001014",
+  "dj_20261023T141346553_001015",
+  "dj_20261023T141346553_001032",
+  "dj_20261023T141346553_001033",
+  "dj_20261023T141346553_001034",
+  "dj_20261023T141346553_001035",
+  "dj_20261023T141346553_001036",
+  "dj_20261023T141346553_001037",
+  "dj_20261023T141346553_001038",
+  "dj_20261023T141346553_001039",
+  "dj_20261023T141346553_001040",
+  "dj_20261023T141346553_001041",
+  "dj_20261023T141346553_001042",
+  "dj_20261023T141346553_001043",
+  "dj_20261023T141346553_001044",
+  "dj_20261023T141346553_001045",
+  "dj_20261023T141346553_001046",
+  "dj_20261023T141346553_001047",
+  "dj_20261023T141346553_001048",
+  "dj_20261023T141346553_001049",
+  "dj_20261023T141346553_001050",
+  "dj_20261023T141346553_001051"
+ ],
+ "rays_with_pairs": 280,
+ "all": {
+  "pairs": 401,
+  "pairs_one_winding_apart": 401,
+  "windings_per_true_winding": 0.9650872817955112,
+  "of_those_counted_as_one": 0.800498753117207,
+  "of_those_counted_as_none": 0.1172069825436409,
+  "of_those_counted_as_two_or_more": 0.08229426433915212
+ },
+ "by_ring_voxels": {
+  "600-900": {
+   "pairs": 216,
+   "pairs_one_winding_apart": 216,
+   "windings_per_true_winding": 0.9814814814814815,
+   "of_those_counted_as_one": 0.8240740740740741,
+   "of_those_counted_as_none": 0.09722222222222222,
+   "of_those_counted_as_two_or_more": 0.0787037037037037
+  },
+  "900-1200": {
+   "pairs": 180,
+   "pairs_one_winding_apart": 180,
+   "windings_per_true_winding": 0.95,
+   "of_those_counted_as_one": 0.7722222222222223,
+   "of_those_counted_as_none": 0.1388888888888889,
+   "of_those_counted_as_two_or_more": 0.08888888888888889
+  },
+  "1200-1500": {
+   "pairs": 5,
+   "pairs_one_winding_apart": 5,
+   "windings_per_true_winding": 0.8,
+   "of_those_counted_as_one": 0.8,
+   "of_those_counted_as_none": 0.2,
+   "of_those_counted_as_two_or_more": 0.0
+  }
+ },
+ "by_sheet_distance_voxels": {
+  "0-8": {
+   "pairs": 113,
+   "pairs_one_winding_apart": 113,
+   "windings_per_true_winding": 0.6194690265486725,
+   "of_those_counted_as_one": 0.6194690265486725,
+   "of_those_counted_as_none": 0.3805309734513274,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "8-12": {
+   "pairs": 99,
+   "pairs_one_winding_apart": 99,
+   "windings_per_true_winding": 0.9595959595959596,
+   "of_those_counted_as_one": 0.9595959595959596,
+   "of_those_counted_as_none": 0.04040404040404041,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "12-16": {
+   "pairs": 79,
+   "pairs_one_winding_apart": 79,
+   "windings_per_true_winding": 1.0379746835443038,
+   "of_those_counted_as_one": 0.9620253164556962,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.0379746835443038
+  },
+  "16-20": {
+   "pairs": 53,
+   "pairs_one_winding_apart": 53,
+   "windings_per_true_winding": 1.1132075471698113,
+   "of_those_counted_as_one": 0.8867924528301887,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.11320754716981132
+  },
+  "20-25": {
+   "pairs": 29,
+   "pairs_one_winding_apart": 29,
+   "windings_per_true_winding": 1.3448275862068966,
+   "of_those_counted_as_one": 0.6551724137931034,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.3448275862068966
+  },
+  "25-40": {
+   "pairs": 24,
+   "pairs_one_winding_apart": 24,
+   "windings_per_true_winding": 1.5416666666666667,
+   "of_those_counted_as_one": 0.4583333333333333,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.5416666666666666
+  }
+ }
+}
