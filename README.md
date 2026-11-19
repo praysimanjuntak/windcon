@@ -1791,6 +1791,18 @@ number people gave them).
   mask instead (`--outside cut`), all 150 test rays through the team's fibres are kept, against 56
   when dropped. They give 436 fibre pairs, 81.0 % counted as one, and the same count on every pair
   that the dropped store kept.
+- The store was rebuilt that way: the 605 slabs whose seed lies inside the mask and that had lost
+  a ray (79 minutes on the CPU; `p332/stores/minimal_s1_cut`). It now has 22,397 rays. Against
+  the fibres: 1,056 pairs, 79.4 % counted as one, and 0.91 / 0.96 / 1.00 windings per true
+  winding at radius 600–900 / 900–1,200 / 1,200–1,500 (565 / 472 / 19 pairs). Against it the fit
+  without rays has 0.67 / 0.62 / 0.49 / 0.51 / 0.52 windings per store winding in the rings from
+  900 to 1,400, where the old store gave 0.71 / 0.67 / 0.60 / 0.60 / 0.66. Weighted by pairs, that
+  is 0.61 against 0.68, and the anchors give that fit 0.53 per true winding for true windings
+  40–70. The rebuilt store sees four fifths of the shortfall that the team's anchors show, and the
+  old one two thirds. Seeds still come from every eighth of the fit's own windings. Where the fit
+  has too few windings it has too few seeds, and its windings beyond the scroll's last sheet lie
+  outside the mask (all 4,086 seeds beyond radius 1,600). Rays are still kept for only 21 % of the
+  slabs seeded at 1,000–1,200 and 4 % at 1,200–1,400.
 - With those rays at weight 120 the count of the outer third moves a quarter to a half of the
   way to the truth, depending on the measure, and the surface gets rougher along the sheets: the
   windings per turn rise on every one of the 32 lines and so do the steps, 2.4–4.7 times; the
@@ -1908,6 +1920,7 @@ rays: `input_use_gradient_magnitude` where the scroll has lasagna density, `dens
 `loss_weight_dense_spacing` and `loss_weight_dense_spacing_density` at 120 or at their default 12.
 `rays_for_scroll.sh` does all of it from a fit with tracks: store, shell, dataset, overrides and
 fit. On PHerc. 0332 it writes the overrides of the fit with rays in the table above, key for key.
+Its store cuts rays at the mask (`--outside cut`) where the stores of the fits above dropped them.
 
 ```bash
 P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference; S=experiments/spiral_fit
@@ -2072,12 +2085,14 @@ where the tracer mostly abstains (item 1).
    truth besides Paris 4 (PHerc. 0332's lines and anchors, PHerc. 0139's curated windings); on
    343 and on every First Letters scroll the count can only be estimated. Rays are no cure where
    the model merges sheets: under 115 µm it loses a fifth to a quarter of the windings on the
-   coarse scans, and in the outer third of PHerc. 0332 the store itself has about 0.7 windings per
-   true winding. A fit with rays at ten times the weight is rougher along the sheets. The sense
-   reading needs patches that pass a turn, which the grower gives only near the umbilicus. Not
-   done: a second seed anywhere, rays seeded again from a fit that used rays, patches of more
-   than a turn as fit input, and an ink reading on windings of a fit made this way on an unread
-   scroll.
+   coarse scans (on PHerc. 0332's fibres, 44 % of the pairs under 77 µm are counted as none), and
+   in gaps over about 190 µm it counts a second winding. Neither another sample step nor the 4.8 µm
+   level fixes that. The PHerc. 0332 fit with rays had almost none in its outer third: they were
+   dropped at the mask, and `--outside cut` keeps them, but no fit with them has run yet. A fit with
+   rays at ten times the weight is rougher along the sheets. The sense reading needs patches that
+   pass a turn, which the grower gives only near the umbilicus. Not done: a second seed anywhere,
+   rays seeded again from a fit that used rays, patches of more than a turn as fit input, and an
+   ink reading on windings of a fit made this way on an unread scroll.
 10. **The screen control is one text.** PHerc. 343's letters, eight windings of two fits, three
    ink models, 40 windows; the other face of the same surfaces is the only null. The cut and the
    gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and

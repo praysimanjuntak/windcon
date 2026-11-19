@@ -9,7 +9,9 @@
 # <tracks-only run> a finished fit of it with tracks and normals (run_fit.sh's run folder). The steps:
 #   1. rays: build_store.py seeds a ray slab every 96 voxels on every 8th winding of that fit (from winding 10) and
 #      runs villa's winding model (scrollprize/winding_model_9um) on the scan, sampled every STEP voxels. The model
-#      was trained on 9.6 um voxels, so STEP defaults to 9.6 / <voxel um> (other steps count worse: README);
+#      was trained on 9.6 um voxels, so STEP defaults to 9.6 / <voxel um> (other steps count worse: README). A ray
+#      that reaches outside the masked scroll keeps its part on the seed's side (--outside cut): on PHerc. 0332,
+#      dropping such rays left the outer third without rays, and the cut parts count as well as whole rays;
 #   2. outer shell: fit_spiral.py takes rays only with an outer shell, and no prize scroll has a published one.
 #      make_outer_shell.py reads it off the scan's mask (skipped when the dataset has outer_shell/);
 #   3. <out>/dataset: the dataset's inputs linked, plus winding_inference/ and outer_shell/;
@@ -39,7 +41,7 @@ if [ ! -f "$out/store/manifest.json" ]; then
   log "rays: step $STEP voxels, z $z0-$z1"
   bash "$W/run.sh" build_store.py --checkpoint "$run/checkpoint_fitted.ckpt" --umbilicus "$dataset/umbilicus.json" \
     --volume "$cache" --model "$MODEL" --out "$out/store" --winding-step 8 --seed-spacing 96 --columns 3 \
-    --step "$STEP" --batch-size 1 --extract-threads 8
+    --step "$STEP" --outside cut --batch-size 1 --extract-threads 8
 fi
 shell="$dataset/outer_shell"
 if [ ! -d "$shell" ]; then

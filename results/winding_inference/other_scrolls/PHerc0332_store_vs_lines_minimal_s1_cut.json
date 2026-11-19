@@ -1,0 +1,126 @@
+{
+ "store": "$P/p332/stores/minimal_s1_cut",
+ "sample_step_voxels": 1.0,
+ "fibres": [
+  "dj_20261023T141346553_001001",
+  "dj_20261023T141346553_001002",
+  "dj_20261023T141346553_001003",
+  "dj_20261023T141346553_001004",
+  "dj_20261023T141346553_001005",
+  "dj_20261023T141346553_001006",
+  "dj_20261023T141346553_001007",
+  "dj_20261023T141346553_001008",
+  "dj_20261023T141346553_001009",
+  "dj_20261023T141346553_001010",
+  "dj_20261023T141346553_001011",
+  "dj_20261023T141346553_001012",
+  "dj_20261023T141346553_001013",
+  "dj_20261023T141346553_001014",
+  "dj_20261023T141346553_001015",
+  "dj_20261023T141346553_001032",
+  "dj_20261023T141346553_001033",
+  "dj_20261023T141346553_001034",
+  "dj_20261023T141346553_001035",
+  "dj_20261023T141346553_001036",
+  "dj_20261023T141346553_001037",
+  "dj_20261023T141346553_001038",
+  "dj_20261023T141346553_001039",
+  "dj_20261023T141346553_001040",
+  "dj_20261023T141346553_001041",
+  "dj_20261023T141346553_001042",
+  "dj_20261023T141346553_001043",
+  "dj_20261023T141346553_001044",
+  "dj_20261023T141346553_001045",
+  "dj_20261023T141346553_001046",
+  "dj_20261023T141346553_001047",
+  "dj_20261023T141346553_001048",
+  "dj_20261023T141346553_001049",
+  "dj_20261023T141346553_001050",
+  "dj_20261023T141346553_001051"
+ ],
+ "rays_with_pairs": 677,
+ "all": {
+  "pairs": 1056,
+  "pairs_one_winding_apart": 1056,
+  "windings_per_true_winding": 0.9327651515151515,
+  "of_those_counted_as_one": 0.7935606060606061,
+  "of_those_counted_as_none": 0.13825757575757575,
+  "of_those_counted_as_two_or_more": 0.06818181818181818
+ },
+ "by_ring_voxels": {
+  "600-900": {
+   "pairs": 565,
+   "pairs_one_winding_apart": 565,
+   "windings_per_true_winding": 0.9097345132743363,
+   "of_those_counted_as_one": 0.8106194690265487,
+   "of_those_counted_as_none": 0.13982300884955753,
+   "of_those_counted_as_two_or_more": 0.049557522123893805
+  },
+  "900-1200": {
+   "pairs": 472,
+   "pairs_one_winding_apart": 472,
+   "windings_per_true_winding": 0.9576271186440678,
+   "of_those_counted_as_one": 0.7733050847457628,
+   "of_those_counted_as_none": 0.13771186440677965,
+   "of_those_counted_as_two_or_more": 0.08898305084745763
+  },
+  "1200-1500": {
+   "pairs": 19,
+   "pairs_one_winding_apart": 19,
+   "windings_per_true_winding": 1.0,
+   "of_those_counted_as_one": 0.7894736842105263,
+   "of_those_counted_as_none": 0.10526315789473684,
+   "of_those_counted_as_two_or_more": 0.10526315789473684
+  }
+ },
+ "by_sheet_distance_voxels": {
+  "0-8": {
+   "pairs": 344,
+   "pairs_one_winding_apart": 344,
+   "windings_per_true_winding": 0.6017441860465116,
+   "of_those_counted_as_one": 0.6017441860465116,
+   "of_those_counted_as_none": 0.39825581395348836,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "8-12": {
+   "pairs": 290,
+   "pairs_one_winding_apart": 290,
+   "windings_per_true_winding": 0.9689655172413794,
+   "of_those_counted_as_one": 0.9689655172413794,
+   "of_those_counted_as_none": 0.03103448275862069,
+   "of_those_counted_as_two_or_more": 0.0
+  },
+  "12-16": {
+   "pairs": 210,
+   "pairs_one_winding_apart": 210,
+   "windings_per_true_winding": 1.0476190476190477,
+   "of_those_counted_as_one": 0.9523809523809523,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.047619047619047616
+  },
+  "16-20": {
+   "pairs": 103,
+   "pairs_one_winding_apart": 103,
+   "windings_per_true_winding": 1.1067961165048543,
+   "of_those_counted_as_one": 0.8932038834951457,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.10679611650485436
+  },
+  "20-25": {
+   "pairs": 54,
+   "pairs_one_winding_apart": 54,
+   "windings_per_true_winding": 1.4074074074074074,
+   "of_those_counted_as_one": 0.5925925925925926,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.4074074074074074
+  },
+  "25-40": {
+   "pairs": 50,
+   "pairs_one_winding_apart": 50,
+   "windings_per_true_winding": 1.6,
+   "of_those_counted_as_one": 0.46,
+   "of_those_counted_as_none": 0.0,
+   "of_those_counted_as_two_or_more": 0.54
+  }
+ }
+}
