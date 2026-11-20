@@ -1,0 +1,329 @@
+{
+ "checkpoint": "$P/p332/runs/rayscut36_s2/checkpoint_fitted.ckpt",
+ "stores": {
+  "$P/p332/stores/minimal_s1": {
+   "rays": 17642,
+   "rays_in_window": 17545,
+   "neighbouring crossings": {
+    "pairs_in_window": 98496,
+    "within_half_a_winding": 0.8776193957115009,
+    "abs_error_median": 0.17064180970191956,
+    "abs_error_p95": 0.7311969995498657,
+    "signed_error_mean": -0.055211592465639114
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 97418,
+    "within_half_a_winding": 0.5841836210967173,
+    "abs_error_median": 0.39502382278442383,
+    "abs_error_p95": 2.019407033920288,
+    "signed_error_mean": -0.35682401061058044
+   },
+   "rings": {
+    "0-100": {
+     "pairs": 3795,
+     "within_half_a_winding": 0.18972332015810275,
+     "abs_error_median": 2.840890407562256,
+     "fit_per_store_winding": 0.510093092918396
+    },
+    "100-200": {
+     "pairs": 7010,
+     "within_half_a_winding": 0.7691868758915834,
+     "abs_error_median": 0.2360525131225586,
+     "fit_per_store_winding": 1.0085588693618774
+    },
+    "200-300": {
+     "pairs": 6246,
+     "within_half_a_winding": 0.6860390650016011,
+     "abs_error_median": 0.30062174797058105,
+     "fit_per_store_winding": 1.0126192569732666
+    },
+    "300-400": {
+     "pairs": 8603,
+     "within_half_a_winding": 0.6384981983029175,
+     "abs_error_median": 0.3619499206542969,
+     "fit_per_store_winding": 0.971752405166626
+    },
+    "400-500": {
+     "pairs": 11681,
+     "within_half_a_winding": 0.5814570670319322,
+     "abs_error_median": 0.40767431259155273,
+     "fit_per_store_winding": 0.946017861366272
+    },
+    "500-600": {
+     "pairs": 14049,
+     "within_half_a_winding": 0.5607516549220585,
+     "abs_error_median": 0.43160057067871094,
+     "fit_per_store_winding": 0.9717817306518555
+    },
+    "600-700": {
+     "pairs": 13702,
+     "within_half_a_winding": 0.6779302291636258,
+     "abs_error_median": 0.3204464912414551,
+     "fit_per_store_winding": 1.0126341581344604
+    },
+    "700-800": {
+     "pairs": 13835,
+     "within_half_a_winding": 0.681243223707987,
+     "abs_error_median": 0.3120908737182617,
+     "fit_per_store_winding": 0.9837043881416321
+    },
+    "800-900": {
+     "pairs": 8766,
+     "within_half_a_winding": 0.5255532740132329,
+     "abs_error_median": 0.4659004211425781,
+     "fit_per_store_winding": 0.9451541900634766
+    },
+    "900-1000": {
+     "pairs": 4838,
+     "within_half_a_winding": 0.3606862339809839,
+     "abs_error_median": 0.779329776763916,
+     "fit_per_store_winding": 0.8998157382011414
+    },
+    "1000-1100": {
+     "pairs": 3037,
+     "within_half_a_winding": 0.29568653276259466,
+     "abs_error_median": 0.929931640625,
+     "fit_per_store_winding": 0.8795112371444702
+    },
+    "1100-1200": {
+     "pairs": 1048,
+     "within_half_a_winding": 0.19370229007633588,
+     "abs_error_median": 1.4000153541564941,
+     "fit_per_store_winding": 0.8263155817985535
+    },
+    "1200-1300": {
+     "pairs": 485,
+     "within_half_a_winding": 0.21443298969072164,
+     "abs_error_median": 1.2819857597351074,
+     "fit_per_store_winding": 0.8186171650886536
+    },
+    "1300-1400": {
+     "pairs": 290,
+     "within_half_a_winding": 0.2620689655172414,
+     "abs_error_median": 1.1275670528411865,
+     "fit_per_store_winding": 0.8350299596786499
+    }
+   }
+  },
+  "$P/p332/stores/minimal_s1_cut": {
+   "rays": 22397,
+   "rays_in_window": 22259,
+   "neighbouring crossings": {
+    "pairs_in_window": 98394,
+    "within_half_a_winding": 0.8513832144236437,
+    "abs_error_median": 0.18922483921051025,
+    "abs_error_p95": 0.7612935304641724,
+    "signed_error_mean": -0.057759273797273636
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 97275,
+    "within_half_a_winding": 0.5562580313544077,
+    "abs_error_median": 0.4264092445373535,
+    "abs_error_p95": 2.1226985454559326,
+    "signed_error_mean": -0.38788336515426636
+   },
+   "rings": {
+    "0-100": {
+     "pairs": 3038,
+     "within_half_a_winding": 0.2109940750493746,
+     "abs_error_median": 2.8365156650543213,
+     "fit_per_store_winding": 0.5027042031288147
+    },
+    "100-200": {
+     "pairs": 5505,
+     "within_half_a_winding": 0.7732970027247956,
+     "abs_error_median": 0.23407673835754395,
+     "fit_per_store_winding": 1.0109667778015137
+    },
+    "200-300": {
+     "pairs": 4888,
+     "within_half_a_winding": 0.6908756137479541,
+     "abs_error_median": 0.294888973236084,
+     "fit_per_store_winding": 1.0150786638259888
+    },
+    "300-400": {
+     "pairs": 6840,
+     "within_half_a_winding": 0.6532163742690058,
+     "abs_error_median": 0.3467336893081665,
+     "fit_per_store_winding": 0.9738271236419678
+    },
+    "400-500": {
+     "pairs": 9323,
+     "within_half_a_winding": 0.6001287139332833,
+     "abs_error_median": 0.3909454345703125,
+     "fit_per_store_winding": 0.9474532604217529
+    },
+    "500-600": {
+     "pairs": 11136,
+     "within_half_a_winding": 0.553430316091954,
+     "abs_error_median": 0.4424407482147217,
+     "fit_per_store_winding": 0.970584511756897
+    },
+    "600-700": {
+     "pairs": 11948,
+     "within_half_a_winding": 0.6707398727820556,
+     "abs_error_median": 0.3252873420715332,
+     "fit_per_store_winding": 1.0156488418579102
+    },
+    "700-800": {
+     "pairs": 15177,
+     "within_half_a_winding": 0.6370165381827766,
+     "abs_error_median": 0.34732723236083984,
+     "fit_per_store_winding": 0.9918438196182251
+    },
+    "800-900": {
+     "pairs": 11400,
+     "within_half_a_winding": 0.49043859649122806,
+     "abs_error_median": 0.515648365020752,
+     "fit_per_store_winding": 0.9381245374679565
+    },
+    "900-1000": {
+     "pairs": 7679,
+     "within_half_a_winding": 0.3793462690454486,
+     "abs_error_median": 0.7322883605957031,
+     "fit_per_store_winding": 0.9020249843597412
+    },
+    "1000-1100": {
+     "pairs": 5018,
+     "within_half_a_winding": 0.3333997608609008,
+     "abs_error_median": 0.8470697402954102,
+     "fit_per_store_winding": 0.8794907331466675
+    },
+    "1100-1200": {
+     "pairs": 3326,
+     "within_half_a_winding": 0.3280216476247745,
+     "abs_error_median": 0.8911292552947998,
+     "fit_per_store_winding": 0.8571161031723022
+    },
+    "1200-1300": {
+     "pairs": 1022,
+     "within_half_a_winding": 0.30528375733855184,
+     "abs_error_median": 0.9570813179016113,
+     "fit_per_store_winding": 0.8361179828643799
+    },
+    "1300-1400": {
+     "pairs": 585,
+     "within_half_a_winding": 0.28888888888888886,
+     "abs_error_median": 1.0669811964035034,
+     "fit_per_store_winding": 0.8128355741500854
+    },
+    "1400-1500": {
+     "pairs": 390,
+     "within_half_a_winding": 0.4564102564102564,
+     "abs_error_median": 0.5833984613418579,
+     "fit_per_store_winding": 0.8082141876220703
+    }
+   }
+  },
+  "$P/p332/stores/minimal_s1_cut2": {
+   "rays": 26969,
+   "rays_in_window": 26695,
+   "neighbouring crossings": {
+    "pairs_in_window": 98607,
+    "within_half_a_winding": 0.8408835072560772,
+    "abs_error_median": 0.19425922632217407,
+    "abs_error_p95": 0.7666823863983154,
+    "signed_error_mean": -0.06636425852775574
+   },
+   "3 to 15 levels apart": {
+    "pairs_in_window": 97460,
+    "within_half_a_winding": 0.5583726657090088,
+    "abs_error_median": 0.4201221466064453,
+    "abs_error_p95": 2.0721487998962402,
+    "signed_error_mean": -0.40456339716911316
+   },
+   "rings": {
+    "0-100": {
+     "pairs": 2544,
+     "within_half_a_winding": 0.20518867924528303,
+     "abs_error_median": 2.764885425567627,
+     "fit_per_store_winding": 0.5094531774520874
+    },
+    "100-200": {
+     "pairs": 4630,
+     "within_half_a_winding": 0.7717062634989201,
+     "abs_error_median": 0.23389482498168945,
+     "fit_per_store_winding": 1.007933497428894
+    },
+    "200-300": {
+     "pairs": 4193,
+     "within_half_a_winding": 0.6775578344860482,
+     "abs_error_median": 0.30547523498535156,
+     "fit_per_store_winding": 1.012302041053772
+    },
+    "300-400": {
+     "pairs": 5919,
+     "within_half_a_winding": 0.6343977023145801,
+     "abs_error_median": 0.358489990234375,
+     "fit_per_store_winding": 0.9724957346916199
+    },
+    "400-500": {
+     "pairs": 7969,
+     "within_half_a_winding": 0.5753544986823943,
+     "abs_error_median": 0.40694236755371094,
+     "fit_per_store_winding": 0.9458858370780945
+    },
+    "500-600": {
+     "pairs": 9422,
+     "within_half_a_winding": 0.557418807047336,
+     "abs_error_median": 0.43671560287475586,
+     "fit_per_store_winding": 0.970626711845398
+    },
+    "600-700": {
+     "pairs": 10391,
+     "within_half_a_winding": 0.6650947935713598,
+     "abs_error_median": 0.327603816986084,
+     "fit_per_store_winding": 1.0156185626983643
+    },
+    "700-800": {
+     "pairs": 13342,
+     "within_half_a_winding": 0.6411332633788038,
+     "abs_error_median": 0.3447895050048828,
+     "fit_per_store_winding": 0.9904845952987671
+    },
+    "800-900": {
+     "pairs": 13498,
+     "within_half_a_winding": 0.5327455919395466,
+     "abs_error_median": 0.4499244689941406,
+     "fit_per_store_winding": 0.9354780912399292
+    },
+    "900-1000": {
+     "pairs": 9540,
+     "within_half_a_winding": 0.4119496855345912,
+     "abs_error_median": 0.6624456644058228,
+     "fit_per_store_winding": 0.8938907384872437
+    },
+    "1000-1100": {
+     "pairs": 6551,
+     "within_half_a_winding": 0.4174935124408487,
+     "abs_error_median": 0.671442985534668,
+     "fit_per_store_winding": 0.8808524012565613
+    },
+    "1100-1200": {
+     "pairs": 4766,
+     "within_half_a_winding": 0.4731430969366345,
+     "abs_error_median": 0.54888916015625,
+     "fit_per_store_winding": 0.8741917610168457
+    },
+    "1200-1300": {
+     "pairs": 2845,
+     "within_half_a_winding": 0.5251318101933217,
+     "abs_error_median": 0.4509730339050293,
+     "fit_per_store_winding": 0.8611007928848267
+    },
+    "1300-1400": {
+     "pairs": 1027,
+     "within_half_a_winding": 0.3631937682570594,
+     "abs_error_median": 0.920752763748169,
+     "fit_per_store_winding": 0.7938594818115234
+    },
+    "1400-1500": {
+     "pairs": 823,
+     "within_half_a_winding": 0.5443499392466585,
+     "abs_error_median": 0.4211547374725342,
+     "fit_per_store_winding": 0.8230197429656982
+    }
+   }
+  }
+ }
+}

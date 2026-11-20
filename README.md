@@ -1782,6 +1782,7 @@ number people gave them).
 | tracks, normals, rays made from that fit, at weight 120 | 39.6 % | 49.9 | 0.91; 0.77–1.02 | 1.06 / 0.98 / 0.67 |
 | tracks, normals, rays of the rebuilt store (cut at the mask, below), at weight 120 | 37.3 % | 66.9 | 1.03; 0.83–1.12 | 1.07 / 0.99 / 0.81 |
 | the same at weight 36 | **44.2 %** | 47.5 | 0.85; 0.80–0.97 | 1.06 / 0.96 / 0.73 |
+| the same, seed 2 (tracks, normals, density alone, seed 2: 43.4 %, 19.9, 0.79, 0.53) | **44.5 %** | 46.8 | 0.86; 0.81–0.98 | 1.05 / 0.96 / 0.73 |
 | the same at weight 120, long-range pairs only (`loss_weight_dense_spacing_density` 0) | 35.3 % | 63.7 | 1.05; 0.79–1.16 | 1.06 / 0.98 / 0.80 |
 | the same at weight 12, the fitter's default | 42.3 % | 30.7 | 0.82; 0.74–0.95 | 1.01 / 0.95 / 0.61 |
 
@@ -1855,6 +1856,11 @@ number people gave them).
   66.9 at weight 120 and 19.6 without rays. The fit keeps 84 % of neighbouring crossings of its
   store within half a winding (96 % at weight 120). So at 36 the tracks override the rays in
   places, presumably where the model's local count is wrong.
+- A second seed of both fits repeats this: 43.4 % without rays and 44.5 % at weight 36 (seed 1:
+  43.3 and 44.2 %), 66.1 and 69.7 % within half a winding, 0.53 and 0.73 by the anchors in the outer
+  third. The two seeds of one setting differ by 0.1–0.3 points, and the gain is 0.9–1.1. It comes
+  from the 12 lines that were furthest off (+5–6 points in both seeds), while the other 19 lose
+  1.5. Per line, the median change is slightly negative (−0.7 to −0.8 points).
 - The roughness does not come from the term that pulls each pair of adjacent crossings to one
   winding. Without it, at weight 120 with only the pairs 3–15 crossings apart (villa's
   `winding_model_relative_pair_delta`), the steps stay at 63.7 per 1,000 points and the fit
