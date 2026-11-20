@@ -73,12 +73,13 @@ screen.
    those ratios. On PHerc. 0332, scored on the Scroll Prize team's hand-traced lines and winding
    anchors, the fit with tracks and lasagna density counts right in the inner two thirds and has
    half the windings in the outer third. Rays made from that fit bring it to two thirds there.
-   Once the rays are cut at the scroll's mask instead of dropped, they bring it to four fifths (0.81
-   by the anchors, 1.03 windings per turn along the lines). The team's own score then rises on the
-   12 lines where the fit was furthest off and falls on 19 where it overshoots. On PHerc. 0139's
-   9.362 µm scan, whose pitch happens to be the fitter's start, a fit with no count signal has 1.06
-   windings per curated winding and counts 77 % of neighbouring curated windings as one apart; with
-   rays made from it, 87 %.
+   Once the rays are cut at the scroll's mask instead of dropped, they bring it to four fifths at
+   ray weight 120 (0.81 by the anchors, 1.03 windings per turn along the lines), but the fit
+   overshoots on 19 of 32 lines and the team's score falls. At weight 36 they bring it to 0.73 and
+   the team's score rises, from 43.3 % to 44.2 % of line points within a quarter winding (66.2 to
+   69.7 % within half). On PHerc. 0139's 9.362 µm scan, whose pitch happens to be the fitter's
+   start, a fit with no count signal has 1.06 windings per curated winding and counts 77 % of
+   neighbouring curated windings as one apart; with rays made from it, 87 %.
 9. **What a scroll gives away before a fit.** Its pitch: the median gap between predicted sheets
    along radial lines is 2–11 % above the pitch people fixed on three scrolls. Its sense: patches
    grown from the tracks at the umbilicus pass a full turn and show which way the sheets go; right
@@ -1780,6 +1781,7 @@ number people gave them).
 | tracks, normals, density | 43.3 % | 19.6 | 0.79; 0.52–0.95 | 1.03 / 1.01 / 0.53 |
 | tracks, normals, rays made from that fit, at weight 120 | 39.6 % | 49.9 | 0.91; 0.77–1.02 | 1.06 / 0.98 / 0.67 |
 | tracks, normals, rays of the rebuilt store (cut at the mask, below), at weight 120 | 37.3 % | 66.9 | 1.03; 0.83–1.12 | 1.07 / 0.99 / 0.81 |
+| the same at weight 36 | **44.2 %** | 47.5 | 0.85; 0.80–0.97 | 1.06 / 0.96 / 0.73 |
 
 - The fit without rays counts as people do through the inner two thirds, after 13–14 surplus
   windings inside a radius of 100 voxels, and has half the windings in the outer third, where the
@@ -1842,6 +1844,15 @@ number people gave them).
   without rays) the fit overshoots to 1.07 windings per turn and the score falls from 49.2 % to
   34.2 %. The steps of over half a winding rise again, to 66.9 per 1,000 points. The fit took 33
   minutes, alone on the card.
+- At weight 36 the same rays give the first fit that beats the fit without rays on the team's own
+  score: 44.2 % of line points within a quarter winding (43.3 %) and 69.7 % within half (66.2 %).
+  The outer third goes from 0.53 to 0.73 fit windings per true winding by the anchors. On the 12
+  lines that were furthest off, the score goes from 34.5 % to 39.6 % (11 of 12 higher) and the
+  windings per turn from 0.60 to 0.86. On the other 19 it is 47.7 % against 49.2 %, with no
+  overshoot (0.84 windings per turn, 0.83 without rays). Steps: 47.5 per 1,000 points, against
+  66.9 at weight 120 and 19.6 without rays. The fit keeps 84 % of neighbouring crossings of its
+  store within half a winding (96 % at weight 120). So at 36 the tracks override the rays in
+  places, presumably where the model's local count is wrong.
 
 **PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
 volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
@@ -2132,13 +2143,14 @@ where the tracer mostly abstains (item 1).
    the model merges sheets: under 115 µm it loses a fifth to a quarter of the windings on the
    coarse scans (on PHerc. 0332's fibres, 44 % of the pairs under 77 µm are counted as none), and
    in gaps over about 190 µm it counts a second winding. Neither another sample step nor the 4.8 µm
-   level fixes that. With rays cut at the mask, the PHerc. 0332 fit gets four fifths of its outer
-   third's count back. It is rougher along the sheets, though, and overshoots on 19 of 32 lines, so
-   the team's score falls overall. Lower ray weights and the long-range pairs alone are the next
-   fits. The sense reading needs patches that pass a turn, which the grower gives only near the
-   umbilicus. Not done: a second seed anywhere, rays seeded again from a fit that used rays,
-   patches of more than a turn as fit input, and an ink reading on windings of a fit made this way
-   on an unread scroll.
+   level fixes that. With rays cut at the mask, the PHerc. 0332 fit at ray weight 120 gets four
+   fifths of its outer third's count back, but it is rougher along the sheets and overshoots on 19
+   of 32 lines. At weight 36 it gets 0.73 and the team's score rises by about a point, while the
+   steps along the lines stay at 2.4 times those of the fit without rays. Weight 36 on a second
+   scroll and the long-range pairs alone are the next fits. The sense reading needs patches that
+   pass a turn, which the grower gives only near the umbilicus. Not done: a second seed anywhere,
+   rays seeded again from a fit that used rays, patches of more than a turn as fit input, and an
+   ink reading on windings of a fit made this way on an unread scroll.
 10. **The screen control is one text.** PHerc. 343's letters, eight windings of two fits, three
    ink models, 40 windows; the other face of the same surfaces is the only null. The cut and the
    gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and
