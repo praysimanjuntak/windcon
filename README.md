@@ -1874,6 +1874,7 @@ was scored on above (`store_vs_meshes.py --checkpoint`):
 | the winding model's rays | 1.05 | – | 90.4 % / 1.7 % / 7.9 % |
 | fit with tracks and normals | 1.06 | 14 of 37 | 76.9 % / 8.4 % / 14.7 % |
 | fit with tracks, normals and rays made from that fit, at weight 120 | 0.97 | 16 of 37 | 87.4 % / 3.1 % / 9.5 % |
+| the same with the store cut at the mask (above), at weight 36 | 1.00 | 15 of 37 | 84.4 % / 3.3 % / 12.4 % |
 
 Without any count signal the fit has the right total: the scroll's pitch, 16.7 voxels, happens
 to be the fitter's starting 16, and winding w023 gets the index 47, its radius over 16. With rays
@@ -1881,7 +1882,10 @@ to be the fitter's starting 16, and winding w023 gets the index 47, its radius o
 between neighbouring curated windings in 87.4 % of the pairs, 3 points under the rays themselves
 and 10.5 over the fit without them. From one curated winding to the next the fitted number rises
 by one, within 0.15, at 24 of the 36 steps (17 without rays), and at all eleven from w023 to
-w034. Satisfied track points: 75.7 %.
+w034. Satisfied track points: 75.7 %. At weight 36 with the store cut at the mask (46,924 rays)
+the total is exact, 1.001 fitted windings per curated winding, and 84.4 % of neighbouring pairs
+are counted as one. The number rises by one within 0.15 at 22 of the 36 steps, all ten from w023
+to w033. The fit took 74 minutes alone on the card, with the whole card at 11.6 GB.
 
 **The winding sense before a fit** (`experiments/spiral_fit/winding_sense.sh`). `fit_spiral.py`
 needs to be told which way the scroll winds, and no score of a fit shows a wrong choice: a fit
