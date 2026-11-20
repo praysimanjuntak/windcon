@@ -1782,6 +1782,7 @@ number people gave them).
 | tracks, normals, rays made from that fit, at weight 120 | 39.6 % | 49.9 | 0.91; 0.77–1.02 | 1.06 / 0.98 / 0.67 |
 | tracks, normals, rays of the rebuilt store (cut at the mask, below), at weight 120 | 37.3 % | 66.9 | 1.03; 0.83–1.12 | 1.07 / 0.99 / 0.81 |
 | the same at weight 36 | **44.2 %** | 47.5 | 0.85; 0.80–0.97 | 1.06 / 0.96 / 0.73 |
+| the same at weight 120, long-range pairs only (`loss_weight_dense_spacing_density` 0) | 35.3 % | 63.7 | 1.05; 0.79–1.16 | 1.06 / 0.98 / 0.80 |
 
 - The fit without rays counts as people do through the inner two thirds, after 13–14 surplus
   windings inside a radius of 100 voxels, and has half the windings in the outer third, where the
@@ -1853,6 +1854,11 @@ number people gave them).
   66.9 at weight 120 and 19.6 without rays. The fit keeps 84 % of neighbouring crossings of its
   store within half a winding (96 % at weight 120). So at 36 the tracks override the rays in
   places, presumably where the model's local count is wrong.
+- The roughness does not come from the term that pulls each pair of adjacent crossings to one
+  winding. Without it, at weight 120 with only the pairs 3–15 crossings apart (villa's
+  `winding_model_relative_pair_delta`), the steps stay at 63.7 per 1,000 points and the fit
+  overshoots on the same 19 lines (1.11 windings per turn there; score 30.7 %). It is the weight
+  of the rays as a whole that sets the trade.
 
 **PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
 volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
@@ -2146,11 +2152,12 @@ where the tracer mostly abstains (item 1).
    level fixes that. With rays cut at the mask, the PHerc. 0332 fit at ray weight 120 gets four
    fifths of its outer third's count back, but it is rougher along the sheets and overshoots on 19
    of 32 lines. At weight 36 it gets 0.73 and the team's score rises by about a point, while the
-   steps along the lines stay at 2.4 times those of the fit without rays. Weight 36 on a second
-   scroll and the long-range pairs alone are the next fits. The sense reading needs patches that
-   pass a turn, which the grower gives only near the umbilicus. Not done: a second seed anywhere,
-   rays seeded again from a fit that used rays, patches of more than a turn as fit input, and an
-   ink reading on windings of a fit made this way on an unread scroll.
+   steps along the lines stay at 2.4 times those of the fit without rays; the long-range pairs alone
+   do not change that. Weight 36 on a second scroll and the fitter's default 12 are the next fits.
+   The sense reading needs patches that pass a turn, which the grower gives only near the
+   umbilicus. Not done: a second seed anywhere, rays seeded again from a fit that used rays,
+   patches of more than a turn as fit input, and an ink reading on windings of a fit made this way
+   on an unread scroll.
 10. **The screen control is one text.** PHerc. 343's letters, eight windings of two fits, three
    ink models, 40 windows; the other face of the same surfaces is the only null. The cut and the
    gates are the PHerc. 0306B submission's, set on its own lanes with other ink models and
