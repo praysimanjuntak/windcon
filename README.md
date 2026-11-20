@@ -1835,7 +1835,7 @@ number people gave them).
   give the fit 0.67 for true windings 40–70. They lie between radius 700 and 1,300, and within any
   ring of 100 voxels they spread over 15–18 windings, so the two measures do not read the same
   places. The weight was chosen on PHerc. 343, where the only aim was that the fit follow its
-  rays; the default weight has not been scored here.
+  rays; the weights 12 and 36 are scored below.
 - With the rebuilt store (`minimal_s1_cut2`, rays cut at the mask) at weight 120 the outer third
   comes most of the way: by the anchors 0.81 fit windings per true winding at true windings 40–70
   (0.53 without rays, 0.67 with the old store), and 1.03 windings per turn along the lines
@@ -1883,6 +1883,7 @@ was scored on above (`store_vs_meshes.py --checkpoint`):
 | fit with tracks and normals | 1.06 | 14 of 37 | 76.9 % / 8.4 % / 14.7 % |
 | fit with tracks, normals and rays made from that fit, at weight 120 | 0.97 | 16 of 37 | 87.4 % / 3.1 % / 9.5 % |
 | the same with the store cut at the mask (above), at weight 36 | 1.00 | 15 of 37 | 84.4 % / 3.3 % / 12.4 % |
+| the same store at weight 120 | 0.97 | 16 of 37 | 87.4 % / 3.1 % / 9.5 % |
 
 Without any count signal the fit has the right total: the scroll's pitch, 16.7 voxels, happens
 to be the fitter's starting 16, and winding w023 gets the index 47, its radius over 16. With rays
@@ -1893,7 +1894,13 @@ by one, within 0.15, at 24 of the 36 steps (17 without rays), and at all eleven 
 w034. Satisfied track points: 75.7 %. At weight 36 with the store cut at the mask (46,924 rays)
 the total is exact, 1.001 fitted windings per curated winding, and 84.4 % of neighbouring pairs
 are counted as one. The number rises by one within 0.15 at 22 of the 36 steps, all ten from w023
-to w033. The fit took 74 minutes alone on the card, with the whole card at 11.6 GB.
+to w033. The fit took 74 minutes alone on the card, with the whole card at 11.6 GB. With the same
+store at weight 120 the fit matches the one with the old store at 120 to 0.011 windings on every
+curated winding (87.4 % of pairs as one, 25 of 36 steps). The rays the cut adds lie where this
+fit already counts right. That run was stopped at step 28,127 for the campaign and resumed from its
+autosave at 28,000. So on this training scroll, where the rays are right 90 % of the time, weight
+120 counts 3 points more neighbouring windings right than 36. On PHerc. 0332, where they are right
+80 % of the time, 36 scores best.
 
 **The winding sense before a fit** (`experiments/spiral_fit/winding_sense.sh`). `fit_spiral.py`
 needs to be told which way the scroll winds, and no score of a fit shows a wrong choice: a fit
@@ -2015,7 +2022,7 @@ bash $W/run.sh build_store.py --rays $P/p332/line_seeds.npz --volume data/cache/
   --model $P/wi/model/ckpt_final.pth --out $P/p332/stores/lines_L1 --columns 1 --batch-size 1 --device cpu
 # Rays for a scroll that has none, and the fit with them (PHerc. 0332 at level 2 of its 2.4 um scan).
 bash $W/rays_for_scroll.sh $P/data/PHerc0332 $P/p332/runs/minimal_s1 $P/p332/rays \
-  $B/PHerc0332/volumes/20251211183505-2.399um-0.2m-78keV-masked.zarr 2 9.596 120
+  $B/PHerc0332/volumes/20251211183505-2.399um-0.2m-78keV-masked.zarr 2 9.596 36
 # A store from a fit, the fit against it by ring, and its windings by radius.
 bash $W/run.sh build_store.py --checkpoint $P/p332/runs/minimal_s1/checkpoint_fitted.ckpt --umbilicus $P/data/PHerc0332/umbilicus.json \
   --volume data/cache/<folder of the 0332 scan's level 2> --model $P/wi/model/ckpt_final.pth --out $P/p332/stores/minimal_s1 \
