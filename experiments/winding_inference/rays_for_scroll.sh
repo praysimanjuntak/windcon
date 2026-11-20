@@ -17,15 +17,17 @@
 #   3. <out>/dataset: the dataset's inputs linked, plus winding_inference/ and outer_shell/;
 #   4. <out>/rays.json: the run's overrides with rays on, the shell's own loss off, and shell_min_confidence 0.
 #      Without that, fit_spiral.py drops every ray pair outside the part of the shell table it is sure of.
-#      The ray weights (loss_weight_dense_spacing and _density) are [weight] (default 120: at the default 12 a
-#      fit of an 8.64 um scan does not follow its rays);
+#      The ray weights (loss_weight_dense_spacing and _density) are [weight], default 36: on PHerc. 0332, a scroll
+#      the model has not seen, 36 gives the best score on the team's lines of 12, 36 and 120 (120 counts more of
+#      the missing windings but makes the surface rougher; at 12 the fit hardly follows its rays). On PHerc. 0139,
+#      one of the model's training scrolls, 120 counts 3 points more neighbouring curated windings right;
 #   5. the fit: run_fit.sh <out>/dataset <out>/run <out>/rays.json (set NO_FIT=1 to stop before it).
 # Needs $POSTEL/env.sh, villa's spiral-fitting environment (run.sh), the winding model in $MODEL (default
 # $POSTEL/wi/model/ckpt_final.pth) and $POSTEL/tools/run_fit.sh. Measured results: README, "The winding count
 # and the winding sense on other scrolls".
 set -euo pipefail
 source "$HOME/Documents/postel/vesuvius_challenge/env.sh"
-dataset=$(cd "$1" && pwd); run=$(cd "$2" && pwd); out=$3; url=${4%/}; level=$5; voxel_um=$6; weight=${7:-120}
+dataset=$(cd "$1" && pwd); run=$(cd "$2" && pwd); out=$3; url=${4%/}; level=$5; voxel_um=$6; weight=${7:-36}
 W="$POSTEL/windcon/experiments/winding_inference"; S="$POSTEL/windcon/experiments/spiral_fit"
 MODEL=${MODEL:-$POSTEL/wi/model/ckpt_final.pth}
 STEP=${STEP:-$(python3 -c "print(round(9.6 / $voxel_um, 4))")}

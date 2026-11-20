@@ -1,0 +1,560 @@
+{
+ "checkpoint": "$P/p139/runs/rayscut120_s1/checkpoint_fitted.ckpt",
+ "meshes": {
+  "w023_20260311000000": {
+   "nodes": 22222,
+   "winding_median": 42.98741340637207,
+   "spread": 0.46896610260009197,
+   "phase": 0.012586593627929688,
+   "share_within_half_a_winding_of_the_median": 0.9836648366483665,
+   "fit_spacing_voxels": [
+    11.391590824047299,
+    21.21678606624421,
+    39.682262410888846
+   ],
+   "fit_windings_per_100_voxels": 4.71268809960396,
+   "turns_spanned": 1.192546325105971,
+   "fit_windings_per_turn": 1.0724051863524797
+  },
+  "w024_20260215000000": {
+   "nodes": 23182,
+   "winding_median": 44.02215003967285,
+   "spread": 0.5040531158447266,
+   "phase": 0.022150039672851562,
+   "share_within_half_a_winding_of_the_median": 0.9842118885342076,
+   "fit_spacing_voxels": [
+    11.445455820954967,
+    20.722231556423814,
+    43.1243896071205
+   ],
+   "fit_windings_per_100_voxels": 4.7797021678427365,
+   "turns_spanned": 1.1897738279990024,
+   "fit_windings_per_turn": 0.971408425897624
+  },
+  "w025_20250108000000": {
+   "nodes": 24000,
+   "winding_median": 45.01802062988281,
+   "spread": 0.5890420913696275,
+   "phase": 0.0180206298828125,
+   "share_within_half_a_winding_of_the_median": 0.97275,
+   "fit_spacing_voxels": [
+    10.486074608456192,
+    18.248640370341366,
+    34.69876968883687
+   ],
+   "fit_windings_per_100_voxels": 4.987401582897977,
+   "turns_spanned": 1.2134191365638096,
+   "fit_windings_per_turn": 0.9903909055106394
+  },
+  "w026_20250108000001": {
+   "nodes": 26207,
+   "winding_median": 46.0440559387207,
+   "spread": 1.1371608734130803,
+   "phase": 0.044055938720703125,
+   "share_within_half_a_winding_of_the_median": 0.8844201930781852,
+   "fit_spacing_voxels": [
+    8.039254170755642,
+    14.145191860190613,
+    29.234711089426362
+   ],
+   "fit_windings_per_100_voxels": 5.392213708896311,
+   "turns_spanned": 1.2993082531125322,
+   "fit_windings_per_turn": 1.226635571126506
+  },
+  "w027_20250108000002": {
+   "nodes": 25602,
+   "winding_median": 46.991886138916016,
+   "spread": 1.1777042388916001,
+   "phase": 0.008113861083984375,
+   "share_within_half_a_winding_of_the_median": 0.8732911491289743,
+   "fit_spacing_voxels": [
+    8.334212263979692,
+    16.984219691887866,
+    37.115172707624154
+   ],
+   "fit_windings_per_100_voxels": 5.51725613491483,
+   "turns_spanned": 1.2352144030145542,
+   "fit_windings_per_turn": 0.8226087581209156
+  },
+  "w028_20250108000003": {
+   "nodes": 25996,
+   "winding_median": 48.03198432922363,
+   "spread": 0.952448844909668,
+   "phase": 0.03198432922363281,
+   "share_within_half_a_winding_of_the_median": 0.9104092937374981,
+   "fit_spacing_voxels": [
+    8.985327207722941,
+    15.837483102622775,
+    31.112060585710903
+   ],
+   "fit_windings_per_100_voxels": 5.677054645907761,
+   "turns_spanned": 1.219370280387642,
+   "fit_windings_per_turn": 1.0118319917504106
+  },
+  "w029_20250108000004": {
+   "nodes": 26257,
+   "winding_median": 49.04189682006836,
+   "spread": 0.9528228759765653,
+   "phase": 0.041896820068359375,
+   "share_within_half_a_winding_of_the_median": 0.9031496362874663,
+   "fit_spacing_voxels": [
+    8.915090449539925,
+    15.267003967531759,
+    29.660170282578566
+   ],
+   "fit_windings_per_100_voxels": 5.775865039126183,
+   "turns_spanned": 1.2140598841989476,
+   "fit_windings_per_turn": 0.7445175391555523
+  },
+  "w030_20250108000005": {
+   "nodes": 26524,
+   "winding_median": 49.97600173950195,
+   "spread": 0.6448080062866239,
+   "phase": 0.023998260498046875,
+   "share_within_half_a_winding_of_the_median": 0.963844065751772,
+   "fit_spacing_voxels": [
+    9.192777606720558,
+    16.646243416259527,
+    32.039648688258985
+   ],
+   "fit_windings_per_100_voxels": 5.938555211311257,
+   "turns_spanned": 1.1955680577130274,
+   "fit_windings_per_turn": 0.996866273241805
+  },
+  "w031_20260130000000": {
+   "nodes": 26857,
+   "winding_median": 51.06555938720703,
+   "spread": 0.8882575988769545,
+   "phase": 0.06555938720703125,
+   "share_within_half_a_winding_of_the_median": 0.9149942286927059,
+   "fit_spacing_voxels": [
+    8.678824437323197,
+    15.406131888489197,
+    30.88070634171534
+   ],
+   "fit_windings_per_100_voxels": 6.115308534416993,
+   "turns_spanned": 1.177465684819032,
+   "fit_windings_per_turn": 1.0958822570260582
+  },
+  "w032_20260203000000": {
+   "nodes": 27235,
+   "winding_median": 51.999515533447266,
+   "spread": 1.0139640808105455,
+   "phase": 0.000484466552734375,
+   "share_within_half_a_winding_of_the_median": 0.8952818064989903,
+   "fit_spacing_voxels": [
+    8.178071724583852,
+    15.055472199289278,
+    31.360876666814516
+   ],
+   "fit_windings_per_100_voxels": 6.2523400310176855,
+   "turns_spanned": 1.1716095280565324,
+   "fit_windings_per_turn": 1.0517557863300837
+  },
+  "w033_20260219000000": {
+   "nodes": 27554,
+   "winding_median": 53.039493560791016,
+   "spread": 1.572042655944827,
+   "phase": 0.039493560791015625,
+   "share_within_half_a_winding_of_the_median": 0.7510706249546345,
+   "fit_spacing_voxels": [
+    7.173196195350134,
+    12.839732327909504,
+    25.819268557939647
+   ],
+   "fit_windings_per_100_voxels": 6.358332364024316,
+   "turns_spanned": 1.15973754937331,
+   "fit_windings_per_turn": 0.7109301909349051
+  },
+  "w034_20260303000000": {
+   "nodes": 27705,
+   "winding_median": 54.035911560058594,
+   "spread": 1.5958404541015625,
+   "phase": 0.03591156005859375,
+   "share_within_half_a_winding_of_the_median": 0.7620646092763039,
+   "fit_spacing_voxels": [
+    7.148488257149674,
+    12.44157570004746,
+    24.264729023001806
+   ],
+   "fit_windings_per_100_voxels": 6.387075354269972,
+   "turns_spanned": 1.151388411509251,
+   "fit_windings_per_turn": 0.9159521759964964
+  },
+  "w035_20260317000000": {
+   "nodes": 19020,
+   "winding_median": 55.064693450927734,
+   "spread": 1.2947063446044922,
+   "phase": 0.06469345092773438,
+   "share_within_half_a_winding_of_the_median": 0.8373817034700315,
+   "fit_spacing_voxels": [
+    7.106715758897437,
+    12.74391866845729,
+    28.73102205226171
+   ],
+   "fit_windings_per_100_voxels": 6.245277073737709,
+   "turns_spanned": 0.7704826008539103,
+   "fit_windings_per_turn": 1.0247849740233272
+  },
+  "w036_20260316000000": {
+   "nodes": 25971,
+   "winding_median": 54.98224639892578,
+   "spread": 1.1749286651611328,
+   "phase": 0.01775360107421875,
+   "share_within_half_a_winding_of_the_median": 0.8798274999037388,
+   "fit_spacing_voxels": [
+    8.000323499437023,
+    14.26022860950749,
+    29.31865973724774
+   ],
+   "fit_windings_per_100_voxels": 6.180324582271138,
+   "turns_spanned": 1.0209049323196857,
+   "fit_windings_per_turn": 1.2310668655932389
+  },
+  "w037_20260310000000": {
+   "nodes": 26751,
+   "winding_median": 56.93241882324219,
+   "spread": 1.083719253540039,
+   "phase": 0.0675811767578125,
+   "share_within_half_a_winding_of_the_median": 0.8795185226720497,
+   "fit_spacing_voxels": [
+    8.150898514859911,
+    13.782997601725775,
+    25.814819234589148
+   ],
+   "fit_windings_per_100_voxels": 6.016633939781584,
+   "turns_spanned": 1.0316574714570645,
+   "fit_windings_per_turn": 1.421895308218049
+  },
+  "w038_20260306000000": {
+   "nodes": 27660,
+   "winding_median": 57.00009727478027,
+   "spread": 1.0333442687988281,
+   "phase": 9.72747802734375e-05,
+   "share_within_half_a_winding_of_the_median": 0.8919378163412871,
+   "fit_spacing_voxels": [
+    8.353955791377366,
+    13.705532137372153,
+    27.33264691699141
+   ],
+   "fit_windings_per_100_voxels": 5.812237799072379,
+   "turns_spanned": 1.0437608702302903,
+   "fit_windings_per_turn": 1.2584576232044429
+  },
+  "w039_20260302000000": {
+   "nodes": 28918,
+   "winding_median": 58.0222053527832,
+   "spread": 0.7805822372436566,
+   "phase": 0.022205352783203125,
+   "share_within_half_a_winding_of_the_median": 0.936026004564631,
+   "fit_spacing_voxels": [
+    10.2466543214099,
+    18.129690944456453,
+    37.7124566167347
+   ],
+   "fit_windings_per_100_voxels": 5.534487906110535,
+   "turns_spanned": 1.0711816512361865,
+   "fit_windings_per_turn": 1.0060195735461832
+  },
+  "w040_20250831000000": {
+   "nodes": 29925,
+   "winding_median": 60.031410217285156,
+   "spread": 0.9810577392578139,
+   "phase": 0.03141021728515625,
+   "share_within_half_a_winding_of_the_median": 0.8840768588137009,
+   "fit_spacing_voxels": [
+    10.792360196065752,
+    19.66590084303116,
+    39.96874414807757
+   ],
+   "fit_windings_per_100_voxels": 5.1824701256858345,
+   "turns_spanned": 1.0875259903560637,
+   "fit_windings_per_turn": 0.9052969397789514
+  },
+  "w041_20260108000000": {
+   "nodes": 30160,
+   "winding_median": 60.20685577392578,
+   "spread": 1.4816934585571317,
+   "phase": 0.20685577392578125,
+   "share_within_half_a_winding_of_the_median": 0.5541777188328912,
+   "fit_spacing_voxels": [
+    9.529321101550206,
+    16.74346118225657,
+    34.791219267875654
+   ],
+   "fit_windings_per_100_voxels": 4.9798177336602345,
+   "turns_spanned": 1.0691784326436125,
+   "fit_windings_per_turn": 1.0055141474420237
+  },
+  "w042_20260206000000": {
+   "nodes": 29376,
+   "winding_median": 60.67205619812012,
+   "spread": 1.4809017181396484,
+   "phase": 0.3279438018798828,
+   "share_within_half_a_winding_of_the_median": 0.4795751633986928,
+   "fit_spacing_voxels": [
+    9.596676053329375,
+    16.989654641639056,
+    35.48288417710134
+   ],
+   "fit_windings_per_100_voxels": 4.986985324841674,
+   "turns_spanned": 1.0561339096937499,
+   "fit_windings_per_turn": 1.1818650819172498
+  },
+  "w043_20260112000000": {
+   "nodes": 30681,
+   "winding_median": 61.57337188720703,
+   "spread": 1.3900566101074219,
+   "phase": 0.42662811279296875,
+   "share_within_half_a_winding_of_the_median": 0.5272970242169421,
+   "fit_spacing_voxels": [
+    9.384162565943942,
+    16.383424032498,
+    32.086512556026356
+   ],
+   "fit_windings_per_100_voxels": 5.054023522883239,
+   "turns_spanned": 1.0617178170132076,
+   "fit_windings_per_turn": 0.97101177476862
+  },
+  "w044_20260115000000": {
+   "nodes": 30805,
+   "winding_median": 62.69121170043945,
+   "spread": 1.4340576171874986,
+   "phase": 0.3087882995605469,
+   "share_within_half_a_winding_of_the_median": 0.5554293134231456,
+   "fit_spacing_voxels": [
+    9.615138091906335,
+    16.246664911651997,
+    31.458727264512415
+   ],
+   "fit_windings_per_100_voxels": 5.1826781836086,
+   "turns_spanned": 1.0544967133496979,
+   "fit_windings_per_turn": 1.055895594870573
+  },
+  "w045_20260126000000": {
+   "nodes": 31015,
+   "winding_median": 65.0040283203125,
+   "spread": 1.4087677001953054,
+   "phase": 0.0040283203125,
+   "share_within_half_a_winding_of_the_median": 0.7971304207641464,
+   "fit_spacing_voxels": [
+    10.31328069431742,
+    18.155902621463447,
+    36.09630497667529
+   ],
+   "fit_windings_per_100_voxels": 5.182050811320287,
+   "turns_spanned": 1.0450092011375962,
+   "fit_windings_per_turn": 1.8061788334746078
+  },
+  "w046_20260325000000": {
+   "nodes": 31118,
+   "winding_median": 65.09097671508789,
+   "spread": 1.371408081054696,
+   "phase": 0.09097671508789062,
+   "share_within_half_a_winding_of_the_median": 0.7362941063050324,
+   "fit_spacing_voxels": [
+    10.383770608537898,
+    18.081702354627573,
+    36.920650276337284
+   ],
+   "fit_windings_per_100_voxels": 5.201359507500111,
+   "turns_spanned": 1.0431720320328444,
+   "fit_windings_per_turn": 0.6496007068491518
+  },
+  "w047_20260206000001": {
+   "nodes": 31497,
+   "winding_median": 66.02155303955078,
+   "spread": 0.7872436523437614,
+   "phase": 0.02155303955078125,
+   "share_within_half_a_winding_of_the_median": 0.9331999873003778,
+   "fit_spacing_voxels": [
+    9.828987096924845,
+    17.466223589315046,
+    36.05088358660524
+   ],
+   "fit_windings_per_100_voxels": 5.435787108387355,
+   "turns_spanned": 1.0188730269325976,
+   "fit_windings_per_turn": 0.8474283435537777
+  },
+  "w048_20260219000001": {
+   "nodes": 31820,
+   "winding_median": 66.99173355102539,
+   "spread": 1.072793960571289,
+   "phase": 0.008266448974609375,
+   "share_within_half_a_winding_of_the_median": 0.8872407291011942,
+   "fit_spacing_voxels": [
+    9.935869255001723,
+    16.62796341724239,
+    30.65007951555373
+   ],
+   "fit_windings_per_100_voxels": 5.675001417548763,
+   "turns_spanned": 1.0066517694506936,
+   "fit_windings_per_turn": 1.060544706016833
+  },
+  "w049_20260318000000": {
+   "nodes": 35371,
+   "winding_median": 68.9706039428711,
+   "spread": 0.9924201965332031,
+   "phase": 0.02939605712890625,
+   "share_within_half_a_winding_of_the_median": 0.9048655678380594,
+   "fit_spacing_voxels": [
+    9.883107852500164,
+    16.074441422015166,
+    29.170786492827744
+   ],
+   "fit_windings_per_100_voxels": 5.801510557361032,
+   "turns_spanned": 1.1118431334031063,
+   "fit_windings_per_turn": 1.051177612874553
+  },
+  "w050_20260302000001": {
+   "nodes": 14018,
+   "winding_median": 69.97357559204102,
+   "spread": 0.9048507690429801,
+   "phase": 0.026424407958984375,
+   "share_within_half_a_winding_of_the_median": 0.9175345983735198,
+   "fit_spacing_voxels": [
+    8.812066572095377,
+    14.027397262784305,
+    23.6191315545079
+   ],
+   "fit_windings_per_100_voxels": 6.494466899130582,
+   "turns_spanned": 0.4963181156958939,
+   "fit_windings_per_turn": 1.3179033828650748
+  },
+  "w051_20260306000001": {
+   "nodes": 36758,
+   "winding_median": 69.98623657226562,
+   "spread": 0.6803874969482422,
+   "phase": 0.013763427734375,
+   "share_within_half_a_winding_of_the_median": 0.9563360356929104,
+   "fit_spacing_voxels": [
+    9.350430703928946,
+    14.493904293257401,
+    23.720218974799803
+   ],
+   "fit_windings_per_100_voxels": 6.234124854426323,
+   "turns_spanned": 1.1401193576570514,
+   "fit_windings_per_turn": 1.109421397949886
+  },
+  "w052_20260227000000": {
+   "nodes": 37097,
+   "winding_median": 70.97233581542969,
+   "spread": 0.841522216796875,
+   "phase": 0.0276641845703125,
+   "share_within_half_a_winding_of_the_median": 0.9266787071730868,
+   "fit_spacing_voxels": [
+    8.627038658396035,
+    13.412244755050402,
+    24.669242045379715
+   ],
+   "fit_windings_per_100_voxels": 6.376671805459108,
+   "turns_spanned": 1.1391444619895184,
+   "fit_windings_per_turn": 0.9686799041890024
+  },
+  "w053_20260220000000": {
+   "nodes": 39069,
+   "winding_median": 72.03832244873047,
+   "spread": 0.9455734252929773,
+   "phase": 0.03832244873046875,
+   "share_within_half_a_winding_of_the_median": 0.9121042258568174,
+   "fit_spacing_voxels": [
+    8.828166027787622,
+    14.670528156698147,
+    26.025714602360637
+   ],
+   "fit_windings_per_100_voxels": 6.49904487938748,
+   "turns_spanned": 1.2149957617792608,
+   "fit_windings_per_turn": 0.9931896533135698
+  },
+  "w054_20260206000002": {
+   "nodes": 41593,
+   "winding_median": 72.96249389648438,
+   "spread": 0.9522323608398438,
+   "phase": 0.037506103515625,
+   "share_within_half_a_winding_of_the_median": 0.9071478373764816,
+   "fit_spacing_voxels": [
+    8.963919527279185,
+    16.188973460344908,
+    35.57485615680663
+   ],
+   "fit_windings_per_100_voxels": 6.554465451073043,
+   "turns_spanned": 1.250886774211376,
+   "fit_windings_per_turn": 0.8845711804810955
+  },
+  "w055_20251226000000": {
+   "nodes": 39157,
+   "winding_median": 73.81791687011719,
+   "spread": 1.1766296386718693,
+   "phase": 0.1820831298828125,
+   "share_within_half_a_winding_of_the_median": 0.8586970401205404,
+   "fit_spacing_voxels": [
+    7.645635704754752,
+    13.444316229453548,
+    24.667733132586807
+   ],
+   "fit_windings_per_100_voxels": 6.51892733996075,
+   "turns_spanned": 1.1647710471641906,
+   "fit_windings_per_turn": 0.8679103180469344
+  },
+  "w056_20260115000001": {
+   "nodes": 36912,
+   "winding_median": 74.99529266357422,
+   "spread": 1.3784351348876953,
+   "phase": 0.00470733642578125,
+   "share_within_half_a_winding_of_the_median": 0.8236616818378847,
+   "fit_spacing_voxels": [
+    7.240022019606428,
+    13.039070856799984,
+    29.68872287897028
+   ],
+   "fit_windings_per_100_voxels": 6.420523340780241,
+   "turns_spanned": 1.0854191995338258,
+   "fit_windings_per_turn": 1.2072172550450806
+  },
+  "w057_20260127000000": {
+   "nodes": 37519,
+   "winding_median": 76.03791809082031,
+   "spread": 1.1072769165039062,
+   "phase": 0.0379180908203125,
+   "share_within_half_a_winding_of_the_median": 0.8838721714331406,
+   "fit_spacing_voxels": [
+    8.238017059033657,
+    13.531497016980824,
+    26.342291882681355
+   ],
+   "fit_windings_per_100_voxels": 6.5817863103613785,
+   "turns_spanned": 1.0687313208714444,
+   "fit_windings_per_turn": 1.1033587090097596
+  },
+  "w058_20260210000000": {
+   "nodes": 37900,
+   "winding_median": 77.02238464355469,
+   "spread": 1.726945877075181,
+   "phase": 0.0223846435546875,
+   "share_within_half_a_winding_of_the_median": 0.8620844327176781,
+   "fit_spacing_voxels": [
+    8.700445903847875,
+    14.47559622086589,
+    27.96329434018609
+   ],
+   "fit_windings_per_100_voxels": 6.816067099146407,
+   "turns_spanned": 1.0613678646819829,
+   "fit_windings_per_turn": 1.2537031026085386
+  },
+  "w059_20250223000000": {
+   "nodes": 38700,
+   "winding_median": 78.0128173828125,
+   "spread": 3.2757255554199247,
+   "phase": 0.0128173828125,
+   "share_within_half_a_winding_of_the_median": 0.7743152454780362,
+   "fit_spacing_voxels": [
+    8.522444476931518,
+    14.566792620582351,
+    25.95613644239814
+   ],
+   "fit_windings_per_100_voxels": 7.021407851387734,
+   "turns_spanned": 1.060495725415963,
+   "fit_windings_per_turn": 0.47431960001520446
+  }
+ }
+}

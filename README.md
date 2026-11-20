@@ -1974,10 +1974,11 @@ rays: `input_use_gradient_magnitude` where the scroll has lasagna density, `dens
 "grad_mag"`, no shell. With rays: `input_use_winding_inference`, `dense_spacing_mode:
 "winding_model"`, the shell from the scan's mask as `outer_shell` with `loss_weight_shell_outer:
 0` and `shell_min_confidence: 0` (the fitter takes rays only inside a shell), and
-`loss_weight_dense_spacing` and `loss_weight_dense_spacing_density` at 120 or at their default 12.
-`rays_for_scroll.sh` does all of it from a fit with tracks: store, shell, dataset, overrides and
-fit. On PHerc. 0332 it writes the overrides of the fit with rays in the table above, key for key.
-Its store cuts rays at the mask (`--outside cut`) where the stores of the fits above dropped them.
+`loss_weight_dense_spacing` and `loss_weight_dense_spacing_density` at 12 (their default), 36 or
+120. `rays_for_scroll.sh` does all of it from a fit with tracks: store, shell, dataset, overrides
+and fit, at weight 36 unless told otherwise. With weight 120 on PHerc. 0332 it writes the overrides
+of the fit with rays in the table above, key for key. Its store cuts rays at the mask
+(`--outside cut`) where the stores of the first fits above dropped them.
 
 ```bash
 P=~/Documents/postel/vesuvius_challenge; W=experiments/winding_inference; S=experiments/spiral_fit
@@ -2093,6 +2094,8 @@ bash $W/run.sh store_vs_fit.py --checkpoint <tracks-only run>/checkpoint_fitted.
 
 On a scroll the model has not seen (PHerc. 0332), the rays count one winding right between sheets
 77–154 µm apart. They merge closer sheets and count a second winding in gaps over about 190 µm.
+The default ray weight, 36, gave the best of three scores on that scroll's hand-traced lines. A
+higher weight takes the count further and makes the surface rougher (section on other scrolls).
 `sheet_gaps.py` gives a scroll's pitch from its surface prediction before any of this.
 
 ## Limitations and next steps
