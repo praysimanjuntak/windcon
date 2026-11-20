@@ -1783,6 +1783,7 @@ number people gave them).
 | tracks, normals, rays of the rebuilt store (cut at the mask, below), at weight 120 | 37.3 % | 66.9 | 1.03; 0.83–1.12 | 1.07 / 0.99 / 0.81 |
 | the same at weight 36 | **44.2 %** | 47.5 | 0.85; 0.80–0.97 | 1.06 / 0.96 / 0.73 |
 | the same at weight 120, long-range pairs only (`loss_weight_dense_spacing_density` 0) | 35.3 % | 63.7 | 1.05; 0.79–1.16 | 1.06 / 0.98 / 0.80 |
+| the same at weight 12, the fitter's default | 42.3 % | 30.7 | 0.82; 0.74–0.95 | 1.01 / 0.95 / 0.61 |
 
 - The fit without rays counts as people do through the inner two thirds, after 13–14 surplus
   windings inside a radius of 100 voxels, and has half the windings in the outer third, where the
@@ -1859,6 +1860,13 @@ number people gave them).
   `winding_model_relative_pair_delta`), the steps stay at 63.7 per 1,000 points and the fit
   overshoots on the same 19 lines (1.11 windings per turn there; score 30.7 %). It is the weight
   of the rays as a whole that sets the trade.
+- Across ray weights 12 / 36 / 120 with the rebuilt store, the count of the outer third rises with
+  the weight (0.61 / 0.73 / 0.81 fit windings per true winding by the anchors), and so do the steps
+  (30.7 / 47.5 / 66.9 per 1,000 points; 19.6 without rays). The team's score peaks at 36 (42.3 /
+  44.2 / 37.3 % within a quarter winding), and the share within half a winding is highest at 12
+  (70.6 / 69.7 / 66.7 %; 66.2 % without rays). At 12 the fit does not follow its rays in the outer
+  third: 0.52–0.73 fit windings per store winding from radius 900 to 1,400, against 0.85–0.89 at 36.
+  On the 12 lines that were furthest off it scores 32.0 %, below the fit without rays.
 
 **PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
 volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
