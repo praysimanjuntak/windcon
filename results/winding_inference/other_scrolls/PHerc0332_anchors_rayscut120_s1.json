@@ -1,0 +1,107 @@
+{
+ "checkpoint": "$P/p332/runs/rayscut120_s1/checkpoint_fitted.ckpt",
+ "anchors": 3281,
+ "by_true_winding": {
+  "0-20": {
+   "anchors": 386,
+   "fit_windings_per_true_winding": 1.0726215238393744,
+   "fit_minus_true_median": 11.175169944763184
+  },
+  "20-40": {
+   "anchors": 767,
+   "fit_windings_per_true_winding": 0.98755358705371,
+   "fit_minus_true_median": 11.256023406982422
+  },
+  "40-70": {
+   "anchors": 2128,
+   "fit_windings_per_true_winding": 0.806493404529691,
+   "fit_minus_true_median": 8.273948669433594
+  }
+ },
+ "by_radius": {
+  "100-200": {
+   "anchors": 49,
+   "true_winding_median": 3.0,
+   "fit_coordinate_median": 13.464346885681152,
+   "fit_minus_true_median": 10.333579063415527
+  },
+  "200-300": {
+   "anchors": 76,
+   "true_winding_median": 11.0,
+   "fit_coordinate_median": 20.99690341949463,
+   "fit_minus_true_median": 10.682488441467285
+  },
+  "300-400": {
+   "anchors": 93,
+   "true_winding_median": 12.0,
+   "fit_coordinate_median": 23.43220329284668,
+   "fit_minus_true_median": 11.344053268432617
+  },
+  "400-500": {
+   "anchors": 376,
+   "true_winding_median": 20.0,
+   "fit_coordinate_median": 31.30372714996338,
+   "fit_minus_true_median": 11.297065734863281
+  },
+  "500-600": {
+   "anchors": 319,
+   "true_winding_median": 23.0,
+   "fit_coordinate_median": 34.5152702331543,
+   "fit_minus_true_median": 11.30373764038086
+  },
+  "600-700": {
+   "anchors": 106,
+   "true_winding_median": 28.0,
+   "fit_coordinate_median": 39.3182258605957,
+   "fit_minus_true_median": 11.112533569335938
+  },
+  "700-800": {
+   "anchors": 340,
+   "true_winding_median": 44.0,
+   "fit_coordinate_median": 54.09036445617676,
+   "fit_minus_true_median": 9.768268585205078
+  },
+  "800-900": {
+   "anchors": 555,
+   "true_winding_median": 50.0,
+   "fit_coordinate_median": 59.4445915222168,
+   "fit_minus_true_median": 8.57680892944336
+  },
+  "900-1000": {
+   "anchors": 584,
+   "true_winding_median": 53.0,
+   "fit_coordinate_median": 62.53543281555176,
+   "fit_minus_true_median": 8.36068344116211
+  },
+  "1000-1100": {
+   "anchors": 300,
+   "true_winding_median": 57.0,
+   "fit_coordinate_median": 64.28518295288086,
+   "fit_minus_true_median": 7.917633056640625
+  },
+  "1100-1200": {
+   "anchors": 262,
+   "true_winding_median": 56.0,
+   "fit_coordinate_median": 63.85080909729004,
+   "fit_minus_true_median": 7.95556640625
+  },
+  "1200-1300": {
+   "anchors": 136,
+   "true_winding_median": 56.0,
+   "fit_coordinate_median": 64.03407287597656,
+   "fit_minus_true_median": 7.712760925292969
+  },
+  "1300-1400": {
+   "anchors": 37,
+   "true_winding_median": 56.0,
+   "fit_coordinate_median": 63.97682571411133,
+   "fit_minus_true_median": 7.7055816650390625
+  },
+  "1400-1500": {
+   "anchors": 40,
+   "true_winding_median": 56.0,
+   "fit_coordinate_median": 63.874250411987305,
+   "fit_minus_true_median": 7.824825286865234
+  }
+ }
+}
