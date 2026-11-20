@@ -1785,6 +1785,7 @@ number people gave them).
 | the same, seed 2 (tracks, normals, density alone, seed 2: 43.4 %, 19.9, 0.79, 0.53) | **44.5 %** | 46.8 | 0.86; 0.81–0.98 | 1.05 / 0.96 / 0.73 |
 | the same at weight 120, long-range pairs only (`loss_weight_dense_spacing_density` 0) | 35.3 % | 63.7 | 1.05; 0.79–1.16 | 1.06 / 0.98 / 0.80 |
 | the same at weight 12, the fitter's default | 42.3 % | 30.7 | 0.82; 0.74–0.95 | 1.01 / 0.95 / 0.61 |
+| the same at weight 120 to iteration 20,000, then 12 | 37.5 % | 49.0 | 1.05; 0.78–1.16 | 1.06 / 0.98 / 0.76 |
 
 - The fit without rays counts as people do through the inner two thirds, after 13–14 surplus
   windings inside a radius of 100 voxels, and has half the windings in the outer third, where the
@@ -1873,6 +1874,14 @@ number people gave them).
   (70.6 / 69.7 / 66.7 %; 66.2 % without rays). At 12 the fit does not follow its rays in the outer
   third: 0.52–0.73 fit windings per store winding from radius 900 to 1,400, against 0.85–0.89 at 36.
   On the 12 lines that were furthest off it scores 32.0 %, below the fit without rays.
+- Strong rays first, weak rays last: weight 120 to iteration 20,000, then a resume from that
+  autosave at weight 12 (`fit_spiral.py` takes changed loss weights on resume). That keeps most of
+  120's count (0.76 by the anchors) and takes a quarter off its steps (49.0 per 1,000 points). On
+  the 12 lines that were furthest off it scores 44.3 %, the best of all fits there (34.5 % without
+  rays, 39.6 % at 36), at 43.9 steps. On the other 19 it keeps weight 120's overshoot (1.09
+  windings per turn, 33.4 %). The count that strong rays set early is not undone later, since the
+  tracks cannot change it. So weight 120 loses its score there to the overshoot more than to the
+  roughness, and 36 remains the best single setting.
 
 **PHerc. 0139 at 9.362 µm, 37 curated windings.** The scan protocol of eight First Letters
 volumes. Its coarse scan has tracks and a surface prediction and no lasagna: the normals were
