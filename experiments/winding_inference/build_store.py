@@ -158,17 +158,25 @@ def decode_part(indices, rays, extractor, model, device, args, geometry) -> dict
                 for b, native_b in enumerate(columns):
                     row, column = int(native_a) * stride, int(native_b) * stride
                     off_scan = outside_samples(image[row, column], args.outside_run)
+                    inside = slab_valid[row, column].astype(bool) & ~off_scan
+                    ray_anchor = anchor
                     if off_scan.any():
                         if args.outside == "drop":
                             outside += 1
                             continue
                         cut += 1
-                    # decode_center_ray keeps the valid run that holds the ray's midpoint: with --outside cut, the
-                    # part of the ray inside the scroll on the seed's side
+                        if not inside[anchor]:
+                            # The seed lies outside the scroll: keep the part of the ray inside it nearest the
+                            # seed. Levels count from the anchor, and fit_spiral.py uses only their differences.
+                            candidates = np.flatnonzero(inside)
+                            if len(candidates):
+                                ray_anchor = int(candidates[np.argmin(np.abs(candidates - anchor))])
+                    # decode_center_ray keeps the valid run that holds the anchor: with --outside cut, the part of
+                    # the ray inside the scroll on the seed's side, or nearest the seed
                     t, level = decode_center_ray(
                         phase[sample, a, b],
-                        slab_valid[row, column].astype(bool) & ~off_scan,
-                        anchor=anchor,
+                        inside,
+                        anchor=ray_anchor,
                         edge_margin=args.edge_margin,
                         edge_trim=args.edge_trim,
                     )
@@ -317,8 +325,8 @@ def main() -> None:
     parser.add_argument("--outside-run", type=int, default=4,
                         help="this many zero voxels in a row are outside the masked scroll")
     parser.add_argument("--outside", choices=("drop", "cut"), default="drop",
-                        help="a ray that reaches outside the masked scroll: drop it, or keep its part on the seed's "
-                             "side of the mask")
+                        help="a ray that reaches outside the masked scroll: drop it, or keep its part inside the scroll "
+                             "on the seed's side (the part nearest the seed when the seed lies outside)")
     parser.add_argument("--step", type=float,
                         help="voxels of --volume between samples (default: the model's, 1). The model was trained on "
                              "9.6 um voxels, so an 8.64 um scan is shown to it at its own scale with --step 1.111")

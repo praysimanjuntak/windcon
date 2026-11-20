@@ -1418,11 +1418,11 @@ with CMake. The tools below stay at the pin and need neither build.
   `decode_center_ray` and writes the store `fit_spiral.py` loads. `--columns 3` keeps a 3 × 3 grid
   of rays per slab instead of the centre one. `--step` sets the sampling step for a scan that is
   not at 9.6 µm. A ray that reads four zero voxels in a row reaches outside the masked scan and is
-  dropped, as the published store dropped rays that cross the exterior of a CT mask; with
-  `--outside cut` it keeps the part on the seed's side of the mask instead. `--device cpu` runs
-  the model on the CPU in float32 (9 s per slab on 12 threads of an i7-14700, plus 5 s reading the
-  scan). `--volume-scale 2` reads a scan level one finer than the fit's and writes the rays in the
-  fit's voxels.
+  dropped, as the published store dropped rays that cross the exterior of a CT mask. With
+  `--outside cut` it keeps the part inside the scroll on the seed's side instead, or the inside
+  part nearest the seed when the seed lies outside. `--device cpu` runs the model on the CPU in
+  float32 (9 s per slab on 12 threads of an i7-14700, plus 5 s reading the scan). `--volume-scale 2`
+  reads a scan level one finer than the fit's and writes the rays in the fit's voxels.
 - `subset_store.py` writes a store with part of the rays of another, the published one included:
   the centre ray of each slab, every Nth slab, or a random draw from the rays a z-window uses.
 - `mesh_windings.py` reads a fit's winding number on a tifxyz mesh of a known sheet: its spread
@@ -1799,10 +1799,16 @@ number people gave them).
   900 to 1,400, where the old store gave 0.71 / 0.67 / 0.60 / 0.60 / 0.66. Weighted by pairs, that
   is 0.61 against 0.68, and the anchors give that fit 0.53 per true winding for true windings
   40–70. The rebuilt store sees four fifths of the shortfall that the team's anchors show, and the
-  old one two thirds. Seeds still come from every eighth of the fit's own windings. Where the fit
-  has too few windings it has too few seeds, and its windings beyond the scroll's last sheet lie
-  outside the mask (all 4,086 seeds beyond radius 1,600). Rays are still kept for only 21 % of the
-  slabs seeded at 1,000–1,200 and 4 % at 1,200–1,400.
+  old one two thirds. Seeds still come from every eighth of the fit's own windings, and where the
+  fit has too few windings, its outer windings lie beyond the scroll's last sheet: the seeds of
+  8,630 slabs lie outside the mask, all 4,086 beyond radius 1,600 among them.
+- With the seed outside the scroll, `--outside cut` keeps the part of the ray inside it nearest
+  the seed. That is 551 more slabs of PHerc. 0332 whose centre ray runs at least 96 samples inside
+  the scroll (83 minutes on the CPU; `p332/stores/minimal_s1_cut2`, 26,969 rays). Their 173 fibre
+  pairs are counted as one in 82.7 % (79.8 % for the whole store's 1,229). Against this store the
+  fit without rays has 0.73 / 0.61 / 0.55 / 0.44 / 0.35 / 0.42 windings per store winding in the
+  rings from 800 to 1,400, 0.52 over 900–1,400 weighted by pairs. That is the 0.53 the team's
+  anchors give, so the store now sees the whole outer-third shortfall without any annotation.
 - The same rebuild of PHerc. 0139's store from its tracks-only fit: 628 slabs, 83 minutes on the CPU.
   The share of rays kept goes from 75 % to 84 %, and of the rays seeded at radius 1,000–1,200 from
   77 % to 97 %. On the 37 curated windings the store gives 265,410 pairs of neighbouring windings
