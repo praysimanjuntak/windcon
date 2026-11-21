@@ -48,8 +48,9 @@ fi
 shell="$dataset/outer_shell"
 if [ ! -d "$shell" ]; then
   shell="$out/outer_shell"
-  [ -d "$shell" ] || "$POSTEL/windcon/.venv/bin/python" "$S/make_outer_shell.py" --volume "$url" --mask-level 5 \
-    --fit-level "$level" --umbilicus "$dataset/umbilicus.json" --z-begin "$z0" --z-end "$z1" --out "$shell"
+  [ -f "$shell/meta.json" ] || "$POSTEL/windcon/.venv/bin/python" "$S/make_outer_shell.py" --volume "$url" \
+    --mask-level 5 --fit-level "$level" --umbilicus "$dataset/umbilicus.json" --z-begin "$z0" --z-end "$z1" \
+    --out "$shell"
 fi
 mkdir -p "$out/dataset"
 for item in "$dataset"/*; do
